@@ -1,0 +1,27 @@
+server.port: 7000
+server.error.include-message: always
+
+app:
+  product-service:
+    host: localhost
+    port: 7001
+  cart-service:
+    host: localhost
+    port: 7002
+  purchase-service:
+    host: localhost
+    port: 7003
+  till-service:
+    host: localhost
+    port: 7004
+  users-service:
+    host: localhost
+    port: 7005
+  valuation-service:
+    host: localhost
+    port: 7006
+
+logging:
+  level:
+    root: INFO
+    fab.shop: DEBUG
