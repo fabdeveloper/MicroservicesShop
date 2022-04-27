@@ -1,5 +1,6 @@
 package fab.shop.microservices.core.purchase.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import fab.shop.util.http.ServiceUtil;
@@ -13,6 +14,7 @@ public class PurchaseServiceImpl implements PurchaseService{
     private final ServiceUtil serviceUtil;
 
 
+    @Autowired
     public PurchaseServiceImpl(ServiceUtil serviceUtil) {
         this.serviceUtil = serviceUtil;
     }
