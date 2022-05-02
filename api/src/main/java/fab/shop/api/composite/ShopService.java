@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import fab.shop.api.core.cart.AddToCartRQ;
 import fab.shop.api.core.cart.AddToCartRS;
-import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.purchase.Purchase;
 import fab.shop.api.core.valuation.ValuationRQ;
 import fab.shop.api.core.valuation.ValuationRS;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+
+@Tag(name="Shop Service", description="REST API for Shop Services")
 public interface ShopService {
 	
 	  @GetMapping(
@@ -26,6 +32,12 @@ public interface ShopService {
 			    produces = "application/json")
 			  Product getProduct(@PathVariable int productId);
 	  
+	
+	  @Operation(summary = "${api.shop-service.post-addtocart.description}", description = "${api.shop-service.post-addtocart.notes}")
+	  @ApiResponses(value = {
+		  @ApiResponse(responseCode ="", description = ""),
+		  @ApiResponse(responseCode ="", description = "")
+	  })
 	  @PostMapping(
 			    value = "/shop/addToCart",
 				consumes = "application/json",
