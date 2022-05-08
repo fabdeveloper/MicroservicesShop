@@ -35,8 +35,11 @@ public interface ShopService {
 	
 	  @Operation(summary = "${api.shop-service.post-addtocart.description}", description = "${api.shop-service.post-addtocart.notes}")
 	  @ApiResponses(value = {
-		  @ApiResponse(responseCode ="", description = ""),
-		  @ApiResponse(responseCode ="", description = "")
+		  @ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}"),
+		  @ApiResponse(responseCode ="400", description = "${api.responseCodes.badRequest.description}"),
+		  @ApiResponse(responseCode ="404", description = "${api.responseCodes.notFound.description}"),
+		  @ApiResponse(responseCode ="422", description = "${api.responseCodes.unprocessableEntity.description}")
+
 	  })
 	  @PostMapping(
 			    value = "/shop/addToCart",
