@@ -1,0 +1,42 @@
+version: '2.1'
+
+services:
+  product: 
+    build: microservices/product-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  cart:
+    build: microservices/cart-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  purchase:
+    build: microservices/purchase-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  valuation:
+    build: microservices/valuation-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+
+  users:
+    build: microservices/users-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  shop-composite:
+    build: microservices/shop-composite-service
+    mem_limit: 512m
+    ports: 
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+

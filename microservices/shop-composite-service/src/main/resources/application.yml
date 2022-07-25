@@ -65,3 +65,23 @@ logging:
 
 
 
+---
+spring.config.activate.on-profile: docker
+
+server.port: 8080
+app:
+  product-service: 
+    host: product
+    port: 8080
+  cart-service:
+    host: cart
+    port: 8080
+  purchase-service:
+    host: purchase
+    port: 8080   
+  valuation-service:
+    host: valuation
+    port: 8080
+  users-service:
+    host: users
+    port: 8080 
