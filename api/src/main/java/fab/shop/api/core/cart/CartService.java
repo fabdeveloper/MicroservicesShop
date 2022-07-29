@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fab.shop.api.core.cart.msg.*;
+
 
 
 public interface CartService {
@@ -17,11 +19,17 @@ public interface CartService {
 			  Cart getCart(@PathVariable int cartId);
 
 		@PostMapping(
-			    value = "/cart/update",
+			value = "/cart/getCart",
+			consumes = "application/json",
+			produces = "application/json")
+			GetCartRS getCart(@RequestBody GetCartRQ getCartRQ);	  
+
+
+		@PostMapping(
+			    value = "/cart/cartModification",
 				consumes = "application/json",
 			    produces = "application/json")
-				//Cart addToCart(@RequestParam Product product, @RequestParam Integer cartId);
-				Cart updateCart(@RequestBody Cart cart);	  
+				CartModificationRS updateCart(@RequestBody CartModificationRQ cartModificationRQ);	  
 
 
 		@PostMapping(
@@ -31,14 +39,22 @@ public interface CartService {
 				//Cart addToCart(@RequestParam Product product, @RequestParam Integer cartId);
 				AddToCartRS addToCart(@RequestBody AddToCartRQ addToCartRq);
 
-		@GetMapping(
-			    value = "/cart/{productId}",
+		@PostMapping(
+			    value = "/cart/removeFromCart",
+				consumes = "application/json",
 			    produces = "application/json")
-			  Cart removeFromCart(@RequestParam Integer productId, @RequestParam Integer cartId);
+			  RemoveFromCartRS removeFromCart(@RequestBody RemoveFromCartRQ removeFromCartRq);
 
-		@DeleteMapping(
-			    value = "/cart/{cartId}",
+		@PostMapping(
+			    value = "/cart/emptyCart",
+				consumes = "application/json",
 			    produces = "application/json")
-			  void deleteCart(@PathVariable int cartId);
+			  EmptyCartRS emptyCart(@RequestBody EmptyCartRQ emptyCartRQ);
+
+			  
+		@DeleteMapping(
+			    value = "/cart/deleteCart",
+			    produces = "application/json")
+			  DeleteCartRS deleteCart(@RequestBody DeleteCartRQ deleteCartRQ);
 
 }
