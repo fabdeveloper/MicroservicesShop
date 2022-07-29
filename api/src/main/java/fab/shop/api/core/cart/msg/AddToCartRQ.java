@@ -1,4 +1,4 @@
-package fab.shop.api.core.cart;
+package fab.shop.api.core.cart.msg;
 
 import fab.shop.api.core.product.Product;
 

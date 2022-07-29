@@ -1,4 +1,6 @@
-package fab.shop.api.core.cart;
+package fab.shop.api.core.cart.msg;
+
+import fab.shop.api.core.cart.Cart;
 
 public class AddToCartRS {
 
