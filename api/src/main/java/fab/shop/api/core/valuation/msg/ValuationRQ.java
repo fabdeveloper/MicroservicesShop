@@ -5,7 +5,19 @@ import java.util.List;
 import fab.shop.api.core.product.Product;
 
 public class ValuationRQ {
-    private List<Product> productList;
+
+    private List<Product> productList = null;
+
+
+
+    public ValuationRQ(List<Product> productList) {
+        this.productList = productList;
+    }
+
+
+    public ValuationRQ() {
+    }
+
 
 
     public List<Product> getProductList() {

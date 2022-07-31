@@ -1,17 +1,33 @@
 package fab.shop.microservices.core.cart.services;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import fab.shop.util.http.ServiceUtil;
-import fab.shop.api.core.cart.AddToCartRQ;
-import fab.shop.api.core.cart.AddToCartRS;
+
 import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartService;
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.cart.msg.*;
+// import fab.shop.api.core.cart.AddToCartRQ;
+// import fab.shop.api.core.cart.AddToCartRS;
+// import fab.shop.api.core.cart.CartModificationRQ;
+// import fab.shop.api.core.cart.CartModificationRS;
+// import fab.shop.api.core.cart.DeleteCartRQ;
+// import fab.shop.api.core.cart.DeleteCartRS;
+// import fab.shop.api.core.cart.EmptyCartRQ;
+// import fab.shop.api.core.cart.EmptyCartRS;
+// import fab.shop.api.core.cart.GetCartRQ;
+// import fab.shop.api.core.cart.GetCartRS;
+// import fab.shop.api.core.cart.RemoveFromCartRQ;
+// import fab.shop.api.core.cart.RemoveFromCartRS;
+
+
+
+
+
+
 
 @RestController
 public class CartServiceImpl implements CartService{
@@ -28,68 +44,40 @@ public class CartServiceImpl implements CartService{
 
 
 
-    @Override
-    public Cart getCart(int cartId) {
-        Cart cart = null;
-        if(cartId == -1){
-            cart = cartMock;
-        }else if(cartId == -2){
-            cart = new Cart(-1, new ArrayList<Product>(), getServiceUtil().getServiceAddress());
-            cartMock = cart;
-        }else if(cartId == 0){
-            cart = new Cart(cartId, new ArrayList<Product>(), getServiceUtil().getServiceAddress());
-        }
-
-
-        return cart;
-    }
-
-
-
-    @Override
-    public Cart removeFromCart(Integer productId, Integer cartId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void deleteCart(int userId) {
-        // TODO Auto-generated method stub
-        
-    }
 
 
 
     @Override
     public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
 
-        Product product = addToCartRq.getProduct();
-        Integer cartId = addToCartRq.getCartId();
+        AddToCartRS addToCartRS = null;
+        // Product product = addToCartRq.getProduct();
+        // Integer cartId = addToCartRq.getCartId();
 
-        Cart cart = null;
-        List<Product> products;
+        // Cart cart = null;
+        // List<Product> products;
 
-        if(product != null){
-            if(cartId != null){
-                cart = getCart(cartId);
-                products = cart.getProductList();
-                products.add(product);
-                //cart = new Cart(cartId, products);
-                cart = persistCart(cart);
+        // if(product != null){
+        //     if(cartId != null){
+        //         cart = getCart(cartId);
+        //         products = cart.getProductList();
+        //         products.add(product);
+        //         //cart = new Cart(cartId, products);
+        //         cart = persistCart(cart);
 
-            } else{
-                products = new ArrayList<>();
-                products.add(product);
-                cart = new Cart(0, products, getServiceUtil().getServiceAddress());
-                cart = persistCart(cart);
-            }
-        }
+        //     } else{
+        //         products = new ArrayList<>();
+        //         products.add(product);
+        //         cart = new Cart(0, products, getServiceUtil().getServiceAddress());
+        //         cart = persistCart(cart);
+        //     }
+        // }
 
-        AddToCartRS addToCartRs = new AddToCartRS(cart,  null);
-        return addToCartRs;
+        // AddToCartRS addToCartRs = new AddToCartRS(cart,  null);
+        return addToCartRS;
     }
 
-    private Cart persistCart(Cart cart) {
+    // private Cart persistCart(Cart cart) {
         // if(cart.getCartId() == 0){
         //     cartMock = new Cart(-1, cart.getProductList());
         // }else{
@@ -98,16 +86,16 @@ public class CartServiceImpl implements CartService{
         
         // return cartMock;
 
-        return cart;
-    }
+    //     return cart;
+    // }
 
 
 
-    @Override
-    public Cart updateCart(Cart cart) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    // @Override
+    // public Cart updateCart(Cart cart) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
 
 
     public ServiceUtil getServiceUtil() {
@@ -121,6 +109,50 @@ public class CartServiceImpl implements CartService{
 
     public void setCartMock(Cart cartMock) {
         this.cartMock = cartMock;
+    }
+
+
+
+    @Override
+    public GetCartRS getCart(GetCartRQ getCartRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+
+    @Override
+    public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+
+
+
+
+
+    @Override
+    public RemoveFromCartRS removeFromCart(RemoveFromCartRQ removeFromCartRq) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+
+    @Override
+    public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+
+    @Override
+    public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     

@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "api\\src\\main\\java\\fab\\shop\\api\\core\\cart\\msg"
 		}
 	],
 	"settings": {
