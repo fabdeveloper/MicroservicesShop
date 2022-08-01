@@ -30,7 +30,7 @@ class ValuationServiceApplicationTests {
 		List<Product> productList = new ArrayList<Product>();
 		productList.add(prod1);
 		productList.add(prod1);
-		ValuationRQ valuationRQ = new ValuationRQ(productList, null);
+		ValuationRQ valuationRQ = new ValuationRQ(productList);
 
 		client.post()
 			.uri("/valuation/valuate")
@@ -40,7 +40,7 @@ class ValuationServiceApplicationTests {
 			.expectStatus().isOk()
 			.expectHeader().contentType(MediaType.APPLICATION_JSON)
 			.expectBody(ValuationRS.class)
-			.returnResult().getResponseBody().getTotal().equals(prod1.getPrice()*2);			
+			.returnResult().getResponseBody().getValuation().equals(prod1.getPrice()*2);			
 	}
 
 }

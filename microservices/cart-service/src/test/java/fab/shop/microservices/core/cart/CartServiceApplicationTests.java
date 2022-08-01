@@ -6,8 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import fab.shop.api.core.cart.AddToCartRQ;
-import fab.shop.api.core.cart.AddToCartRS;
+import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.Product;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,5 +43,31 @@ class CartServiceApplicationTests {
 		;	
 
 	}
+
+	@Test
+	public void getCartTest(){
+
+	}
+
+	@Test
+	public void cartModificationTest(){
+
+	}
+
+	@Test
+	public void removeFromCartTest(){
+
+	}
+
+	@Test
+	public void emptyCartTest(){
+
+	}
+
+	@Test
+	public void deleteCartTest(){
+
+	}
+
 
 }

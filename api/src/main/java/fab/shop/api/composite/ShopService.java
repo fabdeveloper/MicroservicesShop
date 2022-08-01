@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.purchase.Purchase;
-import fab.shop.api.core.valuation.ValuationRQ;
-import fab.shop.api.core.valuation.ValuationRS;
+import fab.shop.api.core.purchase.msg.*;
+import fab.shop.api.core.valuation.msg.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

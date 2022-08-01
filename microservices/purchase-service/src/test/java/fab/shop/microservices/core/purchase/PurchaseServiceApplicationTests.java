@@ -10,4 +10,29 @@ class PurchaseServiceApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	public void purchaseModificationTest(){
+
+	}
+
+	@Test
+	public void purchaseCancelTest(){
+
+	}
+
+	@Test
+	public void getPurchaseTest(){
+
+	}
+
+	@Test
+	public void getPurchaseListTest(){
+
+	}
+
+	@Test
+	public void purchaseConfirmTest(){
+
+	}
+
 }
