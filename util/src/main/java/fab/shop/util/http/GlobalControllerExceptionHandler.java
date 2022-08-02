@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import fab.shop.api.exceptions.InvalidInputException;
-import fab.shop.api.exceptions.NotFoundException;
+
+import fab.shop.api.exceptions.*;
 
 
 @RestControllerAdvice

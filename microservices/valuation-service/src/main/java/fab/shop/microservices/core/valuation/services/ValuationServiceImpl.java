@@ -1,12 +1,9 @@
 package fab.shop.microservices.core.valuation.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import fab.shop.util.http.ServiceUtil;
-import fab.shop.api.core.product.Product;
 import fab.shop.api.core.valuation.msg.*;
 import fab.shop.api.core.valuation.ValuationService;
 
