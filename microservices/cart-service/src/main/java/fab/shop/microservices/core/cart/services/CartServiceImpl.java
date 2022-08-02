@@ -133,11 +133,7 @@ public class CartServiceImpl implements CartService{
 
 
 
-    @Override
-    public RemoveFromCartRS removeFromCart(RemoveFromCartRQ removeFromCartRq) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+
 
 
 
@@ -151,6 +147,12 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public RemoveFromCartRS removeFromCart(RemoveFromCartRQ removeFromCartRq) {
         // TODO Auto-generated method stub
         return null;
     }

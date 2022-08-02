@@ -23,29 +23,37 @@ public class ValuationServiceImpl implements ValuationService{
     }
 
 
+
     @Override
     public ValuationRS valuate(ValuationRQ valuationRQ) {
-
-        List<Product> productList = valuationRQ.getProductList();
-
-        Float total = 0.0f;
-        Integer itemsCount = 0;
-        for(Product product : productList){
-            Float productPrice = product.getPrice();
-
-            total += productPrice;
-            itemsCount++;
-        }
-
-        ValuationRS valuationRs = new ValuationRS(itemsCount, total, productList, getServiceUtil().getServiceAddress());
-
-        return valuationRs;
+        // TODO Auto-generated method stub
+        return null;
     }
 
 
-    public ServiceUtil getServiceUtil() {
-        return this.serviceUtil;
-    }
+    // @Override
+    // public ValuationRS valuate(ValuationRQ valuationRQ) {
+
+    //     List<Product> productList = valuationRQ.getProductList();
+
+    //     Float total = 0.0f;
+    //     Integer itemsCount = 0;
+    //     for(Product product : productList){
+    //         Float productPrice = product.getPrice();
+
+    //         total += productPrice;
+    //         itemsCount++;
+    //     }
+
+    //     ValuationRS valuationRs = new ValuationRS(itemsCount, total, productList, getServiceUtil().getServiceAddress());
+
+    //     return valuationRs;
+    // }
+
+
+    // public ServiceUtil getServiceUtil() {
+    //     return this.serviceUtil;
+    // }
 
 
     

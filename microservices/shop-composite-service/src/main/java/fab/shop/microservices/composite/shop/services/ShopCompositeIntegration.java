@@ -1,9 +1,6 @@
 package fab.shop.microservices.composite.shop.services;
 
-import fab.shop.api.core.purchase.Purchase;
 import fab.shop.api.core.purchase.PurchaseService;
-import fab.shop.api.core.valuation.ValuationRQ;
-import fab.shop.api.core.valuation.ValuationRS;
 import fab.shop.api.core.valuation.ValuationService;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductService;
@@ -12,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import fab.shop.api.composite.PurchaseConfirmRQ;
-import fab.shop.api.core.cart.AddToCartRQ;
-import fab.shop.api.core.cart.AddToCartRS;
-import fab.shop.api.core.cart.Cart;
+import fab.shop.api.core.purchase.msg.*;
+import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.cart.CartService;
 
 
@@ -65,45 +60,6 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
 
-    @Override
-    public Purchase getPurchase(int purchaseId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Purchase createPurchase(Purchase purchase) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Product getProduct(int productId) {
-        String cadenaConsulta = getProductServiceUrl() + "/" + productId;
-        Product product = getRestTemplate().getForObject(cadenaConsulta, Product.class);
-        return product;
-    }
-
-    @Override
-    public Cart getCart(int cartId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
-    @Override
-    public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
-        return restTemplate.postForObject(getCartServiceUrl() + "/addToCart", addToCartRq, AddToCartRS.class);
-   
-    }
-
-
-    @Override
-    public void deleteCart(int userId) {
-        // TODO Auto-generated method stub
-        
-    }
-
     // GETTERS AND SETTERS
 
     public RestTemplate getRestTemplate() {
@@ -146,44 +102,175 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
 
     @Override
-    public Cart updateCart(Cart cart) {
+    public fab.shop.api.core.valuation.msg.ValuationRS valuate(
+            fab.shop.api.core.valuation.msg.ValuationRQ valuationRQ) {
         // TODO Auto-generated method stub
         return null;
     }
 
 
     @Override
-    public Purchase purchaseCancel(int purchaseId) {
+    public PurchaseModificationRS purchaseModification(PurchaseModificationRQ purchaseModificationRQ) {
         // TODO Auto-generated method stub
         return null;
     }
 
 
     @Override
-    public Purchase purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ) {
-        String url = getPurchaseServiceUrl() + "/confirm";
-        Purchase purchase = getRestTemplate().postForObject(url, purchaseConfirmRQ, Purchase.class);        
+    public PurchaseCancelRS purchaseCancel(PurchaseCancelRQ purchaseCancelRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public GetPurchaseRS getPurchase(GetPurchaseRQ getPurchaseRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public GetPurchaseListRS getPurchaseList(GetPurchaseListRQ getPurchaseListRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public PurchaseConfirmRS purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public Product getProduct(int productId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public GetCartRS getCart(GetCartRQ getCartRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public RemoveFromCartRS removeFromCart(RemoveFromCartRQ removeFromCartRq) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    // @Override
+    // public Cart updateCart(Cart cart) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
+
+
+    // @Override
+    // public Purchase purchaseCancel(int purchaseId) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
+
+
+    // @Override
+    // public Purchase purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ) {
+    //     String url = getPurchaseServiceUrl() + "/confirm";
+    //     Purchase purchase = getRestTemplate().postForObject(url, purchaseConfirmRQ, Purchase.class);        
         
-        return purchase;
-    }
+    //     return purchase;
+    // }
 
 
-    @Override
-    public Cart removeFromCart(Integer productId, Integer cartId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    // @Override
+    // public Cart removeFromCart(Integer productId, Integer cartId) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
 
 
-    @Override
-    public ValuationRS valuate(ValuationRQ valuationRQ) {
-        String url = getValuationServiceUrl() + "/valuate" ;
+    // @Override
+    // public ValuationRS valuate(ValuationRQ valuationRQ) {
+    //     String url = getValuationServiceUrl() + "/valuate" ;
 
-        ValuationRS valuationRs = getRestTemplate().postForObject(url,valuationRQ, ValuationRS.class);
+    //     ValuationRS valuationRs = getRestTemplate().postForObject(url,valuationRQ, ValuationRS.class);
 
-        return valuationRs;
-    }
+    //     return valuationRs;
+    // }
 
+
+    // @Override
+    // public Purchase getPurchase(int purchaseId) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
+
+    // @Override
+    // public Purchase createPurchase(Purchase purchase) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
+
+    // @Override
+    // public Product getProduct(int productId) {
+    //     String cadenaConsulta = getProductServiceUrl() + "/" + productId;
+    //     Product product = getRestTemplate().getForObject(cadenaConsulta, Product.class);
+    //     return product;
+    // }
+
+    // @Override
+    // public Cart getCart(int cartId) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
+
+
+    // @Override
+    // public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
+    //     return restTemplate.postForObject(getCartServiceUrl() + "/addToCart", addToCartRq, AddToCartRS.class);
+   
+    // }
+
+
+    // @Override
+    // public void deleteCart(int userId) {
+    //     // TODO Auto-generated method stub
+        
+    // }
 
 
 
