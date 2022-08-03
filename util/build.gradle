@@ -3,7 +3,7 @@ plugins {
 	id 'java'
 }
 
-group = 'fab.shop.api'
+group = 'fab.shop.util'
 version = '1'
 sourceCompatibility = '1.8'
 

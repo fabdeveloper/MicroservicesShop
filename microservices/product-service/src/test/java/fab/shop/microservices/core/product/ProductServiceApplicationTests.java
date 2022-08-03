@@ -19,65 +19,65 @@ class ProductServiceApplicationTests {
 	}
 
 
-	@Test
-	void getProductById() {
+	// @Test
+	// void getProductById() {
   
-	  int productId = 1;
+	//   int productId = 1;
   
-	  client.get()
-		.uri("/product/" + productId)
-		.accept(MediaType.APPLICATION_JSON)
-		.exchange()
-		.expectStatus().isOk()
-		.expectHeader().contentType(MediaType.APPLICATION_JSON)
-		.expectBody()
-		  .jsonPath("$.productId").isEqualTo(productId);
-	}
+	//   client.get()
+	// 	.uri("/product/" + productId)
+	// 	.accept(MediaType.APPLICATION_JSON)
+	// 	.exchange()
+	// 	.expectStatus().isOk()
+	// 	.expectHeader().contentType(MediaType.APPLICATION_JSON)
+	// 	.expectBody()
+	// 	  .jsonPath("$.productId").isEqualTo(productId);
+	// }
   
-	@Test
-	void getProductInvalidParameterString() {
+	// @Test
+	// void getProductInvalidParameterString() {
   
-	  client.get()
-		.uri("/product/no-integer")
-		.accept(MediaType.APPLICATION_JSON)
-		.exchange()
-		.expectStatus().isEqualTo(BAD_REQUEST)
-		.expectHeader().contentType(MediaType.APPLICATION_JSON)
-		.expectBody()
-		  .jsonPath("$.path").isEqualTo("/product/no-integer")
-		  .jsonPath("$.message").isEqualTo("Type mismatch.");
-	}
+	//   client.get()
+	// 	.uri("/product/no-integer")
+	// 	.accept(MediaType.APPLICATION_JSON)
+	// 	.exchange()
+	// 	.expectStatus().isEqualTo(BAD_REQUEST)
+	// 	.expectHeader().contentType(MediaType.APPLICATION_JSON)
+	// 	.expectBody()
+	// 	  .jsonPath("$.path").isEqualTo("/product/no-integer")
+	// 	  .jsonPath("$.message").isEqualTo("Type mismatch.");
+	// }
   
-	@Test
-	void getProductNotFound() {
+	// @Test
+	// void getProductNotFound() {
   
-	  int productIdNotFound = 13;
+	//   int productIdNotFound = 13;
   
-	  client.get()
-		.uri("/product/" + productIdNotFound)
-		.accept(MediaType.APPLICATION_JSON)
-		.exchange()
-		.expectStatus().isNotFound()
-		.expectHeader().contentType(MediaType.APPLICATION_JSON)
-		.expectBody()
-		  .jsonPath("$.path").isEqualTo("/product/" + productIdNotFound)
-		  .jsonPath("$.message").isEqualTo("No product found for productId: " + productIdNotFound);
-	}
+	//   client.get()
+	// 	.uri("/product/" + productIdNotFound)
+	// 	.accept(MediaType.APPLICATION_JSON)
+	// 	.exchange()
+	// 	.expectStatus().isNotFound()
+	// 	.expectHeader().contentType(MediaType.APPLICATION_JSON)
+	// 	.expectBody()
+	// 	  .jsonPath("$.path").isEqualTo("/product/" + productIdNotFound)
+	// 	  .jsonPath("$.message").isEqualTo("No product found for productId: " + productIdNotFound);
+	// }
   
-	@Test
-	void getProductInvalidParameterNegativeValue() {
+	// @Test
+	// void getProductInvalidParameterNegativeValue() {
   
-	  int productIdInvalid = -1;
+	//   int productIdInvalid = -1;
   
-	  client.get()
-		.uri("/product/" + productIdInvalid)
-		.accept(MediaType.APPLICATION_JSON)
-		.exchange()
-		.expectStatus().isEqualTo(UNPROCESSABLE_ENTITY)
-		.expectHeader().contentType(MediaType.APPLICATION_JSON)
-		.expectBody()
-		  .jsonPath("$.path").isEqualTo("/product/" + productIdInvalid)
-		  .jsonPath("$.message").isEqualTo("Invalid productId: " + productIdInvalid);
-	}
+	//   client.get()
+	// 	.uri("/product/" + productIdInvalid)
+	// 	.accept(MediaType.APPLICATION_JSON)
+	// 	.exchange()
+	// 	.expectStatus().isEqualTo(UNPROCESSABLE_ENTITY)
+	// 	.expectHeader().contentType(MediaType.APPLICATION_JSON)
+	// 	.expectBody()
+	// 	  .jsonPath("$.path").isEqualTo("/product/" + productIdInvalid)
+	// 	  .jsonPath("$.message").isEqualTo("Invalid productId: " + productIdInvalid);
+	// }
 
 }

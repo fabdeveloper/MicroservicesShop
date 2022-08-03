@@ -11,10 +11,6 @@ repositories {
 	mavenCentral()
 }
 
-jar {
- 	enabled = false
-}
-
 
 ext {
     springBootVersion = '2.5.2'
