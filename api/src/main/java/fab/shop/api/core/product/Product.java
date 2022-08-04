@@ -1,33 +1,38 @@
 package fab.shop.api.core.product;
 
+
 public class Product {
 	
-	 private final int productId;
-	  private final String name;
-	  private final Float price;
+	 private final int id;
+	 private final String name;
+	 private final String type;
+	  
 	  private final String serviceAddress;
 
 
-	public Product(int productId, String name, Float price, String serviceAddress) {
-		this.productId = productId;
+	public Product(int id, String name, String type, String serviceAddress) {
+		this.id = id;
 		this.name = name;
-		this.price = price;
+		this.type = type;
 		this.serviceAddress = serviceAddress;
 	}
 
 
+
 	  public Product() {
-	    productId = 0;
+	    id = 0;
 	    name = null;
-	    price = (float) 0;
+		this.type = null;
 	    serviceAddress = null;
 	  }
 
 
 
-	  public int getProductId() {
-	    return productId;
-	  }
+	public int getId() {
+		return this.id;
+	}
+
+
 
 	  public String getName() {
 	    return name;
@@ -37,13 +42,11 @@ public class Product {
 		return serviceAddress;
 	}
 
+	public String getType() {
+		return this.type;
+	}	 
+	
 
-	public Float getPrice() {
-		return this.price;
-	}
-
-
-	  
-	  
+	
 
 }

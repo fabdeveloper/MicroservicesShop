@@ -1,7 +1,5 @@
 package fab.shop.microservices.core.cart.services;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,21 +8,6 @@ import fab.shop.util.http.ServiceUtil;
 import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartService;
 import fab.shop.api.core.cart.msg.*;
-// import fab.shop.api.core.cart.AddToCartRQ;
-// import fab.shop.api.core.cart.AddToCartRS;
-// import fab.shop.api.core.cart.CartModificationRQ;
-// import fab.shop.api.core.cart.CartModificationRS;
-// import fab.shop.api.core.cart.DeleteCartRQ;
-// import fab.shop.api.core.cart.DeleteCartRS;
-// import fab.shop.api.core.cart.EmptyCartRQ;
-// import fab.shop.api.core.cart.EmptyCartRS;
-// import fab.shop.api.core.cart.GetCartRQ;
-// import fab.shop.api.core.cart.GetCartRS;
-// import fab.shop.api.core.cart.RemoveFromCartRQ;
-// import fab.shop.api.core.cart.RemoveFromCartRS;
-
-
-
 
 
 
@@ -33,18 +16,13 @@ import fab.shop.api.core.cart.msg.*;
 public class CartServiceImpl implements CartService{
 
     private final ServiceUtil serviceUtil;
+    private Cart cartMock = null;
+
 
     @Autowired
     public CartServiceImpl(ServiceUtil serviceUtil) {
         this.serviceUtil = serviceUtil;
     }
-
-
-    private Cart cartMock = null;
-
-
-
-
 
 
     @Override
