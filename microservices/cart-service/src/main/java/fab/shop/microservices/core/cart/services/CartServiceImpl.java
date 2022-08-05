@@ -1,5 +1,7 @@
 package fab.shop.microservices.core.cart.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,6 +10,7 @@ import fab.shop.util.http.ServiceUtil;
 import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartService;
 import fab.shop.api.core.cart.msg.*;
+import fab.shop.api.core.product.Offer;
 
 
 
@@ -24,11 +27,43 @@ public class CartServiceImpl implements CartService{
         this.serviceUtil = serviceUtil;
     }
 
+    private Cart findCart(Integer cartId){
+        Cart cart = null;
+
+        //cart = cartRepository.findById(cartId);
+
+        cart = new Cart(cartId, new ArrayList<Offer>(), null);
+
+        return cart;
+    }
+
+    private Cart persistCart(Cart cart){
+
+
+        return cart;
+    }
+
 
     @Override
     public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
 
         AddToCartRS addToCartRS = null;
+
+        if(addToCartRq != null) {
+            Integer cartId = addToCartRq.getCartId();
+            Offer offer = addToCartRq.getProduct();
+
+            Cart cart = findCart(cartId);
+            cart.getProductList().add(offer);
+
+            cart = persistCart(cart);
+
+
+            addToCartRS = new AddToCartRS(cart, "OK");
+
+
+
+        }
         // Product product = addToCartRq.getProduct();
         // Integer cartId = addToCartRq.getCartId();
 
@@ -98,7 +133,6 @@ public class CartServiceImpl implements CartService{
     }
 
 
-
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
         // TODO Auto-generated method stub
@@ -106,21 +140,11 @@ public class CartServiceImpl implements CartService{
     }
 
 
-
-
-
-
-
-
-
-
-
     @Override
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
         // TODO Auto-generated method stub
         return null;
     }
-
 
 
     @Override

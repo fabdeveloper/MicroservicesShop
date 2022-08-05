@@ -3,7 +3,6 @@ package fab.shop.api.core.cart;
 import java.util.List;
 
 import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
 
 public class Cart {
 	
@@ -41,6 +40,15 @@ public class Cart {
 	}
 
 
+
+	@Override
+	public String toString() {
+		return "{" + super.toString() +
+			", cartId='" + getCartId() + "'" +
+			", productList='" + getProductList() + "'" +
+			", serviceAddress='" + getServiceAddress() + "'" +
+			"}";
+	}
 	
 	
 	

@@ -38,7 +38,11 @@ public class ProductServiceImpl implements ProductService{
           throw new NotFoundException("No product found for productId: " + productId);
         }
         
-        return new Product(productId, "product" + productId, (float)9.99, serviceUtil.getServiceAddress());
+        // return product_repository.findById(productId);
+
+        
+        // int id, String name, String description, String remarks, String type, String serviceAddress
+        return new Product(productId, "product" + productId, "fake product", "fake product remarks", "fake product type", serviceUtil.getServiceAddress());
     }
     
 }

@@ -31,6 +31,14 @@ public class AddToCartRS {
     }
 
 
+    @Override
+    public String toString() {
+        return "{" +
+            " cart='" + getCart().toString() + "'" +
+            ", status='" + getStatus() + "'" +
+            "}";
+    }
+
 
     
 }

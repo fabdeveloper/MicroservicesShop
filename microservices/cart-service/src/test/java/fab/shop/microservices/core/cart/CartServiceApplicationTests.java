@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import fab.shop.api.core.cart.msg.*;
+import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -23,8 +24,9 @@ class CartServiceApplicationTests {
 	void addToCartTest(){
 
 
-		// Integer cartId = null;
+		Integer cartId = 999;
 		// Product product = new Product(555, "nameProd", 9.99f, "serviceAddressDummy");
+		//Offer product = new Offer(int id, String name, String description, String remarks, Product product, Float price, Article article);
 		// AddToCartRQ addToCart = new AddToCartRQ(product, cartId);
 
 

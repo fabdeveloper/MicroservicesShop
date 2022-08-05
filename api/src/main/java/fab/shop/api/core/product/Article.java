@@ -1,6 +1,5 @@
 package fab.shop.api.core.product;
 
-import java.util.Objects;
 
 public class Article extends AbstractBusinessItem {
 
