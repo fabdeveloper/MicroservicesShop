@@ -2,17 +2,18 @@ package fab.shop.api.core.cart;
 
 import java.util.List;
 
+import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 
 public class Cart {
 	
 	private final int cartId;
-	private final List<Product> productList;
+	private final List<Offer> productList;
 	private final String serviceAddress;
 
 	
 
-	public Cart(int cartId, List<Product> productList, String serviceAddress) {
+	public Cart(int cartId, List<Offer> productList, String serviceAddress) {
 		this.cartId = cartId;
 		this.productList = productList;
 		this.serviceAddress = serviceAddress;
@@ -30,7 +31,7 @@ public class Cart {
 	public int getCartId() {
 		return cartId;
 	}
-	public List<Product> getProductList() {
+	public List<Offer> getProductList() {
 		return productList;
 	}
 	

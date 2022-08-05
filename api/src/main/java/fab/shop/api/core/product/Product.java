@@ -1,18 +1,16 @@
 package fab.shop.api.core.product;
 
 
-public class Product {
+public class Product extends AbstractBusinessItem{
 	
-	 private final int id;
-	 private final String name;
+
 	 private final String type;
-	  
-	  private final String serviceAddress;
+     private final String serviceAddress;
 
 
-	public Product(int id, String name, String type, String serviceAddress) {
-		this.id = id;
-		this.name = name;
+	public Product(int id, String name, String description, String remarks, String type, String serviceAddress) {
+		super(id, name, description, remarks);
+		
 		this.type = type;
 		this.serviceAddress = serviceAddress;
 	}
@@ -20,23 +18,14 @@ public class Product {
 
 
 	  public Product() {
-	    id = 0;
-	    name = null;
+		super();
+
 		this.type = null;
 	    serviceAddress = null;
 	  }
 
 
 
-	public int getId() {
-		return this.id;
-	}
-
-
-
-	  public String getName() {
-	    return name;
-	  }
 
 	public String getServiceAddress() {
 		return serviceAddress;
@@ -45,6 +34,18 @@ public class Product {
 	public String getType() {
 		return this.type;
 	}	 
+
+
+
+
+	@Override
+	public String toString() {
+		return "{" + super.toString() + 
+			", type='" + getType() + "'" +
+			", serviceAddress='" + getServiceAddress() + "'" +
+			"}";
+	}
+
 	
 
 	

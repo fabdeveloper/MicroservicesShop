@@ -2,51 +2,25 @@ package fab.shop.api.core.product;
 
 import java.util.Objects;
 
-public class Article extends Product {
-    private final int id;
-    private final String name;
-    private final String description;
-    private final String remarks;
+public class Article extends AbstractBusinessItem {
+
     private final Product product;
 
 
     public Article(int id, String name, String description, String remarks, Product product) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.remarks = remarks;
+		super(id, name, description, remarks);
+
         this.product = product;
     }
 
 
     public Article() {
-        this.id = 0;
-        this.name = null;
-        this.description = null;
-        this.remarks = null;
+        super();
+
         this.product = null;
     }
 
 
-
-    public int getId() {
-        return this.id;
-    }
-
-
-    public String getName() {
-        return this.name;
-    }
-
-
-    public String getDescription() {
-        return this.description;
-    }
-
-
-    public String getRemarks() {
-        return this.remarks;
-    }
 
 
     public Product getProduct() {
@@ -54,37 +28,13 @@ public class Article extends Product {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Article)) {
-            return false;
-        }
-        Article article = (Article) o;
-        return id == article.id && Objects.equals(name, article.name) && Objects.equals(description, article.description) && Objects.equals(remarks, article.remarks) && Objects.equals(product, article.product);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, remarks, product);
-    }
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", remarks='" + getRemarks() + "'" +
-            ", product='" + getProduct() + "'" +
+        return "{" + super.toString() +         
+            ", product='" + getProduct().toString() + "'" +
             "}";
     }
-
-
-
-
-
 
     
 
