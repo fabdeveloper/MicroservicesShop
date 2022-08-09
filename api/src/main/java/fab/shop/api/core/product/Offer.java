@@ -14,7 +14,7 @@ public class Offer extends AbstractBusinessItem{
 
 
 
-    public Offer(int id, String name, String description, String remarks, Product product, Float price, Article article) {
+    public Offer(int id, String name, String description, String remarks, Float price, Article article) {
         super(id, name, description, remarks);
         this.price = price;
         this.article = article;

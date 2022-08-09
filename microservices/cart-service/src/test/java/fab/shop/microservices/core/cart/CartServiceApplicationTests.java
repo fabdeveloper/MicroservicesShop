@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import fab.shop.api.core.cart.msg.*;
+import fab.shop.api.core.product.Article;
 import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 
@@ -25,22 +26,36 @@ class CartServiceApplicationTests {
 
 
 		Integer cartId = 999;
-		// Product product = new Product(555, "nameProd", 9.99f, "serviceAddressDummy");
-		//Offer product = new Offer(int id, String name, String description, String remarks, Product product, Float price, Article article);
-		// AddToCartRQ addToCart = new AddToCartRQ(product, cartId);
+		Product product = new Product(7, "product name", "product description", "product remarks", "product type", "serviceAddressDummy");
+		Article article = new Article(303, "article name", "article description", "article remarks", product);
+		Offer offer = new Offer(555, "oferta test name", "oferta test description", "oferta test remarks", 9.99f, article);
+		AddToCartRQ addToCart = new AddToCartRQ(offer, cartId);
 
 
-		// client.post()
-		// .uri("/cart/addToCart")
-		// .accept(MediaType.APPLICATION_JSON)
-		// .bodyValue(addToCart)
-		// .exchange()
-		// .expectStatus().isOk()
-		// .expectHeader().contentType(MediaType.APPLICATION_JSON)
-		// .expectBody(AddToCartRS.class)
-		// .returnResult().getResponseBody()
-		// .getCart()
-		// .getProductList().contains(product)
+		AddToCartRS addToCartRS = client.post()
+		.uri("/cart/addToCart")
+		.accept(MediaType.APPLICATION_JSON)
+		.bodyValue(addToCart)
+		.exchange()
+		.expectStatus().isOk()
+		.expectHeader().contentType(MediaType.APPLICATION_JSON)
+		.expectBody(AddToCartRS.class)
+		.returnResult().getResponseBody();
+
+		System.out.println("" + new java.util.Date().toString() + ",   AddToCartRS = " + addToCartRS.toString());
+
+
+		client.post()
+		.uri("/cart/addToCart")
+		.accept(MediaType.APPLICATION_JSON)
+		.bodyValue(addToCart)
+		.exchange()
+		.expectStatus().isOk()
+		.expectHeader().contentType(MediaType.APPLICATION_JSON)
+		.expectBody(AddToCartRS.class)
+		.returnResult().getResponseBody()
+		.getCart()
+		.getProductList().contains(offer);
 
 
 		//.getTotal().equals(prod1.getPrice()*2)
