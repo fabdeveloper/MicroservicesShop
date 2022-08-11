@@ -9,8 +9,8 @@ public class AddToCartRQ {
 
 
 
-    public AddToCartRQ(Offer product, Integer cartId) {
-        this.product = product;
+    public AddToCartRQ(Offer offer, Integer cartId) {
+        this.product = offer;
         this.cartId = cartId;
     }
 

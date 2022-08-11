@@ -9,6 +9,8 @@ import fab.shop.util.http.ServiceUtil;
 import fab.shop.api.core.purchase.msg.*;
 import fab.shop.api.composite.ShopService;
 import fab.shop.api.core.cart.msg.*;
+import fab.shop.api.core.product.Article;
+import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.purchase.Purchase;
 import fab.shop.api.core.valuation.msg.*;
@@ -42,14 +44,13 @@ public class ShopCompositeServiceImpl implements ShopService {
 
 
     @Override
-    public AddToCartRS addToCart(AddToCartRQ body) {
-        // TODO Auto-generated method stub
-        return null;
+    public AddToCartRS addToCart(AddToCartRQ addToCartRQ) {
+        return getShopIntegration().addToCart(addToCartRQ);
     }
 
 
     @Override
-    public Purchase purchaseConfirm(PurchaseConfirmRQ body) {
+    public Purchase purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -64,13 +65,6 @@ public class ShopCompositeServiceImpl implements ShopService {
 
     @Override
     public ValuationRS getValuation(ValuationRQ body) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
-    @Override
-    public AddToCartRS cartTestHelper() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -125,16 +119,18 @@ public class ShopCompositeServiceImpl implements ShopService {
 
 
 
-    // @Override
-    // public AddToCartRS cartTestHelper() {
-    //     //System.out.println("cartTestHelper() llamando a cart-service con producto : " + getProduct(6));
-    //     //return addToCart(getProduct(6), 0);
+    @Override
+    public AddToCartRS cartTestHelper() {
 
-    //     Product product = shopIntegration.getProduct(6);
-    //     AddToCartRQ addToCart = new AddToCartRQ(product, -2);
+        
+		Integer cartId = 999;
+		Product product = new Product(7, "product name", "product description", "product remarks", "product type", "serviceAddressDummy");
+		Article article = new Article(303, "article name", "article description", "article remarks", product);
+		Offer offer = new Offer(555, "oferta test name", "oferta test description", "oferta test remarks", 9.99f, article);
+		AddToCartRQ addToCart = new AddToCartRQ(offer, cartId);
 
-    //     return shopIntegration.addToCart(addToCart);
-    // }
+        return shopIntegration.addToCart(addToCart);
+    }
 
 
     
@@ -142,7 +138,7 @@ public class ShopCompositeServiceImpl implements ShopService {
     // @Override
     // public Purchase purchaseConfirmTestHelper() {
 
-    //     Cart cart = cartTestHelper().getCart();
+    //     Ca`rt cart = cartTestHelper().getCart();
     //     Integer userId = 111;
     //     String shipmentAddress = "mi casa 1";
     //     String paymentMethod = "credit card";
@@ -173,6 +169,13 @@ public class ShopCompositeServiceImpl implements ShopService {
     // }
 
 
+    public ShopCompositeIntegration getShopIntegration(){
+        return this.shopIntegration;
+    }
+
+    public ServiceUtil getServiceUtil(){
+        return this.serviceUtil;
+    }
 
 
     

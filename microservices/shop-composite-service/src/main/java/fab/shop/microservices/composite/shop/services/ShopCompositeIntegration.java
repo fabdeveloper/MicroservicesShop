@@ -165,12 +165,6 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
 
-    @Override
-    public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 
     @Override
     public RemoveFromCartRS removeFromCart(RemoveFromCartRQ removeFromCartRq) {
@@ -259,11 +253,11 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     // }
 
 
-    // @Override
-    // public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
-    //     return restTemplate.postForObject(getCartServiceUrl() + "/addToCart", addToCartRq, AddToCartRS.class);
+    @Override
+    public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
+        return restTemplate.postForObject(getCartServiceUrl() + "/addToCart", addToCartRq, AddToCartRS.class);
    
-    // }
+    }
 
 
     // @Override

@@ -44,13 +44,13 @@ public interface ShopService {
 			    value = "/shop/addToCart",
 				consumes = "application/json",
 			    produces = "application/json")
-			  AddToCartRS addToCart(@RequestBody AddToCartRQ body);
+			  AddToCartRS addToCart(@RequestBody AddToCartRQ addToCartRQ);
 	  
 	  @PostMapping(
 			    value = "/shop/confirm",
 				consumes = "application/json",
 			    produces = "application/json")
-			  Purchase purchaseConfirm(@RequestBody PurchaseConfirmRQ body);
+			  Purchase purchaseConfirm(@RequestBody PurchaseConfirmRQ purchaseConfirmRQ);
 	  
 	  @GetMapping(
 			    value = "/shop/purchase/{purchaseId}",
