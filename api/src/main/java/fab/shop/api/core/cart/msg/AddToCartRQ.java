@@ -6,13 +6,20 @@ public class AddToCartRQ {
 
     private final Offer product;
     private final Integer cartId;
+    private final Integer userId;
+    private final Integer shopId;
 
 
 
-    public AddToCartRQ(Offer offer, Integer cartId) {
-        this.product = offer;
+
+    public AddToCartRQ(Offer product, Integer cartId, Integer userId, Integer shopId) {
+        this.product = product;
         this.cartId = cartId;
+        this.userId = userId;
+        this.shopId = shopId;
     }
+
+
 
 
     public AddToCartRQ() {
@@ -20,6 +27,8 @@ public class AddToCartRQ {
 		
 		this.cartId = 0;
 		this.product = null;
+        this.userId = null;
+        this.shopId = null;
     }
 
 
@@ -30,6 +39,16 @@ public class AddToCartRQ {
 
     public Integer getCartId() {
         return this.cartId;
+    }
+
+
+    public Integer getUserId() {
+        return this.userId;
+    }
+
+
+    public Integer getShopId() {
+        return this.shopId;
     }
 
 

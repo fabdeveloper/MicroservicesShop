@@ -124,10 +124,13 @@ public class ShopCompositeServiceImpl implements ShopService {
 
         
 		Integer cartId = 999;
+        Integer userId = 999;
+		Integer shopId = 999;
+
 		Product product = new Product(7, "product name", "product description", "product remarks", "product type", "serviceAddressDummy");
 		Article article = new Article(303, "article name", "article description", "article remarks", product);
 		Offer offer = new Offer(555, "oferta test name", "oferta test description", "oferta test remarks", 9.99f, article);
-		AddToCartRQ addToCart = new AddToCartRQ(offer, cartId);
+		AddToCartRQ addToCart = new AddToCartRQ(offer, cartId, userId, shopId);
 
         return shopIntegration.addToCart(addToCart);
     }

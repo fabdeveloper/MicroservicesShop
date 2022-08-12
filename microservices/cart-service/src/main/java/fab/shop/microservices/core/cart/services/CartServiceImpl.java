@@ -27,18 +27,26 @@ public class CartServiceImpl implements CartService{
         this.serviceUtil = serviceUtil;
     }
 
-    private Cart findCart(Integer cartId){
+    private Cart findCart(Integer cartId, Integer userId, Integer shopId){
         Cart cart = null;
+        String serviceAddress= getServiceUtil().getServiceAddress();
 
         //cart = cartRepository.findById(cartId);
 
-        cart = new Cart(cartId, new ArrayList<Offer>(), null);
+        if(getCartMock() != null && cartId == getCartMock().getCartId()){ // ENCONTRADO 
+            cart = getCartMock();
+
+        } else{ 
+            Float valuation = 0.0f;
+            cart = new Cart(cartId, new ArrayList<Offer>(), userId, shopId, valuation, serviceAddress);
+        }
 
         return cart;
     }
 
     private Cart persistCart(Cart cart){
 
+        setCartMock(cart);
 
         return cart;
     }
@@ -51,9 +59,11 @@ public class CartServiceImpl implements CartService{
 
         if(addToCartRq != null) {
             Integer cartId = addToCartRq.getCartId();
+            Integer userId = addToCartRq.getUserId();
+            Integer shopId = addToCartRq.getShopId();
             Offer offer = addToCartRq.getProduct();
 
-            Cart cart = findCart(cartId);
+            Cart cart = findCart(cartId, userId, shopId);
             cart.getProductList().add(offer);
 
             cart = persistCart(cart);
@@ -64,53 +74,12 @@ public class CartServiceImpl implements CartService{
 
 
         }
-        // Product product = addToCartRq.getProduct();
-        // Integer cartId = addToCartRq.getCartId();
-
-        // Cart cart = null;
-        // List<Product> products;
-
-        // if(product != null){
-        //     if(cartId != null){
-        //         cart = getCart(cartId);
-        //         products = cart.getProductList();
-        //         products.add(product);
-        //         //cart = new Cart(cartId, products);
-        //         cart = persistCart(cart);
-
-        //     } else{
-        //         products = new ArrayList<>();
-        //         products.add(product);
-        //         cart = new Cart(0, products, getServiceUtil().getServiceAddress());
-        //         cart = persistCart(cart);
-        //     }
-        // }
-
-        // AddToCartRS addToCartRs = new AddToCartRS(cart,  null);
+        
         return addToCartRS;
     }
 
-    // private Cart persistCart(Cart cart) {
-        // if(cart.getCartId() == 0){
-        //     cartMock = new Cart(-1, cart.getProductList());
-        // }else{
-        //     cartMock = cart;
-        // }
-        
-        // return cartMock;
-
-    //     return cart;
-    // }
-
-
-
-    // @Override
-    // public Cart updateCart(Cart cart) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-
+    
+    
     public ServiceUtil getServiceUtil() {
         return this.serviceUtil;
     }
@@ -128,8 +97,15 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public GetCartRS getCart(GetCartRQ getCartRQ) {
-        // TODO Auto-generated method stub
-        return null;
+
+        Integer cartId = getCartRQ.getCartId();
+        Integer userId = getCartRQ.getUserId();
+        Integer shopId = getCartRQ.getShopId();
+
+        Cart cart = findCart(cartId, userId, shopId);
+
+        GetCartRS getCartRS = new GetCartRS(cart.getCartId(), cart.getProductList(), cart.getValuation());
+        return getCartRS;
     }
 
 

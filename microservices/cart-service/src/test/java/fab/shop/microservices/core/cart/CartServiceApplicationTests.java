@@ -21,15 +21,20 @@ class CartServiceApplicationTests {
 	void contextLoads() {
 	}
 
+
+
 	@Test
 	void addToCartTest(){
 
 
 		Integer cartId = 999;
+		Integer userId = 999;
+		Integer shopId = 999;
+
 		Product product = new Product(7, "product name", "product description", "product remarks", "product type", "serviceAddressDummy");
 		Article article = new Article(303, "article name", "article description", "article remarks", product);
 		Offer offer = new Offer(555, "oferta test name", "oferta test description", "oferta test remarks", 9.99f, article);
-		AddToCartRQ addToCart = new AddToCartRQ(offer, cartId);
+		AddToCartRQ addToCart = new AddToCartRQ(offer, cartId, userId, shopId);
 
 
 		AddToCartRS addToCartRS = client.post()
@@ -65,6 +70,22 @@ class CartServiceApplicationTests {
 
 	@Test
 	public void getCartTest(){
+
+		Integer cartId = 999;
+		Integer userId = 999;
+		Integer shopId = 999;
+
+		GetCartRQ getCartRQ = new GetCartRQ(cartId, userId, shopId);
+
+
+		client.post()
+		.uri("/cart/addToCart")
+		.accept(MediaType.APPLICATION_JSON)
+		.bodyValue(getCartRQ)
+		.exchange()
+		.expectStatus().isOk()
+		.expectHeader().contentType(MediaType.APPLICATION_JSON)
+		.expectBody(GetCartRS.class);
 
 	}
 

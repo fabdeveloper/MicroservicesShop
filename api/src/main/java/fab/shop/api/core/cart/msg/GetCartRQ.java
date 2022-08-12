@@ -6,6 +6,17 @@ public class GetCartRQ {
     private Integer shopId;
 
 
+    public GetCartRQ(Integer cartId, Integer userId, Integer shopId) {
+        this.cartId = cartId;
+        this.userId = userId;
+        this.shopId = shopId;
+    }
+
+
+    public GetCartRQ() {
+    }
+
+
     public Integer getCartId() {
         return this.cartId;
     }

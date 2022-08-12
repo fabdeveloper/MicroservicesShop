@@ -153,8 +153,8 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
     @Override
     public GetCartRS getCart(GetCartRQ getCartRQ) {
-        // TODO Auto-generated method stub
-        return null;
+
+        return restTemplate.postForObject(getCartServiceUrl() + "/getCart", getCartRQ, GetCartRS.class);
     }
 
 

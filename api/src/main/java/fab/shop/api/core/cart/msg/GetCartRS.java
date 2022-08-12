@@ -2,14 +2,23 @@ package fab.shop.api.core.cart.msg;
 
 import java.util.List;
 
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.Offer;
 
 public class GetCartRS {
     private Integer cartId;
-    private List<Product> productList;
+    private List<Offer> productList;
     private Float valuation;
 
 
+    public GetCartRS(Integer cartId, List<Offer> productList, Float valuation) {
+        this.cartId = cartId;
+        this.productList = productList;
+        this.valuation = valuation;
+    }
+
+
+    public GetCartRS() {
+    }
 
     public Integer getCartId() {
         return this.cartId;
@@ -19,11 +28,12 @@ public class GetCartRS {
         this.cartId = cartId;
     }
 
-    public List<Product> getProductList() {
+    public List<Offer> getProductList() {
+
         return this.productList;
     }
 
-    public void setProductList(List<Product> productList) {
+    public void setProductList(List<Offer> productList) {
         this.productList = productList;
     }
 
