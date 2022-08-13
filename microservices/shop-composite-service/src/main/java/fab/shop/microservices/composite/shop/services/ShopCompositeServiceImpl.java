@@ -120,7 +120,7 @@ public class ShopCompositeServiceImpl implements ShopService {
 
 
     @Override
-    public AddToCartRS cartTestHelper() {
+    public AddToCartRS addToCartTestHelper() {
 
         
 		Integer cartId = 999;
@@ -178,6 +178,25 @@ public class ShopCompositeServiceImpl implements ShopService {
 
     public ServiceUtil getServiceUtil(){
         return this.serviceUtil;
+    }
+
+
+    @Override
+    public GetCartRS getCartTestHelper() {
+        Integer cartId = 333;
+        Integer userId = 333;
+		Integer shopId = 333;
+
+        GetCartRQ getCartRQ = new GetCartRQ(cartId, userId, shopId);
+        GetCartRS getCartRS = getCart(getCartRQ);
+
+        return getCartRS;
+    }
+
+
+    @Override
+    public GetCartRS getCart(GetCartRQ getCartRQ) {
+        return getShopIntegration().getCart(getCartRQ);
     }
 
 

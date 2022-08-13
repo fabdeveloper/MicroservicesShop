@@ -151,12 +151,6 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
 
-    @Override
-    public GetCartRS getCart(GetCartRQ getCartRQ) {
-
-        return restTemplate.postForObject(getCartServiceUrl() + "/getCart", getCartRQ, GetCartRS.class);
-    }
-
 
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
@@ -257,6 +251,12 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
         return restTemplate.postForObject(getCartServiceUrl() + "/addToCart", addToCartRq, AddToCartRS.class);
    
+    }
+
+    
+    @Override
+    public GetCartRS getCart(GetCartRQ getCartRQ) {
+        return restTemplate.postForObject(getCartServiceUrl() + "/getCart", getCartRQ, GetCartRS.class);
     }
 
 

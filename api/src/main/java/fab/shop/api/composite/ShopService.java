@@ -45,6 +45,12 @@ public interface ShopService {
 				consumes = "application/json",
 			    produces = "application/json")
 			  AddToCartRS addToCart(@RequestBody AddToCartRQ addToCartRQ);
+
+	  @PostMapping(
+			    value = "/shop/getCart",
+				consumes = "application/json",
+			    produces = "application/json")
+			  GetCartRS getCart(@RequestBody GetCartRQ getCartRQ);
 	  
 	  @PostMapping(
 			    value = "/shop/confirm",
@@ -66,10 +72,15 @@ public interface ShopService {
 
 	// TEST HELPERS ******************* //
 
+	@GetMapping(
+		value = "/shop/testgetcart",
+		produces = "application/json")
+		GetCartRS getCartTestHelper();
+
 	  @GetMapping(
-			    value = "/shop/testcart",
+			    value = "/shop/testaddtocart",
 			    produces = "application/json")
-			  AddToCartRS cartTestHelper();
+			  AddToCartRS addToCartTestHelper();
 
 	  @GetMapping(
 			    value = "/shop/testpurchaseconfirm",
