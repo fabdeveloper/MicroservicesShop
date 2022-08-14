@@ -40,6 +40,16 @@ public interface ShopService {
 		  @ApiResponse(responseCode ="422", description = "${api.responseCodes.unprocessableEntity.description}")
 
 	  })
+
+
+
+	  
+	  @PostMapping(
+			    value = "/shop/emptyCart",
+				consumes = "application/json",
+			    produces = "application/json")
+			  EmptyCartRS emptyCart(@RequestBody EmptyCartRQ emptyCartRQ);
+
 	  @PostMapping(
 			    value = "/shop/addToCart",
 				consumes = "application/json",
@@ -71,6 +81,13 @@ public interface ShopService {
 
 
 	// TEST HELPERS ******************* //
+
+
+	
+	@GetMapping(
+		value = "/shop/testemptycart",
+		produces = "application/json")
+		EmptyCartRS emptyCartTestHelper();
 
 	@GetMapping(
 		value = "/shop/testgetcart",

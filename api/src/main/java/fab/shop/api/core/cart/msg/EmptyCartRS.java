@@ -1,13 +1,21 @@
 package fab.shop.api.core.cart.msg;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.Offer;
 
 public class EmptyCartRS {
     private Integer cartId;
-    private List<Product> productList;
+    private List<Offer> productList;
     private Float valuation;
+
+
+    public EmptyCartRS() {
+        this.cartId = null;
+        this.productList = new ArrayList<Offer>();
+        this.valuation = 0.0f;
+    }
 
 
     public Integer getCartId() {
@@ -18,11 +26,11 @@ public class EmptyCartRS {
         this.cartId = cartId;
     }
 
-    public List<Product> getProductList() {
+    public List<Offer> getProductList() {
         return this.productList;
     }
 
-    public void setProductList(List<Product> productList) {
+    public void setProductList(List<Offer> productList) {
         this.productList = productList;
     }
 

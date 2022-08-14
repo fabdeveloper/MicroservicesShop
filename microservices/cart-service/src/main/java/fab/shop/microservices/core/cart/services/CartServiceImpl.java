@@ -49,7 +49,17 @@ public class CartServiceImpl implements CartService{
         setCartMock(cart);
 
         return cart;
+    }private Boolean deleteCartFromDBById(Integer cartId){
+        Boolean bOk = true;
+
+        if(cartId != null && getCartMock() != null && cartId.compareTo(getCartMock().getCartId()) == 0){
+            setCartMock(null);
+        }
+
+        return bOk;
     }
+
+
 
 
     @Override
@@ -118,8 +128,14 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
-        // TODO Auto-generated method stub
-        return null;
+
+        // delete cart from DB
+        Boolean bOk = deleteCartFromDBById(emptyCartRQ.getCartId());
+
+        // create a new empty cart
+        EmptyCartRS emptyCartRS = new EmptyCartRS();
+
+        return emptyCartRS;
     }
 
 

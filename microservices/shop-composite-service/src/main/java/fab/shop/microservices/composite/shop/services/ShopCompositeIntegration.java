@@ -169,8 +169,7 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
     @Override
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return restTemplate.postForObject(getCartServiceUrl() + "/emptyCart", emptyCartRQ, EmptyCartRS.class);
     }
 
 
