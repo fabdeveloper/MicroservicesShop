@@ -6,7 +6,7 @@ import fab.shop.api.core.product.Offer;
 
 public class Cart {
 	
-	private final int cartId;
+	private final Integer cartId;
 	private final List<Offer> productList;
 	private final String serviceAddress;
 	private final Integer userId;
@@ -18,7 +18,7 @@ public class Cart {
 
 
 
-	public Cart(int cartId, List<Offer> productList, Integer userId, Integer shopId, Float valuation, String serviceAddress) {
+	public Cart(Integer cartId, List<Offer> productList, Integer userId, Integer shopId, Float valuation, String serviceAddress) {
 		this.cartId = cartId;
 		this.productList = productList;
 		this.serviceAddress = serviceAddress;
@@ -32,7 +32,7 @@ public class Cart {
 	public Cart() {
 		super();
 		
-		this.cartId = 0;
+		this.cartId = null;
 		this.productList = null;
 		this.serviceAddress = null;
 		this.userId = null;
@@ -40,7 +40,7 @@ public class Cart {
 		this.valuation = null;
 	}
 
-	public int getCartId() {
+	public Integer getCartId() {
 		return cartId;
 	}
 	public List<Offer> getProductList() {

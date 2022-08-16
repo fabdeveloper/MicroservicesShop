@@ -215,5 +215,11 @@ public class ShopCompositeServiceImpl implements ShopService {
     }
 
 
+    @Override
+    public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
+        return getShopIntegration().cartModification(cartModificationRQ);
+    }
+
+
     
 }

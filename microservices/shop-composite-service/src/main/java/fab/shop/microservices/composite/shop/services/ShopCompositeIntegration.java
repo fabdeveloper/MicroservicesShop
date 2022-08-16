@@ -154,8 +154,7 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return restTemplate.postForObject(getCartServiceUrl() + "/cartModification", cartModificationRQ, CartModificationRS.class);
     }
 
 

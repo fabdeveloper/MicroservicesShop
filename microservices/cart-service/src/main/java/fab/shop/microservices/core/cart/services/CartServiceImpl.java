@@ -1,6 +1,7 @@
 package fab.shop.microservices.core.cart.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,7 +50,10 @@ public class CartServiceImpl implements CartService{
         setCartMock(cart);
 
         return cart;
-    }private Boolean deleteCartFromDBById(Integer cartId){
+    }
+    
+    
+    private Boolean deleteCartFromDBById(Integer cartId){
         Boolean bOk = true;
 
         if(cartId != null && getCartMock() != null && cartId.compareTo(getCartMock().getCartId()) == 0){
@@ -57,6 +61,14 @@ public class CartServiceImpl implements CartService{
         }
 
         return bOk;
+    }
+
+    private Float valuate(List<Offer> offers){
+
+        Float result = null;
+
+
+        return result;
     }
 
 
@@ -121,8 +133,38 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
-        // TODO Auto-generated method stub
-        return null;
+
+        // delete cart by id
+        Integer cartId = cartModificationRQ.getCartId();
+        Boolean bCartWasDeletedSuccessfully = deleteCartFromDBById(cartId);
+
+        // create new cart
+                // add offer list and valuation
+
+        Integer userId = cartModificationRQ.getUserId();
+        Integer shopId = cartModificationRQ.getShopId();
+        String serviceAddress = getServiceUtil().getServiceAddress();
+        List<Offer> offerList = cartModificationRQ.getOfferList();
+        Float valuation = valuate(offerList);
+
+
+        Cart newCart = new Cart(null, offerList, userId, shopId, valuation, serviceAddress);
+
+
+        // persist cart
+        Cart persistedCart = persistCart(newCart);
+
+
+        // return cart to client
+        CartModificationRS cartModificationRS = new CartModificationRS(persistedCart.getCartId(), 
+                                                                        persistedCart.getProductList(), 
+                                                                        persistedCart.getValuation(), 
+                                                                        persistedCart.getUserId(), 
+                                                                        persistedCart.getShopId());
+
+
+
+        return cartModificationRS;
     }
 
 
@@ -147,7 +189,10 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public RemoveFromCartRS removeFromCart(RemoveFromCartRQ removeFromCartRq) {
-        // TODO Auto-generated method stub
+
+        removeFromCartRq.getCartId();
+        removeFromCartRq.getOfferId();
+
         return null;
     }
 

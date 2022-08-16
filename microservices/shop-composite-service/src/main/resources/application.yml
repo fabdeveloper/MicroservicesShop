@@ -55,6 +55,9 @@ app:
   valuation-service:
     host: localhost
     port: 7006
+  shop-composite-service:
+    host: localhost
+    port: 8080
 
 logging:
   level:

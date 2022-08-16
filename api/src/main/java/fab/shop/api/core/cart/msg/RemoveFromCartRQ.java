@@ -3,7 +3,28 @@ package fab.shop.api.core.cart.msg;
 public class RemoveFromCartRQ {
     
     private Integer cartId;
-    private Integer productId;
+    private Integer offerId;
+
+    public RemoveFromCartRQ() {
+    }
+
+    public RemoveFromCartRQ(Integer cartId, Integer offerId) {
+        this.cartId = cartId;
+        this.offerId = offerId;
+    }
+
+    
+
+    
+
+    @Override
+    public String toString() {
+        return "{" +
+            " cartId='" + getCartId() + "'" +
+            ", offerId='" + getOfferId() + "'" +
+            "}";
+    }
+
 
 
     public Integer getCartId() {
@@ -14,12 +35,14 @@ public class RemoveFromCartRQ {
         this.cartId = cartId;
     }
 
-    public Integer getProductId() {
-        return this.productId;
+
+    public Integer getOfferId() {
+        return this.offerId;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setOfferId(Integer offerId) {
+        this.offerId = offerId;
     }
+
 
 }

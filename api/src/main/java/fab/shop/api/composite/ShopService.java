@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.purchase.Purchase;
@@ -19,7 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @Tag(name="Shop Service", description="REST API for Shop Services")
-public interface ShopService {
+public interface ShopService  {
 	
 	  @GetMapping(
 			    value = "/shop/avail",
@@ -61,6 +62,13 @@ public interface ShopService {
 				consumes = "application/json",
 			    produces = "application/json")
 			  GetCartRS getCart(@RequestBody GetCartRQ getCartRQ);
+
+			  
+	  @PostMapping(
+		value = "/shop/cartModification",
+		consumes = "application/json",
+		produces = "application/json")
+	  CartModificationRS cartModification(@RequestBody CartModificationRQ cartModificationRQ);
 	  
 	  @PostMapping(
 			    value = "/shop/confirm",
