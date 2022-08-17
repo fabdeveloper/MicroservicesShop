@@ -12,6 +12,7 @@ import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartService;
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.Offer;
+import fab.shop.microservices.core.cart.helper.PersistenceHelper;
 
 
 
@@ -20,48 +21,17 @@ import fab.shop.api.core.product.Offer;
 public class CartServiceImpl implements CartService{
 
     private final ServiceUtil serviceUtil;
-    private Cart cartMock = null;
+    private final PersistenceHelper persistenceHelper;
 
 
     @Autowired
-    public CartServiceImpl(ServiceUtil serviceUtil) {
+    public CartServiceImpl(ServiceUtil serviceUtil, PersistenceHelper persistenceHelper) {
         this.serviceUtil = serviceUtil;
+        this.persistenceHelper = persistenceHelper;
     }
 
-    private Cart findCart(Integer cartId, Integer userId, Integer shopId){
-        Cart cart = null;
-        String serviceAddress= getServiceUtil().getServiceAddress();
-
-        //cart = cartRepository.findById(cartId);
-
-        if(getCartMock() != null && cartId == getCartMock().getCartId()){ // ENCONTRADO 
-            cart = getCartMock();
-
-        } else{ 
-            Float valuation = 0.0f;
-            cart = new Cart(cartId, new ArrayList<Offer>(), userId, shopId, valuation, serviceAddress);
-        }
-
-        return cart;
-    }
-
-    private Cart persistCart(Cart cart){
-
-        setCartMock(cart);
-
-        return cart;
-    }
     
-    
-    private Boolean deleteCartFromDBById(Integer cartId){
-        Boolean bOk = true;
 
-        if(cartId != null && getCartMock() != null && cartId.compareTo(getCartMock().getCartId()) == 0){
-            setCartMock(null);
-        }
-
-        return bOk;
-    }
 
     private Float valuate(List<Offer> offers){
 
@@ -85,21 +55,15 @@ public class CartServiceImpl implements CartService{
             Integer shopId = addToCartRq.getShopId();
             Offer offer = addToCartRq.getProduct();
 
-            Cart cart = findCart(cartId, userId, shopId);
+            Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
             cart.getProductList().add(offer);
 
-            cart = persistCart(cart);
-
+            cart = getPersistenceHelper().persistCart(cart);
 
             addToCartRS = new AddToCartRS(cart, "OK");
-
-
-
-        }
-        
+        }        
         return addToCartRS;
     }
-
     
     
     public ServiceUtil getServiceUtil() {
@@ -107,14 +71,9 @@ public class CartServiceImpl implements CartService{
     }
 
 
-    public Cart getCartMock() {
-        return this.cartMock;
+    public PersistenceHelper getPersistenceHelper() {
+        return this.persistenceHelper;
     }
-
-    public void setCartMock(Cart cartMock) {
-        this.cartMock = cartMock;
-    }
-
 
 
     @Override
@@ -124,7 +83,7 @@ public class CartServiceImpl implements CartService{
         Integer userId = getCartRQ.getUserId();
         Integer shopId = getCartRQ.getShopId();
 
-        Cart cart = findCart(cartId, userId, shopId);
+        Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
 
         GetCartRS getCartRS = new GetCartRS(cart.getCartId(), cart.getProductList(), cart.getValuation());
         return getCartRS;
@@ -136,7 +95,7 @@ public class CartServiceImpl implements CartService{
 
         // delete cart by id
         Integer cartId = cartModificationRQ.getCartId();
-        Boolean bCartWasDeletedSuccessfully = deleteCartFromDBById(cartId);
+        Boolean bCartWasDeletedSuccessfully = getPersistenceHelper().deleteCartFromDBById(cartId);
 
         // create new cart
                 // add offer list and valuation
@@ -152,7 +111,7 @@ public class CartServiceImpl implements CartService{
 
 
         // persist cart
-        Cart persistedCart = persistCart(newCart);
+        Cart persistedCart = getPersistenceHelper().persistCart(newCart);
 
 
         // return cart to client
@@ -172,7 +131,7 @@ public class CartServiceImpl implements CartService{
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
 
         // delete cart from DB
-        Boolean bOk = deleteCartFromDBById(emptyCartRQ.getCartId());
+        Boolean bOk = getPersistenceHelper().deleteCartFromDBById(emptyCartRQ.getCartId());
 
         // create a new empty cart
         EmptyCartRS emptyCartRS = new EmptyCartRS();

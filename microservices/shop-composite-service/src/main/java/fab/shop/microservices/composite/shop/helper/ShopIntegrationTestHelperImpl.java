@@ -102,9 +102,10 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
         Offer offer = new Offer(1, "offer name", "offer description", "offer remarks", offerPrice, article);
 
         List<Offer> offerList = new ArrayList<Offer>();
+        offerList.add(offer);
         CartModificationRQ cartModificationRQ = new CartModificationRQ(cartId, offerList,  cartId, cartId, offerPrice);
 
-        return restTemplate.postForObject(getShopCompositeServiceUrl() + "/emptyCart", cartModificationRQ, CartModificationRS.class);
+        return restTemplate.postForObject(getShopCompositeServiceUrl() + "/cartModification", cartModificationRQ, CartModificationRS.class);
 
 
     }
