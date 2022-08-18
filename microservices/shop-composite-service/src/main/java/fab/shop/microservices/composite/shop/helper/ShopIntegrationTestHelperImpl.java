@@ -18,6 +18,7 @@ import fab.shop.api.core.product.Article;
 import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.purchase.Purchase;
+import fab.shop.api.core.valuation.msg.ValuationRQ;
 import fab.shop.api.core.valuation.msg.ValuationRS;
 import fab.shop.util.http.ServiceUtil;
 
@@ -108,6 +109,27 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
         return restTemplate.postForObject(getShopCompositeServiceUrl() + "/cartModification", cartModificationRQ, CartModificationRS.class);
 
 
+    }
+
+
+    @Override
+    public ValuationRS valuateTestHelper() {
+
+        Float offerPrice = 9.99f;
+        Product product = new Product(3, "product name", "product description", "product remarks", "product type", serviceAddress);
+        Article article = new Article(2, "article name", "article description", "article remarks", product);
+        Offer offer = new Offer(1, "offer name", "offer description", "offer remarks", offerPrice, article);
+
+
+
+        List<Offer> offerList = new ArrayList<Offer>();
+        offerList.add(offer);
+        offerList.add(offer);
+
+        ValuationRQ valuationRQ = new ValuationRQ(offerList);
+
+
+        return restTemplate.postForObject(getShopCompositeServiceUrl() + "/cartModification", valuationRQ, ValuationRS.class);
     }
     
 }

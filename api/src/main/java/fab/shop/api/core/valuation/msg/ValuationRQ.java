@@ -2,16 +2,17 @@ package fab.shop.api.core.valuation.msg;
 
 import java.util.List;
 
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.Offer;
 
 public class ValuationRQ {
 
-    private List<Product> productList = null;
+    private List<Offer> offerList = null;
+
+    
 
 
-
-    public ValuationRQ(List<Product> productList) {
-        this.productList = productList;
+    public ValuationRQ(List<Offer> offerList) {
+        this.offerList = offerList;
     }
 
 
@@ -20,12 +21,23 @@ public class ValuationRQ {
 
 
 
-    public List<Product> getProductList() {
-        return this.productList;
+
+    public List<Offer> getOfferList() {
+        return this.offerList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setOfferList(List<Offer> offerList) {
+        this.offerList = offerList;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " offerList='" + getOfferList() + "'" +
+            "}";
+    }
+
+    
 
 }

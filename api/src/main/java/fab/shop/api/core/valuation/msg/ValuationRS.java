@@ -2,25 +2,25 @@ package fab.shop.api.core.valuation.msg;
 
 import java.util.List;
 
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.Offer;
 
 public class ValuationRS {
 
-    private List<Product> productList;
+    private List<Offer> offerList;
     private Float valuation;
 
 
 
-    public ValuationRS(List<Product> productList, Float valuation) {
-        this.productList = productList;
+    public ValuationRS(List<Offer> offerList, Float valuation) {
+        this.offerList = offerList;
         this.valuation = valuation;
     }
 
 
     public ValuationRS() {
-        this.productList = null;
-        this.valuation = 0.0f;
     }
+
+
 
 
 
@@ -33,13 +33,23 @@ public class ValuationRS {
     }
 
 
-    public List<Product> getProductList() {
-        return this.productList;
+    public List<Offer> getOfferList() {
+        return this.offerList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setOfferList(List<Offer> offerList) {
+        this.offerList = offerList;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " offerList='" + getOfferList() + "'" +
+            ", valuation='" + getValuation() + "'" +
+            "}";
+    }
+
 
 
 }

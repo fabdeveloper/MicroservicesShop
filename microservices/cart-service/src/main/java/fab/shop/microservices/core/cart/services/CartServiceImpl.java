@@ -13,6 +13,7 @@ import fab.shop.api.core.cart.CartService;
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.Offer;
 import fab.shop.microservices.core.cart.helper.PersistenceHelper;
+import fab.shop.microservices.core.cart.helper.ValuationHelper;
 
 
 
@@ -22,26 +23,20 @@ public class CartServiceImpl implements CartService{
 
     private final ServiceUtil serviceUtil;
     private final PersistenceHelper persistenceHelper;
+    private final ValuationHelper valuationHelper;
 
 
     @Autowired
-    public CartServiceImpl(ServiceUtil serviceUtil, PersistenceHelper persistenceHelper) {
+    public CartServiceImpl(ServiceUtil serviceUtil, PersistenceHelper persistenceHelper, ValuationHelper valuationHelper) {
         this.serviceUtil = serviceUtil;
         this.persistenceHelper = persistenceHelper;
+        this.valuationHelper = valuationHelper;
+    }    
+
+
+    private Float valuate(List<Offer> offerList){
+        return getValuationHelper().valuate(offerList);
     }
-
-    
-
-
-    private Float valuate(List<Offer> offers){
-
-        Float result = null;
-
-
-        return result;
-    }
-
-
 
 
     @Override
@@ -74,6 +69,13 @@ public class CartServiceImpl implements CartService{
     public PersistenceHelper getPersistenceHelper() {
         return this.persistenceHelper;
     }
+
+
+    public ValuationHelper getValuationHelper() {
+        return this.valuationHelper;
+    }
+
+
 
 
     @Override

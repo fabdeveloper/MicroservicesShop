@@ -7,19 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import fab.shop.api.core.cart.msg.*;
 
 
-// import fab.shop.api.core.cart.msg.AddToCartRQ;
-// import fab.shop.api.core.cart.msg.AddToCartRS;
-// import fab.shop.api.core.cart.msg.CartModificationRQ;
-// import fab.shop.api.core.cart.msg.CartModificationRS;
-// import fab.shop.api.core.cart.msg.DeleteCartRQ;
-// import fab.shop.api.core.cart.msg.DeleteCartRS;
-// import fab.shop.api.core.cart.msg.EmptyCartRQ;
-// import fab.shop.api.core.cart.msg.EmptyCartRS;
-// import fab.shop.api.core.cart.msg.GetCartRQ;
-// import fab.shop.api.core.cart.msg.GetCartRS;
-// import fab.shop.api.core.cart.msg.RemoveFromCartRQ;
-// import fab.shop.api.core.cart.msg.RemoveFromCartRS;
-
 
 
 public interface CartService {

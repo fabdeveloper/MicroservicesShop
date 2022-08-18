@@ -12,6 +12,7 @@ import fab.shop.api.core.valuation.msg.ValuationRS;
 
 public interface ShopIntegrationTestHelper {
     
+	// CartService tests
     
 	@GetMapping(
 		value = "/shoptester/testemptycart",
@@ -38,13 +39,22 @@ public interface ShopIntegrationTestHelper {
 			    produces = "application/json")
 			  ValuationRS valuationTestHelper();
 
-    // public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) 
-
     
-	  @GetMapping(
+	@GetMapping(
         value = "/shoptester/testcartmodification",
         produces = "application/json")
         CartModificationRS cartModificationTestHelper();
+
+
+
+
+	// ValuationService tests
+
+	@GetMapping(
+		value = "/shoptester/testvaluate",
+		produces = "application/json")
+		ValuationRS valuateTestHelper();
+
 
 
 }
