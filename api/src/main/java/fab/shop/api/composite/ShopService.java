@@ -41,29 +41,40 @@ public interface ShopService  {
 		  @ApiResponse(responseCode ="422", description = "${api.responseCodes.unprocessableEntity.description}")
 
 	  })
+	  @PostMapping(
+		value = "/shop/addToCart",
+		consumes = "application/json",
+		produces = "application/json")
+	  AddToCartRS addToCart(@RequestBody AddToCartRQ addToCartRQ);
 
 
 
-	  
+	  @Operation(summary = "${api.shop-service.post-emptycart.description}", description = "${api.shop-service.post-emptycart.notes}")
+	  @ApiResponses(value = {
+		  @ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}")
+	  })
 	  @PostMapping(
 			    value = "/shop/emptyCart",
 				consumes = "application/json",
 			    produces = "application/json")
 			  EmptyCartRS emptyCart(@RequestBody EmptyCartRQ emptyCartRQ);
 
-	  @PostMapping(
-			    value = "/shop/addToCart",
-				consumes = "application/json",
-			    produces = "application/json")
-			  AddToCartRS addToCart(@RequestBody AddToCartRQ addToCartRQ);
 
+	@Operation(summary = "${api.shop-service.post-getcart.description}", description = "${api.shop-service.post-getcart.notes}")
+	@ApiResponses(value = {
+		@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}")
+	})
 	  @PostMapping(
 			    value = "/shop/getCart",
 				consumes = "application/json",
 			    produces = "application/json")
 			  GetCartRS getCart(@RequestBody GetCartRQ getCartRQ);
 
-			  
+
+	@Operation(summary = "${api.shop-service.post-cartmodification.description}", description = "${api.shop-service.post-cartmodification.notes}")
+	@ApiResponses(value = {
+		@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}")
+	})
 	  @PostMapping(
 		value = "/shop/cartModification",
 		consumes = "application/json",
@@ -81,11 +92,16 @@ public interface ShopService  {
 			    produces = "application/json")
 			  Product getPurchase(@PathVariable int purchaseId);
 
+
+	@Operation(summary = "${api.shop-service.post-getvaluation.description}", description = "${api.shop-service.post-getvaluation.notes}")
+	@ApiResponses(value = {
+		@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}")
+	})
 	  @PostMapping(
 			    value = "/shop/valuate",
 				consumes = "application/json",
 			    produces = "application/json")
-			  ValuationRS getValuation(@RequestBody ValuationRQ body);
+			  ValuationRS getValuation(@RequestBody ValuationRQ valuationRQ);
 
 
 	// TEST HELPERS ******************* //

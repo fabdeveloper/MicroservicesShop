@@ -116,7 +116,7 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
     public ValuationRS valuateTestHelper() {
 
         Float offerPrice = 9.99f;
-        Product product = new Product(3, "product name", "product description", "product remarks", "product type", serviceAddress);
+        Product product = new Product(3, "product name", "product description", "product remarks", "product type", getServiceUtil().getServiceAddress());
         Article article = new Article(2, "article name", "article description", "article remarks", product);
         Offer offer = new Offer(1, "offer name", "offer description", "offer remarks", offerPrice, article);
 
@@ -129,7 +129,7 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
         ValuationRQ valuationRQ = new ValuationRQ(offerList);
 
 
-        return restTemplate.postForObject(getShopCompositeServiceUrl() + "/cartModification", valuationRQ, ValuationRS.class);
+        return restTemplate.postForObject(getShopCompositeServiceUrl() + "/valuate", valuationRQ, ValuationRS.class);
     }
     
 }

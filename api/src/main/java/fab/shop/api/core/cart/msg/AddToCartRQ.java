@@ -4,16 +4,16 @@ import fab.shop.api.core.product.Offer;
 
 public class AddToCartRQ {
 
-    private final Offer product;
-    private final Integer cartId;
-    private final Integer userId;
-    private final Integer shopId;
+    private Offer offer;
+    private Integer cartId;
+    private Integer userId;
+    private Integer shopId;
 
 
 
 
-    public AddToCartRQ(Offer product, Integer cartId, Integer userId, Integer shopId) {
-        this.product = product;
+    public AddToCartRQ(Offer offer, Integer cartId, Integer userId, Integer shopId) {
+        this.offer = offer;
         this.cartId = cartId;
         this.userId = userId;
         this.shopId = shopId;
@@ -26,15 +26,30 @@ public class AddToCartRQ {
         super();
 		
 		this.cartId = 0;
-		this.product = null;
+		this.offer = null;
         this.userId = null;
         this.shopId = null;
     }
 
 
-    public Offer getProduct() {
-        return this.product;
+
+    public Offer getOffer() {
+        return this.offer;
     }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
+    }
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
+    }
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
 
 
     public Integer getCartId() {
@@ -53,14 +68,17 @@ public class AddToCartRQ {
 
 
 
-
     @Override
     public String toString() {
         return "{" +
-            " product='" + getProduct().toString() + "'" +
+            " offer='" + getOffer() + "'" +
             ", cartId='" + getCartId() + "'" +
+            ", userId='" + getUserId() + "'" +
+            ", shopId='" + getShopId() + "'" +
             "}";
     }
+
+
 
 
     

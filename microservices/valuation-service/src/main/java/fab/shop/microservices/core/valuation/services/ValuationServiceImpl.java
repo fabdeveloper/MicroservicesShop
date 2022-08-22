@@ -1,6 +1,8 @@
 package fab.shop.microservices.core.valuation.services;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,8 @@ import fab.shop.api.core.valuation.ValuationService;
 
 @RestController
 public class ValuationServiceImpl implements ValuationService{
+
+    Logger logger = Logger.getLogger("ValuationServiceImpl");
 
     private final ServiceUtil serviceUtil;
 
@@ -26,6 +30,8 @@ public class ValuationServiceImpl implements ValuationService{
 
     @Override
     public ValuationRS valuate(ValuationRQ valuationRQ) {
+        String msg = "valuate() - ValuationRQ= " + valuationRQ.toString();
+        getLogger().log(Level.ALL, msg);
         Float valuation = 0.00f;
 
         List<Offer> offerList = valuationRQ.getOfferList();
@@ -34,10 +40,20 @@ public class ValuationServiceImpl implements ValuationService{
         }
 
         ValuationRS valuationRS = new ValuationRS(offerList, valuation);
+        String response = "valuate() - ValuationRS= " + valuationRS.toString();
+        getLogger().log(Level.ALL, response);
         return valuationRS;
     }
 
 
+
+    public Logger getLogger() {
+        return this.logger;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
     
 
 

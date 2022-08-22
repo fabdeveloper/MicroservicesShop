@@ -32,6 +32,23 @@ api:
     post-addtocart:
       description: Add a Product to a Cart and returns the modified Cart in a AddToCartRS response
       notes: pending
+
+    post-emptycart:
+      description: delete the old cart and return a new empty cart in the EmptyCartRS response
+      notes: pending
+
+    post-getcart:
+      description: return in the GetCartRS response the cart specified in the GetCartRQ or a new cart if it not exists
+      notes: pending
+
+    post-cartmodification:
+      description: delete the old cart and returns a new one with the offer list specified in the CartModificationRS response
+      notes: pending
+
+    post-getvaluation:
+      description: it valuates the offer list specified in the ValuationRQ request and it returns a Float value in the ValuationRS response
+      notes: pending
+
       
 server.port: 7000
 server.error.include-message: always

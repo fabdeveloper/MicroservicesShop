@@ -2,6 +2,8 @@ package fab.shop.microservices.composite.shop.services;
 
 import fab.shop.api.core.purchase.PurchaseService;
 import fab.shop.api.core.valuation.ValuationService;
+import fab.shop.api.core.valuation.msg.ValuationRQ;
+import fab.shop.api.core.valuation.msg.ValuationRS;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -102,10 +104,9 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
 
     @Override
-    public fab.shop.api.core.valuation.msg.ValuationRS valuate(
-            fab.shop.api.core.valuation.msg.ValuationRQ valuationRQ) {
-        // TODO Auto-generated method stub
-        return null;
+    public ValuationRS valuate(
+            ValuationRQ valuationRQ) {
+                return restTemplate.postForObject(getValuationServiceUrl() + "/valuate", valuationRQ, ValuationRS.class);
     }
 
 
