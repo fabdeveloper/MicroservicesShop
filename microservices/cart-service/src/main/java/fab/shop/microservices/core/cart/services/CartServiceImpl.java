@@ -48,7 +48,7 @@ public class CartServiceImpl implements CartService{
             Integer cartId = addToCartRq.getCartId();
             Integer userId = addToCartRq.getUserId();
             Integer shopId = addToCartRq.getShopId();
-            Offer offer = addToCartRq.getProduct();
+            Offer offer = addToCartRq.getOffer();
 
             Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
             cart.getProductList().add(offer);
