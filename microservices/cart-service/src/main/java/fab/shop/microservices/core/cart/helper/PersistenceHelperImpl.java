@@ -49,14 +49,10 @@ public class PersistenceHelperImpl implements PersistenceHelper{
     }
     
     @Override
-    public Boolean deleteCartFromDBById(Integer cartId){
-        Boolean bOk = true;
-
+    public void deleteCartFromDBById(Integer cartId){
         if(cartId != null && getCartMock() != null && cartId.compareTo(getCartMock().getCartId()) == 0){
             setCartMock(null);
         }
-
-        return bOk;
     }
 
 }

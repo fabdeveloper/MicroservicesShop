@@ -8,7 +8,7 @@ public interface PersistenceHelper {
 
     public Cart persistCart(Cart cart);
 
-    Boolean deleteCartFromDBById(Integer cartId);
+    public void deleteCartFromDBById(Integer cartId);
 
     
     

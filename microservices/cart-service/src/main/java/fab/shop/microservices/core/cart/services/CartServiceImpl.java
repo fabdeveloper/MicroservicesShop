@@ -97,7 +97,7 @@ public class CartServiceImpl implements CartService{
 
         // delete cart by id
         Integer cartId = cartModificationRQ.getCartId();
-        Boolean bCartWasDeletedSuccessfully = getPersistenceHelper().deleteCartFromDBById(cartId);
+        getPersistenceHelper().deleteCartFromDBById(cartId);
 
         // create new cart
                 // add offer list and valuation
@@ -133,7 +133,7 @@ public class CartServiceImpl implements CartService{
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
 
         // delete cart from DB
-        Boolean bOk = getPersistenceHelper().deleteCartFromDBById(emptyCartRQ.getCartId());
+        getPersistenceHelper().deleteCartFromDBById(emptyCartRQ.getCartId());
 
         // create a new empty cart
         EmptyCartRS emptyCartRS = new EmptyCartRS();
