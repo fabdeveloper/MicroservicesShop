@@ -1,14 +1,11 @@
 {
 	"folders": [
 		{
-			"path": "."
-		},
-		{
-			"path": "api\\src\\main\\java\\fab\\shop\\api\\core\\cart\\msg"
+			"uri": "vscode-remote://wsl+ubuntu-20.04/home/fab/EShop_Microservices"
 		}
 	],
+	"remoteAuthority": "wsl+Ubuntu-20.04",
 	"settings": {
-		"java.project.sourcePaths": [],
 		"java.configuration.updateBuildConfiguration": "automatic"
 	}
 }

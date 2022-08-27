@@ -6,7 +6,7 @@ import javax.persistence.*;
 import fab.shop.api.core.product.Offer;
 
 @Entity
-@Table(name = "carts")
+@Table(name = "carts", indexes = { @Index(name = "index_unique_user_shop", unique = true, columnList = "userId, shopId")})
 public class CartEntity {
 
 	@Id @GeneratedValue
