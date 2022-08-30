@@ -1,4 +1,4 @@
-package fab.shop.microservices.core.cart.helper;
+package fab.shop.microservices.core.cart.db;
 
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
