@@ -7,7 +7,8 @@ import fab.shop.api.core.product.Offer;
 public class Cart {
 	
 	private final Integer cartId;
-	private final List<Offer> productList;
+	private final List<CartItem> cartItemsList;
+
 	private final String serviceAddress;
 	private final Integer userId;
 	private final Integer shopId;
@@ -16,16 +17,18 @@ public class Cart {
 	
 
 
-
-
-	public Cart(Integer cartId, List<Offer> productList, Integer userId, Integer shopId, Float valuation, String serviceAddress) {
+	public Cart(Integer cartId, List<CartItem> cartItemsList, String serviceAddress, Integer userId, Integer shopId, Float valuation) {
 		this.cartId = cartId;
-		this.productList = productList;
+		this.cartItemsList = cartItemsList;
 		this.serviceAddress = serviceAddress;
 		this.userId = userId;
 		this.shopId = shopId;
 		this.valuation = valuation;
 	}
+
+
+
+
 
 	
 
@@ -33,7 +36,7 @@ public class Cart {
 		super();
 		
 		this.cartId = null;
-		this.productList = null;
+		this.cartItemsList = null;
 		this.serviceAddress = null;
 		this.userId = null;
 		this.shopId = null;
@@ -43,9 +46,13 @@ public class Cart {
 	public Integer getCartId() {
 		return cartId;
 	}
-	public List<Offer> getProductList() {
-		return productList;
+
+
+	public List<CartItem> getCartItemsList() {
+		return this.cartItemsList;
 	}
+
+	
 	
 
 	public String getServiceAddress() {
@@ -68,17 +75,5 @@ public class Cart {
 	}
 
 
-
-	@Override
-	public String toString() {
-		return "{" + super.toString() +
-			", cartId='" + getCartId() + "'" +
-			", productList='" + getProductList() + "'" +
-			", serviceAddress='" + getServiceAddress() + "'" +
-			"}";
-	}
-	
-	
-	
 	
 }

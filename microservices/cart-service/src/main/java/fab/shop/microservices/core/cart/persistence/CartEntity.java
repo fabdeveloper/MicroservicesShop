@@ -3,10 +3,10 @@ package fab.shop.microservices.core.cart.persistence;
 import java.util.List;
 import javax.persistence.*;
 
-import fab.shop.api.core.product.Offer;
+
 
 @Entity
-@Table(name = "carts", indexes = { @Index(name = "index_unique_user_shop", unique = true, columnList = "userId, shopId")})
+@Table(name = "CARTS", indexes = { @Index(name = "index_unique_user_shop", unique = true, columnList = "userId, shopId")})
 public class CartEntity {
 
 	@Id @GeneratedValue
@@ -15,7 +15,9 @@ public class CartEntity {
 	@Version
     private Integer version;
 
-	private List<Offer> productList;
+	@OneToMany(mappedBy = "cart")
+	private List<CartItemEntity> itemsList;
+	
 	private String serviceAddress;
 	private Integer userId;
 	private Integer shopId;
@@ -23,33 +25,12 @@ public class CartEntity {
     
 
 
-	public CartEntity(Integer cartId, Integer version, List<Offer> productList, String serviceAddress, Integer userId, Integer shopId, Float valuation) {
-		this.cartId = cartId;
-		this.version = version;
-		this.productList = productList;
-		this.serviceAddress = serviceAddress;
-		this.userId = userId;
-		this.shopId = shopId;
-		this.valuation = valuation;
-	}
+
 
 
 	public CartEntity() {
 	}
 
-
-	@Override
-	public String toString() {
-		return "{" +
-			" cartId='" + getCartId() + "'" +
-			", version='" + getVersion() + "'" +
-			", productList='" + getProductList() + "'" +
-			", serviceAddress='" + getServiceAddress() + "'" +
-			", userId='" + getUserId() + "'" +
-			", shopId='" + getShopId() + "'" +
-			", valuation='" + getValuation() + "'" +
-			"}";
-	}
 
 
 	public Integer getCartId() {
@@ -68,13 +49,7 @@ public class CartEntity {
 		this.version = version;
 	}
 
-	public List<Offer> getProductList() {
-		return this.productList;
-	}
 
-	public void setProductList(List<Offer> productList) {
-		this.productList = productList;
-	}
 
 	public String getServiceAddress() {
 		return this.serviceAddress;

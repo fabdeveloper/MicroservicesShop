@@ -11,7 +11,7 @@ public interface CartRepository extends CrudRepository<CartEntity, Integer> {
     public CartEntity findByCartId(Integer cartId);
 
     @Transactional(readOnly = true)
-    @Query("select x from Carts x where x.userId = :userId and x.shopId = :shopId")
+    @Query("select x from CARTS x where x.userId = :userId and x.shopId = :shopId")
     public CartEntity findByUserIdAndShopId(@Param("userId") Integer userId, @Param("shopId") Integer shopId);
 
 
