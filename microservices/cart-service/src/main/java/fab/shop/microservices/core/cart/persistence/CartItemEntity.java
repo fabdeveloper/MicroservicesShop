@@ -16,33 +16,33 @@ import javax.persistence.Version;
 public class CartItemEntity {
   
     @Id @GeneratedValue
-    private Integer item_id;
+    private Integer id;
     @Version
     private Integer version;
 
-    @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
-    private CartEntity cart;
+    // @ManyToOne
+    // @JoinColumn(name = "id", nullable = false)
+    // private CartEntity cart;
 
     // @ManyToOne
     // @JoinColumn(name = "id", nullable = false)
     // private OfferEntity offer;
 
-    // private Integer cartId;
-    // private Integer offerId;
+    private Integer cartId;
+    private Integer offerId;
     private Integer count;
 
 
 
-    public CartItemEntity(Integer item_id, Integer version, CartEntity cart, Integer count) {
-        this.item_id = item_id;
+
+    public CartItemEntity(Integer id, Integer version, Integer cartId, Integer offerId, Integer count) {
+        this.id = id;
         this.version = version;
-        this.cart = cart;
+        this.cartId = cartId;
+        this.offerId = offerId;
         this.count = count;
     }
-
-
-    
+   
 
 
     
@@ -50,30 +50,31 @@ public class CartItemEntity {
     }
 
 
-
-    public CartEntity getCart() {
-        return this.cart;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setCart(CartEntity cart) {
-        this.cart = cart;
-    }
-    
-
-
-
-    public Integer getItem_id() {
-        return this.item_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setItem_id(Integer item_id) {
-        this.item_id = item_id;
+    public Integer getCartId() {
+        return this.cartId;
     }
 
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
+    }
 
+    public Integer getOfferId() {
+        return this.offerId;
+    }
 
+    public void setOfferId(Integer offerId) {
+        this.offerId = offerId;
+    }
 
-    
+   
 
     public Integer getVersion() {
         return this.version;

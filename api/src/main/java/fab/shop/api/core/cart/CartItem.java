@@ -4,50 +4,73 @@ import fab.shop.api.core.product.Offer;
 
 public class CartItem {
     
-    private final Integer item_id;
-    private final Cart cart;
-    // private final Offer offer;
+    private final Integer id;
+    private final Integer cart_id;
+    private final Integer offer_id;
     private final Integer count;
 
 
 
-    public CartItem(Integer item_id, 
-                        Cart cart, 
-                        // Offer offer, 
-                        Integer count) {
-        this.item_id = item_id;
-        this.cart = cart;
-        // this.offer = offer;
+
+
+
+
+    public CartItem(Integer id, Integer cart_id, Integer offer_id, Integer count) {
+        this.id = id;
+        this.cart_id = cart_id;
+        this.offer_id = offer_id;
         this.count = count;
     }
 
+
+    
+
     public CartItem() {
-        this.item_id = null;
-        this.cart = null;
-        // this.offer = null;
+        this.id = null;
+        this.cart_id = null;
+        this.offer_id = null;
         this.count = null;
     }
 
 
 
-    public Integer getItem_id() {
-        return this.item_id;
+    public Integer getId() {
+        return this.id;
     }
 
 
-    public Cart getCart() {
-        return this.cart;
+
+
+    public Integer getCart_id() {
+        return this.cart_id;
     }
 
+    
 
-    // public Offer getOffer() {
-    //     return this.offer;
-    // }
+
+    public Integer getOffer_id() {
+        return this.offer_id;
+    }
+
+    
 
 
     public Integer getCount() {
         return this.count;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "CartItem= {" +
+            " id='" + getId() + "'" +
+            ", cart_id='" + getCart_id() + "'" +
+            ", offer_id='" + getOffer_id() + "'" +
+            ", count='" + getCount() + "'" +
+            "}";
+    }
+
 
 
 

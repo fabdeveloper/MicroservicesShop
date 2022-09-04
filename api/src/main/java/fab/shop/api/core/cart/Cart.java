@@ -2,7 +2,7 @@ package fab.shop.api.core.cart;
 
 import java.util.List;
 
-import fab.shop.api.core.product.Offer;
+// import fab.shop.api.core.product.Offer;
 
 public class Cart {
 	
@@ -25,11 +25,6 @@ public class Cart {
 		this.shopId = shopId;
 		this.valuation = valuation;
 	}
-
-
-
-
-
 	
 
 	public Cart() {
@@ -73,6 +68,27 @@ public class Cart {
 	public Float getValuation() {
 		return this.valuation;
 	}
+
+
+	@Override
+	public String toString() {
+
+		String cartItemsList = "{ ";
+		for(CartItem cartItem : getCartItemsList()){
+			cartItemsList += cartItem.toString() + " ,";
+		}
+		cartItemsList += " } ";
+		
+		return "{" +
+			" cartId='" + getCartId() + "'" +
+			", cartItemsList='" + cartItemsList + "'" +
+			", serviceAddress='" + getServiceAddress() + "'" +
+			", userId='" + getUserId() + "'" +
+			", shopId='" + getShopId() + "'" +
+			", valuation='" + getValuation() + "'" +
+			"}";
+	}
+
 
 
 	
