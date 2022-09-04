@@ -48,9 +48,10 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
 
     @Override
     public Cart findCart(Integer cartId, Integer userId, Integer shopId) {
+        Cart cart = null;
 
-        CartEntity cartEntity = getRepository().findByUserIdAndShopId(userId, shopId);
-        Cart cart = getMapper().entityToApi(cartEntity);
+        // CartEntity cartEntity = getRepository().findByUserIdAndShopId(userId, shopId);
+        // Cart cart = getMapper().entityToApi(cartEntity);
 
         return cart;
     }

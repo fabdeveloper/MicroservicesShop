@@ -26,8 +26,6 @@ public class CartEntity {
 
 
 
-
-
 	public CartEntity() {
 	}
 

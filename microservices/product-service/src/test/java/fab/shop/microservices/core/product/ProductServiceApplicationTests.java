@@ -14,9 +14,9 @@ class ProductServiceApplicationTests {
 	@Autowired private WebTestClient client;
 
 
-	@Test
-	void contextLoads() {
-	}
+	// @Test
+	// void contextLoads() {
+	// }
 
 
 	// @Test

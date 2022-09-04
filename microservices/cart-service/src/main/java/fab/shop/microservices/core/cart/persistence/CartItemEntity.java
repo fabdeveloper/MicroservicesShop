@@ -1,6 +1,6 @@
 package fab.shop.microservices.core.cart.persistence;
 
-import fab.shop.microservices.core.product.persistence.*;
+// import fab.shop.microservices.core.product.persistence.*;
 
 
 import javax.persistence.Entity;
@@ -24,9 +24,9 @@ public class CartItemEntity {
     @JoinColumn(name = "id", nullable = false)
     private CartEntity cart;
 
-    @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
-    private OfferEntity offer;
+    // @ManyToOne
+    // @JoinColumn(name = "id", nullable = false)
+    // private OfferEntity offer;
 
     // private Integer cartId;
     // private Integer offerId;

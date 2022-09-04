@@ -13,6 +13,7 @@ import fab.shop.api.core.cart.CartService;
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.Offer;
 import fab.shop.microservices.core.cart.helper.PersistenceHelper;
+import fab.shop.microservices.core.cart.helper.PersistenceHelperRepositoryImpl;
 import fab.shop.microservices.core.cart.helper.ValuationHelper;
 
 
@@ -22,12 +23,12 @@ import fab.shop.microservices.core.cart.helper.ValuationHelper;
 public class CartServiceImpl implements CartService{
 
     private final ServiceUtil serviceUtil;
-    private final PersistenceHelper persistenceHelper;
+    private final PersistenceHelperRepositoryImpl persistenceHelper;
     private final ValuationHelper valuationHelper;
 
 
     @Autowired
-    public CartServiceImpl(ServiceUtil serviceUtil, PersistenceHelper persistenceHelper, ValuationHelper valuationHelper) {
+    public CartServiceImpl(ServiceUtil serviceUtil, PersistenceHelperRepositoryImpl persistenceHelper, ValuationHelper valuationHelper) {
         this.serviceUtil = serviceUtil;
         this.persistenceHelper = persistenceHelper;
         this.valuationHelper = valuationHelper;
@@ -44,19 +45,19 @@ public class CartServiceImpl implements CartService{
 
         AddToCartRS addToCartRS = null;
 
-        if(addToCartRq != null) {
-            Integer cartId = addToCartRq.getCartId();
-            Integer userId = addToCartRq.getUserId();
-            Integer shopId = addToCartRq.getShopId();
-            Offer offer = addToCartRq.getOffer();
+        // if(addToCartRq != null) {
+        //     Integer cartId = addToCartRq.getCartId();
+        //     Integer userId = addToCartRq.getUserId();
+        //     Integer shopId = addToCartRq.getShopId();
+        //     Offer offer = addToCartRq.getOffer();
 
-            Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
-            cart.getProductList().add(offer);
+        //     Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
+        //     cart.getProductList().add(offer);
 
-            cart = getPersistenceHelper().persistCart(cart);
+        //     cart = getPersistenceHelper().persistCart(cart);
 
-            addToCartRS = new AddToCartRS(cart, "OK");
-        }        
+        //     addToCartRS = new AddToCartRS(cart, "OK");
+        // }        
         return addToCartRS;
     }
     
@@ -80,14 +81,14 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public GetCartRS getCart(GetCartRQ getCartRQ) {
+        GetCartRS getCartRS = null;
+        // Integer cartId = getCartRQ.getCartId();
+        // Integer userId = getCartRQ.getUserId();
+        // Integer shopId = getCartRQ.getShopId();
 
-        Integer cartId = getCartRQ.getCartId();
-        Integer userId = getCartRQ.getUserId();
-        Integer shopId = getCartRQ.getShopId();
+        // Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
 
-        Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
-
-        GetCartRS getCartRS = new GetCartRS(cart.getCartId(), cart.getProductList(), cart.getValuation());
+        // GetCartRS getCartRS = new GetCartRS(cart.getCartId(), cart.getProductList(), cart.getValuation());
         return getCartRS;
     }
 
@@ -95,33 +96,35 @@ public class CartServiceImpl implements CartService{
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
 
-        // delete cart by id
-        Integer cartId = cartModificationRQ.getCartId();
-        getPersistenceHelper().deleteCartFromDBById(cartId);
+        CartModificationRS cartModificationRS = null;
 
-        // create new cart
-                // add offer list and valuation
+        // // delete cart by id
+        // Integer cartId = cartModificationRQ.getCartId();
+        // getPersistenceHelper().deleteCartFromDBById(cartId);
 
-        Integer userId = cartModificationRQ.getUserId();
-        Integer shopId = cartModificationRQ.getShopId();
-        String serviceAddress = getServiceUtil().getServiceAddress();
-        List<Offer> offerList = cartModificationRQ.getOfferList();
-        Float valuation = valuate(offerList);
+        // // create new cart
+        //         // add offer list and valuation
 
-
-        Cart newCart = new Cart(null, offerList, userId, shopId, valuation, serviceAddress);
-
-
-        // persist cart
-        Cart persistedCart = getPersistenceHelper().persistCart(newCart);
+        // Integer userId = cartModificationRQ.getUserId();
+        // Integer shopId = cartModificationRQ.getShopId();
+        // String serviceAddress = getServiceUtil().getServiceAddress();
+        // List<Offer> offerList = cartModificationRQ.getOfferList();
+        // Float valuation = valuate(offerList);
 
 
-        // return cart to client
-        CartModificationRS cartModificationRS = new CartModificationRS(persistedCart.getCartId(), 
-                                                                        persistedCart.getProductList(), 
-                                                                        persistedCart.getValuation(), 
-                                                                        persistedCart.getUserId(), 
-                                                                        persistedCart.getShopId());
+        // Cart newCart = new Cart(null, offerList, userId, shopId, valuation, serviceAddress);
+
+
+        // // persist cart
+        // Cart persistedCart = getPersistenceHelper().persistCart(newCart);
+
+
+        // // return cart to client
+        // CartModificationRS cartModificationRS = new CartModificationRS(persistedCart.getCartId(), 
+        //                                                                 persistedCart.getProductList(), 
+        //                                                                 persistedCart.getValuation(), 
+        //                                                                 persistedCart.getUserId(), 
+        //                                                                 persistedCart.getShopId());
 
 
 

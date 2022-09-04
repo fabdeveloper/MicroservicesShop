@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 import fab.shop.api.core.cart.Cart;
+import fab.shop.api.core.cart.CartItem;
 import fab.shop.api.core.product.Offer;
 
 @Component
@@ -34,9 +35,8 @@ public class PersistenceHelperImpl implements PersistenceHelper{
 
         } else{ 
             Float valuation = 0.0f;
-            cart = new Cart(cartId, new ArrayList<Offer>(), userId, shopId, valuation, serviceAddress);
+            cart = new Cart(cartId, new ArrayList<CartItem>(), serviceAddress, userId, shopId, valuation);            
         }
-
         return cart;
     }
 
