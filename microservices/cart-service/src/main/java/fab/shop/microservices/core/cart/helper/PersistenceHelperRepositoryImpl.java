@@ -1,5 +1,7 @@
 package fab.shop.microservices.core.cart.helper;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -55,6 +57,26 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
 
         return cart;
     }
+
+    // @Transactional
+    // public Cart mergeCart(Cart cart){
+    //     Cart newCart = null;
+
+    //     Integer cartId = cart.getCartId();
+
+
+    //     CartEntity cartEntity = getRepository().findByCartId(cartId);
+
+    //     cartEntity.setValuation(cart.getValuation());
+    //     cartEntity.s
+        
+
+
+        
+
+
+    //     return newCart;
+    // }
 
     @Override
     public Cart persistCart(Cart cart) {

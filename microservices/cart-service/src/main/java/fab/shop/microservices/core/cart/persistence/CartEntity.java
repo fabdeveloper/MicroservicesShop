@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "CARTS", indexes = { @Index(name = "index_unique_user_shop", unique = true, columnList = "userId, shopId")})
+@Table(name = "carts", indexes = { @Index(name = "index_unique_user_shop", unique = true, columnList = "userId, shopId")})
 public class CartEntity {
 
 	@Id @GeneratedValue
@@ -24,11 +24,29 @@ public class CartEntity {
 	private Float valuation;
     
 
+	public CartEntity(Integer cartId, Integer version, List<CartItemEntity> itemsList, String serviceAddress, Integer userId, Integer shopId, Float valuation) {
+		this.cartId = cartId;
+		this.version = version;
+		this.itemsList = itemsList;
+		this.serviceAddress = serviceAddress;
+		this.userId = userId;
+		this.shopId = shopId;
+		this.valuation = valuation;
+	}
+
 
 
 	public CartEntity() {
 	}
 
+
+	public List<CartItemEntity> getItemsList() {
+		return this.itemsList;
+	}
+
+	public void setItemsList(List<CartItemEntity> itemsList) {
+		this.itemsList = itemsList;
+	}
 
 
 	public Integer getCartId() {

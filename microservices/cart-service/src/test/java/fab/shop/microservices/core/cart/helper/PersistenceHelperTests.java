@@ -42,6 +42,9 @@ public class PersistenceHelperTests extends MySqlTestBase {
 
     @BeforeEach
     void setupDb() {
+        
+        System.out.println(" setupDb() ... trying ...");
+
         getPersistenceHelper().getRepository().deleteAll();
 
         Float valuation = 9.99f;
@@ -78,6 +81,7 @@ public class PersistenceHelperTests extends MySqlTestBase {
 
 
     private void assertEqualsEntity(Cart expected, Cart actual) {
+        System.out.println(" assertEqualsEntity() ... trying ...");
 
         assertEquals(expected.getValuation(), actual.getValuation());
 
@@ -122,6 +126,7 @@ public class PersistenceHelperTests extends MySqlTestBase {
     @Test
     public void persistCartTest() {
 
+        System.out.println(" persistCartTest() ... trying ...");
         
     //     Float valuation = 9.99f;
     //     Product product = new Product(4, "name product", "description product", "remarks product", "type product", "serviceAddress product");

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "CART_ITEMS")
+@Table(name = "cart_items")
 public class CartItemEntity {
   
     @Id @GeneratedValue
