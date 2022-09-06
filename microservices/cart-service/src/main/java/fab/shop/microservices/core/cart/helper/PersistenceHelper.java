@@ -8,6 +8,8 @@ public interface PersistenceHelper {
 
     public Cart persistCart(Cart cart);
 
+    public Cart mergeCart(Cart cart);
+
     public void deleteCartFromDBById(Integer cartId);
 
     

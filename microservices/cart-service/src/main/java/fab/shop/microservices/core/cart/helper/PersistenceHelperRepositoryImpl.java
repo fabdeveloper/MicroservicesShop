@@ -1,11 +1,14 @@
 package fab.shop.microservices.core.cart.helper;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fab.shop.api.core.cart.Cart;
+import fab.shop.api.core.cart.CartItem;
 import fab.shop.microservices.core.cart.persistence.CartEntity;
 import fab.shop.microservices.core.cart.persistence.CartRepository;
 import fab.shop.microservices.core.cart.services.CartMapper;
@@ -58,25 +61,30 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
         return cart;
     }
 
-    // @Transactional
-    // public Cart mergeCart(Cart cart){
-    //     Cart newCart = null;
+    @Override
+    @Transactional
+    public Cart mergeCart(Cart cart){
+        Cart newCart = null;
 
-    //     Integer cartId = cart.getCartId();
+        // List<CartItem> itemsList = cart.getCartItemsList();
+
+        // Integer cartId = cart.getCartId();
 
 
-    //     CartEntity cartEntity = getRepository().findByCartId(cartId);
+        // CartEntity cartEntity = getRepository().findByCartId(cartId);
 
-    //     cartEntity.setValuation(cart.getValuation());
-    //     cartEntity.s
+        // cartEntity.setValuation(cart.getValuation());
+        // cartEntity.setItemsList(itemEntitiesList);
+        
+
+        // CartEntity mergedEntity = getRepository().save(cartEntity);
+        // newCart = getMapper().entityToApi(mergedEntity);
+
         
 
 
-        
-
-
-    //     return newCart;
-    // }
+        return newCart;
+    }
 
     @Override
     public Cart persistCart(Cart cart) {

@@ -57,15 +57,7 @@ public class PersistenceHelperTests extends MySqlTestBase {
         List<CartItem> cartItemsList = new ArrayList<CartItem>();
         CartItem cartItem = new CartItem(null, emptyCart.getCartId(), offer_id, count);
         cartItemsList.add(cartItem);
-
-
-
-    //     Product product = new Product(4, "name product", "description product", "remarks product", "type product", "serviceAddress product");
-    //     Article article = new Article(2, "article name test", "article description test", "article remarks test", product);
-    //     Offer offer = new Offer(3, "offer name test", "offer description test", "offer remarks test", valuation, article);
-    //     List<Offer> offerList = new ArrayList<Offer>();
-    //     offerList.add(offer);
-
+        
         Cart newcart = new Cart(emptyCart.getCartId(), cartItemsList, "serviceAddress string", 1, 1, valuation);
         Cart persistedCart = getPersistenceHelper().persistCart(newcart);
         

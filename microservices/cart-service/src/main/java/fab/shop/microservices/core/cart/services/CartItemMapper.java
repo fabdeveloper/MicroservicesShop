@@ -1,5 +1,7 @@
 package fab.shop.microservices.core.cart.services;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -16,5 +18,12 @@ public interface CartItemMapper {
         @Mapping(target = "version", ignore = true)
     })
     public CartItemEntity apiToEntity(CartItem cartItem);
+
+
+
+    public List<CartItem> entityListToApiList(List<CartItemEntity> entityList);
+
+
+    public List<CartItemEntity> apiListToEntityList(List<CartItem> apiList);
     
 }
