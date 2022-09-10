@@ -1,6 +1,7 @@
 package fab.shop.api.core.cart;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -15,6 +16,23 @@ public interface CartService {
 		// 	    value = "/cart/{cartId}",
 		// 	    produces = "application/json")
 		// 	  Cart getCart(@PathVariable int cartId);
+
+		/***************
+		 * 
+		 * it tests MapStruct interface
+		 * 
+		 */
+
+		 	@GetMapping(
+			    value = "/cart/apiobject",
+			    produces = "application/json")
+			  String getCartApiObject();
+
+
+			@GetMapping(
+			    value = "/cart/entityobject",
+			    produces = "application/json")
+			  String getCartEntityObject();
 
 		@PostMapping(
 			value = "/cart/getCart",

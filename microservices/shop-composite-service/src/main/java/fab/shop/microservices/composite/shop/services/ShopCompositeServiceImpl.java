@@ -152,5 +152,17 @@ public class ShopCompositeServiceImpl implements ShopService {
     }
 
 
+    @Override
+    public String apiObject() {
+        return getShopIntegration().getCartApiObject();
+    }
+
+
+    @Override
+    public String entityObject() {
+        return getShopIntegration().getCartEntityObject();
+    }
+
+
     
 }

@@ -133,4 +133,15 @@ public interface ShopService  {
 			    produces = "application/json")
 			  ValuationRS valuationTestHelper();
 
+	  @GetMapping(
+			    value = "/shop/apiobject",
+			    produces = "application/json")
+			  String apiObject();
+
+
+	  @GetMapping(
+			    value = "/shop/entityobject",
+			    produces = "application/json")
+			  String entityObject();
+
 }

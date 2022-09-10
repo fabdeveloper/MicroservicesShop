@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Cart {
 	
-	private final Integer cartId;
-	private final List<CartItem> cartItemsList;
+	private Integer cartId;
+	private List<CartItem> cartItemsList;
 
-	private final String serviceAddress;
-	private final Integer userId;
-	private final Integer shopId;
-	private final Float valuation;
+	private String serviceAddress;
+	private Integer userId;
+	private Integer shopId;
+	private Float valuation;
 
 	
 
@@ -30,12 +30,12 @@ public class Cart {
 	public Cart() {
 		super();
 		
-		this.cartId = null;
-		this.cartItemsList = null;
-		this.serviceAddress = null;
-		this.userId = null;
-		this.shopId = null;
-		this.valuation = null;
+		// this.cartId = null;
+		// this.cartItemsList = null;
+		// this.serviceAddress = null;
+		// this.userId = null;
+		// this.shopId = null;
+		// this.valuation = null;
 	}
 
 	public Integer getCartId() {
@@ -69,15 +69,41 @@ public class Cart {
 		return this.valuation;
 	}
 
+	public void setCartId(Integer cartId) {
+		this.cartId = cartId;
+	}
+	public void setCartItemsList(List<CartItem> cartItemsList) {
+		this.cartItemsList = cartItemsList;
+	}
+	public void setServiceAddress(String serviceAddress) {
+		this.serviceAddress = serviceAddress;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
+	}
+	public void setValuation(Float valuation) {
+		this.valuation = valuation;
+	}
 
-	@Override
+
+
+	@Override 
 	public String toString() {
 
-		String cartItemsList = "{ ";
-		for(CartItem cartItem : getCartItemsList()){
-			cartItemsList += cartItem.toString() + " ,";
+		String cartItemsList = null;
+
+		if(getCartItemsList() != null){
+			cartItemsList = "{ ";
+			for(CartItem cartItem : getCartItemsList()){
+				cartItemsList += cartItem.toString() + " ,";
+			}
+			cartItemsList += " } ";
+
 		}
-		cartItemsList += " } ";
+
 		
 		return "{" +
 			" cartId='" + getCartId() + "'" +

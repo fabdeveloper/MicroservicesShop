@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import fab.shop.util.http.ServiceUtil;
 
 import fab.shop.api.core.cart.Cart;
+import fab.shop.api.core.cart.CartItem;
 import fab.shop.api.core.cart.CartService;
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.Offer;
 import fab.shop.microservices.core.cart.helper.PersistenceHelper;
 import fab.shop.microservices.core.cart.helper.PersistenceHelperRepositoryImpl;
 import fab.shop.microservices.core.cart.helper.ValuationHelper;
+import fab.shop.microservices.core.cart.persistence.CartEntity;
+import fab.shop.microservices.core.cart.persistence.CartItemEntity;
 
 
 
@@ -158,6 +161,37 @@ public class CartServiceImpl implements CartService{
         removeFromCartRq.getOfferId();
 
         return null;
+    }
+
+
+    @Override
+    public String getCartApiObject() {
+        List<CartItemEntity> itemsList = new ArrayList<CartItemEntity>();
+        CartItemEntity item = new CartItemEntity(3, null, 1, 2, 1);
+        itemsList.add(item);
+        CartEntity entity = new CartEntity(5, null, itemsList, "serviceAddress", 1, 1, 9.99f);
+
+        PersistenceHelperRepositoryImpl helper = new PersistenceHelperRepositoryImpl();
+
+        Cart cart = helper.getMapper().entityToApi(entity);
+
+        return cart.toString();
+    }
+
+
+    @Override
+    public String getCartEntityObject() {
+
+        CartItem item = new CartItem(1, 2, 3, 1);
+        List<CartItem> itemsList = new ArrayList<CartItem>();
+        itemsList.add(item);
+        Cart cart = new Cart(3, itemsList, "serviceAddress", 1, 1, 9.99f);
+
+        PersistenceHelperRepositoryImpl helper = new PersistenceHelperRepositoryImpl();
+
+
+        CartEntity entity = helper.getMapper().apiToEntity(cart);
+        return entity.toString();
     }
 
     

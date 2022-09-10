@@ -3,9 +3,13 @@ package fab.shop.microservices.core.cart.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mapstruct.Mapper;
+
 import fab.shop.api.core.cart.CartItem;
 import fab.shop.microservices.core.cart.persistence.CartItemEntity;
 
+
+@Mapper(componentModel = "spring")
 public abstract class AbstractCartItemMapper implements CartItemMapper {
 
 

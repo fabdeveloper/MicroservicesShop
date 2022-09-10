@@ -55,4 +55,10 @@ public class PersistenceHelperImpl implements PersistenceHelper{
         }
     }
 
+    @Override
+    public Cart mergeCart(Cart cart) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

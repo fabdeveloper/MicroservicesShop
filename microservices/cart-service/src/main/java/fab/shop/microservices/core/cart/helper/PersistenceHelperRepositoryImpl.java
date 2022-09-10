@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartItem;
 import fab.shop.microservices.core.cart.persistence.CartEntity;
+import fab.shop.microservices.core.cart.persistence.CartItemEntity;
 import fab.shop.microservices.core.cart.persistence.CartRepository;
+import fab.shop.microservices.core.cart.services.AbstractCartItemMapper;
 import fab.shop.microservices.core.cart.services.CartMapper;
 
 @Component
@@ -21,6 +23,9 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
 
     @Autowired
     private CartMapper mapper;
+
+    @Autowired
+    private AbstractCartItemMapper itemMapper;
     
 
 
@@ -50,6 +55,16 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
     }
 
 
+    public AbstractCartItemMapper getItemMapper() {
+        return this.itemMapper;
+    }
+
+    public void setItemMapper(AbstractCartItemMapper itemMapper) {
+        this.itemMapper = itemMapper;
+    }
+
+
+
 
     @Override
     public Cart findCart(Integer cartId, Integer userId, Integer shopId) {
@@ -66,19 +81,20 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
     public Cart mergeCart(Cart cart){
         Cart newCart = null;
 
-        // List<CartItem> itemsList = cart.getCartItemsList();
+        List<CartItem> itemsList = cart.getCartItemsList();
+        List<CartItemEntity> itemEntitiesList = this.getItemMapper().apiListToEntityList(itemsList);
 
-        // Integer cartId = cart.getCartId();
+        Integer cartId = cart.getCartId();
 
 
-        // CartEntity cartEntity = getRepository().findByCartId(cartId);
+        CartEntity cartEntity = getRepository().findByCartId(cartId);
 
-        // cartEntity.setValuation(cart.getValuation());
-        // cartEntity.setItemsList(itemEntitiesList);
+        cartEntity.setValuation(cart.getValuation());
+        cartEntity.setItemsList(itemEntitiesList);
         
 
-        // CartEntity mergedEntity = getRepository().save(cartEntity);
-        // newCart = getMapper().entityToApi(mergedEntity);
+        CartEntity mergedEntity = getRepository().save(cartEntity);
+        newCart = getMapper().entityToApi(mergedEntity);
 
         
 

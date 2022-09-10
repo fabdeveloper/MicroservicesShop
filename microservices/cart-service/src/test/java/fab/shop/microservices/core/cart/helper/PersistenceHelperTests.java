@@ -2,11 +2,15 @@ package fab.shop.microservices.core.cart.helper;
 
 
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.AfterClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.logging.*;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,10 +41,13 @@ import fab.shop.microservices.core.cart.helper.PersistenceHelper;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class PersistenceHelperTests extends MySqlTestBase {
 
+    private static final Logger LOG = LoggerFactory.getLogger(PersistenceHelperTests.class);
+
+
     @Autowired
     private PersistenceHelperRepositoryImpl persistenceHelper;
 
-    @BeforeEach
+    // @BeforeEach
     void setupDb() {
         
         System.out.println(" setupDb() ... trying ...");
@@ -53,19 +60,31 @@ public class PersistenceHelperTests extends MySqlTestBase {
 
         Cart emptyCart = getPersistenceHelper().persistCart(new Cart(null, null, "serviceAddress string", 1, 1, 0.00f));
 
+        // throw new RuntimeException("emptyCart= " + emptyCart.toString());
+        // if(emptyCart != null){
+
+        
+        //     System.out.println("PersistentHelperTests.setupDb() - emptyCart = " + emptyCart.toString());
+        // }else{
+        //     System.out.println("PersistentHelperTests.setupDb() - emptyCart = is null");
+
+        // }
 
         List<CartItem> cartItemsList = new ArrayList<CartItem>();
         CartItem cartItem = new CartItem(null, emptyCart.getCartId(), offer_id, count);
         cartItemsList.add(cartItem);
         
         Cart newcart = new Cart(emptyCart.getCartId(), cartItemsList, "serviceAddress string", 1, 1, valuation);
-        Cart persistedCart = getPersistenceHelper().persistCart(newcart);
-        
+        System.out.println("PersistentHelperTests.setupDb() - newCart = " + newcart.toString());
+
+        Cart persistedCart = getPersistenceHelper().mergeCart(newcart);
+        throw new RuntimeException("persistedCart= " + persistedCart.toString());
+
   
-      assertEqualsEntity(newcart, persistedCart);
+    //   assertEqualsEntity(newcart, persistedCart);
     }
 
-    @AfterClass
+    // @AfterClass
     void cleanDb(){
             getPersistenceHelper().getRepository().deleteAll();
     }
@@ -83,8 +102,8 @@ public class PersistenceHelperTests extends MySqlTestBase {
         assertEquals(expectedLenght, actualLenght);
 
         for (int i = 0; i < expectedLenght; i++) {
-            Integer expectedOfferId = expected.getCartItemsList().get(i).getOffer_id();
-            Integer actualOfferId = actual.getCartItemsList().get(i).getOffer_id();
+            Integer expectedOfferId = expected.getCartItemsList().get(i).getOfferId();
+            Integer actualOfferId = actual.getCartItemsList().get(i).getOfferId();
 
             assertEquals(expectedOfferId, actualOfferId);
             
@@ -115,7 +134,7 @@ public class PersistenceHelperTests extends MySqlTestBase {
     //     return null;
     // }
 
-    @Test
+    // @Test
     public void persistCartTest() {
 
         System.out.println(" persistCartTest() ... trying ...");
