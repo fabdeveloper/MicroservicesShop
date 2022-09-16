@@ -1,5 +1,6 @@
 package fab.shop.microservices.core.cart.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mapstruct.Mapper;
@@ -21,9 +22,37 @@ public interface CartItemMapper {
 
 
 
-    public List<CartItem> entityListToApiList(List<CartItemEntity> entityList);
+    default List<CartItem> entityListToApiList(List<CartItemEntity> entityList){
+
+        List<CartItem> cartItemsList = null;
+        CartItem item = null;
+        if(entityList != null){
+            cartItemsList = new ArrayList<CartItem>();
+
+            for(CartItemEntity entity : entityList){
+                item = this.entityToApi(entity);
+                cartItemsList.add(item);
+            }
+        }
+        return cartItemsList;
+    }
 
 
-    public List<CartItemEntity> apiListToEntityList(List<CartItem> apiList);
+    default List<CartItemEntity> apiListToEntityList(List<CartItem> apiList){
+
+        List<CartItemEntity> cartItemEntitiesList = null;
+        CartItemEntity entity = null;
+
+        if(apiList != null){
+            cartItemEntitiesList = new ArrayList<CartItemEntity>();
+
+            for(CartItem item : apiList){
+                entity = this.apiToEntity(item);
+                cartItemEntitiesList.add(entity);
+            }
+        }
+        return cartItemEntitiesList;
+
+    }
     
 }

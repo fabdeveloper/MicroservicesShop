@@ -259,13 +259,13 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
 
-    @Override
+    // @Override
     public String getCartApiObject() {
         return getRestTemplate().getForObject(getCartServiceUrl() + "/apiobject", String.class);        
     }
 
 
-    @Override
+    // @Override
     public String getCartEntityObject() {
         return getRestTemplate().getForObject(getCartServiceUrl() + "/entityobject", String.class);        
     }

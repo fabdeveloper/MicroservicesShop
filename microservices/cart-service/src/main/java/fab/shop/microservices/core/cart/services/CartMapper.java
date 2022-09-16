@@ -8,7 +8,7 @@ import fab.shop.api.core.cart.Cart;
 import fab.shop.microservices.core.cart.persistence.CartEntity;
 
 
-@Mapper(componentModel = "spring", uses = { AbstractCartItemMapper.class})
+@Mapper(componentModel = "spring", uses = { CartItemMapper.class})
 public interface CartMapper {
 
     @Mappings({

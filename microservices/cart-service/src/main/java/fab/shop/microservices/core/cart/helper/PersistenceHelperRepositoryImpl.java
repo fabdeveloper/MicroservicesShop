@@ -12,7 +12,6 @@ import fab.shop.api.core.cart.CartItem;
 import fab.shop.microservices.core.cart.persistence.CartEntity;
 import fab.shop.microservices.core.cart.persistence.CartItemEntity;
 import fab.shop.microservices.core.cart.persistence.CartRepository;
-import fab.shop.microservices.core.cart.services.AbstractCartItemMapper;
 import fab.shop.microservices.core.cart.services.CartMapper;
 
 @Component
@@ -24,9 +23,6 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
     @Autowired
     private CartMapper mapper;
 
-    @Autowired
-    private AbstractCartItemMapper itemMapper;
-    
 
 
     public PersistenceHelperRepositoryImpl(CartRepository repository, CartMapper mapper) {
@@ -55,13 +51,7 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
     }
 
 
-    public AbstractCartItemMapper getItemMapper() {
-        return this.itemMapper;
-    }
 
-    public void setItemMapper(AbstractCartItemMapper itemMapper) {
-        this.itemMapper = itemMapper;
-    }
 
 
 
@@ -81,8 +71,8 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
     public Cart mergeCart(Cart cart){
         Cart newCart = null;
 
-        List<CartItem> itemsList = cart.getCartItemsList();
-        List<CartItemEntity> itemEntitiesList = this.getItemMapper().apiListToEntityList(itemsList);
+        // List<CartItem> itemsList = cart.getCartItemsList();
+        // List<CartItemEntity> itemEntitiesList = this.getItemMapper().apiListToEntityList(itemsList);
 
         Integer cartId = cart.getCartId();
 
@@ -90,14 +80,11 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
         CartEntity cartEntity = getRepository().findByCartId(cartId);
 
         cartEntity.setValuation(cart.getValuation());
-        cartEntity.setItemsList(itemEntitiesList);
+        // cartEntity.setItemsList(itemEntitiesList);
         
 
         CartEntity mergedEntity = getRepository().save(cartEntity);
         newCart = getMapper().entityToApi(mergedEntity);
-
-        
-
 
         return newCart;
     }

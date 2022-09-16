@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartItem;
-import fab.shop.api.core.product.Offer;
+// import fab.shop.api.core.product.Offer;
 
 @Component
 public class PersistenceHelperImpl implements PersistenceHelper{

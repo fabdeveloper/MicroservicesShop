@@ -14,6 +14,7 @@ import fab.shop.api.core.cart.CartService;
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.Offer;
 import fab.shop.microservices.core.cart.helper.PersistenceHelper;
+import fab.shop.microservices.core.cart.helper.PersistenceHelperImpl;
 import fab.shop.microservices.core.cart.helper.PersistenceHelperRepositoryImpl;
 import fab.shop.microservices.core.cart.helper.ValuationHelper;
 import fab.shop.microservices.core.cart.persistence.CartEntity;
@@ -26,12 +27,14 @@ import fab.shop.microservices.core.cart.persistence.CartItemEntity;
 public class CartServiceImpl implements CartService{
 
     private final ServiceUtil serviceUtil;
-    private final PersistenceHelperRepositoryImpl persistenceHelper;
+    // private final PersistenceHelperRepositoryImpl persistenceHelper;
+    private final PersistenceHelperImpl persistenceHelper;
+
     private final ValuationHelper valuationHelper;
 
 
     @Autowired
-    public CartServiceImpl(ServiceUtil serviceUtil, PersistenceHelperRepositoryImpl persistenceHelper, ValuationHelper valuationHelper) {
+    public CartServiceImpl(ServiceUtil serviceUtil, PersistenceHelperImpl persistenceHelper, ValuationHelper valuationHelper) {
         this.serviceUtil = serviceUtil;
         this.persistenceHelper = persistenceHelper;
         this.valuationHelper = valuationHelper;
@@ -47,15 +50,17 @@ public class CartServiceImpl implements CartService{
     public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
 
         AddToCartRS addToCartRS = null;
+        addToCartRS = new AddToCartRS(null, "CartServiceImpl.AddToCartRS() ... answering !");
+
 
         // if(addToCartRq != null) {
         //     Integer cartId = addToCartRq.getCartId();
         //     Integer userId = addToCartRq.getUserId();
         //     Integer shopId = addToCartRq.getShopId();
-        //     Offer offer = addToCartRq.getOffer();
+        //     // Offer offer = addToCartRq.getOffer();
 
         //     Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
-        //     cart.getProductList().add(offer);
+        //     // cart.getProductList().add(offer);
 
         //     cart = getPersistenceHelper().persistCart(cart);
 
@@ -70,7 +75,7 @@ public class CartServiceImpl implements CartService{
     }
 
 
-    public PersistenceHelper getPersistenceHelper() {
+    public PersistenceHelperImpl getPersistenceHelper() {
         return this.persistenceHelper;
     }
 
@@ -164,35 +169,35 @@ public class CartServiceImpl implements CartService{
     }
 
 
+    /*
     @Override
     public String getCartApiObject() {
-        List<CartItemEntity> itemsList = new ArrayList<CartItemEntity>();
-        CartItemEntity item = new CartItemEntity(3, null, 1, 2, 1);
-        itemsList.add(item);
-        CartEntity entity = new CartEntity(5, null, itemsList, "serviceAddress", 1, 1, 9.99f);
 
-        PersistenceHelperRepositoryImpl helper = new PersistenceHelperRepositoryImpl();
+        return "CartServiceImpl - getCartApiObject() - answering ...";
+        // List<CartItemEntity> itemsList = new ArrayList<CartItemEntity>();
+        // CartItemEntity item = new CartItemEntity(3, null, 1, 2, 1);
+        // itemsList.add(item);
+        // CartEntity entity = new CartEntity(5, null, itemsList, "serviceAddress", 1, 1, 9.99f);
 
-        Cart cart = helper.getMapper().entityToApi(entity);
-
-        return cart.toString();
+        // Cart cart =  this.getPersistenceHelper().getMapper().entityToApi(entity);
+        // return cart.toString();
     }
 
 
     @Override
     public String getCartEntityObject() {
+        return "CartServiceImpl - getCartEntityObject() - answering ...";
 
-        CartItem item = new CartItem(1, 2, 3, 1);
-        List<CartItem> itemsList = new ArrayList<CartItem>();
-        itemsList.add(item);
-        Cart cart = new Cart(3, itemsList, "serviceAddress", 1, 1, 9.99f);
-
-        PersistenceHelperRepositoryImpl helper = new PersistenceHelperRepositoryImpl();
+        // CartItem item = new CartItem(1, 2, 3, 1);
+        // List<CartItem> itemsList = new ArrayList<CartItem>();
+        // itemsList.add(item);
+        // Cart cart = new Cart(3, itemsList, "serviceAddress", 1, 1, 9.99f);
 
 
-        CartEntity entity = helper.getMapper().apiToEntity(cart);
-        return entity.toString();
+        // CartEntity entity = this.getPersistenceHelper().getMapper().apiToEntity(cart);
+        // return entity.toString();
     }
+     */
 
     
 }
