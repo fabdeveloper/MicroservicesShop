@@ -1,5 +1,6 @@
 package fab.shop.microservices.core.cart.persistence;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -22,9 +23,13 @@ public class CartEntity {
 	private Integer userId;
 	private Integer shopId;
 	private Float valuation;
+	private Date creationDate;
+	private Date modificationDate;
+	
     
 
-	public CartEntity(Integer cartId, Integer version, List<CartItemEntity> itemsList, String serviceAddress, Integer userId, Integer shopId, Float valuation) {
+
+	public CartEntity(Integer cartId, Integer version, List<CartItemEntity> itemsList, String serviceAddress, Integer userId, Integer shopId, Float valuation, Date creationDate, Date modificationDate) {
 		this.cartId = cartId;
 		this.version = version;
 		this.itemsList = itemsList;
@@ -32,12 +37,35 @@ public class CartEntity {
 		this.userId = userId;
 		this.shopId = shopId;
 		this.valuation = valuation;
+		this.creationDate = creationDate;
+		this.modificationDate = modificationDate;
 	}
+
 
 
 
 	public CartEntity() {
 	}
+
+
+
+
+	public Date getCreationDate() {
+		return this.creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public Date getModificationDate() {
+		return this.modificationDate;
+	}
+
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
+	}
+
 
 
 	public List<CartItemEntity> getItemsList() {
@@ -98,5 +126,52 @@ public class CartEntity {
 	public void setValuation(Float valuation) {
 		this.valuation = valuation;
 	}
+
+
+
+	@Override
+	public String toString() {
+		String itemsList = " { ";
+
+		for(CartItemEntity item : getItemsList()){
+			itemsList += item.toString() + ", ";
+		}
+		itemsList += " } ";
+		return "{" +
+			" cartId='" + getCartId() + "'" +
+			", version='" + getVersion() + "'" +
+			", itemsList='" + itemsList + "'" +
+			", serviceAddress='" + getServiceAddress() + "'" +
+			", userId='" + getUserId() + "'" +
+			", shopId='" + getShopId() + "'" +
+			", valuation='" + getValuation() + "'" +
+			", creationDate='" + getCreationDate() + "'" +
+			", modificationDate='" + getModificationDate() + "'" +
+			"}";
+	}
+
+
+	// @Override
+	// public String toString() {
+
+	// 	String itemsList = " { ";
+
+	// 	for(CartItemEntity item : getItemsList()){
+	// 		itemsList += item.toString() + ", ";
+	// 	}
+	// 	itemsList += " } ";
+	// 	return "{" +
+	// 		" cartId='" + getCartId() + "'" +
+	// 		", version='" + getVersion() + "'" +
+	// 		", itemsList='" + itemsList + "'" +
+	// 		", serviceAddress='" + getServiceAddress() + "'" +
+	// 		", userId='" + getUserId() + "'" +
+	// 		", shopId='" + getShopId() + "'" +
+	// 		", valuation='" + getValuation() + "'" +
+	// 		"}";
+	// }
+
+
+
 
 }

@@ -2,43 +2,15 @@ package fab.shop.api.core.cart.msg;
 
 import fab.shop.api.core.cart.Cart;
 
-public class AddToCartRS {
+public class AddToCartRS extends CartMessageGenericResponse {
 
-    private final Cart cart;
-    private final String status;
-
-
-    public AddToCartRS(Cart cart, String status) {
-        this.cart = cart;
-        this.status = status;
+    public AddToCartRS(Cart cart, String status){
+        super(cart, status);
     }
 
-
-    public AddToCartRS() {
-
-        this.cart = null;
-        this.status = null;
+    public AddToCartRS(){
+        super();
     }
-
-
-    public Cart getCart() {
-        return this.cart;
-    }
-
-
-    public String getStatus() {
-        return this.status;
-    }
-
-
-    @Override
-    public String toString() {
-        return "{" +
-            " cart='" + getCart().toString() + "'" +
-            ", status='" + getStatus() + "'" +
-            "}";
-    }
-
 
     
 }

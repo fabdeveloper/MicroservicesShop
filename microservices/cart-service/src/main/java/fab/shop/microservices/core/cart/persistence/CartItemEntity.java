@@ -93,4 +93,17 @@ public class CartItemEntity {
         this.count = count;
     }
 
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", version='" + getVersion() + "'" +
+            ", cartId='" + getCartId() + "'" +
+            ", offerId='" + getOfferId() + "'" +
+            ", count='" + getCount() + "'" +
+            "}";
+    }
+
+
 }

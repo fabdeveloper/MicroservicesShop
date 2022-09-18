@@ -1,45 +1,44 @@
 package fab.shop.api.core.cart.msg;
 
-import fab.shop.api.core.product.Offer;
+import fab.shop.api.core.cart.CartItem;
 
 public class AddToCartRQ {
 
-    private Offer offer;
     private Integer cartId;
     private Integer userId;
     private Integer shopId;
+    private CartItem item;
 
 
 
-
-    public AddToCartRQ(Offer offer, Integer cartId, Integer userId, Integer shopId) {
-        this.offer = offer;
+    public AddToCartRQ(Integer cartId, Integer userId, Integer shopId, CartItem item) {
         this.cartId = cartId;
         this.userId = userId;
         this.shopId = shopId;
+        this.item = item;
     }
-
 
 
 
     public AddToCartRQ() {
-        super();
-		
-		this.cartId = 0;
-		this.offer = null;
-        this.userId = null;
-        this.shopId = null;
     }
 
 
 
-    public Offer getOffer() {
-        return this.offer;
+
+
+
+
+    public CartItem getItem() {
+        return this.item;
     }
 
-    public void setOffer(Offer offer) {
-        this.offer = offer;
+    public void setItem(CartItem item) {
+        this.item = item;
     }
+
+
+
     public void setCartId(Integer cartId) {
         this.cartId = cartId;
     }
@@ -68,15 +67,6 @@ public class AddToCartRQ {
 
 
 
-    @Override
-    public String toString() {
-        return "{" +
-            " offer='" + getOffer() + "'" +
-            ", cartId='" + getCartId() + "'" +
-            ", userId='" + getUserId() + "'" +
-            ", shopId='" + getShopId() + "'" +
-            "}";
-    }
 
 
 

@@ -19,16 +19,16 @@ public interface CartService {
 		 * 
 		 */
 
-		 	// @GetMapping(
-			//     value = "/cart/apiobject",
-			//     produces = "application/json")
-			//   String getCartApiObject();
+		 	@GetMapping(
+			    value = "/cart/apiobject",
+			    produces = "application/json")
+			  String getCartApiObject();
 
 
-			// @GetMapping(
-			//     value = "/cart/entityobject",
-			//     produces = "application/json")
-			//   String getCartEntityObject();
+			@GetMapping(
+			    value = "/cart/entityobject",
+			    produces = "application/json")
+			  String getCartEntityObject();
 
 		@PostMapping(
 			value = "/cart/getCart",
