@@ -53,21 +53,21 @@ public class CartServiceImpl implements CartService{
         addToCartRS = new AddToCartRS(null, "CartServiceImpl.AddToCartRS() ... answering !");
 
 
-        if(addToCartRq != null) {
-            Integer cartId = addToCartRq.getCartId();
-            Integer userId = addToCartRq.getUserId();
-            Integer shopId = addToCartRq.getShopId();
-            // Offer offer = addToCartRq.getOffer();
+        // if(addToCartRq != null) {
+        //     Integer cartId = addToCartRq.getCartId();
+        //     Integer userId = addToCartRq.getUserId();
+        //     Integer shopId = addToCartRq.getShopId();
+        //     // Offer offer = addToCartRq.getOffer();
 
             
 
-            Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
-            // cart.getProductList().add(offer);
+        //     Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
+        //     // cart.getProductList().add(offer);
 
-            cart = getPersistenceHelper().persistCart(cart);
+        //     cart = getPersistenceHelper().persistCart(cart);
 
-            addToCartRS = new AddToCartRS(cart, "OK");
-        }        
+        //     addToCartRS = new AddToCartRS(cart, "OK");
+        // }        
         return addToCartRS;
     }
     
@@ -92,9 +92,27 @@ public class CartServiceImpl implements CartService{
     @Override
     public GetCartRS getCart(GetCartRQ getCartRQ) {
         GetCartRS getCartRS = null;
-        // Integer cartId = getCartRQ.getCartId();
-        // Integer userId = getCartRQ.getUserId();
-        // Integer shopId = getCartRQ.getShopId();
+        Integer cartId = getCartRQ.getCartId();
+        Integer userId = getCartRQ.getUserId();
+        Integer shopId = getCartRQ.getShopId();
+
+        Cart cart;
+
+        if(cartId != null && cartId > 0){
+            cart = getPersistenceHelper().findCartById(cartId);
+
+        }
+        if(cart == null){
+            cart = getPersistenceHelper().findCartByUserAndShopId(userId, shopId);
+
+        }
+        if(cart == null){
+            Cart newCart = new Cart(null, cartItemsList, serviceAddress, userId, shopId, 0.00f);
+            cart = getPersistenceHelper().persistCart(newCart);
+
+        }
+        
+
 
         // Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
 

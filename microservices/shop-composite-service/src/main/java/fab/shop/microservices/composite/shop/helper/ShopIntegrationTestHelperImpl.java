@@ -14,6 +14,7 @@ import fab.shop.api.core.cart.msg.AddToCartRS;
 import fab.shop.api.core.cart.msg.CartModificationRQ;
 import fab.shop.api.core.cart.msg.CartModificationRS;
 import fab.shop.api.core.cart.msg.EmptyCartRS;
+import fab.shop.api.core.cart.msg.GetCartRQ;
 import fab.shop.api.core.cart.msg.GetCartRS;
 import fab.shop.api.core.product.Article;
 import fab.shop.api.core.product.Offer;
@@ -71,8 +72,15 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
 
     @Override
     public GetCartRS getCartTestHelper() {
-        // TODO Auto-generated method stub
-        return null;
+
+        Integer cartId = 999;
+        Integer userId = 999;
+		Integer shopId = 999;       
+
+        GetCartRQ getCartRQ = new GetCartRQ(cartId, userId, shopId);
+
+        return restTemplate.postForObject(getShopCompositeServiceUrl() + "/getCart", getCartRQ, GetCartRS.class);
+
     }
 
     @Override
