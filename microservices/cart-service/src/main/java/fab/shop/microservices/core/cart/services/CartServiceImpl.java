@@ -1,6 +1,7 @@
 package fab.shop.microservices.core.cart.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,32 +92,30 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public GetCartRS getCart(GetCartRQ getCartRQ) {
-        GetCartRS getCartRS = null;
+        GetCartRS getCartRS = new GetCartRS(null, "not_found_not_created");
+
         Integer cartId = getCartRQ.getCartId();
         Integer userId = getCartRQ.getUserId();
         Integer shopId = getCartRQ.getShopId();
 
-        Cart cart;
+        Cart cart = null;
 
         if(cartId != null && cartId > 0){
-            cart = getPersistenceHelper().findCartById(cartId);
-
+            cart = getPersistenceHelper().findByCartId(cartId);
         }
         if(cart == null){
             cart = getPersistenceHelper().findCartByUserAndShopId(userId, shopId);
-
         }
         if(cart == null){
-            Cart newCart = new Cart(null, cartItemsList, serviceAddress, userId, shopId, 0.00f);
+            Cart newCart = new Cart(null, null, getServiceUtil().getServiceAddress(), userId, shopId, 0.00f);
             cart = getPersistenceHelper().persistCart(newCart);
-
         }
-        
 
+        if(cart != null){
+            getCartRS.setCart(cart);
+            getCartRS.setStatus("ok");
+        }
 
-        // Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
-
-        // GetCartRS getCartRS = new GetCartRS(cart.getCartId(), cart.getProductList(), cart.getValuation());
         return getCartRS;
     }
 
@@ -197,7 +196,8 @@ public class CartServiceImpl implements CartService{
         List<CartItemEntity> itemsList = new ArrayList<CartItemEntity>();
         CartItemEntity item = new CartItemEntity(3, null, 1, 2, 1);
         itemsList.add(item);
-        CartEntity entity = new CartEntity(5, null, itemsList, "serviceAddress", 1, 1, 9.99f);
+
+        CartEntity entity = new CartEntity(5, null, itemsList, "serviceAddress", 1, 1, 9.99f, new Date(), new Date());
 
         Cart cart =  this.getPersistenceHelper().getMapper().entityToApi(entity);
         return cart.toString();

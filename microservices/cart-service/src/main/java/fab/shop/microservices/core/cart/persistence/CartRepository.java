@@ -1,6 +1,5 @@
 package fab.shop.microservices.core.cart.persistence;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,9 +12,9 @@ public interface CartRepository extends CrudRepository<CartEntity, Integer> {
     // @Transactional(readOnly = true)
     public CartEntity findByCartId(Integer cartId);
 
-    // @Transactional(readOnly = true)
-    // @Query("select x from CARTS x where x.userId = :userId and x.shopId = :shopId")
-    // public CartEntity findByUserIdAndShopId(@Param("userId") Integer userId, @Param("shopId") Integer shopId);
+    @Transactional(readOnly = true)
+    @Query("select x from CARTS x where x.userId = :userId and x.shopId = :shopId")
+    public CartEntity findByUserIdAndShopId(@Param("userId") Integer userId, @Param("shopId") Integer shopId);
 
 
 }

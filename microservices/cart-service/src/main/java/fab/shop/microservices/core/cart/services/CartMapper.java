@@ -20,7 +20,9 @@ public interface CartMapper {
     
     @Mappings({
         @Mapping(target = "version", ignore = true),
-        @Mapping(target = "itemsList", source = "cartItemsList")
+        @Mapping(target = "itemsList", source = "cartItemsList"),
+        @Mapping(target = "creationDate", ignore = true),
+        @Mapping(target = "modificationDate", ignore = true)
     })
     public CartEntity apiToEntity(Cart cart);
 }

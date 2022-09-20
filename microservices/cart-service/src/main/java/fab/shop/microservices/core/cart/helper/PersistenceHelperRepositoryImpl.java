@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fab.shop.api.core.cart.Cart;
-import fab.shop.api.core.cart.CartItem;
 import fab.shop.microservices.core.cart.persistence.CartEntity;
-import fab.shop.microservices.core.cart.persistence.CartItemEntity;
 import fab.shop.microservices.core.cart.persistence.CartRepository;
 import fab.shop.microservices.core.cart.services.CartMapper;
 
@@ -34,7 +32,7 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
     }
 
 
-    public CartRepository getRepository() {
+    public CartRepository getRepository() { 
         return this.repository;
     }
 
@@ -48,6 +46,17 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
 
     public void setMapper(CartMapper mapper) {
         this.mapper = mapper;
+    }
+
+    public Cart findByCartId(Integer cartId){
+        return this.getMapper().entityToApi(this.getRepository().findByCartId(cartId));
+    }
+
+    public Cart findCartByUserAndShopId(Integer userId, Integer shopId){
+        Cart cart = null;
+
+        cart = this.getMapper().entityToApi(this.getRepository().findByUserIdAndShopId(userId, shopId));
+        return cart;
     }
 
 

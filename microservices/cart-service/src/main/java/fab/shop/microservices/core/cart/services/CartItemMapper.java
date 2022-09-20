@@ -16,7 +16,10 @@ public interface CartItemMapper {
     public CartItem entityToApi(CartItemEntity cartItemEntity);
 
     @Mappings({
-        @Mapping(target = "version", ignore = true)
+        @Mapping(target = "version", ignore = true),
+        @Mapping(target = "creationDate", ignore = true),
+        @Mapping(target = "modificationDate", ignore = true)
+
     })
     public CartItemEntity apiToEntity(CartItem cartItem);
 
