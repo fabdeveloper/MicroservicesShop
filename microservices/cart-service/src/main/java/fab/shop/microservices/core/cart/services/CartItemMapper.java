@@ -13,10 +13,15 @@ import fab.shop.microservices.core.cart.persistence.CartItemEntity;
 @Mapper(componentModel = "spring")
 public interface CartItemMapper {
 
+
+    @Mappings({
+        @Mapping(target = "cartId", source = "cart.cartId")
+    })
     public CartItem entityToApi(CartItemEntity cartItemEntity);
 
     @Mappings({
         @Mapping(target = "version", ignore = true),
+        @Mapping(target = "cart", ignore = true),
         @Mapping(target = "creationDate", ignore = true),
         @Mapping(target = "modificationDate", ignore = true)
 

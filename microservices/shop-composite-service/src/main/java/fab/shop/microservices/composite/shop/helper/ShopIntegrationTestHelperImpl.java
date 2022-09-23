@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import fab.shop.api.composite.ShopIntegrationTestHelper;
+import fab.shop.api.core.cart.CartItem;
 import fab.shop.api.core.cart.msg.AddToCartRQ;
 import fab.shop.api.core.cart.msg.AddToCartRS;
 import fab.shop.api.core.cart.msg.CartModificationRQ;
@@ -80,7 +81,6 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
         GetCartRQ getCartRQ = new GetCartRQ(cartId, userId, shopId);
 
         return restTemplate.postForObject(getShopCompositeServiceUrl() + "/getCart", getCartRQ, GetCartRS.class);
-
     }
 
     @Override
@@ -90,10 +90,12 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
         Integer userId = 999;
 		Integer shopId = 999;
 
-		Product product = new Product(7, "product name", "product description", "product remarks", "product type", "serviceAddressDummy");
-		Article article = new Article(303, "article name", "article description", "article remarks", product);
-		Offer offer = new Offer(555, "oferta test name", "oferta test description", "oferta test remarks", 9.99f, article);
-		AddToCartRQ addToCart = new AddToCartRQ(offer, cartId, userId, shopId);
+        Integer offerId = 15;
+        Integer count = 2;
+
+        CartItem cartItem = new CartItem(null, cartId, offerId, count);
+
+		AddToCartRQ addToCart = new AddToCartRQ(cartId, userId, shopId, cartItem);
 
         return restTemplate.postForObject(getShopCompositeServiceUrl() + "/addToCart", addToCart, AddToCartRS.class);
     }

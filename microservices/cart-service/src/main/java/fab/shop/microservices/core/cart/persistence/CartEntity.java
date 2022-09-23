@@ -16,7 +16,7 @@ public class CartEntity {
 	@Version
     private Integer version;
 
-	@OneToMany(mappedBy = "cartId")
+	@OneToMany(mappedBy = "cart")
 	private List<CartItemEntity> itemsList;
 	
 	private String serviceAddress;

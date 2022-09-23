@@ -23,7 +23,7 @@ public class CartItemEntity {
     private Integer version;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "cartId", nullable = false)
     private CartEntity cart;
 
     // @ManyToOne
@@ -41,9 +41,6 @@ public class CartItemEntity {
 
 
 
-
-
-
     public CartItemEntity(Integer id, Integer version, CartEntity cart, Integer offerId, Integer count, Date creationDate, Date modificationDate) {
         this.id = id;
         this.version = version;
@@ -55,14 +52,9 @@ public class CartItemEntity {
     }
 
 
-    public CartEntity getCart() {
-        return this.cart;
-    }
 
-    public void setCart(CartEntity cart) {
-        this.cart = cart;
-    }
-    
+
+
 
 
     
@@ -123,18 +115,30 @@ public class CartItemEntity {
 
 
 
+    public CartEntity getCart() {
+        return this.cart;
+    }
+
+    public void setCart(CartEntity cart) {
+        this.cart = cart;
+    }
+
+
+
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
             ", version='" + getVersion() + "'" +
-            ", cart='" + getCart().toString() + "'" +
+            ", cart='" + getCart().getCartId() + "'" +
             ", offerId='" + getOfferId() + "'" +
             ", count='" + getCount() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             "}";
     }
+
+
 
 
 

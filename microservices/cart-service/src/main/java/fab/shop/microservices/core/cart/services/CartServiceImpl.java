@@ -194,10 +194,14 @@ public class CartServiceImpl implements CartService{
 
         // return "CartServiceImpl - getCartApiObject() - answering ...";
         List<CartItemEntity> itemsList = new ArrayList<CartItemEntity>();
-        CartItemEntity item = new CartItemEntity(3, null, 1, 2, 1);
-        itemsList.add(item);
 
         CartEntity entity = new CartEntity(5, null, itemsList, "serviceAddress", 1, 1, 9.99f, new Date(), new Date());
+
+
+        CartItemEntity item = new CartItemEntity(3, null, entity, 2, 1, new Date(), new Date());
+        itemsList.add(item);
+
+        entity.setItemsList(itemsList);
 
         Cart cart =  this.getPersistenceHelper().getMapper().entityToApi(entity);
         return cart.toString();
