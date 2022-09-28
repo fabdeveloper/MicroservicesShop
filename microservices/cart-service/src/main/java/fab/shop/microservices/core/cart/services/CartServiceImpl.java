@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,28 +49,37 @@ public class CartServiceImpl implements CartService{
     }
 
 
+    @Transactional
     @Override
     public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
 
-        AddToCartRS addToCartRS = null;
+        AddToCartRS addToCartRS = null;        
         addToCartRS = new AddToCartRS(null, "CartServiceImpl.AddToCartRS() ... answering !");
+        CartEntity cart = null;
 
 
-        // if(addToCartRq != null) {
-        //     Integer cartId = addToCartRq.getCartId();
-        //     Integer userId = addToCartRq.getUserId();
-        //     Integer shopId = addToCartRq.getShopId();
-        //     // Offer offer = addToCartRq.getOffer();
-
+        if(addToCartRq != null) {
+            Integer cartId = addToCartRq.getCartId();
+            if(cartId == null || cartId < 1) { addToCartRS.setStatus("ERROR: mandatory field cart id"); return addToCartRS; }
+            CartItem item = addToCartRq.getItem();
+            if(item == null || item.getOfferId() == null || item.getCount() == null) { addToCartRS.setStatus("ERROR: mandatory field cart item"); return addToCartRS; }
             
+            CartItemEntity itemEntity = getPersistenceHelper().getItemMapper().apiToEntity(item);
+            cart = getPersistenceHelper().getRepository().findByCartId(cartId);
+            if(cart == null) { addToCartRS.setStatus("ERROR: no cart found with id = " + cartId); return addToCartRS; }
+            itemEntity.setCart(cart);
+            
+            List<CartItemEntity> itemsList = cart.getItemsList();
+            if(itemsList == null) { itemsList = new ArrayList<CartItemEntity>(); }
+            itemsList.add(itemEntity);
+            cart = getPersistenceHelper().getRepository().save(cart); // mergeCart(cart);
+            if(cart == null){ addToCartRS.setStatus("ERROR: call technical support");}
 
-        //     Cart cart = getPersistenceHelper().findCart(cartId, userId, shopId);
-        //     // cart.getProductList().add(offer);
-
-        //     cart = getPersistenceHelper().persistCart(cart);
-
-        //     addToCartRS = new AddToCartRS(cart, "OK");
-        // }        
+            Cart cartTO = getPersistenceHelper().getMapper().entityToApi(cart);
+            addToCartRS = new AddToCartRS(cartTO, "OK");
+        } else{
+            addToCartRS.setStatus("ERROR: reading AddToCartRQ");
+        }       
         return addToCartRS;
     }
     
@@ -104,6 +115,8 @@ public class CartServiceImpl implements CartService{
             cart = getPersistenceHelper().findByCartId(cartId);
         }
         if(cart == null){
+            if(userId == null || userId < 1){ getCartRS.setStatus("ERROR : mandatory field user id"); return getCartRS; }
+            if(shopId == null || shopId < 1){ getCartRS.setStatus("ERROR : mandatory field shop id"); return getCartRS; }
             cart = getPersistenceHelper().findCartByUserAndShopId(userId, shopId);
         }
         if(cart == null){

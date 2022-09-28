@@ -67,6 +67,19 @@ public class AddToCartRQ {
 
 
 
+    @Override
+    public String toString() {
+        return "{" +
+            " cartId='" + getCartId() + "'" +
+            ", userId='" + getUserId() + "'" +
+            ", shopId='" + getShopId() + "'" +
+            ", item='" + getItem().toString() + "'" +
+            "}";
+    }
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 package fab.shop.api.core.cart;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // import fab.shop.api.core.product.Offer;
@@ -44,6 +45,9 @@ public class Cart {
 
 
 	public List<CartItem> getCartItemsList() {
+		if(this.cartItemsList == null){
+			setCartItemsList(new ArrayList<CartItem>());
+		}
 		return this.cartItemsList;
 	}
 

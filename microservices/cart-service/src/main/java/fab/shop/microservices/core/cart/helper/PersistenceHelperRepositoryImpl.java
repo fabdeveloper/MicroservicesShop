@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import fab.shop.api.core.cart.Cart;
 import fab.shop.microservices.core.cart.persistence.CartEntity;
 import fab.shop.microservices.core.cart.persistence.CartRepository;
+import fab.shop.microservices.core.cart.services.CartItemMapper;
 import fab.shop.microservices.core.cart.services.CartMapper;
 
 @Component
@@ -20,6 +21,9 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
 
     @Autowired
     private CartMapper mapper;
+
+    @Autowired
+    private CartItemMapper itemMapper;
 
 
 
@@ -47,6 +51,16 @@ public class PersistenceHelperRepositoryImpl implements PersistenceHelper {
     public void setMapper(CartMapper mapper) {
         this.mapper = mapper;
     }
+
+
+    public CartItemMapper getItemMapper() {
+        return this.itemMapper;
+    }
+
+    public void setItemMapper(CartItemMapper itemMapper) {
+        this.itemMapper = itemMapper;
+    }
+
 
     public Cart findByCartId(Integer cartId){
         return this.getMapper().entityToApi(this.getRepository().findByCartId(cartId));

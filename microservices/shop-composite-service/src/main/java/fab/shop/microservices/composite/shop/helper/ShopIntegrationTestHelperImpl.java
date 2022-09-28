@@ -86,9 +86,14 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
     @Override
     public AddToCartRS addToCartTestHelper() {
 
-		Integer cartId = 999;
         Integer userId = 999;
 		Integer shopId = 999;
+
+        GetCartRQ getCartRQ = new GetCartRQ(null, userId, shopId);
+        GetCartRS getCartRS = restTemplate.postForObject(getShopCompositeServiceUrl() + "/getCart", getCartRQ, GetCartRS.class);
+
+        Integer cartId = getCartRS.getCart().getCartId();
+
 
         Integer offerId = 15;
         Integer count = 2;
@@ -96,6 +101,7 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
         CartItem cartItem = new CartItem(null, cartId, offerId, count);
 
 		AddToCartRQ addToCart = new AddToCartRQ(cartId, userId, shopId, cartItem);
+        System.out.println("AddToCartRQ = " + addToCart.toString());
 
         return restTemplate.postForObject(getShopCompositeServiceUrl() + "/addToCart", addToCart, AddToCartRS.class);
     }

@@ -1,5 +1,6 @@
 package fab.shop.microservices.core.cart.persistence;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class CartEntity {
 	@Version
     private Integer version;
 
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType. EAGER)
 	private List<CartItemEntity> itemsList;
 	
 	private String serviceAddress;
@@ -69,6 +70,9 @@ public class CartEntity {
 
 
 	public List<CartItemEntity> getItemsList() {
+		if(this.itemsList == null){
+			setItemsList(new ArrayList<CartItemEntity>());
+		}
 		return this.itemsList;
 	}
 
