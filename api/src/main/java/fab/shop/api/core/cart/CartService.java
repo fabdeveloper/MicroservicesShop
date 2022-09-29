@@ -13,22 +13,7 @@ import fab.shop.api.core.cart.msg.*;
 public interface CartService {
 	
 
-		/***************
-		 * 
-		 * it tests MapStruct interface
-		 * 
-		 */
 
-		 	@GetMapping(
-			    value = "/cart/apiobject",
-			    produces = "application/json")
-			  String getCartApiObject();
-
-
-			@GetMapping(
-			    value = "/cart/entityobject",
-			    produces = "application/json")
-			  String getCartEntityObject();
 
 		@PostMapping(
 			value = "/cart/getCart",
@@ -68,5 +53,23 @@ public interface CartService {
 			    value = "/cart/deleteCart",
 			    produces = "application/json")
 			  DeleteCartRS deleteCart(@RequestBody DeleteCartRQ deleteCartRQ);
+
+
+		/***************
+		 * 
+		 * it tests MapStruct interface
+		 * 
+		 */
+
+		@GetMapping(
+			value = "/cart/apiobject",
+			produces = "application/json")
+		  String getCartApiObject();
+
+
+		@GetMapping(
+			value = "/cart/entityobject",
+			produces = "application/json")
+		  String getCartEntityObject();
 
 }
