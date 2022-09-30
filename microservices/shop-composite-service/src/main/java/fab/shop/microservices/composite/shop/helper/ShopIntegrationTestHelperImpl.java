@@ -121,20 +121,21 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
     @Override
     public CartModificationRS cartModificationTestHelper() {
 
-        String serviceAddress = getServiceUtil().getServiceAddress();
-        Integer cartId = 999;
-        Float offerPrice = 9.99f;
-        Product product = new Product(3, "product name", "product description", "product remarks", "product type", serviceAddress);
-        Article article = new Article(2, "article name", "article description", "article remarks", product);
-        Offer offer = new Offer(1, "offer name", "offer description", "offer remarks", offerPrice, article);
+        // String serviceAddress = getServiceUtil().getServiceAddress();
+        // Integer cartId = 999;
+        // Float offerPrice = 9.99f;
+        // Product product = new Product(3, "product name", "product description", "product remarks", "product type", serviceAddress);
+        // Article article = new Article(2, "article name", "article description", "article remarks", product);
+        // Offer offer = new Offer(1, "offer name", "offer description", "offer remarks", offerPrice, article);
 
-        List<Offer> offerList = new ArrayList<Offer>();
-        offerList.add(offer);
-        CartModificationRQ cartModificationRQ = new CartModificationRQ(cartId, offerList,  cartId, cartId, offerPrice);
+        // List<Offer> offerList = new ArrayList<Offer>();
+        // offerList.add(offer);
+        // CartModificationRQ cartModificationRQ = new CartModificationRQ(cartId, offerList,  cartId, cartId, offerPrice);
 
-        return restTemplate.postForObject(getShopCompositeServiceUrl() + "/cartModification", cartModificationRQ, CartModificationRS.class);
+        // return restTemplate.postForObject(getShopCompositeServiceUrl() + "/cartModification", cartModificationRQ, CartModificationRS.class);
 
 
+        return null;
     }
 
 

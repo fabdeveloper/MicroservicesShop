@@ -135,8 +135,10 @@ public class ShopCompositeServiceImpl implements ShopService {
     @Override
     public EmptyCartRS emptyCartTestHelper() {
         Integer cartId = 999;
-        EmptyCartRQ emptyCartRQ = new EmptyCartRQ(cartId);
+        Integer userId = 999;
+        Integer shopId = 999;
 
+        EmptyCartRQ emptyCartRQ = new EmptyCartRQ(cartId, userId, shopId);
         return emptyCart(emptyCartRQ);
     }
 

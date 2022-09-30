@@ -102,21 +102,21 @@ class CartServiceApplicationTests {
 	// @Test
 	public void emptyCartTest(){
 
-		Integer cartId = 999;
+		// Integer cartId = 999;
 
-		EmptyCartRQ emptyCartRQ = new EmptyCartRQ(cartId);
+		// EmptyCartRQ emptyCartRQ = new EmptyCartRQ(cartId);
 
 
-		client.post()
-		.uri("/cart/emptyCart")
-		.accept(MediaType.APPLICATION_JSON)
-		.bodyValue(emptyCartRQ)
-		.exchange()
-		.expectStatus().isOk()
-		.expectHeader().contentType(MediaType.APPLICATION_JSON)
-		.expectBody(EmptyCartRS.class)
-		.returnResult().getResponseBody()
-		.getProductList().isEmpty();
+		// client.post()
+		// .uri("/cart/emptyCart")
+		// .accept(MediaType.APPLICATION_JSON)
+		// .bodyValue(emptyCartRQ)
+		// .exchange()
+		// .expectStatus().isOk()
+		// .expectHeader().contentType(MediaType.APPLICATION_JSON)
+		// .expectBody(EmptyCartRS.class)
+		// .returnResult().getResponseBody()
+		// .getProductList().isEmpty();
 
 
 

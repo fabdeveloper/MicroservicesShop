@@ -135,39 +135,16 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
+        // delete cart by id
+        Integer cartId = cartModificationRQ.getCartId();
+        getPersistenceHelper().deleteCartFromDBById(cartId);
 
-        CartModificationRS cartModificationRS = null;
+        // persist cart
+        Cart newCart = cartModificationRQ.getNewCart();
+        Cart persistedCart = getPersistenceHelper().persistCart(newCart);
 
-        // // delete cart by id
-        // Integer cartId = cartModificationRQ.getCartId();
-        // getPersistenceHelper().deleteCartFromDBById(cartId);
-
-        // // create new cart
-        //         // add offer list and valuation
-
-        // Integer userId = cartModificationRQ.getUserId();
-        // Integer shopId = cartModificationRQ.getShopId();
-        // String serviceAddress = getServiceUtil().getServiceAddress();
-        // List<Offer> offerList = cartModificationRQ.getOfferList();
-        // Float valuation = valuate(offerList);
-
-
-        // Cart newCart = new Cart(null, offerList, userId, shopId, valuation, serviceAddress);
-
-
-        // // persist cart
-        // Cart persistedCart = getPersistenceHelper().persistCart(newCart);
-
-
-        // // return cart to client
-        // CartModificationRS cartModificationRS = new CartModificationRS(persistedCart.getCartId(), 
-        //                                                                 persistedCart.getProductList(), 
-        //                                                                 persistedCart.getValuation(), 
-        //                                                                 persistedCart.getUserId(), 
-        //                                                                 persistedCart.getShopId());
-
-
-
+        // return cart to client
+        CartModificationRS cartModificationRS = new CartModificationRS(persistedCart, "OK");
         return cartModificationRS;
     }
 
@@ -175,11 +152,19 @@ public class CartServiceImpl implements CartService{
     @Override
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
 
+
+        Integer userId = emptyCartRQ.getUserId();
+        Integer shopId = emptyCartRQ.getShopId();
+
         // delete cart from DB
         getPersistenceHelper().deleteCartFromDBById(emptyCartRQ.getCartId());
 
+        GetCartRQ getCartRQ = new GetCartRQ(null, userId, shopId);
+        GetCartRS getCartRS = this.getCart(getCartRQ);
+        Cart cart = getCartRS.getCart();
+
         // create a new empty cart
-        EmptyCartRS emptyCartRS = new EmptyCartRS();
+        EmptyCartRS emptyCartRS = new EmptyCartRS(cart, "NEW");
 
         return emptyCartRS;
     }
@@ -187,8 +172,10 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        getPersistenceHelper().deleteCartFromDBById(deleteCartRQ.getCartId());
+
+        DeleteCartRS deleteCartRS = new DeleteCartRS(null, "OK");
+        return deleteCartRS;
     }
 
     @Override
