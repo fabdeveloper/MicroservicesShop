@@ -4,29 +4,18 @@ import fab.shop.api.core.cart.Cart;
 
 
 public class CartModificationRQ {
-    
-    private Integer cartId;
+ 
     private Cart newCart;
 
 
-    public CartModificationRQ(Integer cartId, Cart newCart) {
-        this.cartId = cartId;
+    public CartModificationRQ(Cart newCart) {
         this.newCart = newCart;
     }
+
 
     public CartModificationRQ() {
     }
 
-
-
-
-    public Integer getCartId() {
-        return this.cartId;
-    }
-
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
-    }
 
     public Cart getNewCart() {
         return this.newCart;
@@ -37,16 +26,13 @@ public class CartModificationRQ {
     }
 
 
+
     @Override
     public String toString() {
         return "{" +
-            " cartId='" + getCartId() + "'" +
-            ", newCart='" + getNewCart().toString() + "'" +
+            " newCart='" + getNewCart().toString() + "'" +
             "}";
     }
-
-
-
     
 
 }

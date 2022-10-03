@@ -175,8 +175,7 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
     @Override
     public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return restTemplate.postForObject(getCartServiceUrl() + "/deleteCart", deleteCartRQ, DeleteCartRS.class);
     }
 
 

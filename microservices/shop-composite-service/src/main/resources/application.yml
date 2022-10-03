@@ -38,6 +38,10 @@ api:
       description: delete the old cart and return a new empty cart in the EmptyCartRS response
       notes: pending
 
+    post-deletecart:
+      description: delete the cart by id
+      notes: pending
+
     post-getcart:
       description: return in the GetCartRS response the cart specified in the GetCartRQ or a new cart if it not exists
       notes: pending

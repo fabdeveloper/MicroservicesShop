@@ -133,18 +133,35 @@ public class CartServiceImpl implements CartService{
     }
 
 
+    @Transactional
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
         // delete cart by id
-        Integer cartId = cartModificationRQ.getCartId();
+        Integer cartId = cartModificationRQ.getNewCart().getCartId();
         getPersistenceHelper().deleteCartFromDBById(cartId);
 
+        
         // persist cart
         Cart newCart = cartModificationRQ.getNewCart();
-        Cart persistedCart = getPersistenceHelper().persistCart(newCart);
+        newCart.setCartId(null);
+        List<CartItem> newItemsList = newCart.getCartItemsList();
+        newCart.setCartItemsList(null);
+
+        CartEntity newCartEntity = getPersistenceHelper().getMapper().apiToEntity(newCart);
+        CartEntity persistedCartEntity = getPersistenceHelper().getRepository().save(newCartEntity);
+
+        List<CartItemEntity> itemEntityList = getPersistenceHelper().getItemMapper().apiListToEntityList(newItemsList);
+
+        for(CartItemEntity item : itemEntityList){
+            item.setCart(persistedCartEntity);
+        }
+        persistedCartEntity.setItemsList(itemEntityList);
+        CartEntity modifiedEntity = getPersistenceHelper().getRepository().save(persistedCartEntity);
+        Cart modifiedCart = getPersistenceHelper().getMapper().entityToApi(modifiedEntity);
+
 
         // return cart to client
-        CartModificationRS cartModificationRS = new CartModificationRS(persistedCart, "OK");
+        CartModificationRS cartModificationRS = new CartModificationRS(modifiedCart, "OK");
         return cartModificationRS;
     }
 

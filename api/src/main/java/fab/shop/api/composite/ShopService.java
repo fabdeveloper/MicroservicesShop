@@ -60,6 +60,17 @@ public interface ShopService  {
 			  EmptyCartRS emptyCart(@RequestBody EmptyCartRQ emptyCartRQ);
 
 
+	// @Operation(summary = "${api.shop-service.post-deletecart.description}", description = "${api.shop-service.post-deletecart.notes}")
+	// @ApiResponses(value = {
+	// 	@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}")
+	// })
+	// @PostMapping(
+	// 					value = "/shop/deleteCart",
+	// 					consumes = "application/json",
+	// 					produces = "application/json")
+	// 		  public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ);
+
+
 	@Operation(summary = "${api.shop-service.post-getcart.description}", description = "${api.shop-service.post-getcart.notes}")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}")
