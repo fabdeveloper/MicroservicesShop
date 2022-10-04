@@ -1,0 +1,15 @@
+package fab.shop.api.core.product;
+
+public class Tax extends AbstractExtraValuableItem {
+
+
+    public Tax(Integer id, String name, String description, String remarks, Float percentValue, Float fixedValue, EnumSign increment) {
+        super(id, name, description, remarks, percentValue, fixedValue, increment);
+    }
+
+
+    public Tax() {
+        super();
+    }
+
+}

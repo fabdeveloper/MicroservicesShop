@@ -1,9 +1,17 @@
 package fab.shop.api.core.product;
 
+import java.util.Date;
+
 public class Offer extends AbstractBusinessItem{
 
     private final Float price;
     private final Article article;
+
+    private Date dateFrom;
+    private Date dateTo;
+    private Boolean open;
+
+    
 
     public Offer() {
         super();
