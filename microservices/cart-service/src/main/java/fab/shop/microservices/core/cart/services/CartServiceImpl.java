@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import fab.shop.util.http.ServiceUtil;
-
 import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartItem;
 import fab.shop.api.core.cart.CartService;
@@ -133,42 +132,41 @@ public class CartServiceImpl implements CartService{
     }
 
 
-    @Transactional
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
         // delete cart by id
-        Integer cartId = cartModificationRQ.getNewCart().getCartId();
-        getPersistenceHelper().deleteCartFromDBById(cartId);
+        Integer cartId = cartModificationRQ.getCart().getCartId();
+        Integer userId = cartModificationRQ.getCart().getUserId();
+        Integer shopId = cartModificationRQ.getCart().getShopId();
 
+        EmptyCartRQ emptyCartRQ = new EmptyCartRQ(cartId, userId, shopId);
+        EmptyCartRS emptyCartRS = this.emptyCart(emptyCartRQ);
+
+        Cart newCart = addCartItemsList(emptyCartRS.getCart().getCartId(), cartModificationRQ.getCart().getCartItemsList());
         
-        // persist cart
-        Cart newCart = cartModificationRQ.getNewCart();
-        newCart.setCartId(null);
-        List<CartItem> newItemsList = newCart.getCartItemsList();
-        newCart.setCartItemsList(null);
-
-        CartEntity newCartEntity = getPersistenceHelper().getMapper().apiToEntity(newCart);
-        CartEntity persistedCartEntity = getPersistenceHelper().getRepository().save(newCartEntity);
-
-        List<CartItemEntity> itemEntityList = getPersistenceHelper().getItemMapper().apiListToEntityList(newItemsList);
-
-        for(CartItemEntity item : itemEntityList){
-            item.setCart(persistedCartEntity);
-        }
-        persistedCartEntity.setItemsList(itemEntityList);
-        CartEntity modifiedEntity = getPersistenceHelper().getRepository().save(persistedCartEntity);
-        Cart modifiedCart = getPersistenceHelper().getMapper().entityToApi(modifiedEntity);
-
-
         // return cart to client
-        CartModificationRS cartModificationRS = new CartModificationRS(modifiedCart, "OK");
+        CartModificationRS cartModificationRS = new CartModificationRS(newCart, "OK");
         return cartModificationRS;
+    }
+
+    @Transactional
+    private Cart addCartItemsList(Integer cartId, List<CartItem> cartItemList){
+
+        CartEntity cartEntity = getPersistenceHelper().getRepository().findByCartId(cartId);
+        List<CartItemEntity> cartItemEntityList = getPersistenceHelper().getItemMapper().apiListToEntityList(cartItemList);
+        for(CartItemEntity item : cartItemEntityList){
+            item.setCart(cartEntity);
+        }
+        cartEntity.setItemsList(cartItemEntityList);
+        CartEntity persistedCartEntity = getPersistenceHelper().getRepository().save(cartEntity);
+        Cart newCart = getPersistenceHelper().getMapper().entityToApi(persistedCartEntity);
+        
+        return newCart;
     }
 
 
     @Override
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
-
 
         Integer userId = emptyCartRQ.getUserId();
         Integer shopId = emptyCartRQ.getShopId();
