@@ -4,12 +4,18 @@ public class Tax extends AbstractExtraValuableItem {
 
 
     public Tax(Integer id, String name, String description, String remarks, Float percentValue, Float fixedValue, EnumSign increment) {
-        super(id, name, description, remarks, percentValue, fixedValue, increment);
+        super(id, name, description, remarks, percentValue, fixedValue);
     }
 
 
     public Tax() {
         super();
+    }
+
+
+    @Override
+    protected EnumSign initIncrement() {
+        return EnumSign.increment;
     }
 
 }

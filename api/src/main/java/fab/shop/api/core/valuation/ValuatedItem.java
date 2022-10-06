@@ -1,5 +1,10 @@
 package fab.shop.api.core.valuation;
 
+import java.util.List;
+
+import fab.shop.api.core.product.Discount;
+import fab.shop.api.core.product.Tax;
+
 public class ValuatedItem extends ValuableItem {
 
     protected Float valuation;

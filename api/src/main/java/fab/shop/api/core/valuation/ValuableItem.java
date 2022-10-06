@@ -2,6 +2,9 @@ package fab.shop.api.core.valuation;
 
 import java.util.List;
 
+import fab.shop.api.core.product.Discount;
+import fab.shop.api.core.product.Tax;
+
 public class ValuableItem {
     protected Integer offerId;
     protected Integer shopId;

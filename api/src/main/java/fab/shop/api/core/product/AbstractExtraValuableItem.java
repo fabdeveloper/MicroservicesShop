@@ -5,22 +5,24 @@ public abstract class AbstractExtraValuableItem extends AbstractBusinessItem{
     protected Float percentValue;
     protected Float fixedValue;
 
-    protected EnumSign increment;
+    private final EnumSign increment;
 
-
-    public AbstractExtraValuableItem(int id, String name, String description, String remarks, Float percentValue, Float fixedValue, EnumSign increment) {
+    
+    public AbstractExtraValuableItem(int id, String name, String description, String remarks, Float percentValue, Float fixedValue) {
         super(id, name, description, remarks);
         this.percentValue = percentValue;
         this.fixedValue = fixedValue;
-        this.increment = increment;
+        this.increment = initIncrement();
     }
 
 
     public AbstractExtraValuableItem() {
         super();
+        this.increment = initIncrement();
     }
 
 
+    protected abstract EnumSign initIncrement();
 
     public Float getPercentValue() {
         return this.percentValue;
@@ -42,9 +44,7 @@ public abstract class AbstractExtraValuableItem extends AbstractBusinessItem{
         return this.increment;
     }
 
-    public void setIncrement(EnumSign increment) {
-        this.increment = increment;
-    }
+    
 
 
     @Override
