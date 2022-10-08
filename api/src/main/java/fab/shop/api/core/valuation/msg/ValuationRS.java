@@ -2,18 +2,18 @@ package fab.shop.api.core.valuation.msg;
 
 import java.util.List;
 
-import fab.shop.api.core.product.Offer;
+import fab.shop.api.core.valuation.ValuatedItem;
 
 public class ValuationRS {
 
-    private List<Offer> offerList;
-    private Float valuation;
+    private List<ValuatedItem> valuatedItemsList;
+    private Float totalValuation;
 
 
 
-    public ValuationRS(List<Offer> offerList, Float valuation) {
-        this.offerList = offerList;
-        this.valuation = valuation;
+    public ValuationRS(List<ValuatedItem> valuatedItemsList, Float totalValuation) {
+        this.valuatedItemsList = valuatedItemsList;
+        this.totalValuation = totalValuation;
     }
 
 
@@ -22,31 +22,35 @@ public class ValuationRS {
 
 
 
-
-
-    public Float getValuation() {
-        return this.valuation;
+    public List<ValuatedItem> getValuatedItemsList() {
+        return this.valuatedItemsList;
     }
 
-    public void setValuation(Float valuation) {
-        this.valuation = valuation;
+    public void setValuatedItemsList(List<ValuatedItem> valuatedItemsList) {
+        this.valuatedItemsList = valuatedItemsList;
     }
 
-
-    public List<Offer> getOfferList() {
-        return this.offerList;
+    public Float getTotalValuation() {
+        return this.totalValuation;
     }
 
-    public void setOfferList(List<Offer> offerList) {
-        this.offerList = offerList;
+    public void setTotalValuation(Float totalValuation) {
+        this.totalValuation = totalValuation;
     }
 
 
     @Override
     public String toString() {
+        String valuatedItemsListString = "{ ";
+        for(ValuatedItem item : getValuatedItemsList()){
+            valuatedItemsListString += item.toString();
+            valuatedItemsListString += ", ";
+        }
+        valuatedItemsListString += " }";
+        
         return "{" +
-            " offerList='" + getOfferList() + "'" +
-            ", valuation='" + getValuation() + "'" +
+            " valuatedItemsList='" + valuatedItemsListString + "'" +
+            ", totalValuation='" + getTotalValuation() + "'" +
             "}";
     }
 

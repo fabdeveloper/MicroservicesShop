@@ -21,9 +21,13 @@ import fab.shop.api.core.cart.msg.EmptyCartRS;
 import fab.shop.api.core.cart.msg.GetCartRQ;
 import fab.shop.api.core.cart.msg.GetCartRS;
 import fab.shop.api.core.product.Article;
+import fab.shop.api.core.product.Discount;
+import fab.shop.api.core.product.EnumSign;
 import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.Tax;
 import fab.shop.api.core.purchase.Purchase;
+import fab.shop.api.core.valuation.ValuableItem;
 import fab.shop.api.core.valuation.msg.ValuationRQ;
 import fab.shop.api.core.valuation.msg.ValuationRS;
 import fab.shop.util.http.ServiceUtil;
@@ -191,21 +195,18 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
 
     @Override
     public ValuationRS valuateTestHelper() {
+        List<Discount> discountList = new ArrayList<>();
+        List<Tax> taxList = new ArrayList<>();
+        Tax tax = new Tax(2, "tax name", "tax description", "tax remarks", 25.00f, null, EnumSign.increment);
+        taxList.add(tax);
+        Discount discount = new Discount(1, "discount name", "discount description", "discount remarks", 10.00f, null, EnumSign.decrement);
+        discountList.add(discount);
 
-        Float offerPrice = 9.99f;
-        Product product = new Product(3, "product name", "product description", "product remarks", "product type", getServiceUtil().getServiceAddress());
-        Article article = new Article(2, "article name", "article description", "article remarks", product);
-        Offer offer = new Offer(1, "offer name", "offer description", "offer remarks", offerPrice, article);
+        List<ValuableItem> valuableItemsList = new ArrayList<>();
+        ValuableItem item = new ValuableItem(1, 1, 9.99f, discountList, taxList);
+        valuableItemsList.add(item);
 
-
-
-        List<Offer> offerList = new ArrayList<Offer>();
-        offerList.add(offer);
-        offerList.add(offer);
-
-        ValuationRQ valuationRQ = new ValuationRQ(offerList);
-
-
+        ValuationRQ valuationRQ = new ValuationRQ(valuableItemsList);
         return restTemplate.postForObject(getShopCompositeServiceUrl() + "/valuate", valuationRQ, ValuationRS.class);
     }
 

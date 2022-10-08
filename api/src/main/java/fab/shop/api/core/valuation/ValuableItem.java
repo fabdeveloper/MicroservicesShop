@@ -77,6 +77,7 @@ public class ValuableItem {
             discounts += " ,";
         }
         discounts += " }";
+        
         String taxes = "{ ";
         for(Tax tax : getTaxList()){
             taxes += tax.toString();

@@ -2,42 +2,45 @@ package fab.shop.api.core.valuation.msg;
 
 import java.util.List;
 
-import fab.shop.api.core.product.Offer;
+import fab.shop.api.core.valuation.ValuableItem;
 
 public class ValuationRQ {
 
-    private List<Offer> offerList = null;
-
-    
+    protected List<ValuableItem> valuableItemsList = null;
 
 
-    public ValuationRQ(List<Offer> offerList) {
-        this.offerList = offerList;
+
+    public ValuationRQ(List<ValuableItem> valuableItemsList) {
+        this.valuableItemsList = valuableItemsList;
     }
-
 
     public ValuationRQ() {
     }
 
 
-
-
-    public List<Offer> getOfferList() {
-        return this.offerList;
+    public List<ValuableItem> getValuableItemsList() {
+        return this.valuableItemsList;
     }
 
-    public void setOfferList(List<Offer> offerList) {
-        this.offerList = offerList;
+    public void setValuableItemsList(List<ValuableItem> valuableItemsList) {
+        this.valuableItemsList = valuableItemsList;
     }
 
 
     @Override
     public String toString() {
+        String valuableItemsListString = "{ ";
+        for(ValuableItem item : getValuableItemsList()){
+            valuableItemsListString += item.toString();
+            valuableItemsListString += ", ";
+        }
+        valuableItemsListString += " }";
+
         return "{" +
-            " offerList='" + getOfferList() + "'" +
+            " valuableItemsList= " + valuableItemsListString +
             "}";
     }
 
-    
+
 
 }
