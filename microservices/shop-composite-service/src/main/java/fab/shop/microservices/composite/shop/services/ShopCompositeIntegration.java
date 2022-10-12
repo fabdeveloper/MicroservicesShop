@@ -6,6 +6,15 @@ import fab.shop.api.core.valuation.msg.ValuationRQ;
 import fab.shop.api.core.valuation.msg.ValuationRS;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductService;
+import fab.shop.api.core.product.msg.GetAvailRQ;
+import fab.shop.api.core.product.msg.GetAvailRS;
+import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
+import fab.shop.api.core.product.msg.GetOfferListDetailRS;
+import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
+import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
+import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
+import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -179,71 +188,6 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
 
-    // @Override
-    // public Cart updateCart(Cart cart) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-
-    // @Override
-    // public Purchase purchaseCancel(int purchaseId) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-
-    // @Override
-    // public Purchase purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ) {
-    //     String url = getPurchaseServiceUrl() + "/confirm";
-    //     Purchase purchase = getRestTemplate().postForObject(url, purchaseConfirmRQ, Purchase.class);        
-        
-    //     return purchase;
-    // }
-
-
-    // @Override
-    // public Cart removeFromCart(Integer productId, Integer cartId) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-
-    // @Override
-    // public ValuationRS valuate(ValuationRQ valuationRQ) {
-    //     String url = getValuationServiceUrl() + "/valuate" ;
-
-    //     ValuationRS valuationRs = getRestTemplate().postForObject(url,valuationRQ, ValuationRS.class);
-
-    //     return valuationRs;
-    // }
-
-
-    // @Override
-    // public Purchase getPurchase(int purchaseId) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-    // @Override
-    // public Purchase createPurchase(Purchase purchase) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-    // @Override
-    // public Product getProduct(int productId) {
-    //     String cadenaConsulta = getProductServiceUrl() + "/" + productId;
-    //     Product product = getRestTemplate().getForObject(cadenaConsulta, Product.class);
-    //     return product;
-    // }
-
-    // @Override
-    // public Cart getCart(int cartId) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
 
     @Override
     public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
@@ -270,14 +214,30 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
 
-    // @Override
-    // public void deleteCart(int userId) {
-    //     // TODO Auto-generated method stub
-        
-    // }
+    @Override
+    public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
+        return restTemplate.postForObject(getProductServiceUrl() + "/getAvail", getAvailRQ, GetAvailRS.class);
+    }
 
 
+    @Override
+    public GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ) {
+        return restTemplate.postForObject(getProductServiceUrl() + "/getOfferListDetail", getOfferListDetailRQ, GetOfferListDetailRS.class);
+    }
 
+
+    @Override
+    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+        return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
+    }
+
+
+    @Override
+    public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
+        return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseCancel", productPurchaseCancelRQ, ProductPurchaseCancelRS.class);
+    }
+
+    
 
     
 }

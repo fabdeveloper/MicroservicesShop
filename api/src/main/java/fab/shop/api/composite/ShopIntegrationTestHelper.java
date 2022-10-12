@@ -9,6 +9,7 @@ import fab.shop.api.core.cart.msg.DeleteCartRS;
 import fab.shop.api.core.cart.msg.EmptyCartRS;
 import fab.shop.api.core.cart.msg.GetCartRS;
 import fab.shop.api.core.purchase.Purchase;
+import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
 import fab.shop.api.core.valuation.msg.ValuationRS;
 
 public interface ShopIntegrationTestHelper {
@@ -37,22 +38,6 @@ public interface ShopIntegrationTestHelper {
 				produces = "application/json")
 				EmptyCartRS emptyCartTestHelper();
 
-	@GetMapping(
-				value = "/shoptester/testdeletecart",
-				produces = "application/json")
-				DeleteCartRS deleteCartTestHelper();
-
-	  @GetMapping(
-			    value = "/shoptester/testpurchaseconfirm",
-			    produces = "application/json")
-			  Purchase purchaseConfirmTestHelper();
-
-	  @GetMapping(
-			    value = "/shoptester/testvaluation",
-			    produces = "application/json")
-			  ValuationRS valuationTestHelper();
-
-    
 
 
 
@@ -64,6 +49,14 @@ public interface ShopIntegrationTestHelper {
 		value = "/shoptester/testvaluate",
 		produces = "application/json")
 		ValuationRS valuateTestHelper();
+
+
+		// PurchaseService tests
+
+		@GetMapping(
+			value = "/shoptester/testpurchaseconfirm",
+			produces = "application/json")
+		  PurchaseConfirmRS purchaseConfirmTestHelper();
 
 
 

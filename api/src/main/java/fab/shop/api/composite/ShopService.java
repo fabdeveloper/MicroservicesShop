@@ -1,15 +1,12 @@
 package fab.shop.api.composite;
 
-import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import fab.shop.api.core.cart.msg.*;
-import fab.shop.api.core.product.Product;
-import fab.shop.api.core.purchase.Purchase;
+import fab.shop.api.core.product.msg.*;
 import fab.shop.api.core.purchase.msg.*;
 import fab.shop.api.core.valuation.msg.*;
 
@@ -21,16 +18,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name="Shop Service", description="REST API for Shop Services")
 public interface ShopService  {
-	
-	  @GetMapping(
-			    value = "/shop/avail",
-			    produces = "application/json")
-			  List<Product> getAvail();
-	  
-	  @GetMapping(
-			    value = "/shop/{productId}",
-			    produces = "application/json")
-			  Product getProduct(@PathVariable int productId);
 	  
 	
 	  @Operation(summary = "${api.shop-service.post-addtocart.description}", description = "${api.shop-service.post-addtocart.notes}")
@@ -60,17 +47,6 @@ public interface ShopService  {
 			  EmptyCartRS emptyCart(@RequestBody EmptyCartRQ emptyCartRQ);
 
 
-	// @Operation(summary = "${api.shop-service.post-deletecart.description}", description = "${api.shop-service.post-deletecart.notes}")
-	// @ApiResponses(value = {
-	// 	@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}")
-	// })
-	// @PostMapping(
-	// 					value = "/shop/deleteCart",
-	// 					consumes = "application/json",
-	// 					produces = "application/json")
-	// 		  public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ);
-
-
 	@Operation(summary = "${api.shop-service.post-getcart.description}", description = "${api.shop-service.post-getcart.notes}")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}")
@@ -92,16 +68,18 @@ public interface ShopService  {
 		produces = "application/json")
 	  CartModificationRS cartModification(@RequestBody CartModificationRQ cartModificationRQ);
 	  
+
+	  // PurchaseService
+
 	  @PostMapping(
 			    value = "/shop/confirm",
 				consumes = "application/json",
 			    produces = "application/json")
-			  Purchase purchaseConfirm(@RequestBody PurchaseConfirmRQ purchaseConfirmRQ);
+				PurchaseConfirmRS purchaseConfirm(@RequestBody PurchaseConfirmRQ purchaseConfirmRQ);
 	  
-	  @GetMapping(
-			    value = "/shop/purchase/{purchaseId}",
-			    produces = "application/json")
-			  Product getPurchase(@PathVariable int purchaseId);
+
+	
+	// ValuationService
 
 
 	@Operation(summary = "${api.shop-service.post-getvaluation.description}", description = "${api.shop-service.post-getvaluation.notes}")
@@ -115,34 +93,41 @@ public interface ShopService  {
 			  ValuationRS getValuation(@RequestBody ValuationRQ valuationRQ);
 
 
-	// TEST HELPERS ******************* //
 
+	// ProductService
 
 	
-	@GetMapping(
-		value = "/shop/testemptycart",
+	  
+	@PostMapping(
+		value = "/shop/getAvail",
+		consumes = "application/json",
 		produces = "application/json")
-		EmptyCartRS emptyCartTestHelper();
+		GetAvailRS getAvail(@RequestBody GetAvailRQ getAvailRQ);
+	  
+		@PostMapping(
+			value = "/shop/getOfferListDetail",
+			consumes = "application/json",
+			produces = "application/json")
+			GetOfferListDetailRS getOfferListDetail(@RequestBody GetOfferListDetailRQ getOfferListDetailRQ);
 
-	@GetMapping(
-		value = "/shop/testgetcart",
-		produces = "application/json")
-		GetCartRS getCartTestHelper();
+			
+	  
+		@PostMapping(
+			value = "/shoop/productPurchaseConfirm",
+			consumes = "application/json",
+			produces = "application/json")
+			ProductPurchaseConfirmRS productPurchaseConfirm(@RequestBody ProductPurchaseConfirmRQ productPurchaseConfirmRQ);
 
-	  @GetMapping(
-			    value = "/shop/testaddtocart",
-			    produces = "application/json")
-			  AddToCartRS addToCartTestHelper();
+			
+	  
+		@PostMapping(
+			value = "/shop/productPurchaseCancel",
+			consumes = "application/json",
+			produces = "application/json")
+			ProductPurchaseCancelRS productPurchaseCancel(@RequestBody ProductPurchaseCancelRQ productPurchaseCancelRQ);
 
-	  @GetMapping(
-			    value = "/shop/testpurchaseconfirm",
-			    produces = "application/json")
-			  Purchase purchaseConfirmTestHelper();
 
-	  @GetMapping(
-			    value = "/shop/testvaluation",
-			    produces = "application/json")
-			  ValuationRS valuationTestHelper();
+	// TEST HELPERS ******************* //
 
 	  @GetMapping(
 			    value = "/shop/apiobject",
