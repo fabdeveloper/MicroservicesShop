@@ -15,18 +15,14 @@ import fab.shop.api.core.cart.msg.AddToCartRQ;
 import fab.shop.api.core.cart.msg.AddToCartRS;
 import fab.shop.api.core.cart.msg.CartModificationRQ;
 import fab.shop.api.core.cart.msg.CartModificationRS;
-import fab.shop.api.core.cart.msg.DeleteCartRS;
 import fab.shop.api.core.cart.msg.EmptyCartRQ;
 import fab.shop.api.core.cart.msg.EmptyCartRS;
 import fab.shop.api.core.cart.msg.GetCartRQ;
 import fab.shop.api.core.cart.msg.GetCartRS;
-import fab.shop.api.core.product.Article;
 import fab.shop.api.core.product.Discount;
 import fab.shop.api.core.product.EnumSign;
-import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.Tax;
-import fab.shop.api.core.purchase.Purchase;
+import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
 import fab.shop.api.core.valuation.ValuableItem;
 import fab.shop.api.core.valuation.msg.ValuationRQ;
 import fab.shop.api.core.valuation.msg.ValuationRS;
@@ -167,30 +163,10 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
     }
 
     @Override
-    public DeleteCartRS deleteCartTestHelper() {
+    public PurchaseConfirmRS purchaseConfirmTestHelper() {
         // TODO Auto-generated method stub
         return null;
     }
-
-
-
-
-
-
-
-    @Override
-    public Purchase purchaseConfirmTestHelper() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public ValuationRS valuationTestHelper() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
 
 
     @Override
