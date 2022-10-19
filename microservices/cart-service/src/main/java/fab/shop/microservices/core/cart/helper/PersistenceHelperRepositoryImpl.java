@@ -1,6 +1,5 @@
 package fab.shop.microservices.core.cart.helper;
 
-import java.util.List;
 
 import javax.transaction.Transactional;
 

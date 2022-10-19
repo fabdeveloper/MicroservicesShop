@@ -7,7 +7,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      mysql:
+      mysql_product:
         condition: service_healthy
 
   cart:
