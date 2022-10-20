@@ -50,6 +50,9 @@ public class ProductServiceImpl implements ProductService{
 
         
         // int id, String name, String description, String remarks, String type, String serviceAddress
+
+        Product prod = new Product(productId, null, null, null, null, null, null);
+
         return new Product(productId, "product" + productId, "fake product", "fake product remarks", "fake product type", serviceUtil.getServiceAddress());
     }
 
