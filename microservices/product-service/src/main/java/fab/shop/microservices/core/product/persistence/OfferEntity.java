@@ -9,17 +9,27 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-@Table(name = "OFFERS")
+@Table(name = "offer")
 public class OfferEntity extends AbstractBusinessEntityItem {
+    
+    @Id @GeneratedValue
+    private Integer id;
+
+    @Version
+    private Integer version;
 
     private Float price;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "article_id", nullable = false)
     private ArticleEntity article;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "offer_discount", joinColumns = @JoinColumn(name = "offer_id"), inverseJoinColumns = @JoinColumn(name = "discount_id"))
     private List<DiscountEntity> discountList;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "offer_tax", joinColumns = @JoinColumn(name = "offer_id"), inverseJoinColumns = @JoinColumn(name = "tax_id"))
     private List<TaxEntity> taxList;
 
     private Date dateFrom;
@@ -33,7 +43,9 @@ public class OfferEntity extends AbstractBusinessEntityItem {
 
     public OfferEntity(Integer id, Integer version, String name, String description, String remarks,
                             Float price, ArticleEntity article, List<DiscountEntity> discountList, List<TaxEntity> taxList, Date dateFrom, Date dateTo, Boolean open) {
-        super(id, version, name, description, remarks);
+        super(name, description, remarks);
+        this.id = id;
+        this.version = version;
         this.price = price;
         this.article = article;
         this.discountList = discountList;
@@ -139,6 +151,60 @@ public class OfferEntity extends AbstractBusinessEntityItem {
     }
 
 
+    public OfferEntity(Integer id, Integer version, Float price, ArticleEntity article, List<DiscountEntity> discountList, List<TaxEntity> taxList, Date dateFrom, Date dateTo, Boolean open) {
+        this.id = id;
+        this.version = version;
+        this.price = price;
+        this.article = article;
+        this.discountList = discountList;
+        this.taxList = taxList;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.open = open;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return this.version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public OfferEntity id(Integer id) {
+        setId(id);
+        return this;
+    }
+
+    public OfferEntity version(Integer version) {
+        setVersion(version);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof OfferEntity)) {
+            return false;
+        }
+        OfferEntity offerEntity = (OfferEntity) o;
+        return Objects.equals(id, offerEntity.id) && Objects.equals(version, offerEntity.version) && Objects.equals(price, offerEntity.price) && Objects.equals(article, offerEntity.article) && Objects.equals(discountList, offerEntity.discountList) && Objects.equals(taxList, offerEntity.taxList) && Objects.equals(dateFrom, offerEntity.dateFrom) && Objects.equals(dateTo, offerEntity.dateTo) && Objects.equals(open, offerEntity.open);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, version, price, article, discountList, taxList, dateFrom, dateTo, open);
+    }
+
     @Override
     public String toString() {
         String anterior = super.toString();
@@ -156,20 +222,19 @@ public class OfferEntity extends AbstractBusinessEntityItem {
         }
         taxListString += " }";
 
-        return "{" + anterior + "'" +
+        return anterior + ", {" +
+            " id='" + getId() + "'" +
+            ", version='" + getVersion() + "'" +
             ", price='" + getPrice() + "'" +
             ", article='" + getArticle() + "'" +
             ", discountList='" + discountListString + "'" +
             ", taxList='" + taxListString + "'" +
-            ", dateFrom='" + getDateFrom().toString() + "'" +
-            ", dateTo='" + getDateTo().toString() + "'" +
+            ", dateFrom='" + getDateFrom() + "'" +
+            ", dateTo='" + getDateTo() + "'" +
             ", open='" + isOpen() + "'" +
             "}";
     }
 
-
-    
-
-    
+   
     
 }

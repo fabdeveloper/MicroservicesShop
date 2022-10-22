@@ -10,8 +10,15 @@ import javax.persistence.*;
 @Table(name="SHOPS")
 public class ShopEntity extends AbstractBusinessEntityItem {        
 
+    @Id @GeneratedValue
+    private Integer id;
+
+    @Version
+    private Integer version;
+
     private Integer ownerId;
-    private List<Integer> adminListIds;
+
+
     
 
 
@@ -19,13 +26,35 @@ public class ShopEntity extends AbstractBusinessEntityItem {
         super();
     }
 
-
-    public ShopEntity(Integer id, Integer version, String name, String description, String remarks, Integer ownerId, List<Integer> adminListIds) {
-        super(ownerId, version, name, description, remarks);
+    public ShopEntity(Integer id, Integer version, String name, String description, String remarks, Integer ownerId) {
+        super(name, description, remarks);
+        this.id = id;
+        this.version = version;
         this.ownerId = ownerId;
-        this.adminListIds = adminListIds;
     }
 
+
+    public ShopEntity(Integer id, Integer version, Integer ownerId) {
+        this.id = id;
+        this.version = version;
+        this.ownerId = ownerId;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return this.version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     public Integer getOwnerId() {
         return this.ownerId;
@@ -35,25 +64,46 @@ public class ShopEntity extends AbstractBusinessEntityItem {
         this.ownerId = ownerId;
     }
 
-    public List<Integer> getAdminListIds() {
-        return this.adminListIds;
+    public ShopEntity id(Integer id) {
+        setId(id);
+        return this;
     }
 
-    public void setAdminListIds(List<Integer> adminListIds) {
-        this.adminListIds = adminListIds;
+    public ShopEntity version(Integer version) {
+        setVersion(version);
+        return this;
     }
 
+    public ShopEntity ownerId(Integer ownerId) {
+        setOwnerId(ownerId);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof ShopEntity)) {
+            return false;
+        }
+        ShopEntity shopEntity = (ShopEntity) o;
+        return Objects.equals(id, shopEntity.id) && Objects.equals(version, shopEntity.version) && Objects.equals(ownerId, shopEntity.ownerId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, version, ownerId);
+    }
 
     @Override
     public String toString() {
         String anterior = super.toString();
-        return anterior + ", {" +
-            " ownerId='" + getOwnerId() + "'" +
-            ", adminListIds='" + getAdminListIds() + "'" +
+        return anterior + ", {" +            
+            " id='" + getId() + "'" +
+            ", version='" + getVersion() + "'" +
+            ", ownerId='" + getOwnerId() + "'" +
             "}";
     }
-
-
 
 
 }

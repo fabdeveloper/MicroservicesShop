@@ -16,9 +16,9 @@ public abstract class AbstractExtraValuableEntityItem extends AbstractBusinessEn
         super();
     }
 
-    public AbstractExtraValuableEntityItem(Integer id, Integer version, String name, String description, String remarks,
+    public AbstractExtraValuableEntityItem(String name, String description, String remarks,
                 Float percentValue, Float fixedValue) {
-        super(id, version, name, description, remarks);
+        super(name, description, remarks);
         this.percentValue = percentValue;
         this.fixedValue = fixedValue;
     }

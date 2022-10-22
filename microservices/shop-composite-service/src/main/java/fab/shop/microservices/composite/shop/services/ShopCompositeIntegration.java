@@ -154,11 +154,11 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
 
-    @Override
-    public Product getProduct(int productId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    // @Override
+    // public Product getProduct(int productId) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
 
 
 

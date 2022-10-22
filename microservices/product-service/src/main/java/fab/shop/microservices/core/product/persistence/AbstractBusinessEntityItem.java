@@ -9,11 +9,7 @@ import javax.persistence.*;
 
 public abstract class AbstractBusinessEntityItem {
     
-    @Id @GeneratedValue
-    protected Integer id;
 
-    @Version
-    protected Integer version;
 
     protected String name;
 
@@ -26,28 +22,10 @@ public abstract class AbstractBusinessEntityItem {
     public AbstractBusinessEntityItem() {
     }
 
-    public AbstractBusinessEntityItem(Integer id, Integer version, String name, String description, String remarks) {
-        this.id = id;
-        this.version = version;
+    public AbstractBusinessEntityItem(String name, String description, String remarks) {
         this.name = name;
         this.description = description;
         this.remarks = remarks;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() {
-        return this.version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getName() {
@@ -74,16 +52,6 @@ public abstract class AbstractBusinessEntityItem {
         this.remarks = remarks;
     }
 
-    public AbstractBusinessEntityItem id(Integer id) {
-        setId(id);
-        return this;
-    }
-
-    public AbstractBusinessEntityItem version(Integer version) {
-        setVersion(version);
-        return this;
-    }
-
     public AbstractBusinessEntityItem name(String name) {
         setName(name);
         return this;
@@ -107,23 +75,23 @@ public abstract class AbstractBusinessEntityItem {
             return false;
         }
         AbstractBusinessEntityItem abstractBusinessEntityItem = (AbstractBusinessEntityItem) o;
-        return Objects.equals(id, abstractBusinessEntityItem.id) && Objects.equals(version, abstractBusinessEntityItem.version) && Objects.equals(name, abstractBusinessEntityItem.name) && Objects.equals(description, abstractBusinessEntityItem.description) && Objects.equals(remarks, abstractBusinessEntityItem.remarks);
+        return Objects.equals(name, abstractBusinessEntityItem.name) && Objects.equals(description, abstractBusinessEntityItem.description) && Objects.equals(remarks, abstractBusinessEntityItem.remarks);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, name, description, remarks);
+        return Objects.hash(name, description, remarks);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", version='" + getVersion() + "'" +
-            ", name='" + getName() + "'" +
+            " name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", remarks='" + getRemarks() + "'" +
             "}";
     }
+
+
 
 }
