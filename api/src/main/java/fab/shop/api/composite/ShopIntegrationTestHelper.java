@@ -3,14 +3,10 @@ package fab.shop.api.composite;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
-import fab.shop.api.core.cart.msg.AddToCartRS;
-import fab.shop.api.core.cart.msg.CartModificationRS;
-import fab.shop.api.core.cart.msg.DeleteCartRS;
-import fab.shop.api.core.cart.msg.EmptyCartRS;
-import fab.shop.api.core.cart.msg.GetCartRS;
-import fab.shop.api.core.purchase.Purchase;
-import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
-import fab.shop.api.core.valuation.msg.ValuationRS;
+import fab.shop.api.core.cart.msg.*;
+import fab.shop.api.core.product.msg.*;
+import fab.shop.api.core.purchase.msg.*;
+import fab.shop.api.core.valuation.msg.*;
 
 public interface ShopIntegrationTestHelper {
     
@@ -53,10 +49,18 @@ public interface ShopIntegrationTestHelper {
 
 		// PurchaseService tests
 
-		@GetMapping(
+	@GetMapping(
 			value = "/shoptester/testpurchaseconfirm",
 			produces = "application/json")
 		  PurchaseConfirmRS purchaseConfirmTestHelper();
+
+
+		  // ProductService tests
+
+	@GetMapping(
+			value = "/shoptester/productservice/testproductmappers",
+			produces = "application/json")
+		  ProductMappersTestRS productMappersTestHelper();
 
 
 

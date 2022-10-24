@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -11,16 +13,18 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ProductServiceApplicationTests {
 
-	@Autowired private WebTestClient client;
+	// @Autowired private WebTestClient client;
 
 
 	// @Test
-	// void contextLoads() {
-	// }
+	void contextLoads() {
+	}
 
 
 	// @Test
-	// void getProductById() {
+	void getProductById() {
+
+		assertTrue(false, "getProductById() NO VA MUY BIEN ................");
   
 	//   int productId = 1;
   
@@ -32,7 +36,9 @@ class ProductServiceApplicationTests {
 	// 	.expectHeader().contentType(MediaType.APPLICATION_JSON)
 	// 	.expectBody()
 	// 	  .jsonPath("$.productId").isEqualTo(productId);
-	// }
+
+
+	}
   
 	// @Test
 	// void getProductInvalidParameterString() {

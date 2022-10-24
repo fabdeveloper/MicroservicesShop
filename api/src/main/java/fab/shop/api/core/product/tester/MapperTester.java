@@ -73,5 +73,11 @@ public interface MapperTester {
       String getTaxEntityObject();
 
 
+    @GetMapping(
+        value = "/product/maptester/testall",
+        produces = "application/json")
+      String getTestAllMappersString();
+
+
 
 }

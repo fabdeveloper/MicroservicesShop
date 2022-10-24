@@ -30,7 +30,7 @@ public class MapperTesterImpl implements MapperTester {
 
     @Override
     public String getShopApiObject() {
-        String result = null;
+        String result = "NO_INICIALIZADO";
         // List<Integer> adminList = new ArrayList<Integer>();
         // adminList.add(33);        adminList.add(99);
         ShopEntity entity = new ShopEntity(66, null, "my shop", "my shop description", "my shop remarks", 2);
@@ -44,7 +44,7 @@ public class MapperTesterImpl implements MapperTester {
 
     @Override
     public String getShopEntityObject() {
-        String result = null;
+        String result = "NO_INICIALIZADO";
         List<Integer> adminList = new ArrayList<Integer>();
         adminList.add(3);        adminList.add(9);
         Shop shop = new Shop(6, "shop name", "shop description", "shop remarks", 1);
@@ -114,6 +114,23 @@ public class MapperTesterImpl implements MapperTester {
     public String getTaxEntityObject() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public String getTestAllMappersString() {
+        String result = null;
+
+        String shopApiObjectString = this.getShopApiObject();
+        String shopEntityObjectString = this.getShopEntityObject();
+
+        result = "shopApiObjectString : " + shopApiObjectString + ", ";
+        result += "shopEntityObjectString : " + shopEntityObjectString + ", ";
+
+
+
+
+
+        return result;
     }
     
 }

@@ -22,10 +22,13 @@ import fab.shop.api.core.cart.msg.GetCartRS;
 import fab.shop.api.core.product.Discount;
 import fab.shop.api.core.product.EnumSign;
 import fab.shop.api.core.product.Tax;
+import fab.shop.api.core.product.msg.ProductMappersTestRQ;
+import fab.shop.api.core.product.msg.ProductMappersTestRS;
 import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
 import fab.shop.api.core.valuation.ValuableItem;
 import fab.shop.api.core.valuation.msg.ValuationRQ;
 import fab.shop.api.core.valuation.msg.ValuationRS;
+import fab.shop.microservices.composite.shop.services.ShopCompositeIntegration;
 import fab.shop.util.http.ServiceUtil;
 
 
@@ -35,26 +38,33 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
     private final RestTemplate restTemplate;
     private final ServiceUtil serviceUtil;
 
+    private final ShopCompositeIntegration shopIntegration;
 
     private final String shopCompositeServiceUrl;
 
 
     @Autowired
-
-    public ShopIntegrationTestHelperImpl(RestTemplate restTemplate, 
+    public ShopIntegrationTestHelperImpl(ShopCompositeIntegration shopIntegration, RestTemplate restTemplate, 
                                             ServiceUtil serviceUtil, 
                                             @Value("${app.shop-composite-service.host}") String shopCompositeServiceHost,
                                             @Value("${app.shop-composite-service.port}") String shopCompositeServicePort  ) {
+        
+        this.shopIntegration = shopIntegration;
         this.restTemplate = restTemplate;
         this.serviceUtil = serviceUtil;
         this.shopCompositeServiceUrl = "http://" + shopCompositeServiceHost + ":" + shopCompositeServicePort + "/shop";
     }
 
 
+
+    public ShopCompositeIntegration getShopIntegration() {
+        return this.shopIntegration;
+    }
+
+
     public ServiceUtil getServiceUtil() {
         return this.serviceUtil;
     }
-
 
 
     public RestTemplate getRestTemplate() {
@@ -184,6 +194,17 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
 
         ValuationRQ valuationRQ = new ValuationRQ(valuableItemsList);
         return restTemplate.postForObject(getShopCompositeServiceUrl() + "/valuate", valuationRQ, ValuationRS.class);
+    }
+
+
+    // ProductService 
+
+    @Override
+    public ProductMappersTestRS productMappersTestHelper() {
+        String allresults = restTemplate.getForObject(getShopIntegration().getProductServiceUrl() + "/maptester/testall", String.class);
+
+        ProductMappersTestRS rs = new ProductMappersTestRS(allresults);
+        return rs;
     }
 
 

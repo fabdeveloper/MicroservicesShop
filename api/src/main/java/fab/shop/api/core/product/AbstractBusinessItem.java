@@ -1,10 +1,10 @@
 package fab.shop.api.core.product;
 
 public abstract class AbstractBusinessItem {
-    protected final int id;
-    protected final String name;
-    protected final String description;
-    protected final String remarks;
+    protected  int id;
+    protected  String name;
+    protected  String description;
+    protected  String remarks;
 
 
 
@@ -41,6 +41,18 @@ public abstract class AbstractBusinessItem {
 
     public String getRemarks() {
         return this.remarks;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
 
