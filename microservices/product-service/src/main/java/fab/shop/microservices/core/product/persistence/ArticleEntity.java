@@ -63,12 +63,6 @@ public class ArticleEntity extends AbstractBusinessEntityItem {
 
  
 
-    public ArticleEntity(Integer id, Integer version, ProductEntity product) {
-        this.id = id;
-        this.version = version;
-        this.product = product;
-    }
-
     public ArticleEntity id(Integer id) {
         setId(id);
         return this;

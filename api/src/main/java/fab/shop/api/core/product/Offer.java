@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Offer extends AbstractBusinessItem{
 
-    private final Float price;
-    private final Article article;
+    private Float price;
+    private Article article;
 
     
-    private final List<Discount> discountList;
-    private final List<Tax> taxList;
+    private List<Discount> discountList;
+    private List<Tax> taxList;
 
-    private final Date dateFrom;
-    private final Date dateTo;
-    private final Boolean open;
+    private Date dateFrom;
+    private Date dateTo;
+    private Boolean open;
 
     
 
@@ -32,7 +32,8 @@ public class Offer extends AbstractBusinessItem{
 
     }
 
-    public Offer(Float price, Article article, List<Discount> discountList, List<Tax> taxList, Date dateFrom, Date dateTo, Boolean open) {
+    public Offer(int id, String name, String description, String remarks, Float price, Article article, List<Discount> discountList, List<Tax> taxList, Date dateFrom, Date dateTo, Boolean open) {
+        super(id, name, description, remarks);
         this.price = price;
         this.article = article;
         this.discountList = discountList;
@@ -79,6 +80,30 @@ public class Offer extends AbstractBusinessItem{
     public Boolean getOpen() {
         return this.open;
     }
+
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+    public void setDiscountList(List<Discount> discountList) {
+        this.discountList = discountList;
+    }
+    public void setTaxList(List<Tax> taxList) {
+        this.taxList = taxList;
+    }
+    public void setDateFrom(Date dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+    public void setDateTo(Date dateTo) {
+        this.dateTo = dateTo;
+    }
+    public void setOpen(Boolean open) {
+        this.open = open;
+    }
+
 
 
     @Override

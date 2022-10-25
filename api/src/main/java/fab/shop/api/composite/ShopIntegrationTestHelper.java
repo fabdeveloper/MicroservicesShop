@@ -54,14 +54,4 @@ public interface ShopIntegrationTestHelper {
 			produces = "application/json")
 		  PurchaseConfirmRS purchaseConfirmTestHelper();
 
-
-		  // ProductService tests
-
-	@GetMapping(
-			value = "/shoptester/productservice/testproductmappers",
-			produces = "application/json")
-		  ProductMappersTestRS productMappersTestHelper();
-
-
-
 }

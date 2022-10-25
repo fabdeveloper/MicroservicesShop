@@ -37,11 +37,6 @@ public class TaxEntity extends AbstractExtraValuableEntityItem {
     }
 
 
-    public TaxEntity(Integer id, Integer version) {
-        this.id = id;
-        this.version = version;
-    }
-
     public Integer getId() {
         return this.id;
     }

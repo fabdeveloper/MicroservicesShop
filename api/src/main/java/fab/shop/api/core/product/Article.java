@@ -3,7 +3,7 @@ package fab.shop.api.core.product;
 
 public class Article extends AbstractBusinessItem {
 
-    private final Product product;
+    private Product product;
 
 
     public Article(int id, String name, String description, String remarks, Product product) {
@@ -26,6 +26,9 @@ public class Article extends AbstractBusinessItem {
         return this.product;
     }
 
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
 
     @Override

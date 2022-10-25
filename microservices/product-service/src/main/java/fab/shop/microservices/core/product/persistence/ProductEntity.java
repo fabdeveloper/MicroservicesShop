@@ -54,13 +54,6 @@ public class ProductEntity extends AbstractBusinessEntityItem {
     }
 
 
-    public ProductEntity(Integer id, Integer version, ShopEntity shop, String type) {
-        this.id = id;
-        this.version = version;
-        this.shop = shop;
-        this.type = type;
-    }
-
     public Integer getId() {
         return this.id;
     }

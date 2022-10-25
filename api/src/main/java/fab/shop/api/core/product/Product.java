@@ -4,9 +4,9 @@ package fab.shop.api.core.product;
 public class Product extends AbstractBusinessItem{
 	
 
-	private final Shop shop;
-	 private final String type;
-     private final String serviceAddress;
+	private  Shop shop;
+	 private  String type;
+     private String serviceAddress;
 
 
 	public Product(int id, String name, String description, String remarks, Shop shop, String type, String serviceAddress) {
@@ -33,9 +33,6 @@ public class Product extends AbstractBusinessItem{
 	}
 
 
-
-
-
 	public String getServiceAddress() {
 		return serviceAddress;
 	}
@@ -44,6 +41,15 @@ public class Product extends AbstractBusinessItem{
 		return this.type;
 	}	 
 
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public void setServiceAddress(String serviceAddress) {
+		this.serviceAddress = serviceAddress;
+	}
 
 
 
