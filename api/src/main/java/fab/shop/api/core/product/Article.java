@@ -6,7 +6,7 @@ public class Article extends AbstractBusinessItem {
     private Product product;
 
 
-    public Article(int id, String name, String description, String remarks, Product product) {
+    public Article(Integer id, String name, String description, String remarks, Product product) {
 		super(id, name, description, remarks);
 
         this.product = product;
@@ -33,9 +33,9 @@ public class Article extends AbstractBusinessItem {
 
     @Override
     public String toString() {
-        return "{" + super.toString() +         
+        return "Article : { " + super.toString() +         
             ", product='" + getProduct().toString() + "'" +
-            "}";
+            " }";
     }
 
     

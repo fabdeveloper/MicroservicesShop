@@ -32,7 +32,7 @@ public class Offer extends AbstractBusinessItem{
 
     }
 
-    public Offer(int id, String name, String description, String remarks, Float price, Article article, List<Discount> discountList, List<Tax> taxList, Date dateFrom, Date dateTo, Boolean open) {
+    public Offer(Integer id, String name, String description, String remarks, Float price, Article article, List<Discount> discountList, List<Tax> taxList, Date dateFrom, Date dateTo, Boolean open) {
         super(id, name, description, remarks);
         this.price = price;
         this.article = article;
@@ -123,7 +123,7 @@ public class Offer extends AbstractBusinessItem{
         }
         taxListString += " }";
 
-        return "{" + anterior + "'" +
+        return "Offer : { " + anterior + "'" +
             ", price='" + getPrice() + "'" +
             ", article='" + getArticle() + "'" +
             ", discountList='" + discountListString + "'" +
@@ -131,7 +131,7 @@ public class Offer extends AbstractBusinessItem{
             ", dateFrom='" + getDateFrom().toString() + "'" +
             ", dateTo='" + getDateTo().toString() + "'" +
             ", open='" + isOpen() + "'" +
-            "}";
+            " }";
     }
 
 

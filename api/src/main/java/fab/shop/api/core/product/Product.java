@@ -9,7 +9,7 @@ public class Product extends AbstractBusinessItem{
      private String serviceAddress;
 
 
-	public Product(int id, String name, String description, String remarks, Shop shop, String type, String serviceAddress) {
+	public Product(Integer id, String name, String description, String remarks, Shop shop, String type, String serviceAddress) {
 		super(id, name, description, remarks);
 		
 		this.shop = shop;
@@ -57,11 +57,11 @@ public class Product extends AbstractBusinessItem{
 	@Override
 	public String toString() {
 		String anterior = super.toString();
-		return anterior + ", {" +
+		return "Product : { " + anterior + ", {" +
 			" shop='" + getShop().toString() + "'" +
 			", type='" + getType() + "'" +
 			", serviceAddress='" + getServiceAddress() + "'" +
-			"}";
+			"}}";
 	}
 	
 

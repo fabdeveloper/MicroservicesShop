@@ -1,6 +1,5 @@
 package fab.shop.api.core.product;
 
-import java.util.List;
 
 public class Shop extends AbstractBusinessItem {
 
@@ -11,7 +10,7 @@ public class Shop extends AbstractBusinessItem {
         super();
     }
 
-    public Shop(int id, String name, String description, String remarks,
+    public Shop(Integer id, String name, String description, String remarks,
                         Integer ownerId) {
         super(id, name, description, remarks);
         this.ownerId = ownerId;
@@ -39,9 +38,9 @@ public class Shop extends AbstractBusinessItem {
     @Override
     public String toString() {
         String anterior = super.toString();
-        return anterior + ", {" +
+        return "Shop : { " + anterior + ", {" +
                 " ownerId='" + getOwnerId() + "'" +
-            "}";
+            "}}";
     }
 
 

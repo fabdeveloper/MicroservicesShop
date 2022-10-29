@@ -1,14 +1,14 @@
 package fab.shop.api.core.product;
 
 public abstract class AbstractBusinessItem {
-    protected  int id;
+    protected  Integer id;
     protected  String name;
     protected  String description;
     protected  String remarks;
 
 
 
-    public AbstractBusinessItem(int id, String name, String description, String remarks) {
+    public AbstractBusinessItem(Integer id, String name, String description, String remarks) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -24,9 +24,14 @@ public abstract class AbstractBusinessItem {
     }
 
 
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
 
 
     public String getName() {
@@ -42,9 +47,8 @@ public abstract class AbstractBusinessItem {
     public String getRemarks() {
         return this.remarks;
     }
-    public void setId(int id) {
-        this.id = id;
-    }
+
+    
     public void setName(String name) {
         this.name = name;
     }
