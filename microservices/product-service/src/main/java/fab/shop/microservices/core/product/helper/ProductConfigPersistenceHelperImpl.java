@@ -1,6 +1,7 @@
 package fab.shop.microservices.core.product.helper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import fab.shop.microservices.core.product.persistence.ArticleRepository;
 import fab.shop.microservices.core.product.persistence.DiscountRepository;
@@ -9,6 +10,8 @@ import fab.shop.microservices.core.product.persistence.ProductRepository;
 import fab.shop.microservices.core.product.persistence.ShopRepository;
 import fab.shop.microservices.core.product.persistence.TaxRepository;
 
+
+@Component
 public class ProductConfigPersistenceHelperImpl implements ProductConfigPersistenceHelper {
 
     private final ShopRepository shopRepository;

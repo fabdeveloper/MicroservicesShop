@@ -2,6 +2,7 @@ package fab.shop.microservices.core.product.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import fab.shop.api.core.product.Article;
 import fab.shop.api.core.product.Discount;
@@ -16,9 +17,10 @@ import fab.shop.api.core.product.msg.ProductCreateNewRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.microservices.core.mapper.ProductServiceGeneralMapper;
 import fab.shop.microservices.core.product.helper.ProductConfigPersistenceHelperImpl;
+import fab.shop.microservices.core.product.persistence.ShopEntity;
 
 
-
+@RestController
 public class ProductConfigServiceImpl implements ProductConfigService {
 
     private final ProductConfigPersistenceHelperImpl persistenceHelper;
@@ -37,19 +39,33 @@ public class ProductConfigServiceImpl implements ProductConfigService {
     public ProductCreateNewRS productCreateNew(ProductCreateNewRQ productCreateNewRQ) {
         ProductCreateNewRS rs = new ProductCreateNewRS();
 
+        String initmsg = "object received in RQ : " + " shops=" + productCreateNewRQ.getShopList().size();
+        initmsg += ", products=" + productCreateNewRQ.getProductList().size();
+        initmsg += ", articles=" + productCreateNewRQ.getArticleList().size();        initmsg += ", articles=" + productCreateNewRQ.getArticleList().size();
+        initmsg += ", offers=" + productCreateNewRQ.getOfferList().size();
+        initmsg += ", discounts=" + productCreateNewRQ.getDiscountList().size();
+        initmsg += ", taxes=" + productCreateNewRQ.getTaxList().size();
+
+        rs.addError(initmsg);
+        
         // shop
 
         for(Shop shop : productCreateNewRQ.getShopList()){
-            String shopString = shop.toString();
+            ShopEntity entity = null;
+            String shopString = shop.getName();
             try{
-                getPersistenceHelper().getShopRepository().save(getMapper().getShopMapper().apiToEntity(shop));
+                entity = getPersistenceHelper().getShopRepository().save(getMapper().getShopMapper().apiToEntity(shop));
+                rs.addError("shop created = " + entity.toString());
+
             }catch(Throwable t){
                 String msg = t.getMessage();
                 String errorString = "error creating = " + shopString + " - msg : " + msg;
                 rs.addError(errorString);
             }
+
         }
 
+        /*
         // product
         
         for(Product product : productCreateNewRQ.getProductList()){
@@ -112,7 +128,7 @@ public class ProductConfigServiceImpl implements ProductConfigService {
             }
         }
 
-
+ */
 
         return rs;
     }
