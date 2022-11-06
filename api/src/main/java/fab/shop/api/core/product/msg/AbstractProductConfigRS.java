@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class AbstractProductConfigRS {
     
-    private List<String> errorList = new ArrayList<>();
+    private List<String> errorList;
 
 
     public AbstractProductConfigRS() {
@@ -16,6 +16,9 @@ public abstract class AbstractProductConfigRS {
     }
 
     public List<String> getErrorList() {
+        if(this.errorList == null){
+            this.errorList = new ArrayList<>();
+        }
         return this.errorList;
     }
 

@@ -2,6 +2,7 @@ package fab.shop.api.core.product;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
+import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductConfigRQ;
 import fab.shop.api.core.product.msg.ProductConfigRS;
 import fab.shop.api.core.product.msg.ProductCreateNewRQ;
@@ -15,13 +16,13 @@ public interface ProductConfigService {
 		value = "/product/config/createnew",
 		consumes = "application/json",
 		produces = "application/json")
-    public ProductCreateNewRS productCreateNew(ProductCreateNewRQ productCreateNewRQ);
+		public ProductCreateNewRS productCreateNew(ProductConfigBasicRQ productCreateNewRQ);
 
 
     @PostMapping(
 		value = "/product/config/config",
 		consumes = "application/json",
 		produces = "application/json")
-    public ProductConfigRS productConfig(ProductConfigRQ productConfigRQ);
+		public ProductConfigRS productConfig(ProductConfigBasicRQ productConfigRQ);
     
 }

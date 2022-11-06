@@ -11,6 +11,9 @@ import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductConfigService;
 import fab.shop.api.core.product.Shop;
 import fab.shop.api.core.product.Tax;
+import fab.shop.api.core.product.msg.AbstractProductConfigRQ;
+import fab.shop.api.core.product.msg.AbstractProductConfigRS;
+import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductConfigRQ;
 import fab.shop.api.core.product.msg.ProductConfigRS;
 import fab.shop.api.core.product.msg.ProductCreateNewRQ;
@@ -36,12 +39,16 @@ public class ProductConfigServiceImpl implements ProductConfigService {
 
 
     @Override
-    public ProductCreateNewRS productCreateNew(ProductCreateNewRQ productCreateNewRQ) {
+    public ProductCreateNewRS productCreateNew(ProductConfigBasicRQ productCreateNewRQ) {
+            System.out.println("ProductConfigServiceImpl - productCreateNew, recibido : " + productCreateNewRQ.toString());
         ProductCreateNewRS rs = new ProductCreateNewRS();
+
+        rs.addError("recibido.toString = " + productCreateNewRQ.toString());
+        rs.addError("*********************************************************");
 
         String initmsg = "object received in RQ : " + " shops=" + productCreateNewRQ.getShopList().size();
         initmsg += ", products=" + productCreateNewRQ.getProductList().size();
-        initmsg += ", articles=" + productCreateNewRQ.getArticleList().size();        initmsg += ", articles=" + productCreateNewRQ.getArticleList().size();
+        initmsg += ", articles=" + productCreateNewRQ.getArticleList().size();        
         initmsg += ", offers=" + productCreateNewRQ.getOfferList().size();
         initmsg += ", discounts=" + productCreateNewRQ.getDiscountList().size();
         initmsg += ", taxes=" + productCreateNewRQ.getTaxList().size();
@@ -134,9 +141,17 @@ public class ProductConfigServiceImpl implements ProductConfigService {
     }
 
     @Override
-    public ProductConfigRS productConfig(ProductConfigRQ productConfigRQ) {
-        // TODO Auto-generated method stub
-        return null;
+    public ProductConfigRS productConfig(ProductConfigBasicRQ productConfigRQ) {
+
+        String msg = "recibido : " + productConfigRQ.toString();
+
+
+        ProductConfigRS rs = new ProductConfigRS();
+        rs.addError(msg);
+
+
+
+        return rs;
     }
 
 

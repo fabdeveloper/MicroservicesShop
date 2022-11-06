@@ -71,17 +71,20 @@ public class GetAvailRQ {
         setOfferList(offerList);
         return this;
     }
-
+ 
 
 
     @Override
     public String toString() {
+        String productListString = (getProductList() != null ? getProductList().toString() : "null");
+        String articleListString = (getArticleList() != null ? getArticleList().toString() : "null");
+        String offerListString = (getOfferList() != null ? getOfferList().toString() : "null");
 
         return "{" +
             " shopId='" + getShopId() + "'" +
-            ", productList='" + getProductList().toString() + "'" +
-            ", articleList='" + getArticleList().toString() + "'" +
-            ", offerList='" + getOfferList().toString() + "'" +
+            ", productList='" + productListString + "'" +
+            ", articleList='" + articleListString + "'" +
+            ", offerList='" + offerListString + "'" +
             "}";
     }
 

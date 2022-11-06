@@ -15,6 +15,7 @@ import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.Shop;
 import fab.shop.api.core.product.Tax;
+import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductConfigRQ;
 import fab.shop.api.core.product.msg.ProductConfigRS;
 import fab.shop.api.core.product.msg.ProductCreateNewRQ;
@@ -61,13 +62,19 @@ public class ShopIntegrationProductConfigServiceTestHelperImpl implements ShopIn
     @Override
     public ProductCreateNewRS productCreateNewTestHelper() {
 
-        ProductCreateNewRQ productCreateNewRQ = new ProductCreateNewRQ();
+
+        // ProductCreateNewRQ productCreateNewRQ = new ProductCreateNewRQ();
 
         // shop
         Shop shop = new Shop(null, "shop name", "shop description", "shop remarks", 33334);
         List<Shop> shopList = new ArrayList<>();
         shopList.add(shop);
-        productCreateNewRQ.setShopList(shopList);
+        shopList.add(shop);
+
+        ProductConfigBasicRQ rq = new ProductConfigBasicRQ(1, shopList, null, null, null, null, null);
+
+
+        // rq.setShopList(shopList);
         // productCreateNewRQ.addShop(shop);
 
         // // product
@@ -94,16 +101,24 @@ public class ShopIntegrationProductConfigServiceTestHelperImpl implements ShopIn
         // taxList.add(tax);
         // Offer offer = new Offer(null, "offer name", "offer description", "offer remarks", 9.99f, article2, discounList, taxList, new Date(), new Date(), true);
         // productCreateNewRQ.addOffer(offer);
+ 
+        System.out.println("sending : " + rq.toString());
+        String urlservice = getShopIntegration().getProductServiceUrl() + "/config/createnew";
+        System.out.println("sending to : " + urlservice);
 
-        return restTemplate.postForObject(getShopIntegration().getProductServiceUrl() + "/config/createnew", productCreateNewRQ, ProductCreateNewRS.class);
+        return restTemplate.postForObject(urlservice, rq, ProductCreateNewRS.class);
     }
 
     @Override
     public ProductConfigRS productConfigTestHelper() {
 
-        ProductConfigRQ productConfigRQ = new ProductConfigRQ();
-        
-        return restTemplate.postForObject(getShopIntegration().getProductServiceUrl() + "/config/config", productConfigRQ, ProductConfigRS.class);
+        ProductConfigBasicRQ rq = new ProductConfigBasicRQ();
+        // ProductConfigRQ productConfigRQ = new ProductConfigRQ();
+
+        Shop shop = new Shop(5, "shop name", "shop description", "shop remarks", 123);
+        rq.addShop(shop);
+        System.out.println("enviado : " + rq.toString());
+        return restTemplate.postForObject(getShopIntegration().getProductServiceUrl() + "/config/config", rq, ProductConfigRS.class);
     }
     
 }

@@ -59,29 +59,56 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
-      // TODO Auto-generated method stub
-      return null;
+      String msg = "ProductServiceImpl - getAvail() - recibido rq = " + getAvailRQ.toString();
+
+
+      GetAvailRS rs = new GetAvailRS();
+      rs.setStatus(msg);
+      return rs;
     }
 
 
     @Override
     public GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ) {
-      // TODO Auto-generated method stub
-      return null;
+
+      String msg = "recibido rq = " + getOfferListDetailRQ.toString();
+
+
+      GetOfferListDetailRS rs = new GetOfferListDetailRS();
+      rs.setStatus(msg);
+
+
+      return rs;
     }
 
 
     @Override
     public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
-      // TODO Auto-generated method stub
-      return null;
+
+      String msg = "recibido rq = " + productPurchaseConfirmRQ.toString();
+
+
+      ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
+      rs.setStatus(msg);
+
+
+      return rs;
+
     }
 
 
     @Override
     public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
-      // TODO Auto-generated method stub
-      return null;
+
+      
+      String msg = "recibido rq = " + productPurchaseCancelRQ.toString();
+
+
+      ProductPurchaseCancelRS rs = new ProductPurchaseCancelRS();
+      rs.setStatus(msg);
+
+
+      return rs;
     }
     
 }

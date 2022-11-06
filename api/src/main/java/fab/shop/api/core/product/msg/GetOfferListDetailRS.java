@@ -6,16 +6,22 @@ public class GetOfferListDetailRS {
 
     private Integer shopId;
     private List<OfferAvail> offerList;
+    private String status;
+
+
+
+    public GetOfferListDetailRS(Integer shopId, List<OfferAvail> offerList, String status) {
+        this.shopId = shopId;
+        this.offerList = offerList;
+        this.status = status;
+    }
 
 
 
     public GetOfferListDetailRS() {
     }
 
-    public GetOfferListDetailRS(Integer shopId, List<OfferAvail> offerList) {
-        this.shopId = shopId;
-        this.offerList = offerList;
-    }
+
 
     public Integer getShopId() {
         return this.shopId;
@@ -33,29 +39,29 @@ public class GetOfferListDetailRS {
         this.offerList = offerList;
     }
 
-    public GetOfferListDetailRS shopId(Integer shopId) {
-        setShopId(shopId);
-        return this;
+    public String getStatus() {
+        return this.status;
     }
 
-    public GetOfferListDetailRS offerList(List<OfferAvail> offerList) {
-        setOfferList(offerList);
-        return this;
+    public void setStatus(String status) {
+        this.status = status;
     }
-
 
 
     @Override
     public String toString() {
         String offerListString = "{ ";
-        for(OfferAvail offerAvail : getOfferList()){
-            offerListString += offerAvail.toString();
-            offerListString += ", ";
+        if(getOfferList() != null){
+            for(OfferAvail offerAvail : getOfferList()){
+                offerListString += offerAvail.toString();
+                offerListString += ", ";
+            }
         }
         offerListString += " }";
         return "{" +
             " shopId='" + getShopId() + "'" +
             ", offerList='" + offerListString + "'" +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 

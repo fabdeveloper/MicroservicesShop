@@ -1,5 +1,7 @@
 package fab.shop.api.core.product.msg;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,11 @@ import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.Shop;
 import fab.shop.api.core.product.Tax;
 
-public abstract class AbstractProductConfigRQ {
+
+
+
+
+public class ProductConfigBasicRQ {
 
     protected Integer shopId;
     protected List<Shop> shopList;
@@ -22,10 +28,10 @@ public abstract class AbstractProductConfigRQ {
 
 
 
-    public AbstractProductConfigRQ() {
+    public ProductConfigBasicRQ() {
     }
 
-    public AbstractProductConfigRQ(Integer shopId, List<Shop> shopList, List<Product> productList, List<Article> articleList, List<Offer> offerList, List<Discount> discountList, List<Tax> taxList) {
+    public ProductConfigBasicRQ(Integer shopId, List<Shop> shopList, List<Product> productList, List<Article> articleList, List<Offer> offerList, List<Discount> discountList, List<Tax> taxList) {
         this.shopId = shopId;
         this.shopList = shopList;
         this.productList = productList;
@@ -49,9 +55,6 @@ public abstract class AbstractProductConfigRQ {
 
 
     public List<Shop> getShopList() {
-        if(this.shopList == null){
-            this.shopList = new ArrayList<>();
-        }
         return this.shopList;
     }
 
@@ -61,9 +64,6 @@ public abstract class AbstractProductConfigRQ {
 
 
     public List<Product> getProductList() {
-        if(this.productList == null){
-            this.productList = new ArrayList<>();
-        }
         return this.productList;
     }
 
@@ -72,9 +72,6 @@ public abstract class AbstractProductConfigRQ {
     }
 
     public List<Article> getArticleList() {
-        if(this.articleList == null){
-            this.articleList = new ArrayList<>();
-        }
         return this.articleList;
     }
 
@@ -83,9 +80,6 @@ public abstract class AbstractProductConfigRQ {
     }
 
     public List<Offer> getOfferList() {
-        if(this.offerList == null){
-            this.offerList = new ArrayList<>();
-        }
         return this.offerList;
     }
 
@@ -94,9 +88,6 @@ public abstract class AbstractProductConfigRQ {
     }
 
     public List<Discount> getDiscountList() {
-        if(this.discountList == null){
-            this.discountList = new ArrayList<>();
-        }
         return this.discountList;
     }
 
@@ -105,9 +96,6 @@ public abstract class AbstractProductConfigRQ {
     }
 
     public List<Tax> getTaxList() {
-        if(this.taxList == null){
-            this.taxList = new ArrayList<>();
-        }
         return this.taxList;
     }
 
@@ -118,27 +106,45 @@ public abstract class AbstractProductConfigRQ {
 
 
     public void addProduct(Product product){
-        getProductList().add(product);
+        if(this.productList == null){
+            setProductList(new ArrayList<>());
+        }
+        this.productList.add(product);
     }
 
     public void addArticle(Article article){
-        getArticleList().add(article);
+        if(this.articleList == null){
+            this.articleList = new ArrayList<>();
+        }
+        this.articleList.add(article);
     }
 
     public void addOffer(Offer offer){
-        getOfferList().add(offer);
+        if(this.offerList == null){
+            this.offerList = new ArrayList<>();
+        }
+        this.offerList.add(offer);
     }
 
     public void addShop(Shop shop){
-        getShopList().add(shop);
+        if(this.shopList == null){
+            setShopList(new ArrayList<>());
+        }
+        this.shopList.add(shop);
     }
 
     public void addDiscount(Discount discount){
-        getDiscountList().add(discount);
+        if(this.discountList == null){
+            this.discountList = new ArrayList<>();
+        }
+        this.discountList.add(discount);
     }
 
     public void addTax(Tax tax){
-        getTaxList().add(tax);
+        if(this.taxList == null){
+            this.taxList = new ArrayList<>();
+        }
+        this.taxList.add(tax);
     }
 
 
@@ -147,44 +153,56 @@ public abstract class AbstractProductConfigRQ {
     public String toString() {
 
         String shopListString = "{ ";
-        for(Shop shop : getShopList()){
-            shopListString += shop.toString();
-            shopListString += ", ";
+        if(getShopList() != null){
+            for(Shop shop : getShopList()){
+                shopListString += shop.toString();
+                shopListString += ", ";
+            }
         }
         shopListString += " }";
 
         String productListString = "{ ";
-        for(Product product : getProductList()){
-            productListString += product.toString();
-            productListString += ", ";
+        if(getProductList() != null){
+            for(Product product : getProductList()){
+                productListString += product.toString();
+                productListString += ", ";
+            }
         }
         productListString += " }";
 
         String articleListString = "{ ";
-        for(Article article : getArticleList()){
-            articleListString += article.toString();
-            articleListString += ", ";
+        if(getArticleList() != null){
+            for(Article article : getArticleList()){
+                articleListString += article.toString();
+                articleListString += ", ";
+            }
         }
         articleListString += " }";
 
         String offerListString = "{ ";
-        for(Offer offer : getOfferList()){
-            offerListString += offer.toString();
-            offerListString += ", ";
+        if(getOfferList() != null){
+            for(Offer offer : getOfferList()){
+                offerListString += offer.toString();
+                offerListString += ", ";
+            }
         }
         offerListString += " }";
         
         String discountListString = "{ ";
-        for(Discount discount : getDiscountList()){
-            discountListString += discount.toString();
-            discountListString += ", ";
+        if(getDiscountList() != null){
+            for(Discount discount : getDiscountList()){
+                discountListString += discount.toString();
+                discountListString += ", ";
+            }
         }
         discountListString += " }";
         
         String taxListString = "{ ";
-        for(Tax tax : getTaxList()){
-            taxListString += tax.toString();
-            taxListString += ", ";
+        if(getTaxList() != null){
+            for(Tax tax : getTaxList()){
+                taxListString += tax.toString();
+                taxListString += ", ";
+            }
         }
         taxListString += " }";
 
@@ -200,5 +218,5 @@ public abstract class AbstractProductConfigRQ {
             "}";
     }
 
-
+    
 }

@@ -12,16 +12,21 @@ public class GetAvailRS {
     private List<Article> articleList;
     private List<OfferAvail> offerList;
 
+    private String status;
 
-    public GetAvailRS() {
-    }
 
-    public GetAvailRS(Integer shopId, List<Product> productList, List<Article> articleList, List<OfferAvail> offerList) {
+    public GetAvailRS(Integer shopId, List<Product> productList, List<Article> articleList, List<OfferAvail> offerList, String status) {
         this.shopId = shopId;
         this.productList = productList;
         this.articleList = articleList;
         this.offerList = offerList;
+        this.status = status;
     }
+
+
+    public GetAvailRS() {
+    }
+
 
     public Integer getShopId() {
         return this.shopId;
@@ -55,27 +60,16 @@ public class GetAvailRS {
         this.offerList = offerList;
     }
 
-    public GetAvailRS shopId(Integer shopId) {
-        setShopId(shopId);
-        return this;
+    public String getStatus() {
+        return this.status;
     }
 
-    public GetAvailRS productList(List<Product> productList) {
-        setProductList(productList);
-        return this;
-    }
-
-    public GetAvailRS articleList(List<Article> articleList) {
-        setArticleList(articleList);
-        return this;
-    }
-
-    public GetAvailRS offerList(List<OfferAvail> offerList) {
-        setOfferList(offerList);
-        return this;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 
+    
 
     @Override
     public String toString() {
@@ -106,6 +100,8 @@ public class GetAvailRS {
             ", productList='" + productListString + "'" +
             ", articleList='" + articleListString + "'" +
             ", offerList='" + offerListString + "'" +
+           ", status='" + getStatus() + "'" +
+
             "}";
     }
 
