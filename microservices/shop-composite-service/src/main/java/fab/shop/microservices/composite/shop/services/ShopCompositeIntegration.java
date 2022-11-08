@@ -6,10 +6,13 @@ import fab.shop.api.core.valuation.msg.ValuationRQ;
 import fab.shop.api.core.valuation.msg.ValuationRS;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductService;
+import fab.shop.api.core.product.msg.GenericProductConfigRQ;
 import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
 import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
+import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
+import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
@@ -235,6 +238,19 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     @Override
     public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
         return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseCancel", productPurchaseCancelRQ, ProductPurchaseCancelRS.class);
+    }
+
+
+    @Override
+    public ProductCreateNewRS productCreateNew(ProductConfigBasicRQ productCreateNewRQ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public ProductCreateNewRS testConfig(GenericProductConfigRQ testConfigRQ) {
+        return restTemplate.postForObject(getProductServiceUrl() + "/testconfig", testConfigRQ, ProductCreateNewRS.class);
     }
 
     

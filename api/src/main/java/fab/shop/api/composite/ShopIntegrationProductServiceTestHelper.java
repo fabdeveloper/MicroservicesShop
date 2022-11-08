@@ -40,6 +40,19 @@ public interface ShopIntegrationProductServiceTestHelper {
                 ProductPurchaseCancelRS productPurchaseCancelTestHelper();
 
 
+                
+        @GetMapping(
+                value = "/shoptester/productservice/testproductcreatenew",
+                produces = "application/json")
+                ProductCreateNewRS productCreateNewTestHelper();
+
+
+        @GetMapping(
+                value = "/shoptester/productservice/testconfig",
+                produces = "application/json")
+                ProductCreateNewRS productTestConfigTestHelper();
+
+
 
 }
 

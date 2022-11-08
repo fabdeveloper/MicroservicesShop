@@ -39,7 +39,7 @@ public class ProductConfigServiceImpl implements ProductConfigService {
 
 
     @Override
-    public ProductCreateNewRS productCreateNew(ProductConfigBasicRQ productCreateNewRQ) {
+    public ProductCreateNewRS productCreateNew(ProductCreateNewRQ productCreateNewRQ) {
             System.out.println("ProductConfigServiceImpl - productCreateNew, recibido : " + productCreateNewRQ.toString());
         ProductCreateNewRS rs = new ProductCreateNewRS();
 
@@ -141,7 +141,7 @@ public class ProductConfigServiceImpl implements ProductConfigService {
     }
 
     @Override
-    public ProductConfigRS productConfig(ProductConfigBasicRQ productConfigRQ) {
+    public ProductConfigRS productConfig(ProductConfigRQ productConfigRQ) {
 
         String msg = "recibido : " + productConfigRQ.toString();
 

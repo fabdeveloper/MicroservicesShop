@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import fab.shop.api.composite.ShopIntegrationProductServiceTestHelper;
+import fab.shop.api.core.product.msg.GenericProductConfigRQ;
 import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
 import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
 import fab.shop.api.core.product.msg.OfferPurchase;
+import fab.shop.api.core.product.msg.ProductCreateNewRS;
+import fab.shop.api.core.product.msg.ProductCreateNewRQ;
+
 import fab.shop.api.core.product.msg.ProductMappersTestRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
@@ -115,6 +119,32 @@ public class ShopIntegrationProductServiceTestHelperImpl implements ShopIntegrat
 
 
         return restTemplate.postForObject(getShopIntegration().getProductServiceUrl() + "/productPurchaseCancel", rq, ProductPurchaseCancelRS.class);
+    }
+
+
+    @Override
+    public ProductCreateNewRS productCreateNewTestHelper() {
+
+        List<Shop> shopList = new ArrayList<>();
+        Shop shop = new Shop(3, "shop name", "shop description", "shop remarks", 5555);
+        shopList.add(shop);
+
+        ProductCreateNewRQ rq = new ProductCreateNewRQ(1, shopList, null, null, null, null, null);
+
+        return restTemplate.postForObject(getShopIntegration().getProductServiceUrl() + "/createnew", rq, ProductCreateNewRS.class);
+
+    }
+
+
+    @Override
+    public ProductCreateNewRS productTestConfigTestHelper() {
+
+        GenericProductConfigRQ rq = new GenericProductConfigRQ();
+        String info = "testing rq ...";
+        
+        rq.setInfo(info);
+
+        return getShopIntegration().testConfig(rq);
     }
     
 }

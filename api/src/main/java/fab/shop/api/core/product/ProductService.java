@@ -5,10 +5,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import fab.shop.api.core.product.msg.GenericProductConfigRQ;
 import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
 import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
+import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
+import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
@@ -56,6 +59,21 @@ public interface ProductService {
 			consumes = "application/json",
 			produces = "application/json")
 			ProductPurchaseCancelRS productPurchaseCancel(@RequestBody ProductPurchaseCancelRQ productPurchaseCancelRQ);
+
+			
+	@PostMapping(
+		value = "/product/createnew",
+		consumes = "application/json",
+		produces = "application/json")
+		public ProductCreateNewRS productCreateNew(@RequestBody ProductConfigBasicRQ productCreateNewRQ);
+
+
+		
+	@PostMapping(
+		value = "/product/testconfig",
+		consumes = "application/json",
+		produces = "application/json")
+		public ProductCreateNewRS testConfig(@RequestBody GenericProductConfigRQ testConfigRQ);
 
 
 }

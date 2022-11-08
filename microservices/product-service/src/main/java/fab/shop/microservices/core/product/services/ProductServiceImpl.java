@@ -8,16 +8,18 @@ import org.springframework.web.bind.annotation.RestController;
 import fab.shop.util.http.ServiceUtil;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductService;
+import fab.shop.api.core.product.msg.GenericProductConfigRQ;
 import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
 import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
+import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
+import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
-import fab.shop.api.exceptions.InvalidInputException;
-import fab.shop.api.exceptions.NotFoundException;
+
 
 
 @RestController
@@ -109,6 +111,35 @@ public class ProductServiceImpl implements ProductService{
 
 
       return rs;
+    }
+
+
+    @Override
+    public ProductCreateNewRS productCreateNew(ProductConfigBasicRQ productCreateNewRQ) {
+
+      String msg = "recibido rq = " + productCreateNewRQ.toString();
+
+      ProductCreateNewRS rs = new ProductCreateNewRS();
+      rs.addError(msg);
+
+
+      return rs;
+    }
+
+
+    @Override
+    public ProductCreateNewRS testConfig(GenericProductConfigRQ testConfigRQ) {
+
+      
+      String msg = "recibido rq = " + testConfigRQ.toString();
+
+      ProductCreateNewRS rs = new ProductCreateNewRS();
+      rs.addError(msg);
+
+
+      return rs;
+
+
     }
     
 }
