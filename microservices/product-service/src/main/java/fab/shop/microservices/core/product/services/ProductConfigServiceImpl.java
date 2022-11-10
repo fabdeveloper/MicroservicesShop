@@ -71,8 +71,7 @@ public class ProductConfigServiceImpl implements ProductConfigService {
             }
 
         }
-
-        /*
+        
         // product
         
         for(Product product : productCreateNewRQ.getProductList()){
@@ -85,6 +84,7 @@ public class ProductConfigServiceImpl implements ProductConfigService {
                 rs.addError(errorString);
             }
         }
+        /*
 
         // article
         
