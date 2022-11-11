@@ -7,13 +7,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "product")
-public class ProductEntity extends AbstractBusinessEntityItem {    
+public class ProductEntity extends BusinessEntity {    
 
-    @Id @GeneratedValue
-    private Integer id;
-
-    @Version
-    private Integer version;
+    
 
     @ManyToOne
     @JoinColumn(name = "shop_id", nullable = false)
@@ -22,20 +18,15 @@ public class ProductEntity extends AbstractBusinessEntityItem {
     private String type;
 
 
-
     public ProductEntity() {
         super();
     }
 
-
     public ProductEntity(Integer id, Integer version, String name, String description, String remarks, ShopEntity shop, String type) {
-        super(name, description, remarks);
-        this.id = id;
-        this.version = version;
+        super(id, version, name, description, remarks);
         this.shop = shop;
         this.type = type;
     }
-    
 
     public ShopEntity getShop() {
         return this.shop;
@@ -53,33 +44,6 @@ public class ProductEntity extends AbstractBusinessEntityItem {
         this.type = type;
     }
 
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() {
-        return this.version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-    public ProductEntity id(Integer id) {
-        setId(id);
-        return this;
-    }
-
-    public ProductEntity version(Integer version) {
-        setVersion(version);
-        return this;
-    }
-
     public ProductEntity shop(ShopEntity shop) {
         setShop(shop);
         return this;
@@ -90,33 +54,19 @@ public class ProductEntity extends AbstractBusinessEntityItem {
         return this;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof ProductEntity)) {
-            return false;
-        }
-        ProductEntity productEntity = (ProductEntity) o;
-        return Objects.equals(id, productEntity.id) && Objects.equals(version, productEntity.version) && Objects.equals(shop, productEntity.shop) && Objects.equals(type, productEntity.type);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, version, shop, type);
-    }
-
+    
     @Override
     public String toString() {
         String anterior = super.toString();
+        String shopString = (getShop() != null ? getShop().toString() : "null");
 
-        return anterior + ", {" +
-            " id='" + getId() + "'" +
-            ", version='" + getVersion() + "'" +
-            ", shop='" + getShop() + "'" +
+        return "{ " + anterior +
+            ", shop='" + shopString + "'" +
             ", type='" + getType() + "'" +
-            "}";
+            " }";
     }
 
+
+    
 
 }

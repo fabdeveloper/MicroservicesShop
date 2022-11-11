@@ -8,13 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ARTICLES")
-public class ArticleEntity extends AbstractBusinessEntityItem {
-
-    @Id @GeneratedValue
-    private Integer id;
-
-    @Version
-    private Integer version;
+public class ArticleEntity extends BusinessEntity {    
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
@@ -26,26 +20,15 @@ public class ArticleEntity extends AbstractBusinessEntityItem {
     }
 
     public ArticleEntity(Integer id, Integer version, String name, String description, String remarks, ProductEntity product) {
-        super(name, description, remarks);
-        this.id = id;
-        this.version = version;
+        super(id, version, name, description, remarks);
+
         this.product = product;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
+    
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() {
-        return this.version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
+    public ArticleEntity(ProductEntity product) {
+        this.product = product;
     }
 
     public ProductEntity getProduct() {
@@ -61,48 +44,18 @@ public class ArticleEntity extends AbstractBusinessEntityItem {
         return this;
     }
 
- 
 
-    public ArticleEntity id(Integer id) {
-        setId(id);
-        return this;
-    }
-
-    public ArticleEntity version(Integer version) {
-        setVersion(version);
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof ArticleEntity)) {
-            return false;
-        }
-        ArticleEntity articleEntity = (ArticleEntity) o;
-        return Objects.equals(id, articleEntity.id) && Objects.equals(version, articleEntity.version) && Objects.equals(product, articleEntity.product);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, version, product);
-    }
-
+    
 
     @Override
     public String toString() {
         String anterior = super.toString();
+        String productString = (getProduct() != null ? getProduct().toString() : "null");
 
-        return anterior + ", {" +
-            " id='" + getId() + "'" +
-            ", version='" + getVersion() + "'" +
-            ", product='" + getProduct() + "'" +
-            "}";
+        return "{ " + anterior + 
+            ", product='" + productString  + "'" +
+            " }";
     }
-
-
-    
 
 
     

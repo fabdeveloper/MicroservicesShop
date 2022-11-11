@@ -3,8 +3,12 @@ package fab.shop.microservices.core.product.persistence;
 import java.util.Objects;
 
 import fab.shop.api.core.product.EnumSign;
+import javax.persistence.*;
 
-public abstract class AbstractExtraValuableEntityItem extends AbstractBusinessEntityItem {
+
+
+@Entity
+public abstract class AbstractExtraValuableEntityItem extends BusinessEntity {
 
     protected Float percentValue;
     protected Float fixedValue;
@@ -16,9 +20,9 @@ public abstract class AbstractExtraValuableEntityItem extends AbstractBusinessEn
         super();
     }
 
-    public AbstractExtraValuableEntityItem(String name, String description, String remarks,
+    public AbstractExtraValuableEntityItem(Integer id, Integer version, String name, String description, String remarks,
                 Float percentValue, Float fixedValue) {
-        super(name, description, remarks);
+        super(id, version, name, description, remarks);
         this.percentValue = percentValue;
         this.fixedValue = fixedValue;
     }
@@ -46,16 +50,6 @@ public abstract class AbstractExtraValuableEntityItem extends AbstractBusinessEn
         return this.increment;
     }
 
-
-    public AbstractExtraValuableEntityItem percentValue(Float percentValue) {
-        setPercentValue(percentValue);
-        return this;
-    }
-
-    public AbstractExtraValuableEntityItem fixedValue(Float fixedValue) {
-        setFixedValue(fixedValue);
-        return this;
-    }
 
 
     @Override

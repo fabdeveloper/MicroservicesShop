@@ -67,14 +67,6 @@ public class ShopIntegrationProductConfigServiceTestHelperImpl implements ShopIn
 
         // shop
         Shop shop = new Shop(null, "shop name", "shop description", "shop remarks", 33334);
-        // List<Shop> shopList = new ArrayList<>();
-        // shopList.add(shop);
-        // shopList.add(shop);
-
-        // ProductConfigBasicRQ rq = new ProductConfigBasicRQ(1, shopList, null, null, null, null, null);
-
-
-        // rq.setShopList(shopList);
         productCreateNewRQ.addShop(shop);
 
         // // product
