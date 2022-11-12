@@ -69,10 +69,10 @@ public class ShopIntegrationProductConfigServiceTestHelperImpl implements ShopIn
         Shop shop = new Shop(null, "shop name", "shop description", "shop remarks", 33334);
         productCreateNewRQ.addShop(shop);
 
-        // // product
-        // Shop shop2 = new Shop(null, "shop2 name", "shop2 description", "shop2 remarks", 33335);
-        // Product product = new Product(null, "product 100 name", "product 100 description", "product 100 remarks", shop2, "product 100 type", getServiceUtil().getServiceAddress());
-        // productCreateNewRQ.addProduct(product);
+        // product
+        Shop shop2 = new Shop(null, "shop2 name", "shop2 description", "shop2 remarks", 33335);
+        Product product = new Product(null, "product 100 name", "product 100 description", "product 100 remarks", shop2, "product 100 type", getServiceUtil().getServiceAddress());
+        productCreateNewRQ.addProduct(product);
 
         // // article
         // Shop shop3 = new Shop(null, "shop3 name", "shop3 description", "shop3 remarks", 33337);

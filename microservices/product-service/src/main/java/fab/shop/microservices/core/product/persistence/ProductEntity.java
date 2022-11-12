@@ -11,7 +11,7 @@ public class ProductEntity extends BusinessEntity {
 
     
 
-    @ManyToOne
+    @ManyToOne //(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "shop_id", nullable = false)
     private ShopEntity shop;
 

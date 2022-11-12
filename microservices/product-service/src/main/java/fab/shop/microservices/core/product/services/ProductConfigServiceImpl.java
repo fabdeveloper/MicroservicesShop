@@ -20,6 +20,7 @@ import fab.shop.api.core.product.msg.ProductCreateNewRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.microservices.core.mapper.ProductServiceGeneralMapper;
 import fab.shop.microservices.core.product.helper.ProductConfigPersistenceHelperImpl;
+import fab.shop.microservices.core.product.persistence.ProductEntity;
 import fab.shop.microservices.core.product.persistence.ShopEntity;
 
 
@@ -75,9 +76,29 @@ public class ProductConfigServiceImpl implements ProductConfigService {
         // product
         
         for(Product product : productCreateNewRQ.getProductList()){
+            String shopString = product.getShop().toString();
             String productString = product.toString();
+            Shop shop = null;
+            ShopEntity shopEntity = null;
+            ProductEntity productEntity = null;
+            
             try{
-                getPersistenceHelper().getProductRepository().save(getMapper().getProductMapper().apiToEntity(product));
+                if(product.getShop().getId() == null){
+                    shopEntity = getPersistenceHelper().getShopRepository().save(getMapper().getShopMapper().apiToEntity(product.getShop()));
+                    rs.addError("shop created = " + shopEntity.toString());
+
+                    shop = getMapper().getShopMapper().entityToApi(shopEntity);
+                    product.setShop(shop);
+                    productString = product.toString();
+                }
+            }catch(Throwable t){
+                String msg = t.getMessage();
+                String errorString = "error creating = " + shopString + " - msg : " + msg;
+                rs.addError(errorString);
+            }
+            try{
+                productEntity = getPersistenceHelper().getProductRepository().save(getMapper().getProductMapper().apiToEntity(product));
+                rs.addError("product created = " + productEntity.toString());
             }catch(Throwable t){
                 String msg = t.getMessage();
                 String errorString = "error creating = " + productString + " - msg : " + msg;
