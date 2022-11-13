@@ -78,18 +78,16 @@ public class ProductConfigServiceImpl implements ProductConfigService {
         for(Product product : productCreateNewRQ.getProductList()){
             String shopString = product.getShop().toString();
             String productString = product.toString();
-            Shop shop = null;
             ShopEntity shopEntity = null;
-            ProductEntity productEntity = null;
+            ProductEntity productEntity = getMapper().getProductMapper().apiToEntity(product);
             
             try{
                 if(product.getShop().getId() == null){
                     shopEntity = getPersistenceHelper().getShopRepository().save(getMapper().getShopMapper().apiToEntity(product.getShop()));
                     rs.addError("shop created = " + shopEntity.toString());
 
-                    shop = getMapper().getShopMapper().entityToApi(shopEntity);
-                    product.setShop(shop);
-                    productString = product.toString();
+                    productEntity.setShop(shopEntity);
+                    productString = productEntity.toString();
                 }
             }catch(Throwable t){
                 String msg = t.getMessage();
@@ -97,7 +95,7 @@ public class ProductConfigServiceImpl implements ProductConfigService {
                 rs.addError(errorString);
             }
             try{
-                productEntity = getPersistenceHelper().getProductRepository().save(getMapper().getProductMapper().apiToEntity(product));
+                productEntity = getPersistenceHelper().getProductRepository().save(productEntity);
                 rs.addError("product created = " + productEntity.toString());
             }catch(Throwable t){
                 String msg = t.getMessage();
