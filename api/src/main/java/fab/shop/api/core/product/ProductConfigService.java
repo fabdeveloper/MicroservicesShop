@@ -3,7 +3,6 @@ package fab.shop.api.core.product;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductConfigRQ;
 import fab.shop.api.core.product.msg.ProductConfigRS;
 import fab.shop.api.core.product.msg.ProductCreateNewRQ;

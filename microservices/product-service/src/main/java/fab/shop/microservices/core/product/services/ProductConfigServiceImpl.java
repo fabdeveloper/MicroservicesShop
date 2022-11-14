@@ -1,6 +1,9 @@
 package fab.shop.microservices.core.product.services;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +23,12 @@ import fab.shop.api.core.product.msg.ProductCreateNewRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.microservices.core.mapper.ProductServiceGeneralMapper;
 import fab.shop.microservices.core.product.helper.ProductConfigPersistenceHelperImpl;
+import fab.shop.microservices.core.product.persistence.ArticleEntity;
+import fab.shop.microservices.core.product.persistence.DiscountEntity;
+import fab.shop.microservices.core.product.persistence.OfferEntity;
 import fab.shop.microservices.core.product.persistence.ProductEntity;
 import fab.shop.microservices.core.product.persistence.ShopEntity;
+import fab.shop.microservices.core.product.persistence.TaxEntity;
 
 
 @RestController
@@ -62,15 +69,14 @@ public class ProductConfigServiceImpl implements ProductConfigService {
             ShopEntity entity = null;
             String shopString = shop.getName();
             try{
-                entity = getPersistenceHelper().getShopRepository().save(getMapper().getShopMapper().apiToEntity(shop));
+                entity = getAliveShopEntity(shop);
+                // entity = getPersistenceHelper().getShopRepository().save(getMapper().getShopMapper().apiToEntity(shop));
                 rs.addError("shop created = " + entity.toString());
-
             }catch(Throwable t){
                 String msg = t.getMessage();
                 String errorString = "error creating = " + shopString + " - msg : " + msg;
                 rs.addError(errorString);
             }
-
         }
         
         // product
@@ -182,6 +188,107 @@ public class ProductConfigServiceImpl implements ProductConfigService {
 
     public ProductServiceGeneralMapper getMapper() {
         return this.mapper;
+    }
+
+
+    private ShopEntity getAliveShopEntity(Shop shop){
+        ShopEntity entity = null;
+        ShopEntity temp = getMapper().getShopMapper().apiToEntity(shop);
+
+        if(shop.getId() == null){
+            entity = getPersistenceHelper().getShopRepository().save(temp);
+        }else{
+            entity = getPersistenceHelper().getShopRepository().findById(shop.getId()).get();            
+        }
+        return entity;
+    }
+
+    private ProductEntity getAliveProductEntity(Product product){
+        ProductEntity entity = null;
+        ProductEntity temp = getMapper().getProductMapper().apiToEntity(product);
+        ShopEntity shopEntity = null;
+
+        if(product.getId() == null){
+            shopEntity = getAliveShopEntity(product.getShop());
+            temp.setShop(shopEntity);
+            entity = getPersistenceHelper().getProductRepository().save(temp);
+        }else{
+            entity = getPersistenceHelper().getProductRepository().findById(product.getId()).get();
+        }
+
+        return entity;
+    }
+
+    private ArticleEntity getAliveArticleEntity(Article article){
+        ArticleEntity entity = null;
+        ArticleEntity temp = getMapper().getArticleMapper().apiToEntity(article);
+
+        if(article.getId() != null){
+            entity = getPersistenceHelper().getArticleRepository().findById(article.getId()).get();
+        }else{
+            ProductEntity productEntity = getAliveProductEntity(article.getProduct());
+            temp.setProduct(productEntity);
+            entity = getPersistenceHelper().getArticleRepository().save(temp);
+        }
+
+        return entity;
+    }
+
+    private OfferEntity getAliveOfferEntity(Offer offer){
+        OfferEntity entity = null;
+        OfferEntity temp = getMapper().getOfferMapper().apiToEntity(offer);
+
+        if(offer.getId() != null){
+            entity = getPersistenceHelper().getOfferRepository().findById(offer.getId()).get();
+        }else{
+            ArticleEntity articleEntity = getAliveArticleEntity(offer.getArticle());
+            temp.setArticle(articleEntity);
+            // discount list
+            List<DiscountEntity> discountEntityList = new ArrayList<>();
+            for(Discount discount : offer.getDiscountList()){
+                DiscountEntity discountEntity = getAliveDiscountEntity(discount);
+                discountEntityList.add(discountEntity);
+            }
+            temp.setDiscountList(discountEntityList);
+            
+            // tax list
+
+            List<TaxEntity> taxEntityList = new ArrayList<>();
+            for(Tax tax : offer.getTaxList()){
+                TaxEntity taxEntity = getAliveTaxEntity(tax);
+                taxEntityList.add(taxEntity);
+            }
+            temp.setTaxList(taxEntityList);
+
+            entity = getPersistenceHelper().getOfferRepository().save(temp);
+        }
+
+        return entity;
+    }
+
+    private DiscountEntity getAliveDiscountEntity(Discount discount){
+        DiscountEntity entity = null;
+        DiscountEntity temp = getMapper().getDiscountMapper().apiToEntity(discount);
+
+        if(discount.getId() != null){
+            entity = getPersistenceHelper().getDiscountRepository().findById(discount.getId()).get();
+        }else{
+            entity = getPersistenceHelper().getDiscountRepository().save(temp);
+        }
+        return entity;
+    }
+
+    private TaxEntity getAliveTaxEntity(Tax tax){
+        TaxEntity entity = null;
+        TaxEntity temp = getMapper().getTaxMapper().apiToEntity(tax);
+
+        if(tax.getId() != null){
+            entity = getPersistenceHelper().getTaxRepository().findById(tax.getId()).get();
+        }else{
+            entity = getPersistenceHelper().getTaxRepository().save(temp);
+        }
+
+        return entity;
     }
 
 
