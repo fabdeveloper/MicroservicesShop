@@ -17,10 +17,10 @@ public abstract class AbstractBusinessItem {
 
 
     public AbstractBusinessItem() {
-        this.id = 0;
-        this.name = null;
-        this.description = null;
-        this.remarks = null;
+        // this.id = 0;
+        // this.name = null;
+        // this.description = null;
+        // this.remarks = null;
     }
 
 
@@ -62,8 +62,9 @@ public abstract class AbstractBusinessItem {
 
     @Override
     public String toString() {
+        String idString = (getId() != null ? getId().toString() : "null");
         return "{" +
-            " id='" + getId() + "'" +
+            " id='" + idString + "'" +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", remarks='" + getRemarks() + "'" +

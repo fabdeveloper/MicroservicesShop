@@ -82,26 +82,29 @@ public class ProductConfigServiceImpl implements ProductConfigService {
         // product
         
         for(Product product : productCreateNewRQ.getProductList()){
-            String shopString = product.getShop().toString();
+            // String shopString = product.getShop().toString();
+            // ShopEntity shopEntity = null;
+
             String productString = product.toString();
-            ShopEntity shopEntity = null;
             ProductEntity productEntity = getMapper().getProductMapper().apiToEntity(product);
             
-            try{
-                if(product.getShop().getId() == null){
-                    shopEntity = getPersistenceHelper().getShopRepository().save(getMapper().getShopMapper().apiToEntity(product.getShop()));
-                    rs.addError("shop created = " + shopEntity.toString());
+            // try{
+            //     if(product.getShop().getId() == null){
+            //         shopEntity = getPersistenceHelper().getShopRepository().save(getMapper().getShopMapper().apiToEntity(product.getShop()));
+            //         rs.addError("shop created = " + shopEntity.toString());
 
-                    productEntity.setShop(shopEntity);
-                    productString = productEntity.toString();
-                }
-            }catch(Throwable t){
-                String msg = t.getMessage();
-                String errorString = "error creating = " + shopString + " - msg : " + msg;
-                rs.addError(errorString);
-            }
+            //         productEntity.setShop(shopEntity);
+            //         productString = productEntity.toString();
+            //     }
+            // }catch(Throwable t){
+            //     String msg = t.getMessage();
+            //     String errorString = "error creating = " + shopString + " - msg : " + msg;
+            //     rs.addError(errorString);
+            // }
             try{
-                productEntity = getPersistenceHelper().getProductRepository().save(productEntity);
+                // productEntity = getPersistenceHelper().getProductRepository().save(productEntity);
+
+                productEntity = getAliveProductEntity(product);
                 rs.addError("product created = " + productEntity.toString());
             }catch(Throwable t){
                 String msg = t.getMessage();
@@ -109,14 +112,16 @@ public class ProductConfigServiceImpl implements ProductConfigService {
                 rs.addError(errorString);
             }
         }
-        /*
-
+        
         // article
         
         for(Article article : productCreateNewRQ.getArticleList()){
             String articleString = article.toString();
+            ArticleEntity articleEntity = null;
             try{
-                getPersistenceHelper().getArticleRepository().save(getMapper().getArticleMapper().apiToEntity(article));
+                articleEntity = getAliveArticleEntity(article);
+                rs.addError("article created = " + articleEntity.toString());
+
             }catch(Throwable t){
                 String msg = t.getMessage();
                 String errorString = "error creating = " + articleString + " - msg : " + msg;
@@ -127,8 +132,10 @@ public class ProductConfigServiceImpl implements ProductConfigService {
         // offer
         for(Offer offer : productCreateNewRQ.getOfferList()){
             String offerString = offer.toString();
+            OfferEntity offerEntity = null;
             try{
-                getPersistenceHelper().getOfferRepository().save(getMapper().getOfferMapper().apiToEntity(offer));
+                offerEntity = getAliveOfferEntity(offer);                
+                rs.addError("offer created = " + offerEntity.toString());
             }catch(Throwable t){
                 String msg = t.getMessage();
                 String errorString = "error creating = " + offerString + " - msg : " + msg;
@@ -139,8 +146,10 @@ public class ProductConfigServiceImpl implements ProductConfigService {
         // discount
         for(Discount discount : productCreateNewRQ.getDiscountList()){
             String discountString = discount.toString();
+            DiscountEntity discountEntity = null;
             try{
-                getPersistenceHelper().getDiscountRepository().save(getMapper().getDiscountMapper().apiToEntity(discount));
+                discountEntity = getAliveDiscountEntity(discount);                
+                rs.addError("diuscount created = " + discountEntity.toString());
             }catch(Throwable t){
                 String msg = t.getMessage();
                 String errorString = "error creating = " + discountString + " - msg : " + msg;
@@ -151,8 +160,10 @@ public class ProductConfigServiceImpl implements ProductConfigService {
         // tax
         for(Tax tax : productCreateNewRQ.getTaxList()){
             String taxString = tax.toString();
+            TaxEntity taxEntity = null;
             try{
-                getPersistenceHelper().getTaxRepository().save(getMapper().getTaxMapper().apiToEntity(tax));
+                taxEntity = getAliveTaxEntity(tax);                
+                rs.addError("tax created = " + taxEntity.toString());
             }catch(Throwable t){
                 String msg = t.getMessage();
                 String errorString = "error creating = " + taxString + " - msg : " + msg;
@@ -160,7 +171,6 @@ public class ProductConfigServiceImpl implements ProductConfigService {
             }
         }
 
- */
 
         return rs;
     }

@@ -103,27 +103,16 @@ public class BusinessEntity {
         return this;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof BusinessEntity)) {
-            return false;
-        }
-        BusinessEntity businessEntity = (BusinessEntity) o;
-        return Objects.equals(id, businessEntity.id) && Objects.equals(version, businessEntity.version) && Objects.equals(name, businessEntity.name) && Objects.equals(description, businessEntity.description) && Objects.equals(remarks, businessEntity.remarks);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, version, name, description, remarks);
-    }
 
     @Override
     public String toString() {
+        String idString = (getId() != null ? getId().toString() : "null");
+        String versionString = (getVersion() != null ? getVersion().toString() : "null");
+
         return "{" +
-            " id='" + getId() + "'" +
-            ", version='" + getVersion() + "'" +
+            " id='" + idString + "'" +
+            ", version='" +  versionString +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", remarks='" + getRemarks() + "'" +
