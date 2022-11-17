@@ -8,7 +8,7 @@ public abstract class AbstractExtraValuableItem extends AbstractBusinessItem{
     private final EnumSign increment;
 
     
-    public AbstractExtraValuableItem(int id, String name, String description, String remarks, Float percentValue, Float fixedValue) {
+    public AbstractExtraValuableItem(Integer id, String name, String description, String remarks, Float percentValue, Float fixedValue) {
         super(id, name, description, remarks);
         this.percentValue = percentValue;
         this.fixedValue = fixedValue;

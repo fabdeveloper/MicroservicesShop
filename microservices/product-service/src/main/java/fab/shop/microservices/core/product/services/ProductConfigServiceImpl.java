@@ -1,5 +1,7 @@
 package fab.shop.microservices.core.product.services;
 
+import javax.transaction.Transactional;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,7 @@ public class ProductConfigServiceImpl implements ProductConfigService {
 
 
     @Override
+    @Transactional
     public ProductCreateNewRS productCreateNew(ProductCreateNewRQ productCreateNewRQ) {
             System.out.println("ProductConfigServiceImpl - productCreateNew, recibido : " + productCreateNewRQ.toString());
         ProductCreateNewRS rs = new ProductCreateNewRS();
@@ -255,18 +258,20 @@ public class ProductConfigServiceImpl implements ProductConfigService {
             temp.setArticle(articleEntity);
             // discount list
             List<DiscountEntity> discountEntityList = new ArrayList<>();
+            // DiscountEntity discountEntity = null;
             for(Discount discount : offer.getDiscountList()){
-                DiscountEntity discountEntity = getAliveDiscountEntity(discount);
-                discountEntityList.add(discountEntity);
+                // discountEntity = getAliveDiscountEntity(discount);
+                discountEntityList.add(getAliveDiscountEntity(discount));
             }
             temp.setDiscountList(discountEntityList);
             
             // tax list
 
             List<TaxEntity> taxEntityList = new ArrayList<>();
+            // TaxEntity taxEntity = null;
             for(Tax tax : offer.getTaxList()){
-                TaxEntity taxEntity = getAliveTaxEntity(tax);
-                taxEntityList.add(taxEntity);
+                // taxEntity = getAliveTaxEntity(tax);
+                taxEntityList.add(getAliveTaxEntity(tax));
             }
             temp.setTaxList(taxEntityList);
 

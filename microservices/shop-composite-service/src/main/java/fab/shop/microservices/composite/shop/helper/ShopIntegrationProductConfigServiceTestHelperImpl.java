@@ -80,6 +80,15 @@ public class ShopIntegrationProductConfigServiceTestHelperImpl implements ShopIn
         Article article = new Article(null, "article name", "article description", "article remarks", product2);
         productCreateNewRQ.addArticle(article);
 
+
+        // discount
+
+        Discount discount = new Discount(null, "discount name", "discount description", "discount remarks", 5.00f, null);
+        productCreateNewRQ.addDiscount(discount);
+
+        Tax tax = new Tax(null, "tax name", "tax description", "tax remarks", 21.00f, null);
+        productCreateNewRQ.addTax(tax);
+
         // offer
         Shop shop4 = new Shop(null, "shop4 name", "shop4 description", "shop4 remarks", 33336);
         Product product3 = new Product(null, "product 3 name", "product 3 description", "product 3 remarks", shop4, "product 3 type", getServiceUtil().getServiceAddress());
@@ -87,10 +96,10 @@ public class ShopIntegrationProductConfigServiceTestHelperImpl implements ShopIn
 
         List<Discount> discounList = new ArrayList<>();
         List<Tax> taxList = new ArrayList<>();
-        Discount discount = new Discount(null, "discount name", "discount description", "discount remarks", 20.00f, null);
-        discounList.add(discount);
-        Tax tax = new Tax(null, "tax name", "tax description", "tax remarks", 26.00f, null);
-        taxList.add(tax);
+        Discount discount2 = new Discount(null, "discount2 name", "discount2 description", "discount2 remarks", 20.00f, null);
+        discounList.add(discount2);
+        Tax tax2 = new Tax(null, "tax2 name", "tax2 description", "tax2 remarks", 26.00f, null);
+        taxList.add(tax2);
         Offer offer = new Offer(null, "offer name", "offer description", "offer remarks", 9.99f, article2, discounList, taxList, new Date(), new Date(), true);
         productCreateNewRQ.addOffer(offer);
  
