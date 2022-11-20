@@ -1,5 +1,6 @@
 package fab.shop.api.core.product.msg;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GetAvailRQ {
@@ -29,6 +30,9 @@ public class GetAvailRQ {
     }
 
     public List<Integer> getProductList() {
+        if(this.productList == null){
+            this.productList = new ArrayList<>();
+        }
         return this.productList;
     }
 
@@ -37,6 +41,9 @@ public class GetAvailRQ {
     }
 
     public List<Integer> getArticleList() {
+        if(this.articleList == null){
+            this.articleList = new ArrayList<>();
+        }
         return this.articleList;
     }
 
@@ -45,6 +52,9 @@ public class GetAvailRQ {
     }
 
     public List<Integer> getOfferList() {
+        if(this.offerList == null){
+            this.offerList = new ArrayList<>();
+        }
         return this.offerList;
     }
 
@@ -70,6 +80,18 @@ public class GetAvailRQ {
     public GetAvailRQ offerList(List<Integer> offerList) {
         setOfferList(offerList);
         return this;
+    }
+
+    public void addProduct(Integer productId){
+        getProductList().add(productId);
+    }
+    
+    public void addArticle(Integer articleId){
+        getArticleList().add(articleId);
+    }
+    
+    public void addOffer(Integer offerId){
+        getOfferList().add(offerId);
     }
  
 

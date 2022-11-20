@@ -78,9 +78,18 @@ public class ShopIntegrationProductServiceTestHelperImpl implements ShopIntegrat
 
         List<Integer> productList = new ArrayList<>();
         productList.add(32);
-        GetAvailRQ rq = new GetAvailRQ(64, productList, null, null);
+        List<Integer> articleList = new ArrayList<>();
+        articleList.add(3);
+        articleList.add(5);
+        articleList.add(6);
 
-        return restTemplate.postForObject(getShopIntegration().getProductServiceUrl() + "/getAvail", rq, GetAvailRS.class);
+
+        GetAvailRQ rq = new GetAvailRQ(null, productList, articleList, null);
+
+        String surl = getShopIntegration().getProductServiceUrl() + "/getAvail";
+        System.out.println("ShopIntegrationProductServiceTestHelperImpl - getAvailTestHelper - llamando al servicio en : " + surl);
+
+        return restTemplate.postForObject(surl, rq, GetAvailRS.class);
     }
 
 

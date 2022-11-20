@@ -1,8 +1,10 @@
 package fab.shop.api.core.product.msg;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fab.shop.api.core.product.Article;
+import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 
 public class GetAvailRS {
@@ -37,6 +39,9 @@ public class GetAvailRS {
     }
 
     public List<Product> getProductList() {
+        if(this.productList == null){
+            this.productList = new ArrayList<>();
+        }
         return this.productList;
     }
 
@@ -45,6 +50,9 @@ public class GetAvailRS {
     }
 
     public List<Article> getArticleList() {
+        if(this.articleList == null){
+            this.articleList = new ArrayList<>();
+        }
         return this.articleList;
     }
 
@@ -53,6 +61,9 @@ public class GetAvailRS {
     }
 
     public List<OfferAvail> getOfferList() {
+        if(this.offerList == null){
+            this.offerList = new ArrayList<>();
+        }
         return this.offerList;
     }
 
@@ -66,6 +77,18 @@ public class GetAvailRS {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void addProduct(Product product){
+        getProductList().add(product);
+    }
+
+    public void addArticle(Article article){
+        getArticleList().add(article);
+    }
+    
+    public void addOffer(OfferAvail offerAvail){
+        getOfferList().add(offerAvail);
     }
 
 

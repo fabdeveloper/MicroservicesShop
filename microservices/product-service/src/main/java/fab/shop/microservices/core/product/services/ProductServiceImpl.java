@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import fab.shop.util.http.ServiceUtil;
+import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductService;
 import fab.shop.api.core.product.msg.GenericProductConfigRQ;
@@ -13,12 +14,16 @@ import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
 import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
+import fab.shop.api.core.product.msg.OfferAvail;
 import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.microservices.core.mapper.ProductServiceGeneralMapper;
+import fab.shop.microservices.core.product.helper.ProductConfigPersistenceHelperImpl;
+import fab.shop.microservices.core.product.persistence.OfferEntity;
 
 
 
@@ -29,11 +34,18 @@ public class ProductServiceImpl implements ProductService{
 
     private final ServiceUtil serviceUtil;
 
+    private final ProductConfigPersistenceHelperImpl persistenceHelper;
+
+    private final ProductServiceGeneralMapper mapper;
+
 
     @Autowired
-    public ProductServiceImpl(ServiceUtil serviceUtil) {
-        this.serviceUtil = serviceUtil;
-    }
+  public ProductServiceImpl(ServiceUtil serviceUtil, ProductConfigPersistenceHelperImpl persistenceHelper, ProductServiceGeneralMapper mapper) {
+    this.serviceUtil = serviceUtil;
+    this.persistenceHelper = persistenceHelper;
+    this.mapper = mapper;
+  }
+
 
 
     // @Override
@@ -61,10 +73,33 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
+      GetAvailRS rs = new GetAvailRS();
       String msg = "ProductServiceImpl - getAvail() - recibido rq = " + getAvailRQ.toString();
 
+      Integer offerCount = getAvailRQ.getOfferList().size();
+      Integer articleCount = getAvailRQ.getArticleList().size();
+      Integer productCount = getAvailRQ.getProductList().size();
 
-      GetAvailRS rs = new GetAvailRS();
+
+      if(getAvailRQ.getShopId() == null){
+        msg += "-------------------------------------->  " + "   ERROR : shopId is null";
+        rs.setStatus(msg);
+        return rs;
+      }
+
+      for(Integer offerId : getAvailRQ.getOfferList()){
+        OfferEntity entity = getPersistenceHelper().getOfferRepository().findById(offerId).get();
+        Offer offer = getMapper().getOfferMapper().entityToApi(entity);
+        Integer offerAvailCount = 5;
+        OfferAvail offerAvail = new OfferAvail(offer, offerAvailCount);
+        rs.addOffer(offerAvail);
+
+      }
+
+
+      
+
+
       rs.setStatus(msg);
       return rs;
     }
@@ -138,8 +173,24 @@ public class ProductServiceImpl implements ProductService{
 
 
       return rs;
-
-
     }
+
+
+
+  public ServiceUtil getServiceUtil() {
+    return this.serviceUtil;
+  }
+
+
+  public ProductConfigPersistenceHelperImpl getPersistenceHelper() {
+    return this.persistenceHelper;
+  }
+
+
+  public ProductServiceGeneralMapper getMapper() {
+    return this.mapper;
+  }
+
+
     
 }
