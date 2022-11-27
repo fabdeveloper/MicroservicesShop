@@ -29,16 +29,21 @@ public class OfferEntity extends BusinessEntity {
     private Date dateFrom;
     private Date dateTo;
     private Boolean open;
+    private Integer stockMax;
+    private Integer availCount;
+
+
 
 
     public OfferEntity() {
         super();
     }
 
-    public OfferEntity(Integer id, Integer version, String name, String description, String remarks,
-                            Float price, ArticleEntity article, List<DiscountEntity> discountList, List<TaxEntity> taxList, Date dateFrom, Date dateTo, Boolean open) {
-        super(id, version, name, description, remarks);
 
+    public OfferEntity(Integer id, Integer version, String name, String description, String remarks,
+                        Float price, ArticleEntity article, List<DiscountEntity> discountList, List<TaxEntity> taxList, 
+                        Date dateFrom, Date dateTo, Boolean open, Integer stockMax, Integer availCount) { 
+        super(id, version, name, description, remarks);
         this.price = price;
         this.article = article;
         this.discountList = discountList;
@@ -46,8 +51,9 @@ public class OfferEntity extends BusinessEntity {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.open = open;
+        this.stockMax = stockMax;
+        this.availCount = availCount;
     }
-
 
     public Float getPrice() {
         return this.price;
@@ -108,7 +114,71 @@ public class OfferEntity extends BusinessEntity {
     public void setOpen(Boolean open) {
         this.open = open;
     }
+
+    public Integer getStockMax() {
+        return this.stockMax;
+    }
+
+    public void setStockMax(Integer stockMax) {
+        this.stockMax = stockMax;
+    }
+
+    public Integer getAvailCount() {
+        return this.availCount;
+    }
+
+    public void setAvailCount(Integer availCount) {
+        this.availCount = availCount;
+    }
+
+    public OfferEntity price(Float price) {
+        setPrice(price);
+        return this;
+    }
+
+    public OfferEntity article(ArticleEntity article) {
+        setArticle(article);
+        return this;
+    }
+
+    public OfferEntity discountList(List<DiscountEntity> discountList) {
+        setDiscountList(discountList);
+        return this;
+    }
+
+    public OfferEntity taxList(List<TaxEntity> taxList) {
+        setTaxList(taxList);
+        return this;
+    }
+
+    public OfferEntity dateFrom(Date dateFrom) {
+        setDateFrom(dateFrom);
+        return this;
+    }
+
+    public OfferEntity dateTo(Date dateTo) {
+        setDateTo(dateTo);
+        return this;
+    }
+
+    public OfferEntity open(Boolean open) {
+        setOpen(open);
+        return this;
+    }
+
+    public OfferEntity stockMax(Integer stockMax) {
+        setStockMax(stockMax);
+        return this;
+    }
+
+    public OfferEntity availCount(Integer availCount) {
+        setAvailCount(availCount);
+        return this;
+    }
+
+
     
+
 
     @Override
     public String toString() {
@@ -136,7 +206,9 @@ public class OfferEntity extends BusinessEntity {
             ", dateFrom='" + getDateFrom() + "'" +
             ", dateTo='" + getDateTo() + "'" +
             ", open='" + isOpen() + "'" +
-            "}";
+            ", stockMax='" + getStockMax() + "'" +
+            ", availCount='" + getAvailCount() + "'" +
+                        "}";
     }
 
    

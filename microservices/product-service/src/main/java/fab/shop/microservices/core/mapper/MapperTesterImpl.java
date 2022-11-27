@@ -137,7 +137,7 @@ public class MapperTesterImpl implements MapperTester {
         TaxEntity taxEntity = new TaxEntity(234, null, "tax name", "tax description", "tax remarks", 21.00f, null);
 
         taxList.add(taxEntity);        
-        OfferEntity entity = new OfferEntity(56, null, "offer name", "offer description", "offer remarks", 9.99f, articleentity, discounList, taxList, new Date(), new Date(), true);
+        OfferEntity entity = new OfferEntity(56, null, "offer name", "offer description", "offer remarks", 9.99f, articleentity, discounList, taxList, new Date(), new Date(), true, 10, 10);
 
         Offer apiObject = getMapper().getOfferMapper().entityToApi(entity);    
         if(apiObject != null){
@@ -161,7 +161,7 @@ public class MapperTesterImpl implements MapperTester {
         Tax tax = new Tax(111,  "tax name", "tax description", "tax remarks", 46.00f, null);
         taxList.add(tax);
 
-        Offer apiObject = new Offer(456, "offer name", "offer description", "offer remarks", 9.99f, article, discountList, taxList, new Date(), new Date(), true);
+        Offer apiObject = new Offer(456, "offer name", "offer description", "offer remarks", 9.99f, article, discountList, taxList, new Date(), new Date(), true, 9, 9);
         
         OfferEntity entity = getMapper().getOfferMapper().apiToEntity(apiObject);
         if(entity != null){

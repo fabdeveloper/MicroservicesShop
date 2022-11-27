@@ -100,7 +100,7 @@ public class ShopIntegrationProductConfigServiceTestHelperImpl implements ShopIn
         discounList.add(discount2);
         Tax tax2 = new Tax(null, "tax2 name", "tax2 description", "tax2 remarks", 26.00f, null);
         taxList.add(tax2);
-        Offer offer = new Offer(null, "offer name", "offer description", "offer remarks", 9.99f, article2, discounList, taxList, new Date(), new Date(), true);
+        Offer offer = new Offer(null, "offer name", "offer description", "offer remarks", 9.99f, article2, discounList, taxList, new Date(), new Date(), true, 5, 5);
         productCreateNewRQ.addOffer(offer);
  
         System.out.println("sending : " + productCreateNewRQ.toString());
