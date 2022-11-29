@@ -1,11 +1,15 @@
 package fab.shop.microservices.core.product.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import fab.shop.util.http.ServiceUtil;
+import fab.shop.api.core.product.Article;
 import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductService;
@@ -23,6 +27,7 @@ import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.microservices.core.mapper.ProductServiceGeneralMapper;
 import fab.shop.microservices.core.product.helper.ProductConfigPersistenceHelperImpl;
+import fab.shop.microservices.core.product.persistence.ArticleEntity;
 import fab.shop.microservices.core.product.persistence.OfferEntity;
 
 
@@ -71,14 +76,24 @@ public class ProductServiceImpl implements ProductService{
     // }
 
 
+
+    private List<Article> getArticleListFromProductId(Integer productId){
+      List<Article> articleList = null;
+      List<ArticleEntity> entityList = getPersistenceHelper().getArticleRepository().findByProductId(productId);
+
+      articleList =  getMapper().getArticleMapper().entityListToApiList(entityList);
+      return articleList;
+    }
+
+
     @Override
     public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
       GetAvailRS rs = new GetAvailRS();
       String msg = "ProductServiceImpl - getAvail() - recibido rq = " + getAvailRQ.toString();
 
-      Integer offerCount = getAvailRQ.getOfferList().size();
-      Integer articleCount = getAvailRQ.getArticleList().size();
-      Integer productCount = getAvailRQ.getProductList().size();
+      // Integer offerCount = getAvailRQ.getOfferList().size();
+      // Integer articleCount = getAvailRQ.getArticleList().size();
+      // Integer productCount = getAvailRQ.getProductList().size();
 
 
       if(getAvailRQ.getShopId() == null){
@@ -86,6 +101,34 @@ public class ProductServiceImpl implements ProductService{
         rs.setStatus(msg);
         return rs;
       }
+
+      List<Article> articleList;   
+      for(Integer productId : getAvailRQ.getProductList()){
+        articleList = getArticleListFromProductId(productId);
+        for(Article article : articleList){
+          rs.addArticle(article);
+        }
+      }
+
+      // if(productCount > 0){     
+      //   List<Article> articleList;   
+      //   for(Integer productId : getAvailRQ.getProductList()){
+      //     articleList = getArticleListFromProductId(productId);
+      //     for(Article article : articleList){
+      //       rs.addArticle(article);
+      //     }
+      //   }
+      // }
+
+      // if(articleCount > 0){
+      //   List<Offer> offerList;
+      //   for(Integer articleId : getAvailRQ.getArticleList()){
+      //     offerList = getOfferListFromArticleId(articleId);
+      //     for(Offer offer : offerList){
+      //       rs.addOffer(offerAvail);
+      //     }
+      //   }
+      // }
 
       for(Integer offerId : getAvailRQ.getOfferList()){
         OfferEntity entity = getPersistenceHelper().getOfferRepository().findById(offerId).get();

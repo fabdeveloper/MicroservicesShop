@@ -1,5 +1,8 @@
 package fab.shop.microservices.core.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,5 +25,15 @@ public interface ArticleMapper {
         @Mapping(target = "version", ignore = true)
     })
     public ArticleEntity apiToEntity(Article article);
+
+
+    public default List<Article> entityListToApiList(List<ArticleEntity> entityList){
+
+        List<Article> apiList = new ArrayList<Article>();
+        for(ArticleEntity entity : entityList){
+            apiList.add(entityToApi(entity));
+        }
+        return apiList;        
+    }
     
 }
