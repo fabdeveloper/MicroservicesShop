@@ -12,12 +12,12 @@ public class GetAvailRS {
     private Integer shopId;
     private List<Product> productList;
     private List<Article> articleList;
-    private List<OfferAvail> offerList;
+    private List<Offer> offerList;
 
     private String status;
 
 
-    public GetAvailRS(Integer shopId, List<Product> productList, List<Article> articleList, List<OfferAvail> offerList, String status) {
+    public GetAvailRS(Integer shopId, List<Product> productList, List<Article> articleList, List<Offer> offerList, String status) {
         this.shopId = shopId;
         this.productList = productList;
         this.articleList = articleList;
@@ -60,14 +60,14 @@ public class GetAvailRS {
         this.articleList = articleList;
     }
 
-    public List<OfferAvail> getOfferList() {
+    public List<Offer> getOfferList() {
         if(this.offerList == null){
             this.offerList = new ArrayList<>();
         }
         return this.offerList;
     }
 
-    public void setOfferList(List<OfferAvail> offerList) {
+    public void setOfferList(List<Offer> offerList) {
         this.offerList = offerList;
     }
 
@@ -87,8 +87,8 @@ public class GetAvailRS {
         getArticleList().add(article);
     }
     
-    public void addOffer(OfferAvail offerAvail){
-        getOfferList().add(offerAvail);
+    public void addOffer(Offer offer){
+        getOfferList().add(offer);
     }
 
 
@@ -112,8 +112,8 @@ public class GetAvailRS {
         articleListString += " }";
 
         String offerListString = "{ ";
-        for(OfferAvail offerAvail : getOfferList()){
-            offerListString += offerAvail.toString();
+        for(Offer offer : getOfferList()){
+            offerListString += offer.toString();
             offerListString += ", ";
         }
         offerListString += " }";

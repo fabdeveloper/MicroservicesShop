@@ -18,11 +18,11 @@ public class OfferEntity extends BusinessEntity {
     @JoinColumn(name = "article_id", nullable = false)
     private ArticleEntity article;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) // , fetch=FetchType.EAGER
     @JoinTable(name = "offer_discount", joinColumns = @JoinColumn(name = "offer_id"), inverseJoinColumns = @JoinColumn(name = "discount_id"))
     private List<DiscountEntity> discountList;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) // , fetch=FetchType.EAGER
     @JoinTable(name = "offer_tax", joinColumns = @JoinColumn(name = "offer_id"), inverseJoinColumns = @JoinColumn(name = "tax_id"))
     private List<TaxEntity> taxList;
 

@@ -82,6 +82,8 @@ public class ShopIntegrationProductServiceTestHelperImpl implements ShopIntegrat
         articleList.add(3);
         articleList.add(5);
         articleList.add(6);
+        articleList.add(9);
+
 
 
         GetAvailRQ rq = new GetAvailRQ(4, productList, articleList, null);

@@ -30,6 +30,9 @@ import fab.shop.microservices.core.product.helper.ProductConfigPersistenceHelper
 import fab.shop.microservices.core.product.persistence.ArticleEntity;
 import fab.shop.microservices.core.product.persistence.OfferEntity;
 
+import javax.transaction.Transactional;
+
+
 
 
 @RestController
@@ -76,6 +79,12 @@ public class ProductServiceImpl implements ProductService{
     // }
 
 
+    // private List getApiObjectListFromParentId(){
+    //   List apiList = null;
+
+
+    //   return apiList;
+    // }
 
     private List<Article> getArticleListFromProductId(Integer productId){
       List<Article> articleList = null;
@@ -85,15 +94,20 @@ public class ProductServiceImpl implements ProductService{
       return articleList;
     }
 
+    private List<Offer> getOfferListFromArticleId(Integer articleId){
+      List<Offer> offerList = null;
+      List<OfferEntity> entityList = getPersistenceHelper().getOfferRepository().findByArticleId(articleId);
 
+      offerList =  getMapper().getOfferMapper().entityListToApiList(entityList);
+      return offerList;
+    }
+
+
+    @Transactional
     @Override
     public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
       GetAvailRS rs = new GetAvailRS();
       String msg = "ProductServiceImpl - getAvail() - recibido rq = " + getAvailRQ.toString();
-
-      // Integer offerCount = getAvailRQ.getOfferList().size();
-      // Integer articleCount = getAvailRQ.getArticleList().size();
-      // Integer productCount = getAvailRQ.getProductList().size();
 
 
       if(getAvailRQ.getShopId() == null){
@@ -110,15 +124,14 @@ public class ProductServiceImpl implements ProductService{
         }
       }
 
-      // if(productCount > 0){     
-      //   List<Article> articleList;   
-      //   for(Integer productId : getAvailRQ.getProductList()){
-      //     articleList = getArticleListFromProductId(productId);
-      //     for(Article article : articleList){
-      //       rs.addArticle(article);
-      //     }
-      //   }
-      // }
+      List<Offer> offerList;
+      for(Integer articleId : getAvailRQ.getArticleList()){
+        offerList = getOfferListFromArticleId(articleId);
+        for(Offer offer : offerList){
+          rs.addOffer(offer);
+        }
+      }
+
 
       // if(articleCount > 0){
       //   List<Offer> offerList;
@@ -130,14 +143,14 @@ public class ProductServiceImpl implements ProductService{
       //   }
       // }
 
-      for(Integer offerId : getAvailRQ.getOfferList()){
-        OfferEntity entity = getPersistenceHelper().getOfferRepository().findById(offerId).get();
-        Offer offer = getMapper().getOfferMapper().entityToApi(entity);
-        Integer offerAvailCount = 5;
-        OfferAvail offerAvail = new OfferAvail(offer, offerAvailCount);
-        rs.addOffer(offerAvail);
+      // for(Integer offerId : getAvailRQ.getOfferList()){
+      //   OfferEntity entity = getPersistenceHelper().getOfferRepository().findById(offerId).get();
+      //   Offer offer = getMapper().getOfferMapper().entityToApi(entity);
+      //   Integer offerAvailCount = 5;
+      //   OfferAvail offerAvail = new OfferAvail(offer, offerAvailCount);
+      //   rs.addOffer(offerAvail);
 
-      }
+      // }
 
 
       
