@@ -99,7 +99,7 @@ public class ShopIntegrationProductServiceTestHelperImpl implements ShopIntegrat
     public GetOfferListDetailRS getOfferListDetailTestHelper() {
 
         List<Integer> offerList = new ArrayList<>();
-        offerList.add(11);
+        offerList.add(12);
 
         GetOfferListDetailRQ rq = new GetOfferListDetailRQ(3, offerList);
 

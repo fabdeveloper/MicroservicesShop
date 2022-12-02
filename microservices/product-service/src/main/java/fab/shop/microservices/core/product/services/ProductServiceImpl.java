@@ -13,18 +13,7 @@ import fab.shop.api.core.product.Article;
 import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.ProductService;
-import fab.shop.api.core.product.msg.GenericProductConfigRQ;
-import fab.shop.api.core.product.msg.GetAvailRQ;
-import fab.shop.api.core.product.msg.GetAvailRS;
-import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
-import fab.shop.api.core.product.msg.GetOfferListDetailRS;
-import fab.shop.api.core.product.msg.OfferAvail;
-import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
-import fab.shop.api.core.product.msg.ProductCreateNewRS;
-import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.msg.*;
 import fab.shop.microservices.core.mapper.ProductServiceGeneralMapper;
 import fab.shop.microservices.core.product.helper.ProductConfigPersistenceHelperImpl;
 import fab.shop.microservices.core.product.persistence.ArticleEntity;
@@ -132,45 +121,28 @@ public class ProductServiceImpl implements ProductService{
         }
       }
 
-
-      // if(articleCount > 0){
-      //   List<Offer> offerList;
-      //   for(Integer articleId : getAvailRQ.getArticleList()){
-      //     offerList = getOfferListFromArticleId(articleId);
-      //     for(Offer offer : offerList){
-      //       rs.addOffer(offerAvail);
-      //     }
-      //   }
-      // }
-
-      // for(Integer offerId : getAvailRQ.getOfferList()){
-      //   OfferEntity entity = getPersistenceHelper().getOfferRepository().findById(offerId).get();
-      //   Offer offer = getMapper().getOfferMapper().entityToApi(entity);
-      //   Integer offerAvailCount = 5;
-      //   OfferAvail offerAvail = new OfferAvail(offer, offerAvailCount);
-      //   rs.addOffer(offerAvail);
-
-      // }
-
-
-      
-
-
       rs.setStatus(msg);
       return rs;
     }
 
 
+    @Transactional
     @Override
     public GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ) {
+      GetOfferListDetailRS rs = new GetOfferListDetailRS();
 
       String msg = "recibido rq = " + getOfferListDetailRQ.toString();
-
-
-      GetOfferListDetailRS rs = new GetOfferListDetailRS();
       rs.setStatus(msg);
 
-
+      Offer offer = null;
+      OfferEntity entity = null;
+      for(Integer offerId : getOfferListDetailRQ.getOfferList()){
+        entity = getPersistenceHelper().getOfferRepository().findById(offerId).get();
+        if(entity !=  null){
+          offer = getMapper().getOfferMapper().entityToApi(entity);
+          rs.addOffer(offer);
+        }
+      }
       return rs;
     }
 
