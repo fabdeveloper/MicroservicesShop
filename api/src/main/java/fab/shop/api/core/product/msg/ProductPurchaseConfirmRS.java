@@ -4,24 +4,26 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProductPurchaseConfirmRS {
+
+
     
-    private Integer shopId;
-    private List<OfferPurchase> offerPurchaseOKList;
-    private List<OfferPurchase> offerPurchaseKOList;
+    private Integer shopId;    
+
     private List<OfferAvail> offerAvailList;
     private Boolean bConfirmed;
+    private Integer productBookingNumber;
     private String status;
+
 
 
     public ProductPurchaseConfirmRS() {
     }
 
-    public ProductPurchaseConfirmRS(Integer shopId, List<OfferPurchase> offerPurchaseOKList, List<OfferPurchase> offerPurchaseKOList, List<OfferAvail> offerAvailList, Boolean bConfirmed, String status) {
+    public ProductPurchaseConfirmRS(Integer shopId, List<OfferAvail> offerAvailList, Boolean bConfirmed, Integer productBookingNumber, String status) {
         this.shopId = shopId;
-        this.offerPurchaseOKList = offerPurchaseOKList;
-        this.offerPurchaseKOList = offerPurchaseKOList;
         this.offerAvailList = offerAvailList;
         this.bConfirmed = bConfirmed;
+        this.productBookingNumber = productBookingNumber;
         this.status = status;
     }
 
@@ -31,22 +33,6 @@ public class ProductPurchaseConfirmRS {
 
     public void setShopId(Integer shopId) {
         this.shopId = shopId;
-    }
-
-    public List<OfferPurchase> getOfferPurchaseOKList() {
-        return this.offerPurchaseOKList;
-    }
-
-    public void setOfferPurchaseOKList(List<OfferPurchase> offerPurchaseOKList) {
-        this.offerPurchaseOKList = offerPurchaseOKList;
-    }
-
-    public List<OfferPurchase> getOfferPurchaseKOList() {
-        return this.offerPurchaseKOList;
-    }
-
-    public void setOfferPurchaseKOList(List<OfferPurchase> offerPurchaseKOList) {
-        this.offerPurchaseKOList = offerPurchaseKOList;
     }
 
     public List<OfferAvail> getOfferAvailList() {
@@ -69,6 +55,14 @@ public class ProductPurchaseConfirmRS {
         this.bConfirmed = bConfirmed;
     }
 
+    public Integer getProductBookingNumber() {
+        return this.productBookingNumber;
+    }
+
+    public void setProductBookingNumber(Integer productBookingNumber) {
+        this.productBookingNumber = productBookingNumber;
+    }
+
     public String getStatus() {
         return this.status;
     }
@@ -82,16 +76,6 @@ public class ProductPurchaseConfirmRS {
         return this;
     }
 
-    public ProductPurchaseConfirmRS offerPurchaseOKList(List<OfferPurchase> offerPurchaseOKList) {
-        setOfferPurchaseOKList(offerPurchaseOKList);
-        return this;
-    }
-
-    public ProductPurchaseConfirmRS offerPurchaseKOList(List<OfferPurchase> offerPurchaseKOList) {
-        setOfferPurchaseKOList(offerPurchaseKOList);
-        return this;
-    }
-
     public ProductPurchaseConfirmRS offerAvailList(List<OfferAvail> offerAvailList) {
         setOfferAvailList(offerAvailList);
         return this;
@@ -102,45 +86,20 @@ public class ProductPurchaseConfirmRS {
         return this;
     }
 
+    public ProductPurchaseConfirmRS productBookingNumber(Integer productBookingNumber) {
+        setProductBookingNumber(productBookingNumber);
+        return this;
+    }
+
     public ProductPurchaseConfirmRS status(String status) {
         setStatus(status);
         return this;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof ProductPurchaseConfirmRS)) {
-            return false;
-        }
-        ProductPurchaseConfirmRS productPurchaseConfirmRS = (ProductPurchaseConfirmRS) o;
-        return Objects.equals(shopId, productPurchaseConfirmRS.shopId) && Objects.equals(offerPurchaseOKList, productPurchaseConfirmRS.offerPurchaseOKList) && Objects.equals(offerPurchaseKOList, productPurchaseConfirmRS.offerPurchaseKOList) && Objects.equals(offerAvailList, productPurchaseConfirmRS.offerAvailList) && Objects.equals(bConfirmed, productPurchaseConfirmRS.bConfirmed) && Objects.equals(status, productPurchaseConfirmRS.status);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(shopId, offerPurchaseOKList, offerPurchaseKOList, offerAvailList, bConfirmed, status);
-    }
-
+    
+    
     @Override
     public String toString() {
-
-        String offerListOKString = "{ ";
-        for(OfferPurchase offerPurchase : getOfferPurchaseOKList()){
-            offerListOKString += offerPurchase.toString();
-            offerListOKString += ", ";
-        }
-        offerListOKString += " }";
-
-        String offerListKOString = "{ ";
-        for(OfferPurchase offerPurchase : getOfferPurchaseKOList()){
-            offerListKOString += offerPurchase.toString();
-            offerListKOString += ", ";
-        }
-        offerListKOString += " }";
-
-
         String offerAvailListString = "{ ";
         for(OfferAvail offerAvail : getOfferAvailList()){
             offerAvailListString += offerAvail.toString();
@@ -150,13 +109,14 @@ public class ProductPurchaseConfirmRS {
 
         return "{" +
             " shopId='" + getShopId() + "'" +
-            ", offerPurchaseOKList='" + offerListOKString + "'" +
-            ", offerPurchaseKOList='" + offerListKOString + "'" +
             ", offerAvailList='" + offerAvailListString + "'" +
             ", bConfirmed='" + isBConfirmed() + "'" +
+            ", productBookingNumber='" + getProductBookingNumber() + "'" +
             ", status='" + getStatus() + "'" +
             "}";
     }
+
+    
 
 
 }

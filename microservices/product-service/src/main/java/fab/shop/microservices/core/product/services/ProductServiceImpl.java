@@ -149,14 +149,13 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
-
+      ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
       String msg = "recibido rq = " + productPurchaseConfirmRQ.toString();
 
+      
 
-      ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
+
       rs.setStatus(msg);
-
-
       return rs;
 
     }
