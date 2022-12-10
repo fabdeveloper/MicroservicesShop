@@ -146,16 +146,72 @@ public class ProductServiceImpl implements ProductService{
       return rs;
     }
 
+    private Boolean isStillAvailable(OfferPurchase offerPurchase){
+      Boolean bResult = false;
 
+      OfferEntity entity = getPersistenceHelper().getOfferRepository().findById(offerPurchase.getOfferId()).get();
+      if(entity != null){
+        Integer nAvail = entity.getAvailCount();
+        bResult = nAvail >= offerPurchase.getCount();
+      }
+      return bResult;
+    }
+
+    private Boolean reduceStock(OfferPurchase offerPurchase){
+      Boolean bResult = false;
+
+      OfferEntity entity = getPersistenceHelper().getOfferRepository().findById(offerPurchase.getOfferId()).get();
+      if(entity != null && entity.getAvailCount() >= offerPurchase.getCount()){
+        entity.setAvailCount(entity.getAvailCount() - offerPurchase.getCount());
+        getPersistenceHelper().getOfferRepository().save(entity);
+        bResult = true;        
+      }
+      return bResult;
+    }
+
+
+    @Transactional
     @Override
     public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
       ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
       String msg = "recibido rq = " + productPurchaseConfirmRQ.toString();
+      rs.addError(msg);
+
+      // check for availability
+      Boolean bAvailable = true;
+      for(OfferPurchase offerPurchase : productPurchaseConfirmRQ.getOfferPurchaseList()){
+        if(!isStillAvailable(offerPurchase)){
+          bAvailable = false;
+          String errorString = "ERROR - offer with ID : " + offerPurchase.getOfferId() + ", not available";
+          rs.addError(errorString);
+        }
+      }
+      if(!bAvailable){
+        rs.setBConfirmed(false);
+        return rs;
+      }
+      
+      // reduce stock
+      Boolean bStockReduced = true;
+      for(OfferPurchase offerPurchase : productPurchaseConfirmRQ.getOfferPurchaseList()){
+        if(!reduceStock(offerPurchase)){
+          bStockReduced = false;
+          String errorString = "ERROR - offer with ID : " + offerPurchase.getOfferId() + ", unable to reduce stock";
+          rs.addError(errorString);
+        }
+      }
+      if(!bStockReduced){
+        setRollBackOnly(true);
+        
+      }
+
+
+
+      // create a booking
 
       
 
 
-      rs.setStatus(msg);
       return rs;
 
     }
@@ -169,7 +225,7 @@ public class ProductServiceImpl implements ProductService{
 
 
       ProductPurchaseCancelRS rs = new ProductPurchaseCancelRS();
-      rs.setStatus(msg);
+      rs.addError(msg);
 
 
       return rs;

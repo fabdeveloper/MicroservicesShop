@@ -1,5 +1,6 @@
 package fab.shop.api.core.product.msg;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,22 +10,19 @@ public class ProductPurchaseConfirmRS {
     
     private Integer shopId;    
 
-    private List<OfferAvail> offerAvailList;
     private Boolean bConfirmed;
     private Integer productBookingNumber;
-    private String status;
-
+    private List<String> errorList;
 
 
     public ProductPurchaseConfirmRS() {
     }
 
-    public ProductPurchaseConfirmRS(Integer shopId, List<OfferAvail> offerAvailList, Boolean bConfirmed, Integer productBookingNumber, String status) {
+    public ProductPurchaseConfirmRS(Integer shopId, Boolean bConfirmed, Integer productBookingNumber, List<String> errorList) {
         this.shopId = shopId;
-        this.offerAvailList = offerAvailList;
         this.bConfirmed = bConfirmed;
         this.productBookingNumber = productBookingNumber;
-        this.status = status;
+        this.errorList = errorList;
     }
 
     public Integer getShopId() {
@@ -33,14 +31,6 @@ public class ProductPurchaseConfirmRS {
 
     public void setShopId(Integer shopId) {
         this.shopId = shopId;
-    }
-
-    public List<OfferAvail> getOfferAvailList() {
-        return this.offerAvailList;
-    }
-
-    public void setOfferAvailList(List<OfferAvail> offerAvailList) {
-        this.offerAvailList = offerAvailList;
     }
 
     public Boolean isBConfirmed() {
@@ -63,21 +53,19 @@ public class ProductPurchaseConfirmRS {
         this.productBookingNumber = productBookingNumber;
     }
 
-    public String getStatus() {
-        return this.status;
+    public List<String> getErrorList() {
+        if(this.errorList == null){
+            this.errorList = new ArrayList<String>();
+        }
+        return this.errorList;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setErrorList(List<String> errorList) {
+        this.errorList = errorList;
     }
 
     public ProductPurchaseConfirmRS shopId(Integer shopId) {
         setShopId(shopId);
-        return this;
-    }
-
-    public ProductPurchaseConfirmRS offerAvailList(List<OfferAvail> offerAvailList) {
-        setOfferAvailList(offerAvailList);
         return this;
     }
 
@@ -91,32 +79,40 @@ public class ProductPurchaseConfirmRS {
         return this;
     }
 
-    public ProductPurchaseConfirmRS status(String status) {
-        setStatus(status);
+    public ProductPurchaseConfirmRS errorList(List<String> errorList) {
+        setErrorList(errorList);
         return this;
     }
 
-    
-    
-    @Override
-    public String toString() {
-        String offerAvailListString = "{ ";
-        for(OfferAvail offerAvail : getOfferAvailList()){
-            offerAvailListString += offerAvail.toString();
-            offerAvailListString += ", ";
-        }
-        offerAvailListString += " }";
-
-        return "{" +
-            " shopId='" + getShopId() + "'" +
-            ", offerAvailList='" + offerAvailListString + "'" +
-            ", bConfirmed='" + isBConfirmed() + "'" +
-            ", productBookingNumber='" + getProductBookingNumber() + "'" +
-            ", status='" + getStatus() + "'" +
-            "}";
+    public void addError(String errorString){
+        getErrorList().add(errorString);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof ProductPurchaseConfirmRS)) {
+            return false;
+        }
+        ProductPurchaseConfirmRS productPurchaseConfirmRS = (ProductPurchaseConfirmRS) o;
+        return Objects.equals(shopId, productPurchaseConfirmRS.shopId) && Objects.equals(bConfirmed, productPurchaseConfirmRS.bConfirmed) && Objects.equals(productBookingNumber, productPurchaseConfirmRS.productBookingNumber) && Objects.equals(errorList, productPurchaseConfirmRS.errorList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shopId, bConfirmed, productBookingNumber, errorList);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " shopId='" + getShopId() + "'" +
+            ", bConfirmed='" + isBConfirmed() + "'" +
+            ", productBookingNumber='" + getProductBookingNumber() + "'" +
+            ", errorList='" + getErrorList().toString() + "'" +
+            "}";
+    }
     
-
-
+    
 }
