@@ -1,0 +1,24 @@
+@startuml
+
+
+interface OfferManager{
+
+    
+    public Boolean checkAvailability(Integer offerId, Integer count);
+    
+    public Boolean decrementStock(Integer offerId, Integer count);
+    
+    public Boolean bookPurchaseList(List<OfferPurchase> purchaseList);
+
+
+}
+
+
+
+
+
+
+
+
+
+@enduml
