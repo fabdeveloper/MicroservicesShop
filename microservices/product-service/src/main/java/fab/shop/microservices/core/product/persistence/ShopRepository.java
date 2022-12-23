@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface ShopRepository extends CrudRepository<ShopEntity, Integer> {
     
-    @Transactional
+    // @Transactional
     public Optional<ShopEntity> findById(Integer shopId);
     
 }

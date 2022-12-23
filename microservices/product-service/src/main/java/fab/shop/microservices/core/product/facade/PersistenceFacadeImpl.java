@@ -8,7 +8,7 @@ import fab.shop.microservices.core.product.helper.ProductConfigPersistenceHelper
 
 
 @Component
-public class PersistenceFacadeImpl implements PersistenceFacade{
+public class PersistenceFacadeImpl implements IPersistenceFacade{
 
     @Autowired
     private ProductConfigPersistenceHelper persistenceHelper;

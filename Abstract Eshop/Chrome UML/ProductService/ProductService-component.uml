@@ -7,13 +7,13 @@
 package "service" {
 
 	ips-[ProductServiceImpl]
-    ipsint-[ProductServiceIntegrationImpl]
+    ipsint-[ProductServiceFacadeImpl]
     [ProductServiceImpl]..>ipsint    
 }
 
 package "facade" {
 	Iperfac-[PersistenceHelperFacadeImpl]
-    [ProductServiceIntegrationImpl]..>Iperfac    
+    [ProductServiceFacadeImpl]..>Iperfac    
 }
 
 

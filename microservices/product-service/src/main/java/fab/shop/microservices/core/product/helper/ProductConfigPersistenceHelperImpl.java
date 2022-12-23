@@ -14,17 +14,26 @@ import fab.shop.microservices.core.product.persistence.TaxRepository;
 @Component
 public class ProductConfigPersistenceHelperImpl implements ProductConfigPersistenceHelper {
 
-    private final ShopRepository shopRepository;
-    private final ProductRepository productRepository;
-    private final ArticleRepository articleRepository;
-    private final OfferRepository offerRepository;
-    private final DiscountRepository discountRepository;
-    private final TaxRepository taxRepository;
-
-
-
-
     @Autowired
+    private ShopRepository shopRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private ArticleRepository articleRepository;
+    @Autowired
+    private OfferRepository offerRepository;
+    @Autowired
+    private DiscountRepository discountRepository;
+    @Autowired
+    private TaxRepository taxRepository;
+
+
+
+    public ProductConfigPersistenceHelperImpl() {
+    }
+
+
+
     public ProductConfigPersistenceHelperImpl(ShopRepository shopRepository, ProductRepository productRepository, ArticleRepository articleRepository, OfferRepository offerRepository, DiscountRepository discountRepository, TaxRepository taxRepository) {
         this.shopRepository = shopRepository;
         this.productRepository = productRepository;
@@ -64,6 +73,26 @@ public class ProductConfigPersistenceHelperImpl implements ProductConfigPersiste
     public TaxRepository getTaxRepository() {
         return this.taxRepository;
     }
+
+    public void setShopRepository(ShopRepository shopRepository) {
+        this.shopRepository = shopRepository;
+    }
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+    public void setArticleRepository(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
+    }
+    public void setOfferRepository(OfferRepository offerRepository) {
+        this.offerRepository = offerRepository;
+    }
+    public void setDiscountRepository(DiscountRepository discountRepository) {
+        this.discountRepository = discountRepository;
+    }
+    public void setTaxRepository(TaxRepository taxRepository) {
+        this.taxRepository = taxRepository;
+    }
+
 
     
 }
