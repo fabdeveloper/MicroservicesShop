@@ -48,26 +48,24 @@ public class ProductServiceImpl implements ProductService{
 
   @Override
   public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
-    // TODO Auto-generated method stub
-    return null;
+    GetAvailRS rs = new GetAvailRS();
+    rs = getProductServiceFacade().getAvail(getAvailRQ);
+
+    return rs;
   }
 
   @Override
   public GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ) {
-    // TODO Auto-generated method stub
-    return null;
+    GetOfferListDetailRS rs;
+    rs = getProductServiceFacade().getOfferListDetail(getOfferListDetailRQ);
+
+    return rs;
   }
 
   @Override
   public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
     ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
-
-    try {
-      rs = getProductServiceFacade().productPurchaseConfirm(productPurchaseConfirmRQ);
-      
-    } catch (ProductPurchaseConfirmException e) {
-      rs = e.getProductPurchaseConfirmRS();
-    }
+    rs = getProductServiceFacade().productPurchaseConfirm(productPurchaseConfirmRQ);
 
     String msg = "recibido rq = " + productPurchaseConfirmRQ.toString();
     rs.addError(msg);
@@ -76,14 +74,18 @@ public class ProductServiceImpl implements ProductService{
 
   @Override
   public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
-    // TODO Auto-generated method stub
-    return null;
+    ProductPurchaseCancelRS rs;
+    rs = getProductServiceFacade().productPurchaseCancel(productPurchaseCancelRQ);
+
+    return rs;
   }
 
   @Override
   public ProductCreateNewRS productCreateNew(ProductConfigBasicRQ productCreateNewRQ) {
-    // TODO Auto-generated method stub
-    return null;
+    ProductCreateNewRS rs;
+    rs = getProductServiceFacade().productCreateNew(productCreateNewRQ);
+    
+    return rs;
   }
 
   @Override

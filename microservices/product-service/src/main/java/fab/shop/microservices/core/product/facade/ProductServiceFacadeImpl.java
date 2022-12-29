@@ -56,60 +56,18 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
         return null;
     }
 
-    @Transactional
     @Override
-    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) throws ProductPurchaseConfirmException{
+    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ){  
         ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
-        rs.addError(productPurchaseConfirmRQ.toString());
-        rs.setShopId(productPurchaseConfirmRQ.getShopId());
-        rs.setBConfirmed(false);
-
-
-        String sError;
-        ProductPurchaseConfirmException exception;
-
-        List<OfferPurchase> purchaseList = productPurchaseConfirmRQ.getOfferPurchaseList();
-        // checkAvailability
-        Boolean bAvail = getProductPurchaseHelper().checkAvailability(purchaseList);
-        if(!bAvail){
-            exception = new ProductPurchaseConfirmAvailabilityException();
-            sError = "Availability ERROR: product not available";
-            rs.addError(sError);
-            exception.setProductPurchaseConfirmRS(rs);
-            throw exception;
-        }
-
-        // book
-        Integer bookingNumber;
-        try{
-            bookingNumber = getProductPurchaseHelper().bookPurchaseList(purchaseList);
-        } catch(ProductPurchaseConfirmBookingException ppcbException){
-            sError = "Confirmation ERROR: product list NOT confirmed";
-            rs.addError(sError);
-            ppcbException.setProductPurchaseConfirmRS(rs);
-            throw ppcbException;
+        try {
+            rs = getProductPurchaseHelper().bookPurchaseList(productPurchaseConfirmRQ);
+        } catch (ProductPurchaseConfirmException e) {
+            rs = e.getProductPurchaseConfirmRS();
         } catch(Throwable t){
-            sError = "Confirmation ERROR: product list NOT confirmed";
+            String sError = "ERROR - purchase not confirmed - msg: " + t.getMessage();
             rs.addError(sError);
-            rs.addError(t.getMessage());
-            exception = new ProductPurchaseConfirmBookingException();
-            exception.setProductPurchaseConfirmRS(rs);            
-            throw exception;
-        }        
-
-        // decrementStock
-        Boolean bDecrementStock = getProductPurchaseHelper().decrementStock(purchaseList);
-        if(!bDecrementStock){
-            exception = new ProductPurchaseConfirmReduceStockException();
-            sError = "Confirmation ERROR: product list NOT confirmed";
-            rs.addError(sError);
-            exception.setProductPurchaseConfirmRS(rs);
-            throw exception;
+            rs.setBConfirmed(false);
         }
-
-        rs.setBConfirmed(true);
-        rs.setProductBookingNumber(bookingNumber);
-
         return rs;
     }
 

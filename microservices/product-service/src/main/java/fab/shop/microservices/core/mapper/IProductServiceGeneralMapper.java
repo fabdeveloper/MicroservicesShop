@@ -7,4 +7,5 @@ public interface IProductServiceGeneralMapper {
     public OfferMapper getOfferMapper();
     public TaxMapper getTaxMapper();
     public DiscountMapper getDiscountMapper();
+    public OfferPurchaseMapper getOfferPurchaseMapper();
 }
