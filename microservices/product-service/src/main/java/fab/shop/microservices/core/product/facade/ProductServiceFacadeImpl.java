@@ -22,6 +22,7 @@ import fab.shop.api.exceptions.ProductPurchaseConfirmAvailabilityException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmBookingException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmReduceStockException;
+import fab.shop.microservices.core.product.helper.IProductAvailabilityHelper;
 import fab.shop.microservices.core.product.helper.IProductPurchaseHelper;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,9 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
     @Autowired
     private IProductPurchaseHelper productPurchaseHelper;
 
+    @Autowired
+    private IProductAvailabilityHelper productAvailabilityHelper;
+
 
     public IProductPurchaseHelper getProductPurchaseHelper() {
         return this.productPurchaseHelper;
@@ -44,16 +48,24 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
     }
 
 
+    public IProductAvailabilityHelper getProductAvailabilityHelper() {
+        return this.productAvailabilityHelper;
+    }
+
+    public void setProductAvailabilityHelper(IProductAvailabilityHelper productAvailabilityHelper) {
+        this.productAvailabilityHelper = productAvailabilityHelper;
+    }
+
+
+
     @Override
     public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return getProductAvailabilityHelper().getAvail(getAvailRQ);
     }
 
     @Override
     public GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return getProductAvailabilityHelper().getOfferListDetail(getOfferListDetailRQ);
     }
 
     @Override

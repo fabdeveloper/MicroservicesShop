@@ -1,0 +1,25 @@
+@startuml
+
+package "USA Java Programming School" {
+[USA Java Programming School - FB Group] #yellow
+
+[Conference Tool] #yellow
+[Payments] #yellow
+
+[Syllabus]
+[School Calendar]
+
+[WebSite]
+[recruitment center]
+[advertising and sales]
+[content generation]
+[Customer Support]
+[product design]
+
+[planning and strategy]
+
+
+}
+
+
+@enduml
