@@ -109,41 +109,8 @@ public class ProductServiceImpl implements ProductService{
 
 //     private final ServiceUtil serviceUtil;
 
-//     private final ProductConfigPersistenceHelperImpl persistenceHelper;
-
-//     private final ProductServiceGeneralMapper mapper;
 
 
-//     @Autowired
-//   public ProductServiceImpl(ServiceUtil serviceUtil, ProductConfigPersistenceHelperImpl persistenceHelper, ProductServiceGeneralMapper mapper) {
-//     this.serviceUtil = serviceUtil;
-//     this.persistenceHelper = persistenceHelper;
-//     this.mapper = mapper;
-//   }
-
-
-
-//     // @Override
-//     // public Product getProduct(int productId) {
-//     //     LOG.debug("/product return the found product for productId={}", productId);
-
-//     //     if (productId < 1) {
-//     //       throw new InvalidInputException("Invalid productId: " + productId);
-//     //     }
-    
-//     //     if (productId == 13) {
-//     //       throw new NotFoundException("No product found for productId: " + productId);
-//     //     }
-        
-//     //     // return product_repository.findById(productId);
-
-        
-//     //     // int id, String name, String description, String remarks, String type, String serviceAddress
-
-//     //     Product prod = new Product(productId, null, null, null, null, null, null);
-
-//     //     return new Product(productId, "product" + productId, "fake product", "fake product remarks", "fake product type", serviceUtil.getServiceAddress());
-//     // }
 
 
 //     // private List getApiObjectListFromParentId(){
