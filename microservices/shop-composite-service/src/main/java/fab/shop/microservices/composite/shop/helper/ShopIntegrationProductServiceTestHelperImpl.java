@@ -110,7 +110,7 @@ public class ShopIntegrationProductServiceTestHelperImpl implements ShopIntegrat
     @Override
     public ProductPurchaseConfirmRS productPurchaseConfirmTestHelper() {
         List<OfferPurchase> offerPurechaseList = new ArrayList<>();
-        OfferPurchase offerPurchase = new OfferPurchase(5, 2);
+        OfferPurchase offerPurchase = new OfferPurchase(12, 2);
         offerPurechaseList.add(offerPurchase);
 
         ProductPurchaseConfirmRQ rq = new ProductPurchaseConfirmRQ(44, offerPurechaseList);

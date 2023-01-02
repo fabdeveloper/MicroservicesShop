@@ -9,6 +9,7 @@ public class GetOfferListDetailRS {
 
     private Integer shopId;
     private List<Offer> offerList;
+    private List<String> errorList;
     private String status;
 
 
@@ -58,6 +59,23 @@ public class GetOfferListDetailRS {
     }
 
 
+    public List<String> getErrorList() {
+        if(this.errorList == null){
+            this.errorList = new ArrayList<String>();
+        }
+        return this.errorList;
+    }
+
+    public void setErrorList(List<String> errorList) {
+        this.errorList = errorList;
+    }
+
+    public void addError(String sError){
+        getErrorList().add(sError);
+    }
+
+
+
     @Override
     public String toString() {
         String offerListString = "{ ";
@@ -67,10 +85,18 @@ public class GetOfferListDetailRS {
                 offerListString += ", ";
             }
         }
+        String errorListString = "{ ";
+        if(getErrorList() != null){
+            for(String sError : getErrorList()){
+                errorListString += sError;
+                errorListString += ", ";
+            }
+        }
         offerListString += " }";
         return "{" +
             " shopId='" + getShopId() + "'" +
             ", offerList='" + offerListString + "'" +
+            ", errorList='" + errorListString + "'" +
             ", status='" + getStatus() + "'" +
             "}";
     }

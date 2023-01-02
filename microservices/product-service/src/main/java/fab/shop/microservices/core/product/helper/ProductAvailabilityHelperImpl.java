@@ -86,11 +86,30 @@ public class ProductAvailabilityHelperImpl implements IProductAvailabilityHelper
     }
 
 
-
+    @Transactional
     @Override
     public GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ) {
-        // TODO Auto-generated method stub
-        return null;
+      GetOfferListDetailRS rs = new GetOfferListDetailRS();
+
+      String msg = "recibido rq = " + getOfferListDetailRQ.toString();
+      rs.setStatus(msg);
+
+      Offer offer = null;
+      OfferEntity entity = null;
+      for(Integer offerId : getOfferListDetailRQ.getOfferList()){
+        try {              
+            entity = getPersistenceFacade().getPersistenceHelper().getOfferRepository().findById(offerId).get();
+            if(entity !=  null){
+              offer = getPersistenceFacade().getGeneralMapper().getOfferMapper().entityToApi(entity);
+              rs.addOffer(offer);
+            }  
+          
+        } catch (Throwable e) {
+            String sError = "ERROR - offer: " + offerId + " , not found";
+            rs.addError(sError);
+        }
+      }
+      return rs;
     }
     
 }
