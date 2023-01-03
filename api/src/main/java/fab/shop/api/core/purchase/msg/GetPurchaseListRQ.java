@@ -21,4 +21,14 @@ public class GetPurchaseListRQ {
         this.shopId = shopId;
     }
 
+
+    @Override
+    public String toString() {
+        return "{" +
+            " userId='" + getUserId() + "'" +
+            ", shopId='" + getShopId() + "'" +
+            "}";
+    }
+
+
 }
