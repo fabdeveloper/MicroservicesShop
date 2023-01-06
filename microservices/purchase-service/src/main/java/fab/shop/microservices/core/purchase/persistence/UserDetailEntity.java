@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="deliveries")
+@Table(name="users")
 public class UserDetailEntity {
 
     @Id @GeneratedValue

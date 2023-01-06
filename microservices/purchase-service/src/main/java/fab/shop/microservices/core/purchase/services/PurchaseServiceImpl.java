@@ -15,89 +15,65 @@ import fab.shop.api.core.purchase.msg.PurchaseCancelRS;
 import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
 import fab.shop.api.core.purchase.msg.PurchaseModificationRQ;
 import fab.shop.api.core.purchase.msg.PurchaseModificationRS;
+import fab.shop.microservices.core.purchase.facade.IPurchaseServiceFacade;
 
 @RestController
 public class PurchaseServiceImpl implements PurchaseService{
 
-    private final ServiceUtil serviceUtil;
-
+    @Autowired
+    private ServiceUtil serviceUtil;
 
     @Autowired
-    public PurchaseServiceImpl(ServiceUtil serviceUtil) {
-        this.serviceUtil = serviceUtil;
-    }
+    private IPurchaseServiceFacade purchaseServiceFacade;
 
-
-    // @Override
-    // public Purchase getPurchase(int purchaseId) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-    // @Override
-    // public Purchase createPurchase(Purchase purchase) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-    // @Override
-    // public Purchase purchaseCancel(int purchaseId) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-    // @Override
-    // public Purchase purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ) {
-
-    //     Purchase purchase = new Purchase(26, 
-    //                                     purchaseConfirmRQ.getCart().getProductList(), 
-    //                                     purchaseConfirmRQ.getUserId(), 
-    //                                     purchaseConfirmRQ.getValuation(), 
-    //                                     purchaseConfirmRQ.getShipmentAddress(), 
-    //                                     purchaseConfirmRQ.getPaymentMethod(),
-    //                                     "confirmed", getServiceUtil().getServiceAddress());
-
-    //     return purchase;
-    // }
 
 
     public ServiceUtil getServiceUtil() {
         return this.serviceUtil;
     }
 
+    public void setServiceUtil(ServiceUtil serviceUtil) {
+        this.serviceUtil = serviceUtil;
+    }
+
+    public IPurchaseServiceFacade getPurchaseServiceFacade() {
+        return this.purchaseServiceFacade;
+    }
+
+    public void setPurchaseServiceFacade(IPurchaseServiceFacade purchaseServiceFacade) {
+        this.purchaseServiceFacade = purchaseServiceFacade;
+    }
+
+
+
 
     @Override
     public PurchaseModificationRS purchaseModification(PurchaseModificationRQ purchaseModificationRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return getPurchaseServiceFacade().purchaseModification(purchaseModificationRQ);
     }
 
 
     @Override
     public PurchaseCancelRS purchaseCancel(PurchaseCancelRQ purchaseCancelRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return getPurchaseServiceFacade().purchaseCancel(purchaseCancelRQ);
     }
 
 
     @Override
     public GetPurchaseRS getPurchase(GetPurchaseRQ getPurchaseRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return getPurchaseServiceFacade().getPurchase(getPurchaseRQ);
     }
 
 
     @Override
     public GetPurchaseListRS getPurchaseList(GetPurchaseListRQ getPurchaseListRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return getPurchaseServiceFacade().getPurchaseList(getPurchaseListRQ);
     }
 
 
     @Override
     public PurchaseConfirmRS purchaseConfirm(fab.shop.api.core.purchase.msg.PurchaseConfirmRQ purchaseConfirmRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        return getPurchaseServiceFacade().purchaseConfirm(purchaseConfirmRQ);
     }
 
 
