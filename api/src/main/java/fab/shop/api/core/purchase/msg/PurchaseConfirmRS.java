@@ -5,6 +5,7 @@ import java.util.List;
 public class PurchaseConfirmRS {
     private Integer purchaseId;
     private List<String> errorList;
+    private String status;
 
     public Integer getPurchaseId() {
         return this.purchaseId;
@@ -23,15 +24,25 @@ public class PurchaseConfirmRS {
         this.errorList = errorList;
     }
 
+    public String getStatus() {
+        return this.status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @Override
     public String toString() {
         return "{" +
             " purchaseId='" + getPurchaseId() + "'" +
             ", errorList='" + getErrorList() + "'" +
+            ", status='" + getStatus() + "'" +
             "}";
     }
+
+
+
 
 
 

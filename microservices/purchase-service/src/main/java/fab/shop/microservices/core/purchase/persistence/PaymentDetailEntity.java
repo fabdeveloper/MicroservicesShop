@@ -3,6 +3,8 @@ package fab.shop.microservices.core.purchase.persistence;
 
 
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 
@@ -16,6 +18,13 @@ public class PaymentDetailEntity {
 
 	@Version
     private Integer version;
+
+    private String paymentStatus;
+    private PaymentTypeEnum paymentType;
+    private Date paymentDate;
+    private Date paymentModificationDate;
+
+    
 
 
     

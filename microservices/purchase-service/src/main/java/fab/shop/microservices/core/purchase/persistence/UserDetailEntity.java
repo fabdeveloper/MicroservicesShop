@@ -13,11 +13,17 @@ import javax.persistence.*;
 public class UserDetailEntity {
 
     @Id @GeneratedValue
-    private Integer cartId;
+    private Integer id;
 
 	@Version
     private Integer version;
 
+    private Integer userId;
+    private Integer shopId;
+    private String email;
+    private String phoneNumber;
+    
+    
 
     
 }

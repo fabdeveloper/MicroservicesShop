@@ -19,11 +19,15 @@ package "repository" {
 
 	Igr - [GeneralRepositoryImpl]
     [PersistenceFacadeImpl] ..> Igr : uses
+    CrudRepository - [EntityRepository]
+    [GeneralRepositoryImpl] --> [EntityRepository]
 }
 
 package "mapper" {
 	Igm - [GeneralMapperImpl]
 	[PersistenceFacadeImpl] ..> Igm : uses
+    Mapper - [EntityMapper]
+    [GeneralMapperImpl] --> [EntityMapper]
 
 
 

@@ -2,6 +2,8 @@ package fab.shop.microservices.core.purchase.persistence;
 
 
 
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -17,5 +19,10 @@ public class CartDetailEntity {
     private Integer version;
 
 
+    private List<ItemCart> itemsList;
+    private Float valuation;
+    private Integer productBookingNumber;
+    
+    
     
 }
