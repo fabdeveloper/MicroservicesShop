@@ -2,7 +2,7 @@ package fab.shop.microservices.core.purchase.persistence;
 
 
 
-import java.util.List;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,8 +10,8 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name="carts")
-public class CartDetailEntity {
+@Table(name="cartItems")
+public class CartItemEntity {
 
     @Id @GeneratedValue
     private Integer id;
@@ -20,13 +20,6 @@ public class CartDetailEntity {
     private Integer version;
 
 
-    @NotNull
-    private List<ItemCartEntity> itemsList;
-    @NotNull
-    private Float valuation;
-    @NotNull
-    private Integer productBookingNumber;
-    
-    
+
     
 }

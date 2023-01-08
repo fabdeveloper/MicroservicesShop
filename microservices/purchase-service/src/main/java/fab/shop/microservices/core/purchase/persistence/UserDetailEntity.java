@@ -5,6 +5,7 @@ package fab.shop.microservices.core.purchase.persistence;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 
@@ -18,9 +19,13 @@ public class UserDetailEntity {
 	@Version
     private Integer version;
 
+    @NotNull
     private Integer userId;
+    @NotNull
     private Integer shopId;
+    @NotNull
     private String email;
+    @NotNull
     private String phoneNumber;
     
     

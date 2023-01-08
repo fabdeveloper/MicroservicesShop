@@ -5,6 +5,7 @@ package fab.shop.microservices.core.purchase.persistence;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 
@@ -18,8 +19,13 @@ public class DeliveryDetailEntity {
 	@Version
     private Integer version;
 
+    @NotNull
+    private String customerName;
+    @NotNull
     private String deliveryAddress;
+    @NotNull
     private String phoneNumber;
+
     private String remarks;
     private String status;
     private Date deliveryDate;
@@ -40,6 +46,16 @@ public class DeliveryDetailEntity {
     public void setVersion(Integer version) {
         this.version = version;
     }
+
+
+    public String getCustomerName() {
+        return this.customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
 
     public String getDeliveryAddress() {
         return this.deliveryAddress;
@@ -82,11 +98,13 @@ public class DeliveryDetailEntity {
     }
 
 
+
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
             ", version='" + getVersion() + "'" +
+            ", customerName='" + getCustomerName() + "'" +
             ", deliveryAddress='" + getDeliveryAddress() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", remarks='" + getRemarks() + "'" +
@@ -94,9 +112,5 @@ public class DeliveryDetailEntity {
             ", deliveryDate='" + getDeliveryDate() + "'" +
             "}";
     }
-
-    
-
-
     
 }
