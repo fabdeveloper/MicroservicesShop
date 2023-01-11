@@ -1,41 +1,32 @@
-package fab.shop.microservices.core.purchase.persistence;
-
-
+package fab.shop.api.core.purchase.transfer;
 
 import java.util.List;
 import java.util.Objects;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
+import fab.shop.api.core.cart.CartItem;
 
-@Entity
-@Table(name="carts")
-public class CartDetailEntity {
+public class CartDetail {
+    
 
-    @Id @GeneratedValue
+    
+
     private Integer id;
 
-	@Version
-    private Integer version;
-
-
     @NotNull
-    private List<CartItemEntity> itemsList;
+    private List<CartItem> itemsList;
     @NotNull
     private Float valuation;
     @NotNull
     private Integer productBookingNumber;
-    
 
 
-    public CartDetailEntity() {
+    public CartDetail() {
     }
 
-    public CartDetailEntity(Integer id, Integer version, List<CartItemEntity> itemsList, Float valuation, Integer productBookingNumber) {
+    public CartDetail(Integer id, List<CartItem> itemsList, Float valuation, Integer productBookingNumber) {
         this.id = id;
-        this.version = version;
         this.itemsList = itemsList;
         this.valuation = valuation;
         this.productBookingNumber = productBookingNumber;
@@ -49,19 +40,11 @@ public class CartDetailEntity {
         this.id = id;
     }
 
-    public Integer getVersion() {
-        return this.version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-    public List<CartItemEntity> getItemsList() {
+    public List<CartItem> getItemsList() {
         return this.itemsList;
     }
 
-    public void setItemsList(List<CartItemEntity> itemsList) {
+    public void setItemsList(List<CartItem> itemsList) {
         this.itemsList = itemsList;
     }
 
@@ -81,27 +64,22 @@ public class CartDetailEntity {
         this.productBookingNumber = productBookingNumber;
     }
 
-    public CartDetailEntity id(Integer id) {
+    public CartDetail id(Integer id) {
         setId(id);
         return this;
     }
 
-    public CartDetailEntity version(Integer version) {
-        setVersion(version);
-        return this;
-    }
-
-    public CartDetailEntity itemsList(List<CartItemEntity> itemsList) {
+    public CartDetail itemsList(List<CartItem> itemsList) {
         setItemsList(itemsList);
         return this;
     }
 
-    public CartDetailEntity valuation(Float valuation) {
+    public CartDetail valuation(Float valuation) {
         setValuation(valuation);
         return this;
     }
 
-    public CartDetailEntity productBookingNumber(Integer productBookingNumber) {
+    public CartDetail productBookingNumber(Integer productBookingNumber) {
         setProductBookingNumber(productBookingNumber);
         return this;
     }
@@ -110,29 +88,28 @@ public class CartDetailEntity {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof CartDetailEntity)) {
+        if (!(o instanceof CartDetail)) {
             return false;
         }
-        CartDetailEntity cartDetailEntity = (CartDetailEntity) o;
-        return Objects.equals(id, cartDetailEntity.id) && Objects.equals(version, cartDetailEntity.version) && Objects.equals(itemsList, cartDetailEntity.itemsList) && Objects.equals(valuation, cartDetailEntity.valuation) && Objects.equals(productBookingNumber, cartDetailEntity.productBookingNumber);
+        CartDetail cartDetail = (CartDetail) o;
+        return Objects.equals(id, cartDetail.id) && Objects.equals(itemsList, cartDetail.itemsList) && Objects.equals(valuation, cartDetail.valuation) && Objects.equals(productBookingNumber, cartDetail.productBookingNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, itemsList, valuation, productBookingNumber);
+        return Objects.hash(id, itemsList, valuation, productBookingNumber);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", version='" + getVersion() + "'" +
             ", itemsList='" + getItemsList() + "'" +
             ", valuation='" + getValuation() + "'" +
             ", productBookingNumber='" + getProductBookingNumber() + "'" +
             "}";
     }
 
-    
-    
+
+
 }

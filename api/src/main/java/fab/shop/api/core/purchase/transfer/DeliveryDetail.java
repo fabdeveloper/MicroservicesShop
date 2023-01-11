@@ -1,29 +1,14 @@
-package fab.shop.microservices.core.purchase.persistence;
-
-
+package fab.shop.api.core.purchase.transfer;
 
 import java.util.Date;
+import java.util.Objects;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+public class DeliveryDetail {
 
 
-
-@Entity
-@Table(name="deliveries")
-public class DeliveryDetailEntity {
-
-    @Id @GeneratedValue
     private Integer id;
-
-	@Version
-    private Integer version;
-
-    @NotNull
     private String customerName;
-    @NotNull
     private String deliveryAddress;
-    @NotNull
     private String phoneNumber;
 
     private String remarks;
@@ -31,13 +16,12 @@ public class DeliveryDetailEntity {
     private Date deliveryDate;
 
 
-    public DeliveryDetailEntity() {
+
+    public DeliveryDetail() {
     }
 
-
-    public DeliveryDetailEntity(Integer id, Integer version, String customerName, String deliveryAddress, String phoneNumber, String remarks, String status, Date deliveryDate) {
+    public DeliveryDetail(Integer id, String customerName, String deliveryAddress, String phoneNumber, String remarks, String status, Date deliveryDate) {
         this.id = id;
-        this.version = version;
         this.customerName = customerName;
         this.deliveryAddress = deliveryAddress;
         this.phoneNumber = phoneNumber;
@@ -46,7 +30,6 @@ public class DeliveryDetailEntity {
         this.deliveryDate = deliveryDate;
     }
 
-    
     public Integer getId() {
         return this.id;
     }
@@ -55,15 +38,6 @@ public class DeliveryDetailEntity {
         this.id = id;
     }
 
-    public Integer getVersion() {
-        return this.version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-
     public String getCustomerName() {
         return this.customerName;
     }
@@ -71,7 +45,6 @@ public class DeliveryDetailEntity {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
-
 
     public String getDeliveryAddress() {
         return this.deliveryAddress;
@@ -113,13 +86,61 @@ public class DeliveryDetailEntity {
         this.deliveryDate = deliveryDate;
     }
 
+    public DeliveryDetail id(Integer id) {
+        setId(id);
+        return this;
+    }
 
+    public DeliveryDetail customerName(String customerName) {
+        setCustomerName(customerName);
+        return this;
+    }
+
+    public DeliveryDetail deliveryAddress(String deliveryAddress) {
+        setDeliveryAddress(deliveryAddress);
+        return this;
+    }
+
+    public DeliveryDetail phoneNumber(String phoneNumber) {
+        setPhoneNumber(phoneNumber);
+        return this;
+    }
+
+    public DeliveryDetail remarks(String remarks) {
+        setRemarks(remarks);
+        return this;
+    }
+
+    public DeliveryDetail status(String status) {
+        setStatus(status);
+        return this;
+    }
+
+    public DeliveryDetail deliveryDate(Date deliveryDate) {
+        setDeliveryDate(deliveryDate);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof DeliveryDetail)) {
+            return false;
+        }
+        DeliveryDetail deliveryDetail = (DeliveryDetail) o;
+        return Objects.equals(id, deliveryDetail.id) && Objects.equals(customerName, deliveryDetail.customerName) && Objects.equals(deliveryAddress, deliveryDetail.deliveryAddress) && Objects.equals(phoneNumber, deliveryDetail.phoneNumber) && Objects.equals(remarks, deliveryDetail.remarks) && Objects.equals(status, deliveryDetail.status) && Objects.equals(deliveryDate, deliveryDetail.deliveryDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, customerName, deliveryAddress, phoneNumber, remarks, status, deliveryDate);
+    }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", version='" + getVersion() + "'" +
             ", customerName='" + getCustomerName() + "'" +
             ", deliveryAddress='" + getDeliveryAddress() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
@@ -128,5 +149,6 @@ public class DeliveryDetailEntity {
             ", deliveryDate='" + getDeliveryDate() + "'" +
             "}";
     }
+    
     
 }

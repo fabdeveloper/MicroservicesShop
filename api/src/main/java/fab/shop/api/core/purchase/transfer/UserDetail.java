@@ -1,25 +1,16 @@
-package fab.shop.microservices.core.purchase.persistence;
-
-
-
-
+package fab.shop.api.core.purchase.transfer;
 
 import java.util.Objects;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 
 
+public class UserDetail {
+    
 
-@Entity
-@Table(name="users")
-public class UserDetailEntity {
-
-    @Id @GeneratedValue
+    
     private Integer id;
 
-	@Version
-    private Integer version;
+
 
     @NotNull
     private Integer userId;
@@ -32,12 +23,11 @@ public class UserDetailEntity {
 
 
 
-    public UserDetailEntity() {
+    public UserDetail() {
     }
 
-    public UserDetailEntity(Integer id, Integer version, Integer userId, Integer shopId, String email, String phoneNumber) {
+    public UserDetail(Integer id, Integer userId, Integer shopId, String email, String phoneNumber) {
         this.id = id;
-        this.version = version;
         this.userId = userId;
         this.shopId = shopId;
         this.email = email;
@@ -50,14 +40,6 @@ public class UserDetailEntity {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getVersion() {
-        return this.version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public Integer getUserId() {
@@ -92,32 +74,27 @@ public class UserDetailEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public UserDetailEntity id(Integer id) {
+    public UserDetail id(Integer id) {
         setId(id);
         return this;
     }
 
-    public UserDetailEntity version(Integer version) {
-        setVersion(version);
-        return this;
-    }
-
-    public UserDetailEntity userId(Integer userId) {
+    public UserDetail userId(Integer userId) {
         setUserId(userId);
         return this;
     }
 
-    public UserDetailEntity shopId(Integer shopId) {
+    public UserDetail shopId(Integer shopId) {
         setShopId(shopId);
         return this;
     }
 
-    public UserDetailEntity email(String email) {
+    public UserDetail email(String email) {
         setEmail(email);
         return this;
     }
 
-    public UserDetailEntity phoneNumber(String phoneNumber) {
+    public UserDetail phoneNumber(String phoneNumber) {
         setPhoneNumber(phoneNumber);
         return this;
     }
@@ -126,23 +103,22 @@ public class UserDetailEntity {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof UserDetailEntity)) {
+        if (!(o instanceof UserDetail)) {
             return false;
         }
-        UserDetailEntity userDetailEntity = (UserDetailEntity) o;
-        return Objects.equals(id, userDetailEntity.id) && Objects.equals(version, userDetailEntity.version) && Objects.equals(userId, userDetailEntity.userId) && Objects.equals(shopId, userDetailEntity.shopId) && Objects.equals(email, userDetailEntity.email) && Objects.equals(phoneNumber, userDetailEntity.phoneNumber);
+        UserDetail userDetail = (UserDetail) o;
+        return Objects.equals(id, userDetail.id) && Objects.equals(userId, userDetail.userId) && Objects.equals(shopId, userDetail.shopId) && Objects.equals(email, userDetail.email) && Objects.equals(phoneNumber, userDetail.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, userId, shopId, email, phoneNumber);
+        return Objects.hash(id, userId, shopId, email, phoneNumber);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", version='" + getVersion() + "'" +
             ", userId='" + getUserId() + "'" +
             ", shopId='" + getShopId() + "'" +
             ", email='" + getEmail() + "'" +
@@ -150,8 +126,4 @@ public class UserDetailEntity {
             "}";
     }
 
-    
-    
-
-    
 }
