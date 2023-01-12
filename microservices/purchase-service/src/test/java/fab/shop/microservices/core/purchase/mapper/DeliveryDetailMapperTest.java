@@ -24,8 +24,8 @@ public class DeliveryDetailMapperTest {
         DeliveryDetail apiObject = new DeliveryDetail(1, "customer name", "delivery address", "phone number", "delivery remarks", "delivery status", new Date());
         DeliveryDetailEntity entity = mapper.apiToEntity(apiObject);
 
-        assertEquals(apiObject.getCustomerName(), entity.getCustomerName());
-        assertEquals(apiObject.getDeliveryAddress(), entity.getDeliveryAddress());
+        assertEqualsApiEntity(apiObject, entity);
+
     }
 
     @Test
@@ -35,8 +35,18 @@ public class DeliveryDetailMapperTest {
         DeliveryDetailEntity entity = new DeliveryDetailEntity(1, 1,"customer name", "delivery address", "phone number", "delivery remarks", "delivery status", new Date());
         DeliveryDetail apiObject = mapper.entityToApi(entity);
 
+        assertEqualsApiEntity(apiObject, entity);
+
+
+    }
+
+    private void assertEqualsApiEntity(DeliveryDetail apiObject, DeliveryDetailEntity entity){
+
         assertEquals(apiObject.getCustomerName(), entity.getCustomerName());
         assertEquals(apiObject.getDeliveryAddress(), entity.getDeliveryAddress());
+
+
+
     }
 
 

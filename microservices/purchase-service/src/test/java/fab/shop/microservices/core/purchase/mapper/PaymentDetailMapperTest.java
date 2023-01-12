@@ -23,8 +23,7 @@ public class PaymentDetailMapperTest {
         PaymentDetail apiObject = new PaymentDetail(1, "done", null, new Date(), null);
         PaymentDetailEntity entity = mapper.apiToEntity(apiObject);
 
-        assertEquals(apiObject.getPaymentDate(), entity.getPaymentDate());
-        assertEquals(apiObject.getPaymentStatus(), entity.getPaymentStatus());
+        assertEqualsApiEntity(apiObject, entity);
     }
 
     @Test
@@ -34,8 +33,17 @@ public class PaymentDetailMapperTest {
         PaymentDetailEntity entity = new PaymentDetailEntity(null, null, null, null, null, null);
         PaymentDetail apiObject = mapper.entityToApi(entity);
 
+        assertEqualsApiEntity(apiObject, entity);
+
+    }
+
+    private void assertEqualsApiEntity(PaymentDetail apiObject, PaymentDetailEntity entity){
+
         assertEquals(apiObject.getPaymentDate(), entity.getPaymentDate());
         assertEquals(apiObject.getPaymentStatus(), entity.getPaymentStatus());
+
+
+
     }
 
 

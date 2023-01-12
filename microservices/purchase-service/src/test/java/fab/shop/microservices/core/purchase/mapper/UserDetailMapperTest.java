@@ -12,9 +12,6 @@ import fab.shop.microservices.core.purchase.persistence.UserDetailEntity;
 
 public class UserDetailMapperTest {
 
-    private UserDetail apiObject;
-    private UserDetailEntity entityObject;
-
     private DeliveryDetailMapper mapper = Mappers.getMapper(DeliveryDetailMapper.class);
 
 
@@ -25,8 +22,7 @@ public class UserDetailMapperTest {
         UserDetail apiObject = new UserDetail(1, 1, 1, "user@email.com", "555-55-5555");
         UserDetailEntity entity = mapper.apiToEntity(apiObject);
 
-        assertEquals(apiObject.getEmail(), entity.getEmail());
-        assertEquals(apiObject.getPhoneNumber(), entity.getPhoneNumber());
+        assertEqualsApiEntity(apiObject, entity);
     }
 
     @Test
@@ -36,8 +32,15 @@ public class UserDetailMapperTest {
         UserDetailEntity entity = new UserDetailEntity(1, 0, 1, 1, "user@email.com", "555-55-5555");
         UserDetail apiObject = mapper.entityToApi(entity);
 
-        assertEquals(apiObject.getEmail(), entity.getEmail());
-        assertEquals(apiObject.getPhoneNumber(), entity.getPhoneNumber());
+        assertEqualsApiEntity(apiObject, entity);
+    }
+
+    private void assertEqualsApiEntity(UserDetail apiObject, UserDetailEntity entityObject){
+        assertEquals(apiObject.getEmail(), entityObject.getEmail());
+        assertEquals(apiObject.getPhoneNumber(), entityObject.getPhoneNumber());
+
+
+
     }
 
  

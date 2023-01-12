@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class PurchaseEntity {
 
     @Id @GeneratedValue
-    private Integer cartId;
+    private Integer id;
 
 	@Version
     private Integer version;
