@@ -5,7 +5,7 @@ package fab.shop.microservices.core.purchase.persistence;
 import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 
 
 
@@ -19,11 +19,8 @@ public class DeliveryDetailEntity {
 	@Version
     private Integer version;
 
-    @NotNull
     private String customerName;
-    @NotNull
     private String deliveryAddress;
-    @NotNull
     private String phoneNumber;
 
     private String remarks;

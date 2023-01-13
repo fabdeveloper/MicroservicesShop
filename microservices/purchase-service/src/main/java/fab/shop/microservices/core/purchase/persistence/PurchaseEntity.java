@@ -22,16 +22,20 @@ public class PurchaseEntity {
 
     private String remarks;
 
-    @ManyToOne
+    @ManyToOne    
+    @JoinColumn(name = "user_id", nullable = false)
     private UserDetailEntity user;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id", nullable = false)
     private CartDetailEntity cart;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "delivery_id", referencedColumnName = "id", nullable = false)
     private DeliveryDetailEntity delivery;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id", nullable = false)
     private PaymentDetailEntity payment;
 
     

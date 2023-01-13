@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 
 import fab.shop.api.core.purchase.transfer.PaymentTypeEnum;
 
@@ -23,9 +23,7 @@ public class PaymentDetailEntity {
 	@Version
     private Integer version;
 
-    @NotNull
     private String paymentStatus;
-    @NotNull
     private PaymentTypeEnum paymentType;
     
     private Date paymentDate;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 
 
 
@@ -21,11 +21,11 @@ public class CartDetailEntity {
     private Integer version;
 
 
-    @NotNull
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType. EAGER)
     private List<CartItemEntity> itemsList;
-    @NotNull
     private Float valuation;
-    @NotNull
+
+    private Integer shopId;
     private Integer productBookingNumber;
     
 
