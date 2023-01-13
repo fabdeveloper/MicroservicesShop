@@ -2,7 +2,7 @@ package fab.shop.api.core.purchase.msg;
 
 import java.util.List;
 
-import fab.shop.api.core.purchase.Purchase;
+import fab.shop.api.core.purchase.transfer.Purchase;
 
 public class GetPurchaseListRS {
     private List<Purchase> purchaseList;

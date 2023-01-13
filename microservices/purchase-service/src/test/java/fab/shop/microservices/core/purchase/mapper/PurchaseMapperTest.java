@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Date;
+
 import org.mapstruct.factory.Mappers;
 
-import fab.shop.api.core.purchase.Purchase;
+import fab.shop.api.core.purchase.transfer.Purchase;
 import fab.shop.microservices.core.purchase.persistence.PurchaseEntity;
 
 public class PurchaseMapperTest {
@@ -21,7 +23,7 @@ public class PurchaseMapperTest {
     public void apiToEntityTest(){
         assertNotNull(mapper);
 
-        Purchase apiObject = new Purchase(1, 1, 1, "user@email.com", "555-55-5555");
+        Purchase apiObject = new Purchase(null, new Date(), null, "purchase remarks", null, null, null, null);
         PurchaseEntity entity = mapper.apiToEntity(apiObject);
 
         assertEqualsApiEntity(apiObject, entity);
@@ -31,15 +33,15 @@ public class PurchaseMapperTest {
     public void entityToApiTest(){
         assertNotNull(mapper);
 
-        PurchaseEntity entity = new UserDetailEntity(1, 0, 1, 1, "user@email.com", "555-55-5555");
+        PurchaseEntity entity = new PurchaseEntity(1, 0, new Date(), null, "purchase remarks", null, null, null, null);
         Purchase apiObject = mapper.entityToApi(entity);
 
         assertEqualsApiEntity(apiObject, entity);
     }
 
     private void assertEqualsApiEntity(Purchase apiObject, PurchaseEntity entityObject){
-        assertEquals(apiObject.getEmail(), entityObject.getEmail());
-        assertEquals(apiObject.getPhoneNumber(), entityObject.getPhoneNumber());
+        assertEquals(apiObject.getConfirmationDate(), entityObject.getConfirmationDate());
+        assertEquals(apiObject.getRemarks(), entityObject.getRemarks());
 
 
 

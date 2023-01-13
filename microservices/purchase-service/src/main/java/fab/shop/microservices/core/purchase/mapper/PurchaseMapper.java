@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
-import fab.shop.api.core.purchase.Purchase;
+import fab.shop.api.core.purchase.transfer.Purchase;
 import fab.shop.microservices.core.purchase.persistence.PurchaseEntity;
 
 
