@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 public class PaymentDetail {
 
-    private Integer cartId;
+    private Integer id;
 
     @NotNull
     private String paymentStatus;
@@ -20,24 +20,23 @@ public class PaymentDetail {
     private Date paymentModificationDate;
 
 
-
     public PaymentDetail() {
     }
 
-    public PaymentDetail(Integer cartId, String paymentStatus, PaymentTypeEnum paymentType, Date paymentDate, Date paymentModificationDate) {
-        this.cartId = cartId;
+    public PaymentDetail(Integer id, String paymentStatus, PaymentTypeEnum paymentType, Date paymentDate, Date paymentModificationDate) {
+        this.id = id;
         this.paymentStatus = paymentStatus;
         this.paymentType = paymentType;
         this.paymentDate = paymentDate;
         this.paymentModificationDate = paymentModificationDate;
     }
 
-    public Integer getCartId() {
-        return this.cartId;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPaymentStatus() {
@@ -72,8 +71,8 @@ public class PaymentDetail {
         this.paymentModificationDate = paymentModificationDate;
     }
 
-    public PaymentDetail cartId(Integer cartId) {
-        setCartId(cartId);
+    public PaymentDetail id(Integer id) {
+        setId(id);
         return this;
     }
 
@@ -105,26 +104,24 @@ public class PaymentDetail {
             return false;
         }
         PaymentDetail paymentDetail = (PaymentDetail) o;
-        return Objects.equals(cartId, paymentDetail.cartId) && Objects.equals(paymentStatus, paymentDetail.paymentStatus) && Objects.equals(paymentType, paymentDetail.paymentType) && Objects.equals(paymentDate, paymentDetail.paymentDate) && Objects.equals(paymentModificationDate, paymentDetail.paymentModificationDate);
+        return Objects.equals(id, paymentDetail.id) && Objects.equals(paymentStatus, paymentDetail.paymentStatus) && Objects.equals(paymentType, paymentDetail.paymentType) && Objects.equals(paymentDate, paymentDetail.paymentDate) && Objects.equals(paymentModificationDate, paymentDetail.paymentModificationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cartId, paymentStatus, paymentType, paymentDate, paymentModificationDate);
+        return Objects.hash(id, paymentStatus, paymentType, paymentDate, paymentModificationDate);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " cartId='" + getCartId() + "'" +
+            " id='" + getId() + "'" +
             ", paymentStatus='" + getPaymentStatus() + "'" +
             ", paymentType='" + getPaymentType() + "'" +
             ", paymentDate='" + getPaymentDate() + "'" +
             ", paymentModificationDate='" + getPaymentModificationDate() + "'" +
             "}";
     }
-
-
 
     
 }

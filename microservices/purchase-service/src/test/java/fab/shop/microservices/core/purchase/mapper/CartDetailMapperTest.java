@@ -3,10 +3,14 @@ package fab.shop.microservices.core.purchase.mapper;
 import org.mapstruct.factory.Mappers;
 
 import fab.shop.api.core.purchase.transfer.CartDetail;
+import fab.shop.api.core.purchase.transfer.CartItem;
 import fab.shop.microservices.core.purchase.persistence.CartDetailEntity;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartDetailMapperTest {
 
@@ -17,7 +21,10 @@ public class CartDetailMapperTest {
     public void apiToEntityTest(){
         assertNotNull(mapper);
 
-        CartDetail apiObject = new CartDetail(null, null, null, null);
+        CartItem item = new CartItem(1, 1, 2, 1, "offer name", "offer description", 9.9f);
+        List<CartItem> itemList = new ArrayList<>();
+        itemList.add(item);
+        CartDetail apiObject = new CartDetail(1, itemList, 9.9f, 5);
         CartDetailEntity entity = mapper.apiToEntity(apiObject);
 
         assertEqualsApiEntity(apiObject, entity);

@@ -5,7 +5,6 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 
-import fab.shop.api.core.cart.CartItem;
 
 public class CartDetail {
     

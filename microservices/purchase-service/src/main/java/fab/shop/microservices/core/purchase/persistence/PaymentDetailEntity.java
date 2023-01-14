@@ -18,7 +18,7 @@ import fab.shop.api.core.purchase.transfer.PaymentTypeEnum;
 public class PaymentDetailEntity {
 
     @Id @GeneratedValue
-    private Integer cartId;
+    private Integer id;
 
 	@Version
     private Integer version;
@@ -30,12 +30,11 @@ public class PaymentDetailEntity {
     private Date paymentModificationDate;
 
 
-
     public PaymentDetailEntity() {
     }
 
-    public PaymentDetailEntity(Integer cartId, Integer version, String paymentStatus, PaymentTypeEnum paymentType, Date paymentDate, Date paymentModificationDate) {
-        this.cartId = cartId;
+    public PaymentDetailEntity(Integer id, Integer version, String paymentStatus, PaymentTypeEnum paymentType, Date paymentDate, Date paymentModificationDate) {
+        this.id = id;
         this.version = version;
         this.paymentStatus = paymentStatus;
         this.paymentType = paymentType;
@@ -43,12 +42,12 @@ public class PaymentDetailEntity {
         this.paymentModificationDate = paymentModificationDate;
     }
 
-    public Integer getCartId() {
-        return this.cartId;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getVersion() {
@@ -91,8 +90,8 @@ public class PaymentDetailEntity {
         this.paymentModificationDate = paymentModificationDate;
     }
 
-    public PaymentDetailEntity cartId(Integer cartId) {
-        setCartId(cartId);
+    public PaymentDetailEntity id(Integer id) {
+        setId(id);
         return this;
     }
 
@@ -129,18 +128,18 @@ public class PaymentDetailEntity {
             return false;
         }
         PaymentDetailEntity paymentDetailEntity = (PaymentDetailEntity) o;
-        return Objects.equals(cartId, paymentDetailEntity.cartId) && Objects.equals(version, paymentDetailEntity.version) && Objects.equals(paymentStatus, paymentDetailEntity.paymentStatus) && Objects.equals(paymentType, paymentDetailEntity.paymentType) && Objects.equals(paymentDate, paymentDetailEntity.paymentDate) && Objects.equals(paymentModificationDate, paymentDetailEntity.paymentModificationDate);
+        return Objects.equals(id, paymentDetailEntity.id) && Objects.equals(version, paymentDetailEntity.version) && Objects.equals(paymentStatus, paymentDetailEntity.paymentStatus) && Objects.equals(paymentType, paymentDetailEntity.paymentType) && Objects.equals(paymentDate, paymentDetailEntity.paymentDate) && Objects.equals(paymentModificationDate, paymentDetailEntity.paymentModificationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cartId, version, paymentStatus, paymentType, paymentDate, paymentModificationDate);
+        return Objects.hash(id, version, paymentStatus, paymentType, paymentDate, paymentModificationDate);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " cartId='" + getCartId() + "'" +
+            " id='" + getId() + "'" +
             ", version='" + getVersion() + "'" +
             ", paymentStatus='" + getPaymentStatus() + "'" +
             ", paymentType='" + getPaymentType() + "'" +
@@ -148,10 +147,6 @@ public class PaymentDetailEntity {
             ", paymentModificationDate='" + getPaymentModificationDate() + "'" +
             "}";
     }
-
-
-    
-
 
     
 }

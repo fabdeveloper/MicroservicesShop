@@ -12,7 +12,7 @@ import fab.shop.api.core.purchase.transfer.Purchase;
 import fab.shop.microservices.core.purchase.persistence.PurchaseEntity;
 
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = { UserDetailMapper.class, DeliveryDetailMapper.class, PaymentDetailMapper.class, CartDetailMapper.class})
 public interface PurchaseMapper {
 
     public Purchase entityToApi(PurchaseEntity entityObject);
