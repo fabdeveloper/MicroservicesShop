@@ -19,6 +19,9 @@ public interface UserDetailMapper {
     public UserDetail entityToApi(UserDetailEntity entityObject);
 
 
+    @Mappings({
+        @Mapping(target = "version", ignore = true)
+    })
     public UserDetailEntity apiToEntity(UserDetail apiObject);
     
 }

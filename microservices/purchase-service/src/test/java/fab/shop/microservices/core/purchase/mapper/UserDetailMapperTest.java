@@ -12,7 +12,7 @@ import fab.shop.microservices.core.purchase.persistence.UserDetailEntity;
 
 public class UserDetailMapperTest {
 
-    private DeliveryDetailMapper mapper = Mappers.getMapper(DeliveryDetailMapper.class);
+    private UserDetailMapper mapper = Mappers.getMapper(UserDetailMapper.class);
 
 
     @Test

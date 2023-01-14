@@ -14,6 +14,9 @@ import fab.shop.microservices.core.purchase.persistence.PaymentDetailEntity;
 @Mapper(componentModel = "spring")
 public interface PaymentDetailMapper {
 
+    @Mappings({
+        @Mapping(target = "version", ignore = true)
+    })
     public PaymentDetailEntity apiToEntity(PaymentDetail apiObject);
 
 

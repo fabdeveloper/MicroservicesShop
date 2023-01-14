@@ -17,7 +17,9 @@ public interface PurchaseMapper {
 
     public Purchase entityToApi(PurchaseEntity entityObject);
 
-
+    @Mappings({
+        @Mapping(target = "version", ignore = true)
+    })
     public PurchaseEntity apiToEntity(Purchase apiObject);
 
 

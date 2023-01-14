@@ -16,9 +16,14 @@ import fab.shop.microservices.core.purchase.persistence.DeliveryDetailEntity;
 @Mapper(componentModel = "spring")
 public interface DeliveryDetailMapper {
 
+
+    @Mappings({
+        @Mapping(target = "version", ignore = true)
+    })
     public DeliveryDetailEntity apiToEntity(DeliveryDetail apiObject);
 
 
+    
     public DeliveryDetail entityToApi(DeliveryDetailEntity entityObject);
     
 }

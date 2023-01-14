@@ -21,7 +21,7 @@ public class CartItemMapperTest {
     public void apiToEntityTest(){
         assertNotNull(mapper);
 
-        CartItem apiObject = new 
+        CartItem apiObject = new CartItem(null, 1, 2, 1, null, null, null);
         CartItemEntity entity = mapper.apiToEntity(apiObject);
 
         assertEqualsApiEntity(apiObject, entity);
@@ -31,7 +31,7 @@ public class CartItemMapperTest {
     public void entityToApiTest(){
         assertNotNull(mapper);
 
-        CartItemEntity entity = new CartItemEntity(1, 0, null, 2, null, null, null, null);
+        CartItemEntity entity = new CartItemEntity(1, 0, null, 2, 1, null, null, null);
         CartItem apiObject = mapper.entityToApi(entity);
 
         assertEqualsApiEntity(apiObject, entity);
@@ -39,8 +39,8 @@ public class CartItemMapperTest {
 
     private void assertEqualsApiEntity(CartItem apiObject, CartItemEntity entity){
 
-        assertEquals(apiObject.getProductBookingNumber(), entity.getProductBookingNumber());
-        assertEquals(apiObject.getValuation(), entity.getValuation());
+        assertEquals(apiObject.getOfferDescription(), entity.getOfferDescription());
+        assertEquals(apiObject.getOfferPrice(), entity.getOfferPrice());
 
 
 
