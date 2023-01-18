@@ -20,6 +20,16 @@ services:
         condition: service_healthy
 
 
+  purchase: 
+    build: microservices/purchase-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      mysql_purchase:
+        condition: service_healthy
+
+
   valuation:
     build: microservices/valuation-service
     mem_limit: 512m
@@ -64,6 +74,23 @@ services:
       - MYSQL_PASSWORD=pwdp
     healthcheck:
       test: "/usr/bin/mysql --user=userp --password=pwdp --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 60
+
+      
+  mysql_purchase:
+    image: mysql:5.7.32
+    mem_limit: 512m
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=purchase-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+    healthcheck:
+      test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
       interval: 5s
       timeout: 2s
       retries: 60

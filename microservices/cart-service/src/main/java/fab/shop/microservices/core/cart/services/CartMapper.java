@@ -32,11 +32,8 @@ public interface CartMapper {
 
     @AfterMapping
     default void setCartEntity(@MappingTarget CartEntity cartEntity){
-
         for(CartItemEntity item : cartEntity.getItemsList()){
             item.setCart(cartEntity);
         }
-
-
     }
 }

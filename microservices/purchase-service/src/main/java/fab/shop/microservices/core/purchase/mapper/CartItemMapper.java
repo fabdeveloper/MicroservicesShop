@@ -10,21 +10,29 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
+import org.mapstruct.factory.Mappers;
 
 import fab.shop.api.core.purchase.transfer.CartDetail;
 import fab.shop.api.core.purchase.transfer.CartItem;
-import fab.shop.microservices.core.purchase.persistence.CartDetailEntity;
 import fab.shop.microservices.core.purchase.persistence.CartItemEntity;
 
 
 @Mapper(componentModel = "spring")
 public interface CartItemMapper {
 
+    CartItemMapper INSTANCE = Mappers.getMapper(CartItemMapper.class);
+
+    
+    @Mappings({
+        @Mapping(target = "cartId", source = "cart.id")
+    })
     public CartItem entityToApi(CartItemEntity entityObject);
 
 
     @Mappings({
-        @Mapping(target = "version", ignore = true)
+        @Mapping(target = "version", ignore = true),
+        @Mapping(target = "cart", ignore = true)
+
     })
     public CartItemEntity apiToEntity(CartItem apiObject);
 

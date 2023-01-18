@@ -9,7 +9,8 @@ package "service" {
 package "facade" {
 	IPersFac - [PersistenceFacadeImpl]
     
-	Ipsf - [PurchaseServiceFacadeImpl]
+    [PurchaseServiceFacadeImpl] #Yellow
+	Ipsf - [PurchaseServiceFacadeImpl] 
     [PurchaseServiceImpl] ..> Ipsf : uses
     [PurchaseServiceFacadeImpl] ..> IPersFac : uses
 
@@ -19,6 +20,7 @@ package "repository" {
 
 	Igr - [GeneralRepositoryImpl]
     [PersistenceFacadeImpl] ..> Igr : uses
+    [EntityRepository] #Yellow
     CrudRepository - [EntityRepository]
     [GeneralRepositoryImpl] --> [EntityRepository]
 }
@@ -26,6 +28,7 @@ package "repository" {
 package "mapper" {
 	Igm - [GeneralMapperImpl]
 	[PersistenceFacadeImpl] ..> Igm : uses
+    [EntityMapper] #Yellow
     Mapper - [EntityMapper]
     [GeneralMapperImpl] --> [EntityMapper]
 
