@@ -1,10 +1,64 @@
 package fab.shop.api.core.purchase.msg;
 
 import java.util.List;
+import java.util.Objects;
 
 import fab.shop.api.core.product.Product;
+import fab.shop.api.core.purchase.transfer.Purchase;
 
 public class PurchaseConfirmRQ {
+
+    private Purchase purchase;
+
+
+    public PurchaseConfirmRQ() {
+    }
+
+    public PurchaseConfirmRQ(Purchase purchase) {
+        this.purchase = purchase;
+    }
+
+    public Purchase getPurchase() {
+        return this.purchase;
+    }
+
+    public void setPurchase(Purchase purchase) {
+        this.purchase = purchase;
+    }
+
+    public PurchaseConfirmRQ purchase(Purchase purchase) {
+        setPurchase(purchase);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof PurchaseConfirmRQ)) {
+            return false;
+        }
+        PurchaseConfirmRQ purchaseConfirmRQ = (PurchaseConfirmRQ) o;
+        return Objects.equals(purchase, purchaseConfirmRQ.purchase);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(purchase);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " purchase='" + getPurchase() + "'" +
+            "}";
+    }
+
+ 
+ 
+ /**********************************
+  * 
+
     private List<Product> productList;
     private Float valuation;
     private Integer userId;
@@ -88,5 +142,7 @@ public class PurchaseConfirmRQ {
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
+
+    ****************************************** */
 
 }

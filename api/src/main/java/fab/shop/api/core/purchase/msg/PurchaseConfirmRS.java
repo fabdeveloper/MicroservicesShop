@@ -1,5 +1,6 @@
 package fab.shop.api.core.purchase.msg;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseConfirmRS {
@@ -17,6 +18,9 @@ public class PurchaseConfirmRS {
 
 
     public List<String> getErrorList() {
+        if(this.errorList == null){
+            this.errorList = new ArrayList<>();
+        }
         return this.errorList;
     }
 
@@ -30,6 +34,10 @@ public class PurchaseConfirmRS {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void addError(String sError){
+        getErrorList().add(sError);
     }
 
     @Override

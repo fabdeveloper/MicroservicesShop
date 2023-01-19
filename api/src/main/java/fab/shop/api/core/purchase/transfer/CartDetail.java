@@ -19,16 +19,19 @@ public class CartDetail {
     private Float valuation;
     @NotNull
     private Integer productBookingNumber;
+    @NotNull
+    private Integer shopId;
 
 
     public CartDetail() {
     }
 
-    public CartDetail(Integer id, List<CartItem> itemsList, Float valuation, Integer productBookingNumber) {
+    public CartDetail(Integer id, List<CartItem> itemsList, Float valuation, Integer productBookingNumber, Integer shopId) {
         this.id = id;
         this.itemsList = itemsList;
         this.valuation = valuation;
         this.productBookingNumber = productBookingNumber;
+        this.shopId = shopId;
     }
 
     public Integer getId() {
@@ -63,6 +66,14 @@ public class CartDetail {
         this.productBookingNumber = productBookingNumber;
     }
 
+    public Integer getShopId() {
+        return this.shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
     public CartDetail id(Integer id) {
         setId(id);
         return this;
@@ -83,6 +94,11 @@ public class CartDetail {
         return this;
     }
 
+    public CartDetail shopId(Integer shopId) {
+        setShopId(shopId);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -91,12 +107,12 @@ public class CartDetail {
             return false;
         }
         CartDetail cartDetail = (CartDetail) o;
-        return Objects.equals(id, cartDetail.id) && Objects.equals(itemsList, cartDetail.itemsList) && Objects.equals(valuation, cartDetail.valuation) && Objects.equals(productBookingNumber, cartDetail.productBookingNumber);
+        return Objects.equals(id, cartDetail.id) && Objects.equals(itemsList, cartDetail.itemsList) && Objects.equals(valuation, cartDetail.valuation) && Objects.equals(productBookingNumber, cartDetail.productBookingNumber) && Objects.equals(shopId, cartDetail.shopId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, itemsList, valuation, productBookingNumber);
+        return Objects.hash(id, itemsList, valuation, productBookingNumber, shopId);
     }
 
     @Override
@@ -106,9 +122,11 @@ public class CartDetail {
             ", itemsList='" + getItemsList() + "'" +
             ", valuation='" + getValuation() + "'" +
             ", productBookingNumber='" + getProductBookingNumber() + "'" +
+            ", shopId='" + getShopId() + "'" +
             "}";
     }
 
+    
 
 
 }
