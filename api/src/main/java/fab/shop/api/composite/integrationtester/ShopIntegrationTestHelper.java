@@ -1,4 +1,4 @@
-package fab.shop.api.composite;
+package fab.shop.api.composite.integrationtester;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

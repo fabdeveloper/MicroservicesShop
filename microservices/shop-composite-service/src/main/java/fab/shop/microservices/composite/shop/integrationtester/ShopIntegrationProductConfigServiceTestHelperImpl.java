@@ -1,4 +1,4 @@
-package fab.shop.microservices.composite.shop.helper;
+package fab.shop.microservices.composite.shop.integrationtester;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import fab.shop.api.composite.ShopIntegrationProductConfigServiceTestHelper;
+import fab.shop.api.composite.integrationtester.ShopIntegrationProductConfigServiceTestHelper;
 import fab.shop.api.core.product.Article;
 import fab.shop.api.core.product.Discount;
 import fab.shop.api.core.product.Offer;

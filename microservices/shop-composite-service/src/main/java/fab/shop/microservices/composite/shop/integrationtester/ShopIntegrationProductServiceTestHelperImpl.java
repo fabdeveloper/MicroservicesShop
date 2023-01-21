@@ -1,4 +1,4 @@
-package fab.shop.microservices.composite.shop.helper;
+package fab.shop.microservices.composite.shop.integrationtester;
 
 
 import java.util.ArrayList;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import fab.shop.api.composite.ShopIntegrationProductServiceTestHelper;
 import fab.shop.api.core.product.msg.GenericProductConfigRQ;
 import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
@@ -25,6 +24,7 @@ import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.microservices.composite.shop.services.ShopCompositeIntegration;
 import fab.shop.util.http.ServiceUtil;
+import fab.shop.api.composite.integrationtester.ShopIntegrationProductServiceTestHelper;
 import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.Product;
 import fab.shop.api.core.product.Shop;

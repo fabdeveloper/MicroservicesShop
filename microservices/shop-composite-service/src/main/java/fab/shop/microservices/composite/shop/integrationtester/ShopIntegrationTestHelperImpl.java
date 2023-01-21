@@ -1,4 +1,4 @@
-package fab.shop.microservices.composite.shop.helper;
+package fab.shop.microservices.composite.shop.integrationtester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import fab.shop.api.composite.ShopIntegrationTestHelper;
+import fab.shop.api.composite.integrationtester.ShopIntegrationTestHelper;
 import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartItem;
 import fab.shop.api.core.cart.msg.AddToCartRQ;
