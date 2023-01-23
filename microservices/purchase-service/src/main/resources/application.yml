@@ -4,9 +4,9 @@ server.error.include-message: always
 spring.jpa.hibernate.ddl-auto: update
 
 spring.datasource:
-  url: jdbc:mysql://localhost/purchase-db
-  username: user
-  password: pwd
+  url: jdbc:mysql://localhost:3308/purchase-db
+  username: userpur
+  password: pwdpur
 
 spring.datasource.hikari.initializationFailTimeout: 60000
 
@@ -23,3 +23,6 @@ logging:
 spring.config.activate.on-profile: docker
 
 server.port: 8080
+
+spring.datasource:
+  url: jdbc:mysql://mysql_purchase/purchase-db

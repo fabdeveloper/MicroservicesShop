@@ -9,5 +9,5 @@ public interface IShopIntegrationPurchaseServiceTester {
     @GetMapping(
         value = "/shoptester/purchaseservice/testpurchaseconfirm",
         produces = "application/json")
-        PurchaseConfirmRS productPurchaseConfirmTestHelper();
+        PurchaseConfirmRS purchaseConfirmTestHelper();
 }

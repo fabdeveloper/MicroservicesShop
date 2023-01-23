@@ -87,10 +87,10 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=rootpwd
       - MYSQL_DATABASE=purchase-db
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=pwd
+      - MYSQL_USER=userpur
+      - MYSQL_PASSWORD=pwdpur
     healthcheck:
-      test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
+      test: "/usr/bin/mysql --user=userpur --password=pwdpur --execute \"SHOW DATABASES;\""
       interval: 5s
       timeout: 2s
       retries: 60

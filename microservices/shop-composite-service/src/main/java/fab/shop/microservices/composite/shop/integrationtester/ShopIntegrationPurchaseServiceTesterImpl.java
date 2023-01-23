@@ -52,7 +52,7 @@ public class ShopIntegrationPurchaseServiceTesterImpl implements IShopIntegratio
 
 
     @Override
-    public PurchaseConfirmRS productPurchaseConfirmTestHelper() {
+    public PurchaseConfirmRS purchaseConfirmTestHelper() {
 
         UserDetail user = new UserDetail(null, 1, 1, "user@email.com", "55555555555");
 
@@ -67,7 +67,7 @@ public class ShopIntegrationPurchaseServiceTesterImpl implements IShopIntegratio
         PurchaseConfirmRQ rq = new PurchaseConfirmRQ(purchase);
         PurchaseConfirmRS rs = null;
 
-        rs = restTemplate.postForObject(getShopIntegration().getPurchaseServiceUrl() + "/purchase/confirm", rq, PurchaseConfirmRS.class);
+        rs = restTemplate.postForObject(getShopIntegration().getPurchaseServiceUrl() + "/confirm", rq, PurchaseConfirmRS.class);
 
 
 
