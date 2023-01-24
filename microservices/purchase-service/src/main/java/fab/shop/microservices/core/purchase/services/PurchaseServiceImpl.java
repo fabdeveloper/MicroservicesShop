@@ -15,6 +15,7 @@ import fab.shop.api.core.purchase.msg.PurchaseCancelRS;
 import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
 import fab.shop.api.core.purchase.msg.PurchaseModificationRQ;
 import fab.shop.api.core.purchase.msg.PurchaseModificationRS;
+import fab.shop.api.core.purchase.transfer.PurchaseConfirmException;
 import fab.shop.microservices.core.purchase.facade.IPurchaseServiceFacade;
 
 @RestController
@@ -73,9 +74,19 @@ public class PurchaseServiceImpl implements PurchaseService{
 
     @Override
     public PurchaseConfirmRS purchaseConfirm(fab.shop.api.core.purchase.msg.PurchaseConfirmRQ purchaseConfirmRQ) {
-        return getPurchaseServiceFacade().purchaseConfirm(purchaseConfirmRQ);
+        PurchaseConfirmRS rs = new PurchaseConfirmRS();
+        
+        try {
+            rs = getPurchaseServiceFacade().purchaseConfirm(purchaseConfirmRQ);
+            
+        } catch (PurchaseConfirmException e) {
+            rs = e.getPurchaseConfirmRS();
+            rs.addError("ERROR - msg= " + e.getMessage());
+            rs.setStatus("NOT CONFIRMED");
+        } catch(Throwable t){
+            rs.addError("ERROR - msg= " + t.getMessage());
+        }
+        rs.addError("Received PurchaseConfirmRQ= " + purchaseConfirmRQ.toString());
+        return rs;
     }
-
-
-    
 }

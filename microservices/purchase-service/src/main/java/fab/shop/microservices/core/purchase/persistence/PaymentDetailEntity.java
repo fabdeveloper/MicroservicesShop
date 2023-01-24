@@ -8,10 +8,7 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
-
 import fab.shop.api.core.purchase.transfer.PaymentTypeEnum;
-
-
 
 @Entity
 @Table(name="payments")
