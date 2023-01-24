@@ -15,10 +15,18 @@ import fab.shop.api.core.purchase.msg.PurchaseConfirmRQ;
 import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
 import fab.shop.api.core.purchase.msg.PurchaseModificationRQ;
 import fab.shop.api.core.purchase.msg.PurchaseModificationRS;
+import fab.shop.api.core.purchase.transfer.CartDetail;
+import fab.shop.api.core.purchase.transfer.DeliveryDetail;
+import fab.shop.api.core.purchase.transfer.PaymentDetail;
 import fab.shop.api.core.purchase.transfer.Purchase;
 import fab.shop.api.core.purchase.transfer.PurchaseConfirmException;
+import fab.shop.api.core.purchase.transfer.UserDetail;
 import fab.shop.microservices.core.purchase.mapper.PurchaseMapper;
+import fab.shop.microservices.core.purchase.persistence.CartDetailEntity;
+import fab.shop.microservices.core.purchase.persistence.DeliveryDetailEntity;
+import fab.shop.microservices.core.purchase.persistence.PaymentDetailEntity;
 import fab.shop.microservices.core.purchase.persistence.PurchaseEntity;
+import fab.shop.microservices.core.purchase.persistence.UserDetailEntity;
 import fab.shop.microservices.core.purchase.repository.PurchaseRepository;
 
 
@@ -75,11 +83,40 @@ public class PurchaseServiceFacadeImpl implements IPurchaseServiceFacade {
         PurchaseMapper mapper = getPersistenceFacade().getMapper().getPurchaseMapper();
 
         Purchase purchase = purchaseConfirmRQ.getPurchase();
+
+
         PurchaseEntity purchaseEntity;
 
         try {
+            UserDetail userdetailapi = purchase.getUser();
+            UserDetailEntity userdetailentity = getPersistenceFacade().getMapper().getUserDetailMapper().apiToEntity(userdetailapi);
+            userdetailentity = getPersistenceFacade().getRepository().getUserDetailRepository().save(userdetailentity);            
+            
+            DeliveryDetail deliverydetailapi = purchase.getDelivery();
+            DeliveryDetailEntity deliverydetailentity = getPersistenceFacade().getMapper().getDeliveryDetailMapper().apiToEntity(deliverydetailapi);
+            deliverydetailentity = getPersistenceFacade().getRepository().getDeliveryDetailRepository().save(deliverydetailentity);            
+            
+            CartDetail cartdetailapi = purchase.getCart();
+            CartDetailEntity cartdetailentity = getPersistenceFacade().getMapper().getCartDetailMapper().apiToEntity(cartdetailapi);
+            cartdetailentity = getPersistenceFacade().getRepository().getCartDetailRepository().save(cartdetailentity);            
+            
+            PaymentDetail paymentdetailapi = purchase.getPayment();
+            PaymentDetailEntity paymentdetailentity = getPersistenceFacade().getMapper().getPaymentDetailMapper().apiToEntity(paymentdetailapi);
+            paymentdetailentity = getPersistenceFacade().getRepository().getPaymentDetailRepository().save(paymentdetailentity);
+
             purchaseEntity = mapper.apiToEntity(purchase);
+
+            purchaseEntity.setCart(cartdetailentity);
+            purchaseEntity.setDelivery(deliverydetailentity);
+            purchaseEntity.setUser(userdetailentity);
+            purchaseEntity.setPayment(paymentdetailentity);
+
             purchaseEntity = repo.save(purchaseEntity);
+
+            Integer bookingNumber = purchaseEntity.getId();
+            rs.setPurchaseId(bookingNumber);
+            rs.setStatus("CONFIRMED");
+            rs.addError("purchase = " + purchaseEntity.toString());
             
         } catch (Throwable e) {
             String msg = "ERROR - unable to create - , error message=" + e.getMessage() + ", cause= " + e.getCause();

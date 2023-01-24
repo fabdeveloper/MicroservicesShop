@@ -196,10 +196,10 @@ public class PurchaseEntity {
             ", confirmationDate='" + getConfirmationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             ", remarks='" + getRemarks() + "'" +
-            ", user='" + getUser() + "'" +
-            ", cart='" + getCart() + "'" +
-            ", delivery='" + getDelivery() + "'" +
-            ", payment='" + getPayment() + "'" +
+            ", user='" + getUser().toString() + "'" +
+            ", cart='" + getCart().toString() + "'" +
+            ", delivery='" + getDelivery().toString() + "'" +
+            ", payment='" + getPayment().toString() + "'" +
             "}";
     }
 

@@ -16,6 +16,7 @@ public class PurchaseServiceGeneralMapperImpl implements IPurchaseServiceGeneral
     private DeliveryDetailMapper deliveryDetailMapper;
     @Autowired
     private PaymentDetailMapper paymentDetailMapper;
+    @Autowired
     private UserDetailMapper userDetailMapper;
 
 
