@@ -1,5 +1,6 @@
 package fab.shop.microservices.composite.shop.integrationtester;
 
+import fab.shop.api.core.purchase.msg.GetPurchaseRQ;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import fab.shop.api.composite.integrationtester.IShopIntegrationPurchaseServiceTester;
+import fab.shop.api.core.purchase.msg.GetPurchaseRS;
 import fab.shop.api.core.purchase.msg.PurchaseConfirmRQ;
 import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
 import fab.shop.api.core.purchase.transfer.CartDetail;
@@ -72,6 +74,16 @@ public class ShopIntegrationPurchaseServiceTesterImpl implements IShopIntegratio
 
 
 
+
+        return rs;
+    }
+
+    @Override
+    public GetPurchaseRS getPurchaseTestHelper() {
+        GetPurchaseRS rs = null;
+        Integer purchaseId = 6;
+        GetPurchaseRQ rq = new GetPurchaseRQ(purchaseId);
+        rs = restTemplate.postForObject(getShopIntegration().getPurchaseServiceUrl() + "/getPurchase", rq, GetPurchaseRS.class);
 
         return rs;
     }

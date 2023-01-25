@@ -64,8 +64,23 @@ public class PurchaseServiceFacadeImpl implements IPurchaseServiceFacade {
 
     @Override
     public GetPurchaseRS getPurchase(GetPurchaseRQ getPurchaseRQ) {
-        // TODO Auto-generated method stub
-        return null;
+        GetPurchaseRS rs = new GetPurchaseRS();
+        Purchase purchase;
+        PurchaseEntity entity;
+        Integer purchaseId = getPurchaseRQ.getPurchaseId();
+        PurchaseRepository repo = getPersistenceFacade().getRepository().getPurchaseRepository();
+        PurchaseMapper mapper = getPersistenceFacade().getMapper().getPurchaseMapper();
+
+        try {
+            entity = repo.findById(purchaseId).get();
+            purchase = mapper.entityToApi(entity);
+
+            rs.setPurchase(purchase);
+            
+        } catch (Throwable e) {
+            rs.addError("ERROR - unable to retrieve purchase with id= " + getPurchaseRQ.getPurchaseId() + " - msg=" + e.getMessage());
+        }
+        return rs;
     }
 
     @Override

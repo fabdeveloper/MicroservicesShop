@@ -62,7 +62,20 @@ public class PurchaseServiceImpl implements PurchaseService{
 
     @Override
     public GetPurchaseRS getPurchase(GetPurchaseRQ getPurchaseRQ) {
-        return getPurchaseServiceFacade().getPurchase(getPurchaseRQ);
+        GetPurchaseRS rs = new GetPurchaseRS();
+
+        try {
+            rs = getPurchaseServiceFacade().getPurchase(getPurchaseRQ);
+
+        } catch (Throwable e) {
+            rs.addError("ERROR - unable to retrieve purchase with id= " + getPurchaseRQ.getPurchaseId() + ", msg= " + e.getMessage());
+        }
+
+
+        rs.addError("Rquest received : GetPurchaseRQ = " + getPurchaseRQ.toString());
+        return rs;
+
+
     }
 
 
