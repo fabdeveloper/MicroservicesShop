@@ -116,7 +116,7 @@ public class PurchaseServiceFacadeImpl implements IPurchaseServiceFacade {
             Integer bookingNumber = purchaseEntity.getId();
             rs.setPurchaseId(bookingNumber);
             rs.setStatus("CONFIRMED");
-            rs.addError("purchase = " + purchaseEntity.toString());
+            // rs.addError("purchase = " + purchaseEntity.toString());
             
         } catch (Throwable e) {
             String msg = "ERROR - unable to create - , error message=" + e.getMessage() + ", cause= " + e.getCause();
