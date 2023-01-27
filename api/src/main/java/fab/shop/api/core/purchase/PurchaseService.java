@@ -39,28 +39,12 @@ public interface PurchaseService {
 		  GetPurchaseListRS getPurchaseList(@RequestBody GetPurchaseListRQ getPurchaseListRQ);
 
 
-	  	// @GetMapping(
-		// 	    value = "/purchase/{purchaseId}",
-		// 	    produces = "application/json")
-		// 	  Purchase getPurchase(@PathVariable int purchaseId);
 
 
-		// @PostMapping(
-		// 	    value = "/purchase/create",
-		// 		consumes = "application/json",
-		// 	    produces = "application/json")
-		// 	  Purchase createPurchase(@RequestBody Purchase purchase);
-
-		// @GetMapping(
-		// 	    value = "/purchase/cancel",
-		// 	    produces = "application/json")
-		// 	  Purchase purchaseCancel(@RequestParam int purchaseId);
-
-
-		@PostMapping(
-			    value = "/purchase/confirm",
-				consumes = "application/json",
-			    produces = "application/json")
-			  PurchaseConfirmRS purchaseConfirm(@RequestBody PurchaseConfirmRQ purchaseConfirmRQ);
+	@PostMapping(
+			value = "/purchase/confirm",
+			consumes = "application/json",
+			produces = "application/json")
+			PurchaseConfirmRS purchaseConfirm(@RequestBody PurchaseConfirmRQ purchaseConfirmRQ);
 
 }

@@ -25,7 +25,6 @@ public class CartDetailEntity {
     private List<CartItemEntity> itemsList;
     private Float valuation;
 
-    private Integer shopId;
     private Integer productBookingNumber;
     
 

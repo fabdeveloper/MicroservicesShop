@@ -1,5 +1,6 @@
 package fab.shop.api.core.purchase.msg;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fab.shop.api.core.purchase.transfer.Purchase;
@@ -10,6 +11,15 @@ public class GetPurchaseListRS {
     private List<String> errorList;
 
 
+
+    public GetPurchaseListRS() {
+    }
+
+
+    public GetPurchaseListRS(List<Purchase> purchaseList, List<String> errorList) {
+        this.purchaseList = purchaseList;
+        this.errorList = errorList;
+    }
 
 
     public List<Purchase> getPurchaseList() {
@@ -22,6 +32,9 @@ public class GetPurchaseListRS {
 
 
     public List<String> getErrorList() {
+        if(this.errorList == null){
+            this.errorList = new ArrayList<>();
+        }
         return this.errorList;
     }
 
@@ -29,12 +42,28 @@ public class GetPurchaseListRS {
         this.errorList = errorList;
     }
 
+    public void addError(String sError){
+        getErrorList().add(sError);
+    }
+
 
     @Override
     public String toString() {
+        String sPurchaseList = "{ ";
+        for(Purchase purchase : getPurchaseList()){
+            sPurchaseList += purchase.toString();
+            sPurchaseList += " ,";        
+        }
+        sPurchaseList += " }";
+        String sErrorList = "{ ";
+        for(String sError : getErrorList()){
+            sErrorList += sError;
+            sErrorList += " ,";        
+        }
+        sErrorList += " }";
         return "{" +
-            " purchaseList='" + getPurchaseList() + "'" +
-            ", errorList='" + getErrorList() + "'" +
+            " purchaseList='" + sPurchaseList + "'" +
+            ", errorList='" + sErrorList + "'" +
             "}";
     }
 

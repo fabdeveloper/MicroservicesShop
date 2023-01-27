@@ -5,6 +5,16 @@ public class GetPurchaseListRQ {
     private Integer shopId;
 
 
+    public GetPurchaseListRQ() {
+    }
+
+
+    public GetPurchaseListRQ(Integer userId, Integer shopId) {
+        this.userId = userId;
+        this.shopId = shopId;
+    }
+
+
     public Integer getUserId() {
         return this.userId;
     }

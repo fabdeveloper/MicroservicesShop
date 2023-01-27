@@ -17,6 +17,10 @@ public class PurchaseEntity {
 	@Version
     private Integer version;
 
+    private Integer shopId;
+    private Integer productBookingNumber;
+
+
     private Date confirmationDate;
     private Date modificationDate;
 
@@ -43,9 +47,13 @@ public class PurchaseEntity {
     public PurchaseEntity() {
     }
 
-    public PurchaseEntity(Integer id, Integer version, Date confirmationDate, Date modificationDate, String remarks, UserDetailEntity user, CartDetailEntity cart, DeliveryDetailEntity delivery, PaymentDetailEntity payment) {
+    
+
+    public PurchaseEntity(Integer id, Integer version, Integer shopId, Integer productBookingNumber, Date confirmationDate, Date modificationDate, String remarks, UserDetailEntity user, CartDetailEntity cart, DeliveryDetailEntity delivery, PaymentDetailEntity payment) {
         this.id = id;
         this.version = version;
+        this.shopId = shopId;
+        this.productBookingNumber = productBookingNumber;
         this.confirmationDate = confirmationDate;
         this.modificationDate = modificationDate;
         this.remarks = remarks;
@@ -69,6 +77,22 @@ public class PurchaseEntity {
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    public Integer getShopId() {
+        return this.shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public Integer getProductBookingNumber() {
+        return this.productBookingNumber;
+    }
+
+    public void setProductBookingNumber(Integer productBookingNumber) {
+        this.productBookingNumber = productBookingNumber;
     }
 
     public Date getConfirmationDate() {
@@ -137,6 +161,16 @@ public class PurchaseEntity {
         return this;
     }
 
+    public PurchaseEntity shopId(Integer shopId) {
+        setShopId(shopId);
+        return this;
+    }
+
+    public PurchaseEntity productBookingNumber(Integer productBookingNumber) {
+        setProductBookingNumber(productBookingNumber);
+        return this;
+    }
+
     public PurchaseEntity confirmationDate(Date confirmationDate) {
         setConfirmationDate(confirmationDate);
         return this;
@@ -180,12 +214,12 @@ public class PurchaseEntity {
             return false;
         }
         PurchaseEntity purchaseEntity = (PurchaseEntity) o;
-        return Objects.equals(id, purchaseEntity.id) && Objects.equals(version, purchaseEntity.version) && Objects.equals(confirmationDate, purchaseEntity.confirmationDate) && Objects.equals(modificationDate, purchaseEntity.modificationDate) && Objects.equals(remarks, purchaseEntity.remarks) && Objects.equals(user, purchaseEntity.user) && Objects.equals(cart, purchaseEntity.cart) && Objects.equals(delivery, purchaseEntity.delivery) && Objects.equals(payment, purchaseEntity.payment);
+        return Objects.equals(id, purchaseEntity.id) && Objects.equals(version, purchaseEntity.version) && Objects.equals(shopId, purchaseEntity.shopId) && Objects.equals(productBookingNumber, purchaseEntity.productBookingNumber) && Objects.equals(confirmationDate, purchaseEntity.confirmationDate) && Objects.equals(modificationDate, purchaseEntity.modificationDate) && Objects.equals(remarks, purchaseEntity.remarks) && Objects.equals(user, purchaseEntity.user) && Objects.equals(cart, purchaseEntity.cart) && Objects.equals(delivery, purchaseEntity.delivery) && Objects.equals(payment, purchaseEntity.payment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, confirmationDate, modificationDate, remarks, user, cart, delivery, payment);
+        return Objects.hash(id, version, shopId, productBookingNumber, confirmationDate, modificationDate, remarks, user, cart, delivery, payment);
     }
 
     @Override
@@ -193,16 +227,17 @@ public class PurchaseEntity {
         return "{" +
             " id='" + getId() + "'" +
             ", version='" + getVersion() + "'" +
+            ", shopId='" + getShopId() + "'" +
+            ", productBookingNumber='" + getProductBookingNumber() + "'" +
             ", confirmationDate='" + getConfirmationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             ", remarks='" + getRemarks() + "'" +
-            ", user='" + getUser().toString() + "'" +
-            ", cart='" + getCart().toString() + "'" +
-            ", delivery='" + getDelivery().toString() + "'" +
-            ", payment='" + getPayment().toString() + "'" +
+            ", user='" + getUser() + "'" +
+            ", cart='" + getCart() + "'" +
+            ", delivery='" + getDelivery() + "'" +
+            ", payment='" + getPayment() + "'" +
             "}";
     }
-
 
     
 }

@@ -1,5 +1,8 @@
 package fab.shop.microservices.core.purchase.facade;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -85,7 +88,30 @@ public class PurchaseServiceFacadeImpl implements IPurchaseServiceFacade {
 
     @Override
     public GetPurchaseListRS getPurchaseList(GetPurchaseListRQ getPurchaseListRQ) {
-        // TODO Auto-generated method stub
+        GetPurchaseListRS rs = new GetPurchaseListRS();
+
+        Integer userId = getPurchaseListRQ.getUserId();
+        Integer shopId = getPurchaseListRQ.getShopId();
+
+        List<PurchaseEntity> purchaseEntityList = null;
+        List<Purchase> purchaseApiList = new ArrayList<>();
+        Purchase purchase;
+        try {
+            purchaseEntityList = getPersistenceFacade().getRepository().getPurchaseRepository().findByUserIdAndShopId(userId, shopId).get();
+            for(PurchaseEntity entity : purchaseEntityList){
+                purchase = getPersistenceFacade().getMapper().getPurchaseMapper().entityToApi(entity);
+                purchaseApiList.add(purchase);
+            }
+            rs.setPurchaseList(purchaseApiList);
+            
+        } catch (Throwable e) {
+            rs.addError("ERROR - unable to retrieve purchase list, with userId= " + userId + ", shopId= " + shopId + ", msg= " + e.getMessage());
+        }
+
+
+
+
+
         return null;
     }
 
