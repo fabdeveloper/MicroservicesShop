@@ -2,6 +2,7 @@ package fab.shop.api.composite.integrationtester;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
+import fab.shop.api.core.purchase.msg.GetPurchaseListRS;
 import fab.shop.api.core.purchase.msg.GetPurchaseRS;
 import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
 
@@ -19,4 +20,9 @@ public interface IShopIntegrationPurchaseServiceTester {
         value = "/shoptester/purchaseservice/testgetpurchase",
         produces = "application/json")
         GetPurchaseRS getPurchaseTestHelper();
+        
+    @GetMapping(
+        value = "/shoptester/purchaseservice/testgetpurchaselist",
+        produces = "application/json")
+        GetPurchaseListRS getPurchaseListTestHelper();
 }

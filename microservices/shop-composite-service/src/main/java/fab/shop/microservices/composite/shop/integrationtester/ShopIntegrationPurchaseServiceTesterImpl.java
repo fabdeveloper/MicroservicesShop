@@ -1,5 +1,7 @@
 package fab.shop.microservices.composite.shop.integrationtester;
 
+import fab.shop.api.core.purchase.msg.GetPurchaseListRQ;
+import fab.shop.api.core.purchase.msg.GetPurchaseListRS;
 import fab.shop.api.core.purchase.msg.GetPurchaseRQ;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,7 +67,7 @@ public class ShopIntegrationPurchaseServiceTesterImpl implements IShopIntegratio
         DeliveryDetail delivery = new DeliveryDetail(null, "customer name", "delivery address", "5555555555", "delivery remarks", null, null);
         PaymentDetail payment = new PaymentDetail(null, "ok", PaymentTypeEnum.debitcard, new Date(), null);
 
-        Purchase purchase = new Purchase(null, new Date(), null, "purchase remarks", user, cart, delivery, payment);
+        Purchase purchase = new Purchase(null, 1, 5, new Date(), null, "purchase remarks", user, cart, delivery, payment);
         PurchaseConfirmRQ rq = new PurchaseConfirmRQ(purchase);
         PurchaseConfirmRS rs = null;
 
@@ -84,6 +86,18 @@ public class ShopIntegrationPurchaseServiceTesterImpl implements IShopIntegratio
         Integer purchaseId = 6;
         GetPurchaseRQ rq = new GetPurchaseRQ(purchaseId);
         rs = restTemplate.postForObject(getShopIntegration().getPurchaseServiceUrl() + "/getPurchase", rq, GetPurchaseRS.class);
+
+        return rs;
+    }
+
+    @Override
+    public GetPurchaseListRS getPurchaseListTestHelper() {
+        GetPurchaseListRS rs = null;
+        Integer userId = 1;
+        Integer shopId = 1;
+
+        GetPurchaseListRQ rq = new GetPurchaseListRQ(userId, shopId);
+        rs = restTemplate.postForObject(getShopIntegration().getPurchaseServiceUrl() + "/getPurchaseList", rq, GetPurchaseListRS.class);
 
         return rs;
     }

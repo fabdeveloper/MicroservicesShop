@@ -23,7 +23,7 @@ public interface PurchaseRepository extends CrudRepository<PurchaseEntity, Integ
 
 
 
-    @Query("select x from PurchaseEntity x where x.user.id = :userId and x.shopId = :shopId")
+    @Query("select x from PurchaseEntity x where x.user.userId = :userId and x.shopId = :shopId")
     public Optional<List<PurchaseEntity>> findByUserIdAndShopId(@Param("userId") Integer userId, @Param("shopId") Integer shopId);
 
 

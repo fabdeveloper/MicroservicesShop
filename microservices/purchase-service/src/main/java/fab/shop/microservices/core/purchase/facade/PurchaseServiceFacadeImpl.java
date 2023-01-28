@@ -112,7 +112,7 @@ public class PurchaseServiceFacadeImpl implements IPurchaseServiceFacade {
 
 
 
-        return null;
+        return rs;
     }
 
     @Transactional

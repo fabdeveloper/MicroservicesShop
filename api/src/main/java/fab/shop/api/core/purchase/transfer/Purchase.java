@@ -10,6 +10,9 @@ public class Purchase {
 
     private Integer id;
 
+	private Integer shopId;
+    private Integer productBookingNumber;
+
 
 	@NotNull
     private Date confirmationDate;
@@ -31,11 +34,14 @@ public class Purchase {
 
 
 
+
 	public Purchase() {
 	}
 
-	public Purchase(Integer id, Date confirmationDate, Date modificationDate, String remarks, UserDetail user, CartDetail cart, DeliveryDetail delivery, PaymentDetail payment) {
+	public Purchase(Integer id, Integer shopId, Integer productBookingNumber, Date confirmationDate, Date modificationDate, String remarks, UserDetail user, CartDetail cart, DeliveryDetail delivery, PaymentDetail payment) {
 		this.id = id;
+		this.shopId = shopId;
+		this.productBookingNumber = productBookingNumber;
 		this.confirmationDate = confirmationDate;
 		this.modificationDate = modificationDate;
 		this.remarks = remarks;
@@ -51,6 +57,22 @@ public class Purchase {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getShopId() {
+		return this.shopId;
+	}
+
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
+	}
+
+	public Integer getProductBookingNumber() {
+		return this.productBookingNumber;
+	}
+
+	public void setProductBookingNumber(Integer productBookingNumber) {
+		this.productBookingNumber = productBookingNumber;
 	}
 
 	public Date getConfirmationDate() {
@@ -114,6 +136,16 @@ public class Purchase {
 		return this;
 	}
 
+	public Purchase shopId(Integer shopId) {
+		setShopId(shopId);
+		return this;
+	}
+
+	public Purchase productBookingNumber(Integer productBookingNumber) {
+		setProductBookingNumber(productBookingNumber);
+		return this;
+	}
+
 	public Purchase confirmationDate(Date confirmationDate) {
 		setConfirmationDate(confirmationDate);
 		return this;
@@ -157,18 +189,20 @@ public class Purchase {
 			return false;
 		}
 		Purchase purchase = (Purchase) o;
-		return Objects.equals(id, purchase.id) && Objects.equals(confirmationDate, purchase.confirmationDate) && Objects.equals(modificationDate, purchase.modificationDate) && Objects.equals(remarks, purchase.remarks) && Objects.equals(user, purchase.user) && Objects.equals(cart, purchase.cart) && Objects.equals(delivery, purchase.delivery) && Objects.equals(payment, purchase.payment);
+		return Objects.equals(id, purchase.id) && Objects.equals(shopId, purchase.shopId) && Objects.equals(productBookingNumber, purchase.productBookingNumber) && Objects.equals(confirmationDate, purchase.confirmationDate) && Objects.equals(modificationDate, purchase.modificationDate) && Objects.equals(remarks, purchase.remarks) && Objects.equals(user, purchase.user) && Objects.equals(cart, purchase.cart) && Objects.equals(delivery, purchase.delivery) && Objects.equals(payment, purchase.payment);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, confirmationDate, modificationDate, remarks, user, cart, delivery, payment);
+		return Objects.hash(id, shopId, productBookingNumber, confirmationDate, modificationDate, remarks, user, cart, delivery, payment);
 	}
 
 	@Override
 	public String toString() {
 		return "{" +
 			" id='" + getId() + "'" +
+			", shopId='" + getShopId() + "'" +
+			", productBookingNumber='" + getProductBookingNumber() + "'" +
 			", confirmationDate='" + getConfirmationDate() + "'" +
 			", modificationDate='" + getModificationDate() + "'" +
 			", remarks='" + getRemarks() + "'" +
@@ -179,5 +213,6 @@ public class Purchase {
 			"}";
 	}
 
+	
 	
 }

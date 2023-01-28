@@ -27,7 +27,7 @@ public class PurchaseMapperTest {
     public void apiToEntityTest(){
         assertNotNull(mapper);
 
-        Purchase apiObject = new Purchase(null, new Date(), null, "purchase remarks", null, null, null, null);
+        Purchase apiObject = new Purchase(null, 1, 5, new Date(), null, "purchase remarks", null, null, null, null);
         PurchaseEntity entity = mapper.apiToEntity(apiObject);
 
         assertEqualsApiEntity(apiObject, entity);
@@ -37,7 +37,7 @@ public class PurchaseMapperTest {
     public void entityToApiTest(){
         assertNotNull(mapper);
 
-        PurchaseEntity entity = new PurchaseEntity(1, 0, new Date(), null, "purchase remarks", null, null, null, null);
+        PurchaseEntity entity = new PurchaseEntity(1, 0, 1, 5, new Date(), null, "purchase remarks", null, null, null, null);
         Purchase apiObject = mapper.entityToApi(entity);
 
         assertEqualsApiEntity(apiObject, entity);
