@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -28,6 +30,8 @@ import fab.shop.microservices.composite.shop.services.ShopCompositeIntegration;
 
 @RestController
 public class ShopIntegrationPurchaseServiceTesterImpl implements IShopIntegrationPurchaseServiceTester {
+
+    private static final Logger logger = LoggerFactory.getLogger(ShopIntegrationPurchaseServiceTesterImpl.class);
 
     @Autowired
     private RestTemplate restTemplate;
@@ -57,6 +61,10 @@ public class ShopIntegrationPurchaseServiceTesterImpl implements IShopIntegratio
 
     @Override
     public PurchaseConfirmRS purchaseConfirmTestHelper() {
+
+        String sLogMsg = "confirmando purchase ...*************************";
+        logger.info(sLogMsg);
+        System.out.println(sLogMsg);
 
         UserDetail user = new UserDetail(null, 1, 1, "user@email.com", "55555555555");
 
