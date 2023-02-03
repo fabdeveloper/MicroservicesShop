@@ -258,12 +258,25 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
         EShopPurchaseConfirmRS rs = null;
 
+        // Integer shopId = eShopPurchaseConfirmRQ
+
+
+
 
         // product tasks
+        ProductPurchaseConfirmRQ productPurchaseConfirmRQ = new ProductPurchaseConfirmRQ(null, null);
+
+        ProductPurchaseConfirmRS productPurchaseConfirmRS = restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
 
         // purchase tasks 
+        PurchaseConfirmRQ purchaseConfirmRQ = new PurchaseConfirmRQ(null);
+        PurchaseConfirmRS purchaseConfirmRS = restTemplate.postForObject(getPurchaseServiceUrl() + "/purchaseConfirm", purchaseConfirmRQ, PurchaseConfirmRS.class);
+
 
         // cart tasks 
+        DeleteCartRQ deleteCartRQ = new DeleteCartRQ();
+        DeleteCartRS deleteCartRS = restTemplate.postForObject(getCartServiceUrl() + "/deleteCart", deleteCartRQ, DeleteCartRS.class);
+
 
 
 
