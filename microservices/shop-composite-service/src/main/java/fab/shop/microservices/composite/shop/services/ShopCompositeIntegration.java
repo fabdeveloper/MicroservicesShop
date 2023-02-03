@@ -20,15 +20,21 @@ import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import fab.shop.api.core.purchase.msg.*;
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.cart.CartService;
 
+import fab.shop.api.composite.IEShopOrchestrator;
+import fab.shop.api.composite.msg.*;
+
+
 
 @Component
-public class ShopCompositeIntegration implements CartService, ProductService, PurchaseService, ValuationService{
+public class ShopCompositeIntegration implements CartService, ProductService, PurchaseService, ValuationService, IEShopOrchestrator {
 
     private final RestTemplate restTemplate;
     // private final WebClient webClient;
@@ -156,13 +162,6 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
 
-    // @Override
-    // public Product getProduct(int productId) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
-
-
 
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
@@ -253,6 +252,23 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     }
 
     
+
+    @Transactional
+    @Override
+    public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
+        EShopPurchaseConfirmRS rs = null;
+
+
+        // product tasks
+
+        // purchase tasks 
+
+        // cart tasks 
+
+
+
+        return rs;
+    }
 
     
 }

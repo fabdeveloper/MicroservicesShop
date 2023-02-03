@@ -10,6 +10,7 @@ import fab.shop.api.core.product.msg.*;
 import fab.shop.api.core.purchase.msg.*;
 import fab.shop.api.core.valuation.msg.*;
 
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -17,7 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @Tag(name="Shop Service", description="REST API for Shop Services")
-public interface ShopService  {
+public interface ShopService extends IEShopOrchestrator  {
 	  
 	
 	  @Operation(summary = "${api.shop-service.post-addtocart.description}", description = "${api.shop-service.post-addtocart.notes}")
@@ -125,6 +126,7 @@ public interface ShopService  {
 			consumes = "application/json",
 			produces = "application/json")
 			ProductPurchaseCancelRS productPurchaseCancel(@RequestBody ProductPurchaseCancelRQ productPurchaseCancelRQ);
+
 
 
 	// TEST HELPERS ******************* //

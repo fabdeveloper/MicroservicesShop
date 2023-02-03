@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import fab.shop.util.http.ServiceUtil;
 import fab.shop.api.core.purchase.msg.*;
 import fab.shop.api.composite.ShopService;
+import fab.shop.api.composite.msg.*;
+
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
@@ -116,6 +118,13 @@ public class ShopCompositeServiceImpl implements ShopService {
         return getShopIntegration().valuate(valuationRQ);
     }
 
+
+    // Orchestrator 
+
+    @Override
+    public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
+        return getShopIntegration().eShopPurchaseConfirm(eShopPurchaseConfirmRQ);
+    }
 
 
     // test
