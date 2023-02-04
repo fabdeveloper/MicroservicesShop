@@ -1,5 +1,6 @@
 package fab.shop.microservices.composite.shop.services;
 
+import java.util.List;
 import fab.shop.api.core.purchase.PurchaseService;
 import fab.shop.api.core.valuation.ValuationService;
 import fab.shop.api.core.valuation.msg.ValuationRQ;
@@ -30,6 +31,7 @@ import fab.shop.api.core.cart.CartService;
 
 import fab.shop.api.composite.IEShopOrchestrator;
 import fab.shop.api.composite.msg.*;
+import fab.shop.api.composite.transfer.*;
 
 
 
@@ -256,17 +258,29 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     @Transactional
     @Override
     public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
-        EShopPurchaseConfirmRS rs = null;
+        EShopPurchaseConfirmRS rs = new EShopPurchaseConfirmRS();
 
-        // Integer shopId = eShopPurchaseConfirmRQ
+        Integer shopId = eShopPurchaseConfirmRQ.getShopId();
+        Integer userId = eShopPurchaseConfirmRQ.getUserId();
+        List<PurchaseItem> purchaseList = eShopPurchaseConfirmRQ.getPurchaseList();
 
 
 
 
         // product tasks
-        ProductPurchaseConfirmRQ productPurchaseConfirmRQ = new ProductPurchaseConfirmRQ(null, null);
 
-        ProductPurchaseConfirmRS productPurchaseConfirmRS = restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
+        ProductPurchaseConfirmRQ productPurchaseConfirmRQ = new ProductPurchaseConfirmRQ(shopId, purchaseList);
+        try{
+            ProductPurchaseConfirmRS productPurchaseConfirmRS = restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
+
+        } catch(Exception e){
+            String sError = "ERROR - ProductService - not available - msg: " + e.getMessage();
+            rs.addError(sError);
+            EShopPurchaseConfirmException exception = new EShopPurchaseConfirmException();
+            exception.setEShopPurchaseConfirmRS(rs);
+
+            throw exception;
+        }
 
         // purchase tasks 
         PurchaseConfirmRQ purchaseConfirmRQ = new PurchaseConfirmRQ(null);
