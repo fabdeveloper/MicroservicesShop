@@ -1,5 +1,6 @@
 package fab.shop.microservices.composite.shop.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import fab.shop.api.core.purchase.PurchaseService;
 import fab.shop.api.core.valuation.ValuationService;
@@ -11,6 +12,7 @@ import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
 import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
+import fab.shop.api.core.product.msg.OfferPurchase;
 import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
@@ -255,6 +257,7 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
     
 
+    // Orquestrator interface
     @Transactional
     @Override
     public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
@@ -263,13 +266,14 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
         Integer shopId = eShopPurchaseConfirmRQ.getShopId();
         Integer userId = eShopPurchaseConfirmRQ.getUserId();
         List<PurchaseItem> purchaseList = eShopPurchaseConfirmRQ.getPurchaseList();
-
-
-
+        List<OfferPurchase> offerList = new ArrayList<>();
+        for(PurchaseItem purchaseItem : purchaseList){
+            offerList.add(new OfferPurchase(purchaseItem.getOfferId(), purchaseItem.getCount()));
+        }
 
         // product tasks
 
-        ProductPurchaseConfirmRQ productPurchaseConfirmRQ = new ProductPurchaseConfirmRQ(shopId, purchaseList);
+        ProductPurchaseConfirmRQ productPurchaseConfirmRQ = new ProductPurchaseConfirmRQ(shopId, offerList);
         try{
             ProductPurchaseConfirmRS productPurchaseConfirmRS = restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
 
@@ -278,11 +282,11 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
             rs.addError(sError);
             EShopPurchaseConfirmException exception = new EShopPurchaseConfirmException();
             exception.setEShopPurchaseConfirmRS(rs);
-
             throw exception;
         }
 
         // purchase tasks 
+        Purchase purchase = new 
         PurchaseConfirmRQ purchaseConfirmRQ = new PurchaseConfirmRQ(null);
         PurchaseConfirmRS purchaseConfirmRS = restTemplate.postForObject(getPurchaseServiceUrl() + "/purchaseConfirm", purchaseConfirmRQ, PurchaseConfirmRS.class);
 
