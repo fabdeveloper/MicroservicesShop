@@ -1,0 +1,19 @@
+@startuml
+
+
+
+
+participant EShopServer as shop
+participant ProductServer as prod
+
+shop -> prod : GetAvailRQ
+prod --> shop : GetAvailRS
+
+shop -> prod : ProductPurchaseConfirmRQ
+prod --> shop : ProductPurchaseConfirmRS
+
+
+
+
+
+@enduml

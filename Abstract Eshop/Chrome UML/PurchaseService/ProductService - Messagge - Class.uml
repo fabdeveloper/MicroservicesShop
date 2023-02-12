@@ -1,0 +1,37 @@
+@startuml
+
+
+class GetAvailRS {
+	Product[] productList
+    Article[] articleList
+    OfferAvail[] offerList
+}
+
+class ProductPurchaseConfirmRS {
+
+	Integer productBookingNumber
+    OfferPurchase[] productPurchaseList
+}
+
+class OfferPurchase {
+	Integer offerId
+    String offerName
+    String offerDescription
+    Float offerUnitPrice
+    Integer count
+}
+
+class OfferAvail {
+	Integer offerId
+    String offerName
+    String offerDescription
+    Float offerUnitPrice
+    Integer count
+}
+
+
+
+
+
+
+@enduml

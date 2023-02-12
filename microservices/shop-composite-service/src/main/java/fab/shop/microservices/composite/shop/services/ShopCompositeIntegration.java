@@ -2,38 +2,32 @@ package fab.shop.microservices.composite.shop.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
+
+import fab.shop.api.composite.IEShopOrchestrator;
+
 import fab.shop.api.core.purchase.PurchaseService;
 import fab.shop.api.core.valuation.ValuationService;
-import fab.shop.api.core.valuation.msg.ValuationRQ;
-import fab.shop.api.core.valuation.msg.ValuationRS;
 import fab.shop.api.core.product.ProductService;
-import fab.shop.api.core.product.msg.GenericProductConfigRQ;
-import fab.shop.api.core.product.msg.GetAvailRQ;
-import fab.shop.api.core.product.msg.GetAvailRS;
-import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
-import fab.shop.api.core.product.msg.GetOfferListDetailRS;
-import fab.shop.api.core.product.msg.OfferPurchase;
-import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
-import fab.shop.api.core.product.msg.ProductCreateNewRS;
-import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.cart.CartService;
+
+import fab.shop.api.core.purchase.msg.*;
+import fab.shop.api.core.product.msg.*;
+import fab.shop.api.core.cart.msg.*;
+import fab.shop.api.core.valuation.msg.*;
+import fab.shop.api.composite.msg.*;
+
+import fab.shop.api.core.purchase.transfer.*;
+import fab.shop.api.composite.transfer.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import fab.shop.api.core.purchase.msg.*;
-import fab.shop.api.core.cart.msg.*;
-import fab.shop.api.core.cart.CartService;
 
-import fab.shop.api.composite.IEShopOrchestrator;
-import fab.shop.api.composite.msg.*;
-import fab.shop.api.composite.transfer.*;
+
 
 
 
@@ -274,8 +268,9 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
         // product tasks
 
         ProductPurchaseConfirmRQ productPurchaseConfirmRQ = new ProductPurchaseConfirmRQ(shopId, offerList);
+        ProductPurchaseConfirmRS productPurchaseConfirmRS = null;
         try{
-            ProductPurchaseConfirmRS productPurchaseConfirmRS = restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
+            productPurchaseConfirmRS = restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
 
         } catch(Exception e){
             String sError = "ERROR - ProductService - not available - msg: " + e.getMessage();
@@ -285,11 +280,36 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
             throw exception;
         }
 
-        // purchase tasks 
-        Purchase purchase = new 
-        PurchaseConfirmRQ purchaseConfirmRQ = new PurchaseConfirmRQ(null);
-        PurchaseConfirmRS purchaseConfirmRS = restTemplate.postForObject(getPurchaseServiceUrl() + "/purchaseConfirm", purchaseConfirmRQ, PurchaseConfirmRS.class);
+        Integer productBookingNumber;
+        if(productPurchaseConfirmRS != null){
+            productBookingNumber = productPurchaseConfirmRS.getProductBookingNumber();
+        }
 
+        //  VALUATION SERVICE tasks
+
+        
+        // purchase tasks 
+        UserDetail user = new UserDetail(null, userId, shopId, eShopPurchaseConfirmRQ.getUserEmail(), eShopPurchaseConfirmRQ.getDeliveryPhoneNumber());
+        DeliveryDetail delivery = new DeliveryDetail(null, eShopPurchaseConfirmRQ.getCustomerName(), eShopPurchaseConfirmRQ.getDeliveryAddress(), 
+                                                        eShopPurchaseConfirmRQ.getDeliveryPhoneNumber(), eShopPurchaseConfirmRQ.getDeliveryRemarks(), eShopPurchaseConfirmRQ.getDeliveryStatus(), null);
+        PaymentDetail payment = new PaymentDetail(null, eShopPurchaseConfirmRQ.getPaymentStatus(), 
+                                                        eShopPurchaseConfirmRQ.getPaymentType(), null, null);
+        CartDetail cart = new CartDetail(null, purchaseList, null, productBookingNumber, shopId);
+
+        Purchase purchase = new Purchase(null, shopId, productBookingNumber, new Date(), null, null, user, cart, delivery, payment);
+        PurchaseConfirmRQ purchaseConfirmRQ = new PurchaseConfirmRQ(purchase);
+        PurchaseConfirmRS purchaseConfirmRS = null;
+
+        try{
+            purchaseConfirmRS = restTemplate.postForObject(getPurchaseServiceUrl() + "/purchaseConfirm", purchaseConfirmRQ, PurchaseConfirmRS.class);
+
+        } catch(Exception e){
+            String sError = "ERROR - PurchaseService - unable to book - msg: " + e.getMessage();
+            rs.addError(sError);
+            EShopPurchaseConfirmException exception = new EShopPurchaseConfirmException();
+            exception.setEShopPurchaseConfirmRS(rs);
+            throw exception;
+        }
 
         // cart tasks 
         DeleteCartRQ deleteCartRQ = new DeleteCartRQ();

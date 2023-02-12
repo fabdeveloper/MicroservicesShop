@@ -12,6 +12,7 @@ public class ProductPurchaseConfirmRS {
 
     private Boolean bConfirmed;
     private Integer productBookingNumber;
+    private List<> productDetailList;
     private List<String> errorList;
 
 

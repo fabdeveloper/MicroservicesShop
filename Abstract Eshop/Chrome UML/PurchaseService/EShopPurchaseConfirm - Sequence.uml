@@ -1,0 +1,27 @@
+@startuml
+
+actor user #green
+participant EShopService #yellow
+
+user -> EShopService : ProductPurchaseConfirmRQ
+
+EShopService -> ProductService : ProductPurchaseConfirmRQ
+ProductService --> EShopService : ProductPurchaseConfirmRS
+
+EShopService -> ValuationService : ValuateRQ
+ValuationService --> EShopService : ValuateRS
+
+EShopService --> user : ProductPurchaseConfirmRS
+
+user -> EShopService : PurchaseConfirmRQ
+
+EShopService -> PurchaseService : PurchaseConfirmRQ
+PurchaseService --> EShopService : PurchaseConfirmRS
+
+EShopService -> CartService : DeleteCartRQ
+CartService --> EShopService : DeleteCartRS
+
+EShopService --> user : PurchaseConfirmRS
+
+
+@enduml
