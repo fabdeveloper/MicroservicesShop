@@ -6,7 +6,7 @@ import java.util.Objects;
 public class ProductPurchaseConfirmRQ {
     
     private Integer shopId;
-    private List<OfferPurchase> offerPurchaseList;
+    private List<PurchaseItem> purchaseItemsList;
 
 
     public ProductPurchaseConfirmRQ() {

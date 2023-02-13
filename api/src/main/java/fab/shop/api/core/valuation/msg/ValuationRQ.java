@@ -1,12 +1,13 @@
 package fab.shop.api.core.valuation.msg;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fab.shop.api.core.valuation.ValuableItem;
 
 public class ValuationRQ {
 
-    protected List<ValuableItem> valuableItemsList = null;
+    protected List<ValuableItem> valuableItemsList;
 
 
 
@@ -17,8 +18,15 @@ public class ValuationRQ {
     public ValuationRQ() {
     }
 
+    public void addValuableItem(ValuableItem item){
+        getValuableItemsList().add(item);
+    }
+
 
     public List<ValuableItem> getValuableItemsList() {
+        if(this.valuableItemsList == null){
+            this.valuableItemsList = new ArrayList<>();
+        }
         return this.valuableItemsList;
     }
 

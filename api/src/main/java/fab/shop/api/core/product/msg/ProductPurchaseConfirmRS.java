@@ -12,17 +12,19 @@ public class ProductPurchaseConfirmRS {
 
     private Boolean bConfirmed;
     private Integer productBookingNumber;
-    private List<> productDetailList;
+    private List<OfferPurchase> offerPurchaseList;
     private List<String> errorList;
+
 
 
     public ProductPurchaseConfirmRS() {
     }
 
-    public ProductPurchaseConfirmRS(Integer shopId, Boolean bConfirmed, Integer productBookingNumber, List<String> errorList) {
+    public ProductPurchaseConfirmRS(Integer shopId, Boolean bConfirmed, Integer productBookingNumber, List<OfferPurchase> offerPurchaseList, List<String> errorList) {
         this.shopId = shopId;
         this.bConfirmed = bConfirmed;
         this.productBookingNumber = productBookingNumber;
+        this.offerPurchaseList = offerPurchaseList;
         this.errorList = errorList;
     }
 
@@ -54,10 +56,15 @@ public class ProductPurchaseConfirmRS {
         this.productBookingNumber = productBookingNumber;
     }
 
+    public List<OfferPurchase> getOfferPurchaseList() {
+        return this.offerPurchaseList;
+    }
+
+    public void setOfferPurchaseList(List<OfferPurchase> offerPurchaseList) {
+        this.offerPurchaseList = offerPurchaseList;
+    }
+
     public List<String> getErrorList() {
-        if(this.errorList == null){
-            this.errorList = new ArrayList<String>();
-        }
         return this.errorList;
     }
 
@@ -80,13 +87,14 @@ public class ProductPurchaseConfirmRS {
         return this;
     }
 
-    public ProductPurchaseConfirmRS errorList(List<String> errorList) {
-        setErrorList(errorList);
+    public ProductPurchaseConfirmRS offerPurchaseList(List<OfferPurchase> offerPurchaseList) {
+        setOfferPurchaseList(offerPurchaseList);
         return this;
     }
 
-    public void addError(String errorString){
-        getErrorList().add(errorString);
+    public ProductPurchaseConfirmRS errorList(List<String> errorList) {
+        setErrorList(errorList);
+        return this;
     }
 
     @Override
@@ -97,12 +105,12 @@ public class ProductPurchaseConfirmRS {
             return false;
         }
         ProductPurchaseConfirmRS productPurchaseConfirmRS = (ProductPurchaseConfirmRS) o;
-        return Objects.equals(shopId, productPurchaseConfirmRS.shopId) && Objects.equals(bConfirmed, productPurchaseConfirmRS.bConfirmed) && Objects.equals(productBookingNumber, productPurchaseConfirmRS.productBookingNumber) && Objects.equals(errorList, productPurchaseConfirmRS.errorList);
+        return Objects.equals(shopId, productPurchaseConfirmRS.shopId) && Objects.equals(bConfirmed, productPurchaseConfirmRS.bConfirmed) && Objects.equals(productBookingNumber, productPurchaseConfirmRS.productBookingNumber) && Objects.equals(offerPurchaseList, productPurchaseConfirmRS.offerPurchaseList) && Objects.equals(errorList, productPurchaseConfirmRS.errorList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shopId, bConfirmed, productBookingNumber, errorList);
+        return Objects.hash(shopId, bConfirmed, productBookingNumber, offerPurchaseList, errorList);
     }
 
     @Override
@@ -111,9 +119,9 @@ public class ProductPurchaseConfirmRS {
             " shopId='" + getShopId() + "'" +
             ", bConfirmed='" + isBConfirmed() + "'" +
             ", productBookingNumber='" + getProductBookingNumber() + "'" +
-            ", errorList='" + getErrorList().toString() + "'" +
+            ", offerPurchaseList='" + getOfferPurchaseList() + "'" +
+            ", errorList='" + getErrorList() + "'" +
             "}";
     }
-    
     
 }

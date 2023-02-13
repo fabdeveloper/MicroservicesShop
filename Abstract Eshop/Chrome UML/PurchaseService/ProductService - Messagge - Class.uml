@@ -1,33 +1,35 @@
 @startuml
 
+OfferDetail <|-- OfferPurchase
+OfferDetail <|-- OfferAvail
+
 
 class GetAvailRS {
-	Product[] productList
-    Article[] articleList
-    OfferAvail[] offerList
+	private List<Product> productList;
+    private List<Article> articleList;
+    private List<OfferAvail> offerList;
 }
 
 class ProductPurchaseConfirmRS {
-
-	Integer productBookingNumber
-    OfferPurchase[] productPurchaseList
+	private Integer shopId;
+    private Boolean bConfirmed;
+	private Integer productBookingNumber;
+    private List<OfferPurchase> productPurchaseList;
+    private List<String> errorList;
 }
 
-class OfferPurchase {
-	Integer offerId
-    String offerName
-    String offerDescription
-    Float offerUnitPrice
-    Integer count
+
+class OfferDetail {
+	protected Integer offerId;
+    protected String offerName;
+    protected String offerDescription;
+    protected Float offerUnitPrice;
+    protected Integer count;
 }
 
-class OfferAvail {
-	Integer offerId
-    String offerName
-    String offerDescription
-    Float offerUnitPrice
-    Integer count
-}
+
+
+
 
 
 

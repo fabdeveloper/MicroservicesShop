@@ -1,6 +1,6 @@
 package fab.shop.api.core.valuation;
 
-import java.util.List;
+import java.util.*;
 
 import fab.shop.api.core.product.Discount;
 import fab.shop.api.core.product.Tax;
@@ -9,23 +9,24 @@ public class ValuableItem {
     protected Integer offerId;
     protected Integer shopId;
 
-    protected Float price;
+    protected Float unitPrice;
+    protected Integer units;
+
     protected List<Discount> discountList;
     protected List<Tax> taxList;
-
-
-    public ValuableItem(Integer offerId, Integer shopId, Float price, List<Discount> discountList, List<Tax> taxList) {
-        this.offerId = offerId;
-        this.shopId = shopId;
-        this.price = price;
-        this.discountList = discountList;
-        this.taxList = taxList;
-    }
 
 
     public ValuableItem() {
     }
 
+    public ValuableItem(Integer offerId, Integer shopId, Float unitPrice, Integer units, List<Discount> discountList, List<Tax> taxList) {
+        this.offerId = offerId;
+        this.shopId = shopId;
+        this.unitPrice = unitPrice;
+        this.units = units;
+        this.discountList = discountList;
+        this.taxList = taxList;
+    }
 
     public Integer getOfferId() {
         return this.offerId;
@@ -43,12 +44,20 @@ public class ValuableItem {
         this.shopId = shopId;
     }
 
-    public Float getPrice() {
-        return this.price;
+    public Float getUnitPrice() {
+        return this.unitPrice;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setUnitPrice(Float unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Integer getUnits() {
+        return this.units;
+    }
+
+    public void setUnits(Integer units) {
+        this.units = units;
     }
 
     public List<Discount> getDiscountList() {
@@ -67,7 +76,51 @@ public class ValuableItem {
         this.taxList = taxList;
     }
 
+    public ValuableItem offerId(Integer offerId) {
+        setOfferId(offerId);
+        return this;
+    }
 
+    public ValuableItem shopId(Integer shopId) {
+        setShopId(shopId);
+        return this;
+    }
+
+    public ValuableItem unitPrice(Float unitPrice) {
+        setUnitPrice(unitPrice);
+        return this;
+    }
+
+    public ValuableItem units(Integer units) {
+        setUnits(units);
+        return this;
+    }
+
+    public ValuableItem discountList(List<Discount> discountList) {
+        setDiscountList(discountList);
+        return this;
+    }
+
+    public ValuableItem taxList(List<Tax> taxList) {
+        setTaxList(taxList);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof ValuableItem)) {
+            return false;
+        }
+        ValuableItem valuableItem = (ValuableItem) o;
+        return Objects.equals(offerId, valuableItem.offerId) && Objects.equals(shopId, valuableItem.shopId) && Objects.equals(unitPrice, valuableItem.unitPrice) && Objects.equals(units, valuableItem.units) && Objects.equals(discountList, valuableItem.discountList) && Objects.equals(taxList, valuableItem.taxList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(offerId, shopId, unitPrice, units, discountList, taxList);
+    }
 
     @Override
     public String toString() {
@@ -84,15 +137,15 @@ public class ValuableItem {
             taxes += " ,";
         }
         taxes += " }";
+
         return "{" +
             " offerId='" + getOfferId() + "'" +
             ", shopId='" + getShopId() + "'" +
-            ", price='" + getPrice() + "'" +
+            ", unitPrice='" + getUnitPrice() + "'" +
+            ", units='" + getUnits() + "'" +
             ", discountList='" + discounts + "'" +
             ", taxList='" + taxes + "'" +
             "}";
-    }
-
-
+    }    
 
 }

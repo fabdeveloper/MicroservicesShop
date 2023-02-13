@@ -1,0 +1,71 @@
+@startuml
+
+
+class EShopPurchaseConfirmRQ {
+
+    private Integer shopId;
+    private Integer userId;
+    private String userEmail;
+    private List<PurchaseItem> purchaseList;
+
+    private String customerName;
+    private String deliveryAddress;
+    private String deliveryPhoneNumber;
+    private String deliveryRemarks;
+    private String deliveryStatus;
+
+    private String paymentStatus;
+    private PaymentTypeEnum paymentType;
+}
+
+class PurchaseItem {
+
+    private Integer offerId;
+    private Integer count;
+}
+
+class ProductPurchaseConfirmRQ {
+    
+    private Integer shopId;
+    private List<PurchaseItem> offerPurchaseList;
+}
+
+class ProductPurchaseConfirmRS {
+	private Integer shopId;
+    private Boolean bConfirmed;
+	private Integer productBookingNumber;
+    private List<OfferPurchase> productPurchaseList;
+    private List<String> errorList;
+}
+
+class OfferDetail {
+	protected Integer offerId;
+    protected String offerName;
+    protected String offerDescription;
+    protected Float offerUnitPrice;
+    protected Integer count;
+}
+
+OfferDetail <|-- OfferPurchase
+
+class ValuationRQ {
+
+    protected List<ValuableItem> valuableItemsList;
+}
+    
+    
+class ValuableItem {
+    protected Integer offerId;
+    protected Integer shopId;
+    protected Float unitPrice;
+    protected Integer units;
+
+    protected List<Discount> discountList;
+    protected List<Tax> taxList;
+}
+
+
+
+
+
+@enduml
