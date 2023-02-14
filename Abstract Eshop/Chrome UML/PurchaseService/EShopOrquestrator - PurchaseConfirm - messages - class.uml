@@ -24,6 +24,10 @@ class PurchaseItem {
     private Integer count;
 }
 
+EShopPurchaseConfirmRQ *--{ PurchaseItem
+ProductPurchaseConfirmRQ *--{ PurchaseItem
+
+
 class ProductPurchaseConfirmRQ {
     
     private Integer shopId;
@@ -38,6 +42,8 @@ class ProductPurchaseConfirmRS {
     private List<String> errorList;
 }
 
+ProductPurchaseConfirmRS *--{ OfferPurchase
+
 class OfferDetail {
 	protected Integer offerId;
     protected String offerName;
@@ -47,6 +53,7 @@ class OfferDetail {
 }
 
 OfferDetail <|-- OfferPurchase
+ValuationRQ *--{ ValuableItem
 
 class ValuationRQ {
 
