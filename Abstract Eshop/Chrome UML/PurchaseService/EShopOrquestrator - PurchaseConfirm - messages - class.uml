@@ -1,12 +1,29 @@
 @startuml
 
 
-class EShopPurchaseConfirmRQ {
+class EShopProductConfirmRQ {
+    private Integer shopId;
+    private Integer userId;
+    private List<PurchaseItem> purchaseList;
+}
 
+
+class EShopProductConfirmRS {
+	private Integer shopId;
+    private Boolean bConfirmed;
+	private Integer productBookingNumber;
+    private List<OfferPurchase> productPurchaseList;
+    private List<String> errorList;
+    private Date productBookingTime;
+}
+
+class EShopPurchaseConfirmRQ {
     private Integer shopId;
     private Integer userId;
     private String userEmail;
-    private List<PurchaseItem> purchaseList;
+    private List<OfferPurchase> purchaseList;
+   	private Integer productBookingNumber;
+    private Date productBookingTime;
 
     private String customerName;
     private String deliveryAddress;
@@ -14,9 +31,15 @@ class EShopPurchaseConfirmRQ {
     private String deliveryRemarks;
     private String deliveryStatus;
 
-    private String paymentStatus;
+    private PaymentStatusTypeEnum paymentStatus;
     private PaymentTypeEnum paymentType;
 }
+
+class EShopPurchaseConfirmRS {
+	private Integer purchaseBookingNumber;
+}
+
+
 
 class PurchaseItem {
 
@@ -24,25 +47,31 @@ class PurchaseItem {
     private Integer count;
 }
 
-EShopPurchaseConfirmRQ *--{ PurchaseItem
-ProductPurchaseConfirmRQ *--{ PurchaseItem
+EShopProductConfirmRQ *--{ PurchaseItem
+ProductConfirmRQ *--{ PurchaseItem
+
+ProductConfirmRS *--{ OfferPurchase
+EShopProductConfirmRS *--{ OfferPurchase
+
+EShopPurchaseConfirmRQ *--{ OfferPurchase
 
 
-class ProductPurchaseConfirmRQ {
+
+class ProductConfirmRQ {
     
     private Integer shopId;
     private List<PurchaseItem> offerPurchaseList;
 }
 
-class ProductPurchaseConfirmRS {
+class ProductConfirmRS {
 	private Integer shopId;
     private Boolean bConfirmed;
 	private Integer productBookingNumber;
     private List<OfferPurchase> productPurchaseList;
     private List<String> errorList;
+    private Date productBookingTime;
 }
 
-ProductPurchaseConfirmRS *--{ OfferPurchase
 
 class OfferDetail {
 	protected Integer offerId;

@@ -3,19 +3,19 @@
 actor user #green
 participant EShopService #yellow
 
-user -> EShopService : ProductPurchaseConfirmRQ
+user -> EShopService : EShopProductConfirmRQ
 activate EShopService
 
-EShopService -> ProductService : ProductPurchaseConfirmRQ
-ProductService --> EShopService : ProductPurchaseConfirmRS
+EShopService -> ProductService : ProductConfirmRQ
+ProductService --> EShopService : ProductConfirmRS
 
 EShopService -> ValuationService : ValuateRQ
 ValuationService --> EShopService : ValuateRS
 
-EShopService --> user : ProductPurchaseConfirmRS
+EShopService --> user : EShopProductConfirmRS
 deactivate EShopService
 
-user -> EShopService : PurchaseConfirmRQ
+user -> EShopService : EShopPurchaseConfirmRQ
 activate EShopService
 
 EShopService -> PurchaseService : PurchaseConfirmRQ
@@ -24,7 +24,7 @@ PurchaseService --> EShopService : PurchaseConfirmRS
 EShopService -> CartService : DeleteCartRQ
 CartService --> EShopService : DeleteCartRS
 
-EShopService --> user : PurchaseConfirmRS
+EShopService --> user : EShopPurchaseConfirmRS
 deactivate EShopService
 
 
