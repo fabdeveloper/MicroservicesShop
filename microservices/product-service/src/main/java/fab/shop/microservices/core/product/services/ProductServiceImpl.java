@@ -63,8 +63,8 @@ public class ProductServiceImpl implements ProductService{
   }
 
   @Override
-  public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
-    ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
+  public ProductConfirmRS productPurchaseConfirm(ProductConfirmRQ productPurchaseConfirmRQ) {
+    ProductConfirmRS rs = new ProductConfirmRS();
     rs = getProductServiceFacade().productPurchaseConfirm(productPurchaseConfirmRQ);
 
     String msg = "recibido rq = " + productPurchaseConfirmRQ.toString();

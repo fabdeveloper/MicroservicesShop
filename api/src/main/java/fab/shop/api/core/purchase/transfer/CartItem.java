@@ -2,15 +2,9 @@ package fab.shop.api.core.purchase.transfer;
 
 import java.util.Objects;
 
-public class CartItem {
-
-    
+public class CartItem {    
     private Integer id;
-
-
-
     private Integer cartId;
-
     private Integer itemCount;
     private Integer offerId;
     private String offerName;

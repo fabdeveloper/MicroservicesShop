@@ -4,9 +4,8 @@ package fab.shop.microservices.core.mapper;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import fab.shop.api.core.product.Shop;
 import fab.shop.microservices.core.product.persistence.ShopEntity;
-
+import fab.shop.api.core.product.transfer.Shop;
 import fab.shop.microservices.core.mapper.ShopMapper;
 import org.mapstruct.factory.Mappers;
 

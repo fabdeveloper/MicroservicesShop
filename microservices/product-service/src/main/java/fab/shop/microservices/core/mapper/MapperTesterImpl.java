@@ -1,12 +1,12 @@
 package fab.shop.microservices.core.mapper;
 
-import fab.shop.api.core.product.Article;
-import fab.shop.api.core.product.Discount;
-import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
-import fab.shop.api.core.product.Shop;
-import fab.shop.api.core.product.Tax;
 import fab.shop.api.core.product.tester.MapperTester;
+import fab.shop.api.core.product.transfer.Article;
+import fab.shop.api.core.product.transfer.Discount;
+import fab.shop.api.core.product.transfer.Offer;
+import fab.shop.api.core.product.transfer.Product;
+import fab.shop.api.core.product.transfer.Shop;
+import fab.shop.api.core.product.transfer.Tax;
 import fab.shop.microservices.core.product.persistence.ArticleEntity;
 import fab.shop.microservices.core.product.persistence.DiscountEntity;
 import fab.shop.microservices.core.product.persistence.OfferEntity;

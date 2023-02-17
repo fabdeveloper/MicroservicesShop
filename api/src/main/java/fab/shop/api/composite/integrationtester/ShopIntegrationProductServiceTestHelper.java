@@ -30,7 +30,7 @@ public interface ShopIntegrationProductServiceTestHelper {
         @GetMapping(
                 value = "/shoptester/productservice/testproductpurchaseconfirm",
                 produces = "application/json")
-                ProductPurchaseConfirmRS productPurchaseConfirmTestHelper();
+                ProductConfirmRS productPurchaseConfirmTestHelper();
 
                 
 

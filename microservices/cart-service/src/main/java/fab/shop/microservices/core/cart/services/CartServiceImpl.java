@@ -14,7 +14,7 @@ import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartItem;
 import fab.shop.api.core.cart.CartService;
 import fab.shop.api.core.cart.msg.*;
-import fab.shop.api.core.product.Offer;
+import fab.shop.api.core.product.transfer.Offer;
 import fab.shop.microservices.core.cart.helper.PersistenceHelper;
 import fab.shop.microservices.core.cart.helper.PersistenceHelperImpl;
 import fab.shop.microservices.core.cart.helper.PersistenceHelperRepositoryImpl;

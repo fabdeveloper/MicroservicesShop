@@ -16,8 +16,8 @@ import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.msg.ProductConfirmRQ;
+import fab.shop.api.core.product.msg.ProductConfirmRS;
 import fab.shop.api.exceptions.ProductPurchaseConfirmAvailabilityException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmBookingException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmException;
@@ -69,8 +69,8 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
     }
 
     @Override
-    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ){  
-        ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
+    public ProductConfirmRS productPurchaseConfirm(ProductConfirmRQ productPurchaseConfirmRQ){  
+        ProductConfirmRS rs = new ProductConfirmRS();
         try {
             rs = getProductPurchaseHelper().bookPurchaseList(productPurchaseConfirmRQ);
         } catch (ProductPurchaseConfirmException e) {

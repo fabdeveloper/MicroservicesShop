@@ -3,8 +3,8 @@ package fab.shop.microservices.core.product.helper;
 import java.util.List;
 
 import fab.shop.api.core.product.msg.OfferPurchase;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.msg.ProductConfirmRQ;
+import fab.shop.api.core.product.msg.ProductConfirmRS;
 
 public interface IProductPurchaseHelper {
     
@@ -12,7 +12,7 @@ public interface IProductPurchaseHelper {
     
     public Boolean decrementStock(OfferPurchase offerPurchase);
     
-    public ProductPurchaseConfirmRS bookPurchaseList(ProductPurchaseConfirmRQ productPurchaseConfirmRQ);
+    public ProductConfirmRS bookPurchaseList(ProductConfirmRQ productPurchaseConfirmRQ);
 
     // public Integer bookPurchaseList(List<OfferPurchase> purchaseList);
     

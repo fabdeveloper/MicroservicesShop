@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
-import fab.shop.api.core.product.Article;
+import fab.shop.api.core.product.transfer.Article;
 import fab.shop.microservices.core.product.persistence.ArticleEntity;
 
 

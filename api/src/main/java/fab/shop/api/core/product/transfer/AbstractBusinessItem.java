@@ -1,4 +1,4 @@
-package fab.shop.api.core.product;
+package fab.shop.api.core.product.transfer;
 
 public abstract class AbstractBusinessItem {
     protected  Integer id;

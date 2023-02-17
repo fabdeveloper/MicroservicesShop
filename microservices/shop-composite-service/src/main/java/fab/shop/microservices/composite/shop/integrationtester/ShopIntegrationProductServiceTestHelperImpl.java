@@ -20,14 +20,14 @@ import fab.shop.api.core.product.msg.ProductCreateNewRQ;
 import fab.shop.api.core.product.msg.ProductMappersTestRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.transfer.Offer;
+import fab.shop.api.core.product.transfer.Product;
+import fab.shop.api.core.product.transfer.Shop;
+import fab.shop.api.core.product.msg.ProductConfirmRQ;
+import fab.shop.api.core.product.msg.ProductConfirmRS;
 import fab.shop.microservices.composite.shop.services.ShopCompositeIntegration;
 import fab.shop.util.http.ServiceUtil;
 import fab.shop.api.composite.integrationtester.ShopIntegrationProductServiceTestHelper;
-import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
-import fab.shop.api.core.product.Shop;
 
 
 
@@ -108,14 +108,14 @@ public class ShopIntegrationProductServiceTestHelperImpl implements ShopIntegrat
 
 
     @Override
-    public ProductPurchaseConfirmRS productPurchaseConfirmTestHelper() {
+    public ProductConfirmRS productPurchaseConfirmTestHelper() {
         List<OfferPurchase> offerPurechaseList = new ArrayList<>();
         OfferPurchase offerPurchase = new OfferPurchase(12, 2);
         offerPurechaseList.add(offerPurchase);
 
-        ProductPurchaseConfirmRQ rq = new ProductPurchaseConfirmRQ(44, offerPurechaseList);
+        ProductConfirmRQ rq = new ProductConfirmRQ(44, offerPurechaseList);
 
-        return restTemplate.postForObject(getShopIntegration().getProductServiceUrl() + "/productPurchaseConfirm", rq, ProductPurchaseConfirmRS.class);
+        return restTemplate.postForObject(getShopIntegration().getProductServiceUrl() + "/productPurchaseConfirm", rq, ProductConfirmRS.class);
     }
 
 

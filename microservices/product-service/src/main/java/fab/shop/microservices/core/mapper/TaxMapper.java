@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
-import fab.shop.api.core.product.Tax;
+import fab.shop.api.core.product.transfer.Tax;
 import fab.shop.microservices.core.product.persistence.TaxEntity;
 
 

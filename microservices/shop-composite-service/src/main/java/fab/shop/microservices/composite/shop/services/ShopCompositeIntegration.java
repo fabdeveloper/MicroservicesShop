@@ -226,8 +226,8 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
 
     @Override
-    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
-        return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
+    public ProductConfirmRS productPurchaseConfirm(ProductConfirmRQ productPurchaseConfirmRQ) {
+        return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductConfirmRS.class);
     }
 
 
@@ -267,10 +267,10 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
         // product tasks
 
-        ProductPurchaseConfirmRQ productPurchaseConfirmRQ = new ProductPurchaseConfirmRQ(shopId, offerList);
-        ProductPurchaseConfirmRS productPurchaseConfirmRS = null;
+        ProductConfirmRQ productPurchaseConfirmRQ = new ProductConfirmRQ(shopId, offerList);
+        ProductConfirmRS productPurchaseConfirmRS = null;
         try{
-            productPurchaseConfirmRS = restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
+            productPurchaseConfirmRS = restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductConfirmRS.class);
 
         } catch(Exception e){
             String sError = "ERROR - ProductService - not available - msg: " + e.getMessage();

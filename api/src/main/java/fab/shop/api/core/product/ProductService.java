@@ -14,8 +14,8 @@ import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.msg.ProductConfirmRQ;
+import fab.shop.api.core.product.msg.ProductConfirmRS;
 
 public interface ProductService {
 	
@@ -50,7 +50,7 @@ public interface ProductService {
 			value = "/product/productPurchaseConfirm",
 			consumes = "application/json",
 			produces = "application/json")
-			ProductPurchaseConfirmRS productPurchaseConfirm(@RequestBody ProductPurchaseConfirmRQ productPurchaseConfirmRQ);
+			ProductConfirmRS productPurchaseConfirm(@RequestBody ProductConfirmRQ productPurchaseConfirmRQ);
 
 			
 	  

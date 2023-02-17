@@ -3,7 +3,7 @@ package fab.shop.api.core.purchase.msg;
 import java.util.List;
 import java.util.Objects;
 
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.transfer.Product;
 import fab.shop.api.core.purchase.transfer.Purchase;
 
 public class PurchaseConfirmRQ {

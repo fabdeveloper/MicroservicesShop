@@ -1,6 +1,6 @@
 package fab.shop.microservices.core.mapper;
 
-import fab.shop.api.core.product.Offer;
+import fab.shop.api.core.product.transfer.Offer;
 import fab.shop.microservices.core.product.persistence.OfferEntity;
 
 import java.util.ArrayList;

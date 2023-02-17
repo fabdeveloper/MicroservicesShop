@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import fab.shop.api.composite.integrationtester.ShopIntegrationProductConfigServiceTestHelper;
-import fab.shop.api.core.product.Article;
-import fab.shop.api.core.product.Discount;
-import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
-import fab.shop.api.core.product.Shop;
-import fab.shop.api.core.product.Tax;
 import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductConfigRQ;
 import fab.shop.api.core.product.msg.ProductConfigRS;
 import fab.shop.api.core.product.msg.ProductCreateNewRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
+import fab.shop.api.core.product.transfer.Article;
+import fab.shop.api.core.product.transfer.Discount;
+import fab.shop.api.core.product.transfer.Offer;
+import fab.shop.api.core.product.transfer.Product;
+import fab.shop.api.core.product.transfer.Shop;
+import fab.shop.api.core.product.transfer.Tax;
 import fab.shop.microservices.composite.shop.services.ShopCompositeIntegration;
 import fab.shop.util.http.ServiceUtil;
 

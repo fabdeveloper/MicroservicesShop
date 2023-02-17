@@ -2,8 +2,9 @@ package fab.shop.microservices.core.product.persistence;
 
 import java.util.Objects;
 
-import fab.shop.api.core.product.EnumSign;
 import javax.persistence.*;
+
+import fab.shop.api.core.product.transfer.EnumSign;
 
 
 

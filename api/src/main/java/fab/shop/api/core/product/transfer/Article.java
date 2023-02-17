@@ -1,4 +1,4 @@
-package fab.shop.api.core.product;
+package fab.shop.api.core.product.transfer;
 
 
 public class Article extends AbstractBusinessItem {

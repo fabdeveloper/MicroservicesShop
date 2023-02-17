@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import fab.shop.api.core.product.Offer;
+import fab.shop.api.core.product.transfer.Offer;
 
 @Component
 public class ValuationHelperImpl implements ValuationHelper {

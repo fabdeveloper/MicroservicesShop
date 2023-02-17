@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import fab.shop.api.core.product.Article;
-import fab.shop.api.core.product.Offer;
 import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
 import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
+import fab.shop.api.core.product.transfer.Article;
+import fab.shop.api.core.product.transfer.Offer;
 import fab.shop.microservices.core.product.facade.IPersistenceFacade;
 import fab.shop.microservices.core.product.persistence.ArticleEntity;
 import fab.shop.microservices.core.product.persistence.OfferEntity;

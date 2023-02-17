@@ -2,12 +2,12 @@ package fab.shop.api.core.product.msg;
 
 import java.util.List;
 
-import fab.shop.api.core.product.Article;
-import fab.shop.api.core.product.Discount;
-import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
-import fab.shop.api.core.product.Shop;
-import fab.shop.api.core.product.Tax;
+import fab.shop.api.core.product.transfer.Article;
+import fab.shop.api.core.product.transfer.Discount;
+import fab.shop.api.core.product.transfer.Offer;
+import fab.shop.api.core.product.transfer.Product;
+import fab.shop.api.core.product.transfer.Shop;
+import fab.shop.api.core.product.transfer.Tax;
 
 public class ProductCreateNewRQ extends AbstractProductConfigRQ {
 

@@ -1,6 +1,6 @@
 package fab.shop.api.core.cart;
 
-import fab.shop.api.core.product.Offer;
+import fab.shop.api.core.product.transfer.Offer;
 
 public class CartItem {
     

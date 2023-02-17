@@ -3,7 +3,7 @@ package fab.shop.api.core.product.msg;
 import java.util.ArrayList;
 import java.util.List;
 
-import fab.shop.api.core.product.Offer;
+import fab.shop.api.core.product.transfer.Offer;
 
 public class GetOfferListDetailRS {
 

@@ -2,7 +2,7 @@ package fab.shop.api.core.cart.msg;
 
 import java.util.List;
 
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.transfer.Product;
 
 public class RemoveFromCartRS {
     

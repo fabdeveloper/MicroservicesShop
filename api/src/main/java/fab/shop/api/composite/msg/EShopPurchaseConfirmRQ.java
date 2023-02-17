@@ -3,23 +3,26 @@ package fab.shop.api.composite.msg;
 import java.util.*;
 
 import fab.shop.api.composite.transfer.PurchaseItem;
+import fab.shop.api.core.product.msg.OfferPurchase;
+import fab.shop.api.core.purchase.transfer.PaymentStatusTypeEnum;
 import fab.shop.api.core.purchase.transfer.PaymentTypeEnum;
 
 public class EShopPurchaseConfirmRQ {
-
     private Integer shopId;
     private Integer userId;
-    private String userEmail;
-    private List<PurchaseItem> purchaseList;
+    private List<OfferPurchase> purchaseList;
+    private Integer productBookingNumber;
+    private Date productBookingTime;
+    private Integer cartId;
 
     private String customerName;
     private String deliveryAddress;
     private String deliveryPhoneNumber;
-
+    private String userEmail;
     private String deliveryRemarks;
     private String deliveryStatus;
 
-    private String paymentStatus;
+    private PaymentStatusTypeEnum paymentStatus;
     private PaymentTypeEnum paymentType;
 
 
@@ -27,14 +30,17 @@ public class EShopPurchaseConfirmRQ {
     public EShopPurchaseConfirmRQ() {
     }
 
-    public EShopPurchaseConfirmRQ(Integer shopId, Integer userId, String userEmail, List<PurchaseItem> purchaseList, String customerName, String deliveryAddress, String deliveryPhoneNumber, String deliveryRemarks, String deliveryStatus, String paymentStatus, PaymentTypeEnum paymentType) {
+    public EShopPurchaseConfirmRQ(Integer shopId, Integer userId, List<OfferPurchase> purchaseList, Integer productBookingNumber, Date productBookingTime, Integer cartId, String customerName, String deliveryAddress, String deliveryPhoneNumber, String userEmail, String deliveryRemarks, String deliveryStatus, PaymentStatusTypeEnum paymentStatus, PaymentTypeEnum paymentType) {
         this.shopId = shopId;
         this.userId = userId;
-        this.userEmail = userEmail;
         this.purchaseList = purchaseList;
+        this.productBookingNumber = productBookingNumber;
+        this.productBookingTime = productBookingTime;
+        this.cartId = cartId;
         this.customerName = customerName;
         this.deliveryAddress = deliveryAddress;
         this.deliveryPhoneNumber = deliveryPhoneNumber;
+        this.userEmail = userEmail;
         this.deliveryRemarks = deliveryRemarks;
         this.deliveryStatus = deliveryStatus;
         this.paymentStatus = paymentStatus;
@@ -57,20 +63,36 @@ public class EShopPurchaseConfirmRQ {
         this.userId = userId;
     }
 
-    public String getUserEmail() {
-        return this.userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public List<PurchaseItem> getPurchaseList() {
+    public List<OfferPurchase> getPurchaseList() {
         return this.purchaseList;
     }
 
-    public void setPurchaseList(List<PurchaseItem> purchaseList) {
+    public void setPurchaseList(List<OfferPurchase> purchaseList) {
         this.purchaseList = purchaseList;
+    }
+
+    public Integer getProductBookingNumber() {
+        return this.productBookingNumber;
+    }
+
+    public void setProductBookingNumber(Integer productBookingNumber) {
+        this.productBookingNumber = productBookingNumber;
+    }
+
+    public Date getProductBookingTime() {
+        return this.productBookingTime;
+    }
+
+    public void setProductBookingTime(Date productBookingTime) {
+        this.productBookingTime = productBookingTime;
+    }
+
+    public Integer getCartId() {
+        return this.cartId;
+    }
+
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
 
     public String getCustomerName() {
@@ -97,6 +119,14 @@ public class EShopPurchaseConfirmRQ {
         this.deliveryPhoneNumber = deliveryPhoneNumber;
     }
 
+    public String getUserEmail() {
+        return this.userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     public String getDeliveryRemarks() {
         return this.deliveryRemarks;
     }
@@ -113,11 +143,11 @@ public class EShopPurchaseConfirmRQ {
         this.deliveryStatus = deliveryStatus;
     }
 
-    public String getPaymentStatus() {
+    public PaymentStatusTypeEnum getPaymentStatus() {
         return this.paymentStatus;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
+    public void setPaymentStatus(PaymentStatusTypeEnum paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
@@ -139,13 +169,23 @@ public class EShopPurchaseConfirmRQ {
         return this;
     }
 
-    public EShopPurchaseConfirmRQ userEmail(String userEmail) {
-        setUserEmail(userEmail);
+    public EShopPurchaseConfirmRQ purchaseList(List<OfferPurchase> purchaseList) {
+        setPurchaseList(purchaseList);
         return this;
     }
 
-    public EShopPurchaseConfirmRQ purchaseList(List<PurchaseItem> purchaseList) {
-        setPurchaseList(purchaseList);
+    public EShopPurchaseConfirmRQ productBookingNumber(Integer productBookingNumber) {
+        setProductBookingNumber(productBookingNumber);
+        return this;
+    }
+
+    public EShopPurchaseConfirmRQ productBookingTime(Date productBookingTime) {
+        setProductBookingTime(productBookingTime);
+        return this;
+    }
+
+    public EShopPurchaseConfirmRQ cartId(Integer cartId) {
+        setCartId(cartId);
         return this;
     }
 
@@ -164,6 +204,11 @@ public class EShopPurchaseConfirmRQ {
         return this;
     }
 
+    public EShopPurchaseConfirmRQ userEmail(String userEmail) {
+        setUserEmail(userEmail);
+        return this;
+    }
+
     public EShopPurchaseConfirmRQ deliveryRemarks(String deliveryRemarks) {
         setDeliveryRemarks(deliveryRemarks);
         return this;
@@ -174,7 +219,7 @@ public class EShopPurchaseConfirmRQ {
         return this;
     }
 
-    public EShopPurchaseConfirmRQ paymentStatus(String paymentStatus) {
+    public EShopPurchaseConfirmRQ paymentStatus(PaymentStatusTypeEnum paymentStatus) {
         setPaymentStatus(paymentStatus);
         return this;
     }
@@ -192,12 +237,12 @@ public class EShopPurchaseConfirmRQ {
             return false;
         }
         EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ = (EShopPurchaseConfirmRQ) o;
-        return Objects.equals(shopId, eShopPurchaseConfirmRQ.shopId) && Objects.equals(userId, eShopPurchaseConfirmRQ.userId) && Objects.equals(userEmail, eShopPurchaseConfirmRQ.userEmail) && Objects.equals(purchaseList, eShopPurchaseConfirmRQ.purchaseList) && Objects.equals(customerName, eShopPurchaseConfirmRQ.customerName) && Objects.equals(deliveryAddress, eShopPurchaseConfirmRQ.deliveryAddress) && Objects.equals(deliveryPhoneNumber, eShopPurchaseConfirmRQ.deliveryPhoneNumber) && Objects.equals(deliveryRemarks, eShopPurchaseConfirmRQ.deliveryRemarks) && Objects.equals(deliveryStatus, eShopPurchaseConfirmRQ.deliveryStatus) && Objects.equals(paymentStatus, eShopPurchaseConfirmRQ.paymentStatus) && Objects.equals(paymentType, eShopPurchaseConfirmRQ.paymentType);
+        return Objects.equals(shopId, eShopPurchaseConfirmRQ.shopId) && Objects.equals(userId, eShopPurchaseConfirmRQ.userId) && Objects.equals(purchaseList, eShopPurchaseConfirmRQ.purchaseList) && Objects.equals(productBookingNumber, eShopPurchaseConfirmRQ.productBookingNumber) && Objects.equals(productBookingTime, eShopPurchaseConfirmRQ.productBookingTime) && Objects.equals(cartId, eShopPurchaseConfirmRQ.cartId) && Objects.equals(customerName, eShopPurchaseConfirmRQ.customerName) && Objects.equals(deliveryAddress, eShopPurchaseConfirmRQ.deliveryAddress) && Objects.equals(deliveryPhoneNumber, eShopPurchaseConfirmRQ.deliveryPhoneNumber) && Objects.equals(userEmail, eShopPurchaseConfirmRQ.userEmail) && Objects.equals(deliveryRemarks, eShopPurchaseConfirmRQ.deliveryRemarks) && Objects.equals(deliveryStatus, eShopPurchaseConfirmRQ.deliveryStatus) && Objects.equals(paymentStatus, eShopPurchaseConfirmRQ.paymentStatus) && Objects.equals(paymentType, eShopPurchaseConfirmRQ.paymentType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shopId, userId, userEmail, purchaseList, customerName, deliveryAddress, deliveryPhoneNumber, deliveryRemarks, deliveryStatus, paymentStatus, paymentType);
+        return Objects.hash(shopId, userId, purchaseList, productBookingNumber, productBookingTime, cartId, customerName, deliveryAddress, deliveryPhoneNumber, userEmail, deliveryRemarks, deliveryStatus, paymentStatus, paymentType);
     }
 
     @Override
@@ -205,17 +250,21 @@ public class EShopPurchaseConfirmRQ {
         return "{" +
             " shopId='" + getShopId() + "'" +
             ", userId='" + getUserId() + "'" +
-            ", userEmail='" + getUserEmail() + "'" +
             ", purchaseList='" + getPurchaseList() + "'" +
+            ", productBookingNumber='" + getProductBookingNumber() + "'" +
+            ", productBookingTime='" + getProductBookingTime() + "'" +
+            ", cartId='" + getCartId() + "'" +
             ", customerName='" + getCustomerName() + "'" +
             ", deliveryAddress='" + getDeliveryAddress() + "'" +
             ", deliveryPhoneNumber='" + getDeliveryPhoneNumber() + "'" +
+            ", userEmail='" + getUserEmail() + "'" +
             ", deliveryRemarks='" + getDeliveryRemarks() + "'" +
             ", deliveryStatus='" + getDeliveryStatus() + "'" +
             ", paymentStatus='" + getPaymentStatus() + "'" +
             ", paymentType='" + getPaymentType() + "'" +
             "}";
     }
+
 
     
 }

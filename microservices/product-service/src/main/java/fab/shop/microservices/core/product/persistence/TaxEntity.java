@@ -1,12 +1,12 @@
 package fab.shop.microservices.core.product.persistence;
 
-import fab.shop.api.core.product.EnumSign;
-
 import java.util.Objects;
 
 import javax.persistence.*;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import fab.shop.api.core.product.transfer.EnumSign;
 
 
 @Entity

@@ -24,9 +24,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import fab.shop.api.core.cart.Cart;
 import fab.shop.api.core.cart.CartItem;
-import fab.shop.api.core.product.Article;
-import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.transfer.Article;
+import fab.shop.api.core.product.transfer.Offer;
+import fab.shop.api.core.product.transfer.Product;
 import fab.shop.microservices.core.cart.db.MySqlTestBase;
 import fab.shop.microservices.core.cart.helper.PersistenceHelper;
 

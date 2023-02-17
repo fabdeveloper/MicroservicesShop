@@ -2,8 +2,8 @@ package fab.shop.api.core.valuation;
 
 import java.util.*;
 
-import fab.shop.api.core.product.Discount;
-import fab.shop.api.core.product.Tax;
+import fab.shop.api.core.product.transfer.Discount;
+import fab.shop.api.core.product.transfer.Tax;
 
 public class ValuableItem {
     protected Integer offerId;

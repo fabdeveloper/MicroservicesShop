@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import fab.shop.api.core.product.msg.OfferPurchase;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.msg.ProductConfirmRQ;
+import fab.shop.api.core.product.msg.ProductConfirmRS;
 import fab.shop.api.exceptions.ProductPurchaseConfirmAvailabilityException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmBookingException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmReduceStockException;
@@ -85,8 +85,8 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
 
     @Transactional
     @Override
-    public ProductPurchaseConfirmRS bookPurchaseList(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) throws ProductPurchaseConfirmBookingException {
-        ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS();
+    public ProductConfirmRS bookPurchaseList(ProductConfirmRQ productPurchaseConfirmRQ) throws ProductPurchaseConfirmBookingException {
+        ProductConfirmRS rs = new ProductConfirmRS();
         rs.setShopId(productPurchaseConfirmRQ.getShopId());
 
         Integer offerId;

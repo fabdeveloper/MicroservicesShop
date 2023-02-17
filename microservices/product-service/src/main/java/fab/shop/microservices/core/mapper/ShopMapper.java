@@ -6,7 +6,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
-import fab.shop.api.core.product.Shop;
+import fab.shop.api.core.product.transfer.Shop;
 import fab.shop.microservices.core.product.persistence.ShopEntity;
 
 @Mapper(componentModel = "spring")

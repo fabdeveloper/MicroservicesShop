@@ -7,9 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import fab.shop.api.core.cart.msg.*;
-import fab.shop.api.core.product.Article;
-import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.transfer.Article;
+import fab.shop.api.core.product.transfer.Offer;
+import fab.shop.api.core.product.transfer.Product;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CartServiceApplicationTests {

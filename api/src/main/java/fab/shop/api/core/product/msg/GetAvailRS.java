@@ -3,9 +3,9 @@ package fab.shop.api.core.product.msg;
 import java.util.ArrayList;
 import java.util.List;
 
-import fab.shop.api.core.product.Article;
-import fab.shop.api.core.product.Offer;
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.transfer.Article;
+import fab.shop.api.core.product.transfer.Offer;
+import fab.shop.api.core.product.transfer.Product;
 
 public class GetAvailRS {
 

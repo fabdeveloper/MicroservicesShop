@@ -1,10 +1,10 @@
 package fab.shop.api.exceptions;
 
-import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.msg.ProductConfirmRS;
 
 public class ProductPurchaseConfirmException extends RuntimeException {
 
-    private ProductPurchaseConfirmRS productPurchaseConfirmRS;
+    private ProductConfirmRS productPurchaseConfirmRS;
 
 	public ProductPurchaseConfirmException() {
 		super();
@@ -37,11 +37,11 @@ public class ProductPurchaseConfirmException extends RuntimeException {
 
 
 
-    public ProductPurchaseConfirmRS getProductPurchaseConfirmRS() {
+    public ProductConfirmRS getProductPurchaseConfirmRS() {
         return this.productPurchaseConfirmRS;
     }
 
-    public void setProductPurchaseConfirmRS(ProductPurchaseConfirmRS productPurchaseConfirmRS) {
+    public void setProductPurchaseConfirmRS(ProductConfirmRS productPurchaseConfirmRS) {
         this.productPurchaseConfirmRS = productPurchaseConfirmRS;
     }
 

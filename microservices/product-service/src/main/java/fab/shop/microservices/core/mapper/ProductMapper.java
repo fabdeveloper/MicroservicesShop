@@ -6,7 +6,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
-import fab.shop.api.core.product.Product;
+import fab.shop.api.core.product.transfer.Product;
 import fab.shop.microservices.core.product.persistence.ProductEntity;
 
 

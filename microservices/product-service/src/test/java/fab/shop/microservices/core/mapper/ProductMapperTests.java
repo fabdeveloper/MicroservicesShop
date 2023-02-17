@@ -11,8 +11,8 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import fab.shop.api.core.product.Product;
-import fab.shop.api.core.product.Shop;
+import fab.shop.api.core.product.transfer.Product;
+import fab.shop.api.core.product.transfer.Shop;
 import fab.shop.microservices.core.product.persistence.ProductEntity;
 import fab.shop.microservices.core.product.persistence.ShopEntity;
 
