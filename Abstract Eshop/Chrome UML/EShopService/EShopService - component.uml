@@ -1,0 +1,70 @@
+@startuml
+
+() IEShop
+
+note top of IEShop : Edgge Server
+node "EShopServer" {
+
+    package "EShopService.service" {
+
+        IEShop - [EShopImpl]
+
+    }
+
+    package "EShopService.orquestrator" {
+        () IEShopOrquestrator as IO
+        IO - [EShopOrquestratorImpl]
+            [EShopImpl] --> IO
+    }
+
+    package "EShopService.integration" {
+        () IEShopIntegration as Int
+        Int - [EShopIntegrationImpl]
+        [EShopOrquestratorImpl] --> Int
+
+    }
+
+}
+
+node "ProductServer" {
+	() IProductService as IPS
+    IPS - [ProductServiceImpl]    
+    [EShopIntegrationImpl] --> IPS
+
+}
+
+node "PurchaseServer" {
+	() IPurchaseService as IPur
+    IPur - [PurchaseServiceImpl]
+        [EShopIntegrationImpl] --> IPur
+
+}
+
+node "CartServer" {
+	() ICartService as ICart
+    ICart - [CartServiceImpl]
+        [EShopIntegrationImpl] --> ICart
+
+}
+
+node "ValuationServer" {
+	() IValuationService as IVal
+    IVal - [ValuationServiceImpl]
+        [EShopIntegrationImpl] --> IVal
+}
+
+node "CheckOutServer" {
+	() ICheckOutService as ICheckOut
+    ICheckOut - [CheckOutServiceImpl]
+        [EShopIntegrationImpl] --> ICheckOut
+
+}
+
+
+
+
+
+
+
+
+@enduml

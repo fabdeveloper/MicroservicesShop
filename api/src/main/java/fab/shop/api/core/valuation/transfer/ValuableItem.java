@@ -1,4 +1,4 @@
-package fab.shop.api.core.valuation;
+package fab.shop.api.core.valuation.transfer;
 
 import java.util.*;
 

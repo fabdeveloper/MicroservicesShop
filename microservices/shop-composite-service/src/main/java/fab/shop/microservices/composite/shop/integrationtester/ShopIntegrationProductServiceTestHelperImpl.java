@@ -13,7 +13,6 @@ import fab.shop.api.core.product.msg.GetAvailRQ;
 import fab.shop.api.core.product.msg.GetAvailRS;
 import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
-import fab.shop.api.core.product.msg.OfferPurchase;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductCreateNewRQ;
 
@@ -21,6 +20,7 @@ import fab.shop.api.core.product.msg.ProductMappersTestRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
 import fab.shop.api.core.product.transfer.Offer;
+import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.product.transfer.Product;
 import fab.shop.api.core.product.transfer.Shop;
 import fab.shop.api.core.product.msg.ProductConfirmRQ;

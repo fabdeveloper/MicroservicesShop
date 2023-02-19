@@ -48,16 +48,11 @@ package EShopService.msg {
 
 
 
-class PurchaseItem {
 
-    private Integer offerId;
-    private Integer count;
-}
+EShopProductConfirmRQ *--{ ProductService.transfer.PurchaseItem
+EShopProductConfirmRS *--{ ProductService.transfer.OfferPurchase
 
-EShopProductConfirmRQ *--{ PurchaseItem
-EShopProductConfirmRS *--{ OfferPurchase
-
-EShopPurchaseConfirmRQ *--{ OfferPurchase
+EShopPurchaseConfirmRQ *--{ ProductService.transfer.OfferPurchase
 
 
 package ProductService.msg {
@@ -76,25 +71,40 @@ package ProductService.msg {
         private Date productBookingTime;
     }
     
-    ProductConfirmRQ *--{ PurchaseItem
-	ProductConfirmRS *--{ OfferPurchase
-
+    ProductConfirmRQ *--{ ProductService.transfer.PurchaseItem
+	ProductConfirmRS *--{ ProductService.transfer.OfferPurchase
 
 }
 
+package ProductService.transfer {
 
-class OfferDetail {
-	protected Integer offerId;
-    protected String offerName;
-    protected String offerDescription;
-    protected Float offerUnitPrice;
-    protected Integer count;
+
+
+    class OfferDetail {
+        protected Integer offerId;
+        protected String offerName;
+        protected String offerDescription;
+        protected Float offerUnitPrice;
+        protected Integer count;
+
+        protected List<Discount> discountList;
+        protected List<Tax> taxList;
+    }
     
-    protected List<Discount> discountList;
-    protected List<Tax> taxList;
+    
+    class PurchaseItem {
+
+        private Integer offerId;
+        private Integer count;
+    }
+    
+    class OfferPurchase {
+    }
+    
+    OfferDetail <|-- OfferPurchase
+
 }
 
-OfferDetail <|-- OfferPurchase
 
 
 
@@ -105,6 +115,13 @@ package ValuationService.msg {
     }
 
 
+    
+    ValuationRQ *--{ ValuationService.transfer.ValuableItem
+
+}
+
+package ValuationService.transfer {
+
     class ValuableItem {
         protected Integer offerId;
         protected Integer shopId;
@@ -114,8 +131,6 @@ package ValuationService.msg {
         protected List<Discount> discountList;
         protected List<Tax> taxList;
     }
-    
-    ValuationRQ *--{ ValuableItem
 
 }
 
@@ -128,8 +143,9 @@ package PurchaseService.msg {
     PurchaseConfirmRQ *-- PurchaseService.transfer.Purchase
     
     class PurchaseConfirmRS {
-    	private Integer purchaseConfirmNumber;
-    
+        private Integer purchaseId;
+        private List<String> errorList;
+        private String status;    
     }
 }
 
@@ -180,7 +196,7 @@ package PurchaseService.transfer {
     class PaymentDetail {
         private Integer id;
         @NotNull
-        private String paymentStatus;
+        private PaymentStatusTypeEnum paymentStatus;
         @NotNull
         private PaymentTypeEnum paymentType;    
         private Date paymentDate;
@@ -206,6 +222,7 @@ package PurchaseService.transfer {
     CartDetail *-- CartItem
     
 }
+
 
 
 

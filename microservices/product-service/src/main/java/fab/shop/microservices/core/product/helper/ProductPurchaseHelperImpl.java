@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import fab.shop.api.core.product.msg.OfferPurchase;
 import fab.shop.api.core.product.msg.ProductConfirmRQ;
 import fab.shop.api.core.product.msg.ProductConfirmRS;
+import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.exceptions.ProductPurchaseConfirmAvailabilityException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmBookingException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmReduceStockException;

@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fab.shop.util.http.ServiceUtil;
 import fab.shop.api.core.valuation.msg.*;
+import fab.shop.api.core.valuation.transfer.ValuableItem;
 import fab.shop.api.core.product.transfer.AbstractExtraValuableItem;
 import fab.shop.api.core.product.transfer.Discount;
 import fab.shop.api.core.product.transfer.EnumSign;
 import fab.shop.api.core.product.transfer.Offer;
 import fab.shop.api.core.product.transfer.Tax;
-import fab.shop.api.core.valuation.ValuableItem;
 import fab.shop.api.core.valuation.ValuatedItem;
 import fab.shop.api.core.valuation.ValuationService;
 

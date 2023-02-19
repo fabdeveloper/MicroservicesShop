@@ -5,13 +5,7 @@ import javax.validation.constraints.NotNull;
 
 
 public class UserDetail {
-    
-
-    
     private Integer id;
-
-
-
     @NotNull
     private Integer userId;
     @NotNull

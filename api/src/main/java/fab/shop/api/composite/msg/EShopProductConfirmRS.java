@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import fab.shop.api.core.product.msg.OfferPurchase;
+import fab.shop.api.core.product.transfer.OfferPurchase;
 
 public class EShopProductConfirmRS {
     private Integer shopId;

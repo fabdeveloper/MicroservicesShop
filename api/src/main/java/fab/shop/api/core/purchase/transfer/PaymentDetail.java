@@ -10,20 +10,19 @@ import javax.validation.constraints.NotNull;
 public class PaymentDetail {
 
     private Integer id;
-
     @NotNull
-    private String paymentStatus;
+    private PaymentStatusTypeEnum paymentStatus;
     @NotNull
-    private PaymentTypeEnum paymentType;
-    
+    private PaymentTypeEnum paymentType;    
     private Date paymentDate;
     private Date paymentModificationDate;
+
 
 
     public PaymentDetail() {
     }
 
-    public PaymentDetail(Integer id, String paymentStatus, PaymentTypeEnum paymentType, Date paymentDate, Date paymentModificationDate) {
+    public PaymentDetail(Integer id, PaymentStatusTypeEnum paymentStatus, PaymentTypeEnum paymentType, Date paymentDate, Date paymentModificationDate) {
         this.id = id;
         this.paymentStatus = paymentStatus;
         this.paymentType = paymentType;
@@ -39,11 +38,11 @@ public class PaymentDetail {
         this.id = id;
     }
 
-    public String getPaymentStatus() {
+    public PaymentStatusTypeEnum getPaymentStatus() {
         return this.paymentStatus;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
+    public void setPaymentStatus(PaymentStatusTypeEnum paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
@@ -76,7 +75,7 @@ public class PaymentDetail {
         return this;
     }
 
-    public PaymentDetail paymentStatus(String paymentStatus) {
+    public PaymentDetail paymentStatus(PaymentStatusTypeEnum paymentStatus) {
         setPaymentStatus(paymentStatus);
         return this;
     }
@@ -123,5 +122,4 @@ public class PaymentDetail {
             "}";
     }
 
-    
 }

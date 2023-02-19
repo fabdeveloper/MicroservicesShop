@@ -4,6 +4,7 @@ import java.util.List;
 
 import fab.shop.api.core.product.transfer.Discount;
 import fab.shop.api.core.product.transfer.Tax;
+import fab.shop.api.core.valuation.transfer.ValuableItem;
 
 public class ValuatedItem extends ValuableItem {
 

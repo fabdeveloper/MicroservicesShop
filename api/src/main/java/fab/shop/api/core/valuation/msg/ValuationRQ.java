@@ -3,7 +3,7 @@ package fab.shop.api.core.valuation.msg;
 import java.util.ArrayList;
 import java.util.List;
 
-import fab.shop.api.core.valuation.ValuableItem;
+import fab.shop.api.core.valuation.transfer.ValuableItem;
 
 public class ValuationRQ {
 

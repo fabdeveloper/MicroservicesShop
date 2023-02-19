@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class DeliveryDetail {
 
-
     private Integer id;
     private String customerName;
     private String deliveryAddress;

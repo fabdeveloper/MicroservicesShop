@@ -7,10 +7,6 @@ import javax.validation.constraints.NotNull;
 
 
 public class CartDetail {
-    
-
-    
-
     private Integer id;
 
     @NotNull

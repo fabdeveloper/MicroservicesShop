@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
-import fab.shop.api.core.product.msg.OfferPurchase;
+import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.microservices.core.product.persistence.OfferPurchaseEntity;
 
 

@@ -3,7 +3,7 @@ package fab.shop.api.composite.msg;
 import java.util.*;
 
 import fab.shop.api.composite.transfer.PurchaseItem;
-import fab.shop.api.core.product.msg.OfferPurchase;
+import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.purchase.transfer.PaymentStatusTypeEnum;
 import fab.shop.api.core.purchase.transfer.PaymentTypeEnum;
 

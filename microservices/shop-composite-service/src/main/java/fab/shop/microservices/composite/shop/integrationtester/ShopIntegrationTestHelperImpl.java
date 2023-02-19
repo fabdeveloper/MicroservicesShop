@@ -24,9 +24,9 @@ import fab.shop.api.core.product.transfer.Discount;
 import fab.shop.api.core.product.transfer.EnumSign;
 import fab.shop.api.core.product.transfer.Tax;
 import fab.shop.api.core.purchase.msg.PurchaseConfirmRS;
-import fab.shop.api.core.valuation.ValuableItem;
 import fab.shop.api.core.valuation.msg.ValuationRQ;
 import fab.shop.api.core.valuation.msg.ValuationRS;
+import fab.shop.api.core.valuation.transfer.ValuableItem;
 import fab.shop.microservices.composite.shop.services.ShopCompositeIntegration;
 import fab.shop.util.http.ServiceUtil;
 
