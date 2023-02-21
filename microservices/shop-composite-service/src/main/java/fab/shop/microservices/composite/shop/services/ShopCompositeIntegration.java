@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
-import fab.shop.api.composite.IEShopOrchestrator;
+import fab.shop.api.composite.IEShopOrquestrator;
 
 import fab.shop.api.core.purchase.PurchaseService;
 import fab.shop.api.core.valuation.ValuationService;
@@ -33,7 +33,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 @Component
-public class ShopCompositeIntegration implements CartService, ProductService, PurchaseService, ValuationService, IEShopOrchestrator {
+public class ShopCompositeIntegration implements CartService, ProductService, PurchaseService, ValuationService, IEShopOrquestrator {
 
     private final RestTemplate restTemplate;
     // private final WebClient webClient;

@@ -1,5 +1,6 @@
 package fab.shop.api.composite.msg;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -67,11 +68,18 @@ public class EShopProductConfirmRS {
     }
 
     public List<String> getErrorList() {
+        if(this.errorList == null){
+            this.errorList = new ArrayList<>();
+        }
         return this.errorList;
     }
 
     public void setErrorList(List<String> errorList) {
         this.errorList = errorList;
+    }
+
+    public void addError(String sError){
+        getErrorList().add(sError);
     }
 
     public Date getProductBookingTime() {
