@@ -13,11 +13,11 @@ import fab.shop.api.core.cart.CartService;
 
 import fab.shop.api.core.purchase.msg.*;
 import fab.shop.api.core.product.msg.*;
-import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.cart.msg.*;
 import fab.shop.api.core.valuation.msg.*;
 import fab.shop.api.composite.msg.*;
 
+import fab.shop.api.core.product.transfer.*;
 import fab.shop.api.core.purchase.transfer.*;
 import fab.shop.api.composite.transfer.*;
 

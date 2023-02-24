@@ -65,7 +65,7 @@ node "EShopServer" {
 
 note right of EShopOrquestratorImpl : Compose
 
-note right of EShopIntegrationImpl : External Service Locator
+note right of GeneralEXternalServicesFacadeImpl : External Service Locator
 
 node "ProductServer" {
 	() IProductService as IPS
