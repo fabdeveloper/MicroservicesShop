@@ -1,22 +1,13 @@
 package fab.shop.microservices.composite.shop.proxy.purchase;
 
 
-import fab.shop.api.core.purchase.msg.*;
+import fab.shop.api.core.purchase.PurchaseService;
 
 
 
 
-public interface IProxyPurchaseService{
+public interface IProxyPurchaseService extends PurchaseService{
 
-    public PurchaseModificationRS purchaseModification(PurchaseModificationRQ purchaseModificationRQ);
-    
-    public PurchaseCancelRS purchaseCancel(PurchaseCancelRQ purchaseCancelRQ);
-    
-    public GetPurchaseRS getPurchase(GetPurchaseRQ getPurchaseRQ);
-    
-    public GetPurchaseListRS getPurchaseList(GetPurchaseListRQ getPurchaseListRQ);
-    
-    public PurchaseConfirmRS purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ);
     
     
 }

@@ -1,11 +1,10 @@
 package fab.shop.microservices.composite.shop.proxy.valuation;
 
-import fab.shop.api.core.valuation.msg.*;
+
+import fab.shop.api.core.valuation.ValuationService;
 
 
-public interface IProxyValuationService {
-
-    ValuationRS valuate(ValuationRQ valuationRQ);
+public interface IProxyValuationService extends ValuationService {
 
     
 }
