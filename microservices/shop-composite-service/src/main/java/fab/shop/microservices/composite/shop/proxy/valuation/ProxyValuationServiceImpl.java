@@ -28,9 +28,7 @@ public class ProxyValuationServiceImpl implements IProxyValuationService {
 
     @Override
     public ValuationRS valuate(ValuationRQ valuationRQ){
-
-
-        return null;
+        return restTemplate.postForObject(getValuationServiceUrl() + "/valuate", valuationRQ, ValuationRS.class);
     }
 
 

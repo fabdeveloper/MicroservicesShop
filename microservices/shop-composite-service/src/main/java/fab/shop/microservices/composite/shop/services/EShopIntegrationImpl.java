@@ -23,38 +23,32 @@ public class EShopIntegrationImpl implements IEShopIntegration {
 
     @Override
     public GetCartRS getCart(GetCartRQ getCartRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCart'");
+        return getExternalServiceLocator().getCartServiceProxy().getCart(getCartRQ);
     }
 
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cartModification'");
+        return getExternalServiceLocator().getCartServiceProxy().cartModification(cartModificationRQ);
     }
 
     @Override
     public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addToCart'");
+        return getExternalServiceLocator().getCartServiceProxy().addToCart(addToCartRq);
     }
 
     @Override
     public RemoveFromCartRS removeFromCart(RemoveFromCartRQ removeFromCartRq) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFromCart'");
+        return getExternalServiceLocator().getCartServiceProxy().removeFromCart(removeFromCartRq);
     }
 
     @Override
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'emptyCart'");
+        return getExternalServiceLocator().getCartServiceProxy().emptyCart(emptyCartRQ);
     }
 
     @Override
     public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCart'");
+        return getExternalServiceLocator().getCartServiceProxy().deleteCart(deleteCartRQ);
     }
 
     @Override
@@ -71,32 +65,27 @@ public class EShopIntegrationImpl implements IEShopIntegration {
 
     @Override
     public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAvail'");
+        return getExternalServiceLocator().getProductServiceProxy().getAvail(getAvailRQ);
     }
 
     @Override
     public GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOfferListDetail'");
+        return getExternalServiceLocator().getProductServiceProxy().getOfferListDetail(getOfferListDetailRQ);
     }
 
     @Override
     public ProductConfirmRS productConfirm(ProductConfirmRQ productConfirmRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'productConfirm'");
+        return getExternalServiceLocator().getProductServiceProxy().productConfirm(productConfirmRQ);
     }
 
     @Override
     public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'productPurchaseCancel'");
+        return getExternalServiceLocator().getProductServiceProxy().productPurchaseCancel(productPurchaseCancelRQ);
     }
 
     @Override
     public ProductCreateNewRS productCreateNew(ProductConfigBasicRQ productCreateNewRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'productCreateNew'");
+        return getExternalServiceLocator().getProductServiceProxy().productCreateNew(productCreateNewRQ);
     }
 
     @Override
@@ -107,38 +96,32 @@ public class EShopIntegrationImpl implements IEShopIntegration {
 
     @Override
     public PurchaseModificationRS purchaseModification(PurchaseModificationRQ purchaseModificationRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'purchaseModification'");
+        return getExternalServiceLocator().getPurchaseServiceProxy().purchaseModification(purchaseModificationRQ);
     }
 
     @Override
     public PurchaseCancelRS purchaseCancel(PurchaseCancelRQ purchaseCancelRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'purchaseCancel'");
+        return getExternalServiceLocator().getPurchaseServiceProxy().purchaseCancel(purchaseCancelRQ);
     }
 
     @Override
     public GetPurchaseRS getPurchase(GetPurchaseRQ getPurchaseRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPurchase'");
+        return getExternalServiceLocator().getPurchaseServiceProxy().getPurchase(getPurchaseRQ);
     }
 
     @Override
     public GetPurchaseListRS getPurchaseList(GetPurchaseListRQ getPurchaseListRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPurchaseList'");
+        return getExternalServiceLocator().getPurchaseServiceProxy().getPurchaseList(getPurchaseListRQ);
     }
 
     @Override
     public PurchaseConfirmRS purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'purchaseConfirm'");
+        return getExternalServiceLocator().getPurchaseServiceProxy().purchaseConfirm(purchaseConfirmRQ);
     }
 
     @Override
     public ValuationRS valuate(ValuationRQ valuationRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'valuate'");
+        return getExternalServiceLocator().getValuationServiceProxy().valuate(valuationRQ);
     }
 
 

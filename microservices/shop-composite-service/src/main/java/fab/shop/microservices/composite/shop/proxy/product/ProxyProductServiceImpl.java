@@ -26,27 +26,27 @@ public class ProxyProductServiceImpl implements IProxyProductService {
 
     @Override
     public GetAvailRS getAvail(GetAvailRQ getAvailRQ) {
-        return null;
+        return restTemplate.postForObject(getProductServiceUrl() + "/getAvail", getAvailRQ, GetAvailRS.class);
     }
 
     @Override
     public GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ) {
-        return null;
+        return restTemplate.postForObject(getProductServiceUrl() + "/getOfferListDetail", getOfferListDetailRQ, GetOfferListDetailRS.class);
     }
 
     @Override
     public ProductConfirmRS productConfirm(ProductConfirmRQ productConfirmRQ) {
-        return null;
+        return restTemplate.postForObject(getProductServiceUrl() + "/productConfirm", productConfirmRQ, ProductConfirmRS.class);
     }
 
     @Override
     public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
-        return null;
+        return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseCancel", productPurchaseCancelRQ, ProductPurchaseCancelRS.class);
     }
 
     @Override
     public ProductCreateNewRS productCreateNew(ProductConfigBasicRQ productCreateNewRQ) {
-        return null;
+        return restTemplate.postForObject(getProductServiceUrl() + "/productCreateNew", productCreateNewRQ, ProductCreateNewRS.class);
     }
 
     @Override

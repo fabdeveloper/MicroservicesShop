@@ -26,20 +26,17 @@ public class ProxyCartServiceImpl implements IProxyCartService {
 
     @Override
     public GetCartRS getCart(GetCartRQ getCartRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCart'");
+        return restTemplate.postForObject(getCartServiceUrl() + "/getCart", getCartRQ, GetCartRS.class);
     }
 
     @Override
     public CartModificationRS cartModification(CartModificationRQ cartModificationRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cartModification'");
+        return restTemplate.postForObject(getCartServiceUrl() + "/cartModification", cartModificationRQ, CartModificationRS.class);
     }
 
     @Override
     public AddToCartRS addToCart(AddToCartRQ addToCartRq) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addToCart'");
+        return restTemplate.postForObject(getCartServiceUrl() + "/addToCart", addToCartRq, AddToCartRS.class);
     }
 
     @Override
@@ -50,14 +47,12 @@ public class ProxyCartServiceImpl implements IProxyCartService {
 
     @Override
     public EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'emptyCart'");
+        return restTemplate.postForObject(getCartServiceUrl() + "/emptyCart", emptyCartRQ, EmptyCartRS.class);
     }
 
     @Override
     public DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCart'");
+        return restTemplate.postForObject(getCartServiceUrl() + "/deleteCart", deleteCartRQ, DeleteCartRS.class);
     }
 
     @Override

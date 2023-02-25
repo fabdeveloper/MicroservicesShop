@@ -18,6 +18,8 @@ deactivate EShopService
 user -> EShopService : EShopPurchaseConfirmRQ
 activate EShopService
 
+EShopService -> CheckOutService : PaymentRQ
+CheckOutService -> EShopService : PaymentRS
 EShopService -> PurchaseService : PurchaseConfirmRQ
 PurchaseService --> EShopService : PurchaseConfirmRS
 

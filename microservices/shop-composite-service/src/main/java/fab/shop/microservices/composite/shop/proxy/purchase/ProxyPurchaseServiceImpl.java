@@ -27,28 +27,27 @@ public class ProxyPurchaseServiceImpl implements IProxyPurchaseService{
 
     @Override
     public PurchaseModificationRS purchaseModification(PurchaseModificationRQ purchaseModificationRQ) {
-
-        return null;
+        return restTemplate.postForObject(getPurchaseServiceUrl() + "/purchaseModification", purchaseModificationRQ, PurchaseModificationRS.class);
     }
 
     @Override
     public PurchaseCancelRS purchaseCancel(PurchaseCancelRQ purchaseCancelRQ) {
-        return null;
+        return restTemplate.postForObject(getPurchaseServiceUrl() + "/purchaseCancel", purchaseCancelRQ, PurchaseCancelRS.class);
     }
 
     @Override
     public GetPurchaseRS getPurchase(GetPurchaseRQ getPurchaseRQ) {
-        return null;
+        return restTemplate.postForObject(getPurchaseServiceUrl() + "/getPurchase", getPurchaseRQ, GetPurchaseRS.class);
     }
-
+    
     @Override
     public GetPurchaseListRS getPurchaseList(GetPurchaseListRQ getPurchaseListRQ) {
-        return null;
+        return restTemplate.postForObject(getPurchaseServiceUrl() + "/getPurchaseList", getPurchaseListRQ, GetPurchaseListRS.class);
     }
 
     @Override
     public PurchaseConfirmRS purchaseConfirm(PurchaseConfirmRQ purchaseConfirmRQ) {
-        return null;
+        return restTemplate.postForObject(getPurchaseServiceUrl() + "/purchaseConfirm", purchaseConfirmRQ, PurchaseConfirmRS.class);
     }
 
 

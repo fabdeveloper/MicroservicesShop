@@ -3,6 +3,7 @@ package fab.shop.microservices.composite.shop.services;
 import fab.shop.api.core.valuation.transfer.ValuableItem;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ import fab.shop.api.core.product.msg.*;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.valuation.msg.*;
 import fab.shop.api.core.purchase.msg.*;
+import fab.shop.api.core.purchase.transfer.CartDetail;
+import fab.shop.api.core.purchase.transfer.DeliveryDetail;
+import fab.shop.api.core.purchase.transfer.PaymentDetail;
+import fab.shop.api.core.purchase.transfer.Purchase;
+import fab.shop.api.core.purchase.transfer.UserDetail;
 import fab.shop.api.core.cart.msg.*;
 
 
@@ -27,7 +33,7 @@ import fab.shop.api.core.cart.msg.*;
 public class EShopOrquestratorImpl implements IEShopOrquestrator {
 
     @Autowired
-    private final ShopCompositeIntegration shopIntegration;
+    private EShopIntegrationImpl shopIntegration;
 
 
     public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ){
@@ -79,7 +85,12 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
         EShopPurchaseConfirmRS eShopPurchaseConfirmRS = null;
 
 
-        PurchaseConfirmRQ purchaseConfirmRQ;
+        UserDetail user = new UserDetail(null, eShopPurchaseConfirmRQ.getUserId(), eShopPurchaseConfirmRQ.getShopId(), eShopPurchaseConfirmRQ.getUserEmail(), eShopPurchaseConfirmRQ.getDeliveryPhoneNumber());
+        DeliveryDetail delivery = new DeliveryDetail(null, eShopPurchaseConfirmRQ.getCustomerName(), eShopPurchaseConfirmRQ.getDeliveryAddress(), eShopPurchaseConfirmRQ.getDeliveryPhoneNumber(), eShopPurchaseConfirmRQ.getDeliveryRemarks(), null, null);
+        CartDetail cart = new CartDetail(null, eShopPurchaseConfirmRQ.getPurchaseList(), null, null, null);
+        PaymentDetail payment = new PaymentDetail(null, PaymentStatusTypeEnum., null, null, null);
+        Purchase purchase = new Purchase(null, eShopPurchaseConfirmRQ.getShopId(), eShopPurchaseConfirmRQ.getProductBookingNumber(), new Date(), null, null, user, cart, delivery, payment)
+        PurchaseConfirmRQ purchaseConfirmRQ = new PurchaseConfirmRQ(purchase);
 
         DeleteCartRQ deleteCartRQ;
 
