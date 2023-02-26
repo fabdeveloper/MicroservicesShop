@@ -1,4 +1,6 @@
-package fab.shop.api.composite.msg;
+package fab.shop.api.composite.exception;
+
+import fab.shop.api.composite.msg.EShopPurchaseConfirmRS;
 
 public class EShopPurchaseConfirmException extends RuntimeException {
 

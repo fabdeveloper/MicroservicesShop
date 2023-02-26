@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Date;
 
 import fab.shop.api.composite.IEShopOrquestrator;
-
+import fab.shop.api.composite.exception.EShopPurchaseConfirmException;
 import fab.shop.api.core.purchase.PurchaseService;
 import fab.shop.api.core.valuation.ValuationService;
 import fab.shop.api.core.product.ProductService;
