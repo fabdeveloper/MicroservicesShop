@@ -94,6 +94,12 @@ public class ProductServiceImpl implements ProductService{
     return null;
   }
 
+  @Override
+  public ProductConfirmRS productConfirm(ProductConfirmRQ productConfirmRQ) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'productConfirm'");
+  }
+
 
 
 

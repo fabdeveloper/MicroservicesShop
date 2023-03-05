@@ -37,15 +37,19 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
 
 
     public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ){
-        EShopProductConfirmRS rs = new EShopProductConfirmRS(eShopProductConfirmRQ.getShopId(), false, null, null, null, null, null);
+        Integer shopId = eShopProductConfirmRQ.getShopId();
+
+        EShopProductConfirmRS rs = new EShopProductConfirmRS(shopId, false, null, null, null, null, null);
         // ProductService tasks
         ProductConfirmRQ productConfirmRQ = new ProductConfirmRQ(eShopProductConfirmRQ.getShopId(), eShopProductConfirmRQ.getPurchaseList());
         ProductConfirmRS productConfirmRS;
+        Integer productBookingNumber;
         try {
             productConfirmRS = getShopIntegration().productConfirm(productConfirmRQ);
-            if(!productConfirmRS.getBConfirmed()){
+            if(productConfirmRS == null || !productConfirmRS.getBConfirmed()){
                 throw new Exception("not confirmed");
             }
+            productBookingNumber = productConfirmRS.getProductBookingNumber();
 
         } catch (Exception e) {
             String sError = "ERROR - ProductServer - msg = " + e.getMessage();
@@ -65,23 +69,25 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
         ValuationRS valuationRS;
         try {
             valuationRS = getShopIntegration().valuate(valuationRQ);
+            if(valuationRS == null){ throw new Exception("null"); }
         } catch (Exception e) {
             String sError = "ERROR - ValuationServer - msg = " + e.getMessage();
             rs.addError(sError);
         }
 
+        rs.setShopId(productConfirmRS.getShopId());
         rs.setBConfirmed(productConfirmRS.getBConfirmed());
         rs.setProductBookingNumber(productConfirmRS.getProductBookingNumber());
         rs.setProductBookingTime(productConfirmRS.getProductBookingTime());
         rs.setProductPurchaseList(productConfirmRS.getProductPurchaseList());
-        rs.setValuation(valuationRS.getTotalValuation());
-        rs.setShopId(productConfirmRS.getShopId());
-
+        if(valuationRS != null){
+            rs.setValuation(valuationRS.getTotalValuation());
+        }
         return rs;
     }
 
     
-    public EShopPurchaseConfirmRS eShopPurchaseConfirm(@RequestBody EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
+    public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
         EShopPurchaseConfirmRS eShopPurchaseConfirmRS = null;
 
 

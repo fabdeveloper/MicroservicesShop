@@ -10,9 +10,9 @@ public class ValuatedItem extends ValuableItem {
 
     protected Float valuation;
 
-
-    public ValuatedItem(Integer offerId, Integer shopId, Float price, List<Discount> discountList, List<Tax> taxList, Float valuation) {
-        super(offerId, shopId, price, discountList, taxList);
+    // Integer offerId, Integer shopId, Float unitPrice, Integer units, List<Discount> discountList, List<Tax> taxList
+    public ValuatedItem(Integer offerId, Integer shopId, Float price, Integer units, List<Discount> discountList, List<Tax> taxList, Float valuation) {
+        super(offerId, shopId, price, units, discountList, taxList);
         this.valuation = valuation;
     }
 

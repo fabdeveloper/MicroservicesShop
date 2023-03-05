@@ -1,0 +1,20 @@
+@startuml
+
+
+object Visibilidad
+object Buzon
+object Redes
+object "Anuncios de pago" as Ap
+object Vendedores
+
+Visibilidad o-- Buzon
+Visibilidad o-- Redes
+Visibilidad o-- Ap
+Visibilidad o-- Vendedores
+
+
+
+
+
+
+@enduml

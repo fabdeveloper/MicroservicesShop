@@ -1,6 +1,7 @@
 package fab.shop.api.composite;
 
 import fab.shop.api.composite.msg.*;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 public interface IEShopOrquestrator {
@@ -9,7 +10,7 @@ public interface IEShopOrquestrator {
 		value = "/eshop/orquestrator/productconfirm",
 		consumes = "application/json",
 		produces = "application/json")
-    public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ);
+    public EShopProductConfirmRS eShopProductConfirm(@RequestBody EShopProductConfirmRQ eShopProductConfirmRQ);
 
     
 		@PostMapping(
