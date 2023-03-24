@@ -1,0 +1,14 @@
+@startuml
+
+interface IEShop {
+	public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ);
+    public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ);
+}
+
+
+
+
+
+
+
+@enduml

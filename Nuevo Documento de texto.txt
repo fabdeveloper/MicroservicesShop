@@ -1,0 +1,6 @@
+include ':microservices:product-service'
+include ':microservices:cart-service'
+include ':microservices:purchase-service'
+include ':microservices:till-service'
+include ':microservices:users-service'
+include ':microservices:shop-composite-service'

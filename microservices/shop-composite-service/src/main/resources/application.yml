@@ -1,0 +1,114 @@
+springdoc:
+ swagger-ui.path: /openapi/swagger-ui.html
+ api-docs.path: /openapi/v3/api-docs
+ packagesToScan: fab.shop.microservices.composite.shop
+ pathsToMatch: /**
+
+api:
+
+ common:
+  version: 1.0.0
+  title: Sample API
+  description: Description of the API...
+  termsOfService: MY TERMS OF SERVICE
+  license: MY LICENSE
+  licenseUrl: MY LICENSE URL
+  externalDocDesc: MY WIKI PAGE
+  externalDocUrl: MY WIKI URL
+  contact:
+    name: NAME OF CONTACT
+    url: URL TO CONTACT
+    email: contact@mail.com
+
+ responseCodes:
+  ok.description: OK
+  badRequest.description: Bad Request, invalid format of the request.
+    See response message for more information
+  notFound.description: Not found, the specified id does not exist
+  unprocessableEntity.description: Unprocessable entity, input
+    parameters caused the processing to fail. See response message for more
+    information
+
+ shop-service:
+    post-addtocart:
+      description: Add a Product to a Cart and returns the modified Cart in a AddToCartRS response
+      notes: pending
+
+    post-emptycart:
+      description: delete the old cart and return a new empty cart in the EmptyCartRS response
+      notes: pending
+
+    post-deletecart:
+      description: delete the cart by id
+      notes: pending
+
+    post-getcart:
+      description: return in the GetCartRS response the cart specified in the GetCartRQ or a new cart if it not exists
+      notes: pending
+
+    post-cartmodification:
+      description: delete the old cart and returns a new one with the offer list specified in the CartModificationRS response
+      notes: pending
+
+    post-getvaluation:
+      description: it valuates the offer list specified in the ValuationRQ request and it returns a Float value in the ValuationRS response
+      notes: pending
+
+      
+server.port: 7000
+server.error.include-message: always
+
+app:
+  product-service:
+    host: localhost
+    port: 7001
+  cart-service:
+    host: localhost
+    port: 7002
+  purchase-service:
+    host: localhost
+    port: 7003
+  till-service:
+    host: localhost
+    port: 7004
+  users-service:
+    host: localhost
+    port: 7005
+  valuation-service:
+    host: localhost
+    port: 7006
+  shop-composite-service:
+    host: localhost
+    port: 8080
+
+logging:
+  level:
+    root: INFO
+    fab.shop: DEBUG
+  file.name: /var/tmp/purchasetester.log
+
+
+
+
+
+
+---
+spring.config.activate.on-profile: docker
+
+server.port: 8080
+app:
+  product-service: 
+    host: product
+    port: 8080
+  cart-service:
+    host: cart
+    port: 8080
+  purchase-service:
+    host: purchase
+    port: 8080   
+  valuation-service:
+    host: valuation
+    port: 8080
+  users-service:
+    host: users
+    port: 8080 

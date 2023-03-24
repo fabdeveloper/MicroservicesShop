@@ -1,0 +1,199 @@
+@startuml
+
+package EShopService.msg {
+    class EShopProductConfirmRQ {
+        private Integer shopId;
+        private Integer userId;
+        private List<PurchaseItem> purchaseList;
+    }
+
+
+    class EShopProductConfirmRS {
+        private Integer shopId;
+        private Boolean bConfirmed;
+        private Integer productBookingNumber;
+        private List<OfferPurchase> productPurchaseList;
+        private List<String> errorList;
+        private Date productBookingTime;
+        private Float valuation;
+    }
+
+    class EShopPurchaseConfirmRQ {
+        private Integer shopId;
+        private Integer userId;
+        private List<OfferPurchase> purchaseList;
+        private Integer productBookingNumber;
+        private Date productBookingTime;
+        private Integer cartId;
+
+        private String customerName;
+        private String deliveryAddress;
+        private String deliveryPhoneNumber;
+        private String userEmail;
+        private String deliveryRemarks;
+        private String deliveryStatus;
+
+        private PaymentStatusTypeEnum paymentStatus;
+        private PaymentTypeEnum paymentType;
+    }
+
+    class EShopPurchaseConfirmRS {
+        private Integer shopId;
+        private Integer userId;
+        private Integer confirmationCode;
+        private List<String> errorList;    
+    }
+
+}
+
+
+
+class PurchaseItem {
+
+    private Integer offerId;
+    private Integer count;
+}
+
+EShopProductConfirmRQ *--{ PurchaseItem
+EShopProductConfirmRS *--{ OfferPurchase
+
+EShopPurchaseConfirmRQ *--{ OfferPurchase
+
+
+package ProductService.msg {
+    class ProductConfirmRQ {
+
+        private Integer shopId;
+        private List<PurchaseItem> offerPurchaseList;
+    }
+
+    class ProductConfirmRS {
+        private Integer shopId;
+        private Boolean bConfirmed;
+        private Integer productBookingNumber;
+        private List<OfferPurchase> productPurchaseList;
+        private List<String> errorList;
+        private Date productBookingTime;
+    }
+    
+    ProductConfirmRQ *--{ PurchaseItem
+	ProductConfirmRS *--{ OfferPurchase
+
+
+}
+
+
+class OfferDetail {
+	protected Integer offerId;
+    protected String offerName;
+    protected String offerDescription;
+    protected Float offerUnitPrice;
+    protected Integer count;
+    
+    protected List<Discount> discountList;
+    protected List<Tax> taxList;
+}
+
+OfferDetail <|-- OfferPurchase
+
+
+
+package ValuationService.msg {
+
+    class ValuationRQ {
+        protected List<ValuableItem> valuableItemsList;
+    }
+
+
+    class ValuableItem {
+        protected Integer offerId;
+        protected Integer shopId;
+        protected Float unitPrice;
+        protected Integer units;
+
+        protected List<Discount> discountList;
+        protected List<Tax> taxList;
+    }
+    
+    ValuationRQ *--{ ValuableItem
+
+}
+
+package PurchaseService.msg {
+
+	class PurchaseConfirmRQ {
+    	private Purchase purchase;    
+    }
+    
+    PurchaseConfirmRQ *-- PurchaseService.transfer.Purchase
+    
+    class PurchaseConfirmRS {
+    	private Integer purchaseConfirmNumber;
+    
+    }
+}
+
+package PurchaseService.transfer {
+	class Purchase {
+        private Integer id;
+        private Integer shopId;
+        private Integer productBookingNumber;
+        private Date confirmationDate;
+        private Date modificationDate;
+        private String remarks;
+        private UserDetail user;
+        private CartDetail cart;
+        private DeliveryDetail delivery;
+        private PaymentDetail payment;    
+    }
+    
+    
+    class UserDetail {    
+        private Integer id;
+        private Integer userId;
+        private Integer shopId;
+        private String email;
+        private String phoneNumber;
+    }
+    
+
+    class CartDetail {
+        private Integer id;
+        private List<CartItem> itemsList;
+        private Float valuation;
+        private Integer productBookingNumber;
+        private Integer shopId;    
+    }
+    
+    
+    class DeliveryDetail {
+        private Integer id;
+        private String customerName;
+        private String deliveryAddress;
+        private String phoneNumber;
+        private String remarks;
+        private String status;
+        private Date deliveryDate;
+   }
+   
+
+    class PaymentDetail {
+        private Integer id;
+        @NotNull
+        private String paymentStatus;
+        @NotNull
+        private PaymentTypeEnum paymentType;    
+        private Date paymentDate;
+        private Date paymentModificationDate;
+    }
+    
+    Purchase *-- UserDetail
+    Purchase *-- CartDetail
+    Purchase *-- DeliveryDetail
+    Purchase *-- PaymentDetail
+    
+}
+
+
+
+@enduml

@@ -1,0 +1,63 @@
+@startuml
+
+interface PersistenceFacade {
+    public ProductConfigPersistenceHelper getPersistenceHelper();
+    public ProductServiceGeneralMapper getGeneralMapper();
+}
+
+interface ProductPurchaseHelper{    
+    public Boolean checkAvailability(List<OfferPurchase> purchaseList);    
+    public Boolean decrementStock(List<OfferPurchase> purchaseList);    
+    public Boolean bookPurchaseList(List<OfferPurchase> purchaseList);
+}
+
+interface ProductConfigPersistenceHelper {    
+    public ShopRepository getShopRepository();
+    public ProductRepository getProductRepository();
+    public ArticleRepository getArticleRepository();
+    public OfferRepository getOfferRepository();
+    public DiscountRepository getDiscountRepository();
+    public TaxRepository getTaxRepository();    
+}
+
+interface IProductServiceGeneralMapper {
+    public ShopMapper getShopMapper();
+    public ProductMapper getProductMapper();
+    public ArticleMapper getArticleMapper();
+    public OfferMapper getOfferMapper();
+    public TaxMapper getTaxMapper();
+    public DiscountMapper getDiscountMapper();
+}
+
+ProductPurchaseHelperImpl *-- PersistenceFacadeImpl
+PersistenceFacadeImpl *-- ProductConfigPersistenceHelperImpl
+PersistenceFacadeImpl *-- ProductServiceGeneralMapperImpl
+
+ProductPurchaseHelper <|.. ProductPurchaseHelperImpl
+PersistenceFacade <|.left. PersistenceFacadeImpl
+ProductConfigPersistenceHelper <|.right. ProductConfigPersistenceHelperImpl
+IProductServiceGeneralMapper <|.left. ProductServiceGeneralMapperImpl
+
+ProductConfigPersistenceHelperImpl *-- ShopRepositoryImpl
+ProductConfigPersistenceHelperImpl *-- ProductRepositoryImpl
+ProductConfigPersistenceHelperImpl *-- ArticleRepositoryImpl
+ProductConfigPersistenceHelperImpl *-- OfferRepositoryImpl
+ProductConfigPersistenceHelperImpl *-- DiscountRepositoryImpl
+ProductConfigPersistenceHelperImpl *-- TaxRepositoryImpl
+
+ProductServiceGeneralMapperImpl *-- ShopMapperImpl
+ProductServiceGeneralMapperImpl *-- ProductMapperImpl
+ProductServiceGeneralMapperImpl *-- ArticleMapperImpl
+ProductServiceGeneralMapperImpl *-- OfferMapperImpl
+ProductServiceGeneralMapperImpl *-- DiscountMapperImpl
+ProductServiceGeneralMapperImpl *-- TaxMapperImpl
+
+
+
+
+
+
+
+
+
+@enduml

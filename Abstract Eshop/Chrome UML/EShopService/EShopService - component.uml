@@ -1,0 +1,111 @@
+@startuml
+
+() IEShop
+
+note top of IEShop : Edgge Server
+node "EShopServer" {
+
+    package "EShopService.service" {
+
+        IEShop - [EShopImpl]
+
+    }
+
+    package "EShopService.orquestrator" {
+        () IEShopOrquestrator as IO
+        IO - [EShopOrquestratorImpl]
+            [EShopImpl] --> IO
+    }
+
+    package "EShopService.integration" {
+        () IEShopIntegration as Int
+        Int - [EShopIntegrationImpl]
+        [EShopOrquestratorImpl] --> Int
+
+    }
+    
+    package "facade" {
+    	() IGeneralExternalServicesFacade as IGESF
+        IGESF - [GeneralEXternalServicesFacadeImpl]
+        [EShopIntegrationImpl] --> IGESF
+
+    }
+    
+    package "proxy.product" { 
+    	() IProxyProduct as IPProd
+        IPProd - [ProxyProductImpl]
+        [GeneralEXternalServicesFacadeImpl] --> IPProd    
+    }
+    
+    package "proxy.purchase" {     
+        () IProxyPurchase as IPPur
+        IPPur - [ProxyPurchaseImpl]
+        [GeneralEXternalServicesFacadeImpl] --> IPPur       
+    }
+    
+    package "proxy.cart" {
+        () IProxyCart as IPCart
+        IPCart - [ProxyCartImpl]
+        [GeneralEXternalServicesFacadeImpl] --> IPCart       
+    }
+    
+    package "proxy.valuation" {  
+        () IProxyValuation as IPVal
+        IPVal - [ProxyValuationImpl]
+        [GeneralEXternalServicesFacadeImpl] --> IPVal       
+    }
+
+    package "proxy.checkout" {  
+        () IProxyCheckOut as IPCO
+        IPCO - [ProxyCheckOutImpl]
+        [GeneralEXternalServicesFacadeImpl] --> IPCO       
+    }
+
+}
+
+note right of EShopOrquestratorImpl : Compose
+
+note right of GeneralEXternalServicesFacadeImpl : External Service Locator
+
+node "ProductServer" {
+	() IProductService as IPS
+    IPS - [ProductServiceImpl]    
+    [ProxyProductImpl] --> IPS
+
+}
+
+node "PurchaseServer" {
+	() IPurchaseService as IPur
+    IPur - [PurchaseServiceImpl]
+    [ProxyPurchaseImpl] --> IPur
+
+}
+
+node "CartServer" {
+	() ICartService as ICart
+    ICart - [CartServiceImpl]
+        [ProxyCartImpl] --> ICart
+
+}
+
+node "ValuationServer" {
+	() IValuationService as IVal
+    IVal - [ValuationServiceImpl]
+        [ProxyValuationImpl] --> IVal
+}
+
+node "CheckOutServer" {
+	() ICheckOutService as ICheckOut
+    ICheckOut - [CheckOutServiceImpl]
+        [ProxyCheckOutImpl] --> ICheckOut
+
+}
+
+
+
+
+
+
+
+
+@enduml

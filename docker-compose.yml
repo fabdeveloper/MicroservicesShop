@@ -1,0 +1,96 @@
+version: '2.1'
+
+services:
+  product: 
+    build: microservices/product-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      mysql_product:
+        condition: service_healthy
+
+  cart:
+    build: microservices/cart-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+
+  purchase: 
+    build: microservices/purchase-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      mysql_purchase:
+        condition: service_healthy
+
+
+  valuation:
+    build: microservices/valuation-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+
+  shop-composite:
+    build: microservices/shop-composite-service
+    mem_limit: 512m
+    ports: 
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  mysql:
+    image: mysql:5.7.32
+    mem_limit: 512m
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=cart-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+    healthcheck:
+      test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 60
+
+
+  mysql_product:
+    image: mysql:5.7.32
+    mem_limit: 512m
+    ports:
+      - "3307:3307"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=product-db
+      - MYSQL_USER=userp
+      - MYSQL_PASSWORD=pwdp
+    healthcheck:
+      test: "/usr/bin/mysql --user=userp --password=pwdp --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 60
+
+      
+  mysql_purchase:
+    image: mysql:5.7.32
+    mem_limit: 512m
+    ports:
+      - "3308:3308"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=purchase-db
+      - MYSQL_USER=userpur
+      - MYSQL_PASSWORD=pwdpur
+    healthcheck:
+      test: "/usr/bin/mysql --user=userpur --password=pwdpur --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 60

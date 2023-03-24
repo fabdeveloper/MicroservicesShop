@@ -1,0 +1,39 @@
+@startuml
+
+OfferDetail <|-- OfferPurchase
+OfferDetail <|-- OfferAvail
+
+
+class GetAvailRS {
+	private List<Product> productList;
+    private List<Article> articleList;
+    private List<OfferAvail> offerList;
+}
+
+class ProductPurchaseConfirmRS {
+	private Integer shopId;
+    private Boolean bConfirmed;
+	private Integer productBookingNumber;
+    private List<OfferPurchase> productPurchaseList;
+    private List<String> errorList;
+}
+
+
+class OfferDetail {
+	protected Integer offerId;
+    protected String offerName;
+    protected String offerDescription;
+    protected Float offerUnitPrice;
+    protected Integer count;
+}
+
+
+
+
+
+
+
+
+
+
+@enduml

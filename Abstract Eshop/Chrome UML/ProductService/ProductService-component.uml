@@ -1,0 +1,51 @@
+@startuml
+
+
+() ips
+
+
+package "service" {
+
+	ips-[ProductServiceImpl]
+   
+}
+
+package "facade" {
+    ipsint-[ProductServiceFacadeImpl]
+    [ProductServiceImpl]..>ipsint 
+	Iperfac-[PersistenceHelperFacadeImpl]
+
+}
+
+package "helper" {
+	ipph - [ProductPurchaseHelperImpl]
+    ipah - [ProductAvailabilityHelperImpl]
+    [ProductServiceFacadeImpl] ..> ipph
+    [ProductServiceFacadeImpl] ..> ipah
+    [ProductPurchaseHelperImpl] ..> Iperfac
+    [ProductAvailabilityHelperImpl] ..> Iperfac
+
+
+
+
+}
+
+
+package "persistence" {
+	igph-[GeneralPersistenceHelperImpl]
+    [PersistenceHelperFacadeImpl]..>igph   
+}
+
+package "mapper"{
+	igm-[GeneralMapperImpl]
+    [PersistenceHelperFacadeImpl]..>igm    
+}
+
+
+
+
+
+
+
+
+@enduml

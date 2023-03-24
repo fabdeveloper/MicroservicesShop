@@ -1,0 +1,27 @@
+@startuml
+
+
+(*)-->"check availability"
+if "still available ?" then
+-->[true]"reduce stock" as rstock
+else
+-->[false]"throw exception" as failend
+endif
+-->(*)
+
+
+rstock-->if "is ok ?" then
+-->[true] "book" as book
+else
+-->[false] failend
+endif
+
+book-->if "is ok ?" then
+-->[true] "return OK"
+-->(*)
+else
+-->[false] failend
+endif
+
+
+@enduml

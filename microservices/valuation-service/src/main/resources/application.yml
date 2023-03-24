@@ -1,0 +1,13 @@
+server.port: 7006
+server.error.include-message: always
+
+logging:
+  level:
+    root: INFO
+    fab.shop: DEBUG
+
+
+---
+spring.config.activate.on-profile: docker
+
+server.port: 8080

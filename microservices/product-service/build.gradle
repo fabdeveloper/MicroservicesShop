@@ -1,0 +1,50 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'fab.shop.microservices.core.product'
+version = '1'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	mapstructVersion = "1.3.0.Final"
+}
+
+jar {
+ 	enabled = false
+}
+
+dependencies {
+    implementation project(':api')
+    implementation project(':util')
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+
+    implementation platform('org.testcontainers:testcontainers-bom:1.15.2')
+    testImplementation 'org.testcontainers:testcontainers'
+    testImplementation 'org.testcontainers:junit-jupiter'
+
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java'
+   	testImplementation 'org.testcontainers:mysql'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

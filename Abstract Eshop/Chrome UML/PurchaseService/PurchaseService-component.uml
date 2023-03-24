@@ -1,0 +1,43 @@
+@startuml
+
+() IPS
+
+package "service" {
+	IPS - [PurchaseServiceImpl]
+}
+
+package "facade" {
+	IPersFac - [PersistenceFacadeImpl]
+    
+    [PurchaseServiceFacadeImpl] #Yellow
+	Ipsf - [PurchaseServiceFacadeImpl] 
+    [PurchaseServiceImpl] ..> Ipsf : uses
+    [PurchaseServiceFacadeImpl] ..> IPersFac : uses
+
+}
+
+package "repository" {
+
+	Igr - [GeneralRepositoryImpl]
+    [PersistenceFacadeImpl] ..> Igr : uses
+    [EntityRepository] #Yellow
+    CrudRepository - [EntityRepository]
+    [GeneralRepositoryImpl] --> [EntityRepository]
+}
+
+package "mapper" {
+	Igm - [GeneralMapperImpl]
+	[PersistenceFacadeImpl] ..> Igm : uses
+    [EntityMapper] #Yellow
+    Mapper - [EntityMapper]
+    [GeneralMapperImpl] --> [EntityMapper]
+
+
+
+}
+
+
+
+
+
+@enduml

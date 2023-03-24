@@ -1,0 +1,24 @@
+@startuml
+
+
+(*) --> "ProductService - PurchaseConfirm"
+
+
+if "OK" then
+--> [true] "PurchaseService - PurchaseConfirm" as pc
+else
+--> [false] "throw exception" 
+--> (*)
+
+pc --> if "OK" then
+--> [true] "CartService - deleteCart" as dc
+else
+--> [false] "throw exception"
+
+dc --> if "OK" then
+--> [true] (*)
+else
+--> [false] "send asynchronous msg" as msg
+msg --> (*)
+
+@enduml

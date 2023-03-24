@@ -1,0 +1,64 @@
+@startuml
+
+object "MyCleanningService" as MCS
+object Product {
+		design
+}
+object Marketing {
+}
+object Sells {
+		strategy
+        publicity
+}
+object Finance { 
+		bank account
+        payments provider
+        strategy
+        }
+object Legal {
+		taxes
+        licenses
+        insurance
+}
+object Risks
+object ServiceDesk
+object Providers
+object RRHH
+object Infrastructures {
+	telefono
+    web
+    vehiculo
+    oficina
+    almacen
+}
+
+MCS *-- Product
+MCS *-- Marketing
+MCS *-- Sells
+MCS *-- Finance
+MCS *-- Legal
+MCS *-- Risks
+MCS *-- ServiceDesk
+MCS *-- Providers
+MCS *-- RRHH
+MCS *-- Infrastructures
+
+note bottom of Finance : estrategia,\n infraestructuras,\n proveedores
+note bottom of Marketing : Imagen de la empresa
+note bottom of Legal :  marco legal \n necesario para \n ejercer la actividad
+note bottom of ServiceDesk : Procedimientos de \n atencion al cliente
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml
