@@ -187,7 +187,7 @@ public class ShopIntegrationTestHelperImpl implements ShopIntegrationTestHelper{
         discountList.add(discount);
 
         List<ValuableItem> valuableItemsList = new ArrayList<>();
-        ValuableItem item = new ValuableItem(1, 1, 9.99f, discountList, taxList);
+        ValuableItem item = new ValuableItem(1, 1, 9.99f, 1, discountList, taxList);
         valuableItemsList.add(item);
 
         ValuationRQ valuationRQ = new ValuationRQ(valuableItemsList);

@@ -23,6 +23,7 @@ public class ProxyCartServiceImpl implements IProxyCartService {
                                 @Value("${app.cart-service.host}") String cartServiceHost, 
                                 @Value("${app.cart-service.port}") int cartServicePort) {
         this.cartServiceUrl = "http://" + cartServiceHost + ":" + cartServicePort + "/cart";
+        this.restTemplate = restTemplate;
     }
 
 

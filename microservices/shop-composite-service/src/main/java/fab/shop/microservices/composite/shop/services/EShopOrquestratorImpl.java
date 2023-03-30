@@ -39,7 +39,7 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
     public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ){
         EShopProductConfirmRS rs = new EShopProductConfirmRS(eShopProductConfirmRQ.getShopId(), false, null, null, null, null, null);
         // ProductService tasks
-        ProductConfirmRQ productConfirmRQ = new ProductConfirmRQ(eShopProductConfirmRQ.getShopId(), eShopProductConfirmRQ.getPurchaseList());
+        ProductConfirmRQ productConfirmRQ = new ProductConfirmRQ(eShopProductConfirmRQ.getShopId(), eShopProductConfirmRQ.getOfferPurchaseList());
         ProductConfirmRS productConfirmRS;
         try {
             productConfirmRS = getShopIntegration().productConfirm(productConfirmRQ);
@@ -99,7 +99,7 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
         return eShopPurchaseConfirmRS;
     }
 
-    public ShopCompositeIntegration getShopIntegration(){
+    public EShopIntegration getShopIntegration(){
         return this.shopIntegration;
     }
     

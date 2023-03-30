@@ -22,6 +22,8 @@ import fab.shop.api.core.purchase.transfer.CartItem;
 import fab.shop.api.core.purchase.transfer.DeliveryDetail;
 import fab.shop.api.core.purchase.transfer.PaymentDetail;
 import fab.shop.api.core.purchase.transfer.PaymentTypeEnum;
+import fab.shop.api.core.purchase.transfer.PaymentStatusTypeEnum;
+
 import fab.shop.api.core.purchase.transfer.Purchase;
 import fab.shop.api.core.purchase.transfer.UserDetail;
 import fab.shop.microservices.composite.shop.services.ShopCompositeIntegration;
@@ -73,7 +75,7 @@ public class ShopIntegrationPurchaseServiceTesterImpl implements IShopIntegratio
         itemsList.add(item);
         CartDetail cart = new CartDetail(null, itemsList, 9.9f, 5, 1);
         DeliveryDetail delivery = new DeliveryDetail(null, "customer name", "delivery address", "5555555555", "delivery remarks", null, null);
-        PaymentDetail payment = new PaymentDetail(null, "ok", PaymentTypeEnum.DEBIT_CARD, new Date(), null);
+        PaymentDetail payment = new PaymentDetail(null, PaymentStatusTypeEnum.PAYED, PaymentTypeEnum.DEBIT_CARD, new Date(), null);
 
         Purchase purchase = new Purchase(null, 1, 5, new Date(), null, "purchase remarks", user, cart, delivery, payment);
         PurchaseConfirmRQ rq = new PurchaseConfirmRQ(purchase);
