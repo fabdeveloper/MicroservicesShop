@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 import fab.shop.api.composite.IEShopOrquestrator;
+import fab.shop.api.composite.IEShopIntegration;
+
 import fab.shop.api.composite.msg.*;
 
 import fab.shop.api.core.product.msg.*;
@@ -23,6 +25,8 @@ import fab.shop.api.core.purchase.transfer.DeliveryDetail;
 import fab.shop.api.core.purchase.transfer.PaymentDetail;
 import fab.shop.api.core.purchase.transfer.Purchase;
 import fab.shop.api.core.purchase.transfer.UserDetail;
+import fab.shop.api.core.purchase.transfer.PaymentStatusTypeEnum;
+
 import fab.shop.api.core.cart.msg.*;
 
 
@@ -99,7 +103,7 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
         return eShopPurchaseConfirmRS;
     }
 
-    public EShopIntegration getShopIntegration(){
+    public IEShopIntegration getShopIntegration(){
         return this.shopIntegration;
     }
     

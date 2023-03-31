@@ -1,0 +1,25 @@
+@startuml
+
+
+
+
+object "administration" as admin
+object "commercial-strategy" as cs
+object "catalogo-de-producto" as cp
+object "plantillas de documentos" as docs
+object "tecnicas de analisis" as analisis
+
+admin *-- docs
+admin *-- analisis
+
+
+
+
+
+
+
+
+
+
+
+@enduml

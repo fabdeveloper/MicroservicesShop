@@ -90,7 +90,7 @@ public class ShopCompositeServiceImpl implements ShopService {
 
     @Override
     public ProductConfirmRS productPurchaseConfirm(ProductConfirmRQ productPurchaseConfirmRQ) {
-        return getShopIntegration().productPurchaseConfirm(productPurchaseConfirmRQ);
+        return getShopIntegration().productConfirm(productPurchaseConfirmRQ);
     }
 
 
@@ -121,10 +121,10 @@ public class ShopCompositeServiceImpl implements ShopService {
 
     // Orchestrator 
 
-    @Override
-    public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
-        return getShopIntegration().eShopPurchaseConfirm(eShopPurchaseConfirmRQ);
-    }
+//    @Override
+//    public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
+//        return getShopIntegration().eShopPurchaseConfirm(eShopPurchaseConfirmRQ);
+//    }
 
 
     // test
