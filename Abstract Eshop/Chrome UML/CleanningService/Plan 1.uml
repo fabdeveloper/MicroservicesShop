@@ -1,0 +1,21 @@
+@startuml
+
+
+
+
+(*) --> ===B1===
+--> "Disegno de producto"
+--> ===B2===
+
+===B1=== --> "Estrategia comercial"
+--> ===B2===
+
+===B1=== --> "Comunicaciones"
+--> ===B2===
+
+--> (*)
+
+
+
+
+@enduml

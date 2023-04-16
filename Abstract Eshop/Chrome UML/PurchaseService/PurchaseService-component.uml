@@ -7,10 +7,13 @@ package "service" {
 }
 
 package "facade" {
-	IPersFac - [PersistenceFacadeImpl]
-    
+	IPersFac - [PersistenceFacadeImpl]    
+
     [PurchaseServiceFacadeImpl] #Yellow
 	Ipsf - [PurchaseServiceFacadeImpl] 
+    note right of [PurchaseServiceFacadeImpl] : "Yellow - must have JUnit tests "
+
+
     [PurchaseServiceImpl] ..> Ipsf : uses
     [PurchaseServiceFacadeImpl] ..> IPersFac : uses
 

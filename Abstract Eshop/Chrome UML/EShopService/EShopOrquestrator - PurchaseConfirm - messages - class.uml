@@ -1,5 +1,9 @@
 @startuml
 
+node EShopService {
+
+}
+
 package EShopService.msg {
     class EShopProductConfirmRQ {
         private Integer shopId;
@@ -18,24 +22,9 @@ package EShopService.msg {
         private Float valuation;
     }
 
-    class EShopPurchaseConfirmRQ {
-        private Integer shopId;
-        private Integer userId;
-        private List<OfferPurchase> purchaseList;
-        private Integer productBookingNumber;
-        private Date productBookingTime;
-        private Integer cartId;
-
-        private String customerName;
-        private String deliveryAddress;
-        private String deliveryPhoneNumber;
-        private String userEmail;
-        private String deliveryRemarks;
-        private String deliveryStatus;
-
-        private PaymentStatusTypeEnum paymentStatus;
-        private PaymentTypeEnum paymentType;
-    }
+    class EShopPurchaseConfirmRQ {    
+    	private Purchase purchase;        
+        }
 
     class EShopPurchaseConfirmRS {
         private Integer shopId;
@@ -43,6 +32,10 @@ package EShopService.msg {
         private Integer confirmationCode;
         private List<String> errorList;    
     }
+    
+    EShopProductConfirmRQ -[hidden]--> EShopProductConfirmRS
+    EShopPurchaseConfirmRQ -[hidden]--> EShopPurchaseConfirmRS
+
 
 }
 
@@ -52,18 +45,25 @@ package EShopService.msg {
 EShopProductConfirmRQ *--{ ProductService.transfer.OfferPurchase
 EShopProductConfirmRS *--{ ProductService.transfer.OfferPurchase
 
-EShopPurchaseConfirmRQ *--{ ProductService.transfer.OfferPurchase
+EShopPurchaseConfirmRQ *-- PurchaseService.transfer.Purchase
 
+
+node ProductService {
+
+}
 
 package ProductService.msg {
+
     class ProductConfirmRQ {
 
         private Integer shopId;
+        private Integer userId;
         private List<OfferPurchase> offerPurchaseList;
     }
 
     class ProductConfirmRS {
         private Integer shopId;
+        private Integer userId;
         private Boolean bConfirmed;
         private Integer productBookingNumber;
         private List<OfferPurchase> productPurchaseList;
@@ -71,14 +71,31 @@ package ProductService.msg {
         private Date productBookingTime;
     }
     
+    class ProductPurchaseConfirmRQ {
+    	private Integer shopId;
+        private Integer userId;
+        private Integer productBookingNumber;
+        private Date productBookingTime;    
+    }
+    
+    class ProductPurchaseConfirmRS {
+        private Integer shopId;
+        private Integer userId;
+        private Boolean bConfirmed;
+        private Integer productBookingNumber;
+        private Date productBookingTime;
+        private List<String> errorList;    
+    }
+    
+    ProductConfirmRQ -[hidden]--> ProductConfirmRS
+    ProductPurchaseConfirmRQ -[hidden]--> ProductPurchaseConfirmRS
+    
     ProductConfirmRQ *--{ ProductService.transfer.OfferPurchase
 	ProductConfirmRS *--{ ProductService.transfer.OfferPurchase
 
 }
 
 package ProductService.transfer {
-
-
 
     class OfferDetail {
         protected Integer offerId;
@@ -101,7 +118,8 @@ package ProductService.transfer {
 }
 
 
-
+node ValuationService {
+}
 
 package ValuationService.msg {
 
@@ -127,6 +145,9 @@ package ValuationService.transfer {
         protected List<Tax> taxList;
     }
 
+}
+
+node PurchaseService {
 }
 
 package PurchaseService.msg {

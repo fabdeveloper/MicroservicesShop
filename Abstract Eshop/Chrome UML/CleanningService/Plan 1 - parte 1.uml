@@ -1,0 +1,42 @@
+@startuml
+
+
+object "Catalogo de Producto" as prod
+
+object "listado de producto detallado - descripcion pequenos servicios" as detalle
+object "precios - pequenos servicios" as precio
+
+prod *-- detalle
+prod *-- precio
+
+object "estrategia comercial" as estrategia
+
+object "cliente objetivo" as cliente
+object "medio de publicacion" as medio
+
+estrategia *-- cliente
+estrategia *-- medio
+
+object "comunicaciones"  as comunication
+
+object "comunicacion directa - email, chat, etc"  as personal
+object "publicaciones"  as reclamo
+
+comunication *-- personal
+comunication *-- reclamo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

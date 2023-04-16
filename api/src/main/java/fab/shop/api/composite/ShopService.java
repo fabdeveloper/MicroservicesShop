@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @Tag(name="Shop Service", description="REST API for Shop Services")
-public interface ShopService extends IEShopOrquestrator  {
+public interface ShopService /* extends IEShopOrquestrator */  {
 	  
 	
 	  @Operation(summary = "${api.shop-service.post-addtocart.description}", description = "${api.shop-service.post-addtocart.notes}")

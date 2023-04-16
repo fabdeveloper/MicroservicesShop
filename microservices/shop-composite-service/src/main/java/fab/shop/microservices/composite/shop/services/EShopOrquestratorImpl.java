@@ -91,6 +91,10 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
 
         UserDetail user = new UserDetail(null, eShopPurchaseConfirmRQ.getUserId(), eShopPurchaseConfirmRQ.getShopId(), eShopPurchaseConfirmRQ.getUserEmail(), eShopPurchaseConfirmRQ.getDeliveryPhoneNumber());
         DeliveryDetail delivery = new DeliveryDetail(null, eShopPurchaseConfirmRQ.getCustomerName(), eShopPurchaseConfirmRQ.getDeliveryAddress(), eShopPurchaseConfirmRQ.getDeliveryPhoneNumber(), eShopPurchaseConfirmRQ.getDeliveryRemarks(), null, null);
+        pppppppppppppp
+        // purchaseList contiene OfferPurchase = OfferDetail 
+        // OfferDetail debe mapearse a CartItem
+        // CartDetail contiene una lista de CartItem
         CartDetail cart = new CartDetail(null, eShopPurchaseConfirmRQ.getPurchaseList(), null, null, null);
         PaymentDetail payment = new PaymentDetail(null, PaymentStatusTypeEnum.PAYED, null, null, null);
         Purchase purchase = new Purchase(null, eShopPurchaseConfirmRQ.getShopId(), eShopPurchaseConfirmRQ.getProductBookingNumber(), new Date(), null, null, user, cart, delivery, payment);
