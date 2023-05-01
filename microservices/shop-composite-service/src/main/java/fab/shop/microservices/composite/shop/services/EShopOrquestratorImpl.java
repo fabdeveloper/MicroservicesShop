@@ -40,6 +40,7 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
     private EShopIntegrationImpl shopIntegration;
 
 
+    @Override
     public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ){
         EShopProductConfirmRS rs = new EShopProductConfirmRS(eShopProductConfirmRQ.getShopId(), false, null, null, null, null, null);
         // ProductService tasks
@@ -66,7 +67,7 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
             
         // ValuationService tasks
         ValuationRQ valuationRQ = new ValuationRQ(valuableItemsList);
-        ValuationRS valuationRS;
+        ValuationRS valuationRS = null;
         try {
             valuationRS = getShopIntegration().valuate(valuationRQ);
         } catch (Exception e) {
@@ -78,28 +79,28 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
         rs.setProductBookingNumber(productConfirmRS.getProductBookingNumber());
         rs.setProductBookingTime(productConfirmRS.getProductBookingTime());
         rs.setProductPurchaseList(productConfirmRS.getProductPurchaseList());
-        rs.setValuation(valuationRS.getTotalValuation());
+        if(valuationRS != null) rs.setValuation(valuationRS.getTotalValuation());
         rs.setShopId(productConfirmRS.getShopId());
 
         return rs;
     }
 
-    
-    public EShopPurchaseConfirmRS eShopPurchaseConfirm(@RequestBody EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
+    @Override
+    public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ){
         EShopPurchaseConfirmRS eShopPurchaseConfirmRS = null;
 
+        // confirm product at ProductService
 
-        UserDetail user = new UserDetail(null, eShopPurchaseConfirmRQ.getUserId(), eShopPurchaseConfirmRQ.getShopId(), eShopPurchaseConfirmRQ.getUserEmail(), eShopPurchaseConfirmRQ.getDeliveryPhoneNumber());
-        DeliveryDetail delivery = new DeliveryDetail(null, eShopPurchaseConfirmRQ.getCustomerName(), eShopPurchaseConfirmRQ.getDeliveryAddress(), eShopPurchaseConfirmRQ.getDeliveryPhoneNumber(), eShopPurchaseConfirmRQ.getDeliveryRemarks(), null, null);
-        pppppppppppppp
-        // purchaseList contiene OfferPurchase = OfferDetail 
-        // OfferDetail debe mapearse a CartItem
-        // CartDetail contiene una lista de CartItem
-        CartDetail cart = new CartDetail(null, eShopPurchaseConfirmRQ.getPurchaseList(), null, null, null);
-        PaymentDetail payment = new PaymentDetail(null, PaymentStatusTypeEnum.PAYED, null, null, null);
-        Purchase purchase = new Purchase(null, eShopPurchaseConfirmRQ.getShopId(), eShopPurchaseConfirmRQ.getProductBookingNumber(), new Date(), null, null, user, cart, delivery, payment);
+        // pay at CheckOutService
+
+
+        // record purchase at PurchaseService        
+        Purchase purchase = eShopPurchaseConfirmRQ.getPurchase();
         PurchaseConfirmRQ purchaseConfirmRQ = new PurchaseConfirmRQ(purchase);
+        PurchaseConfirmRS purchaseConfirmRS = getShopIntegration().purchaseConfirm(purchaseConfirmRQ);
 
+
+        // delete cart at CartService
         DeleteCartRQ deleteCartRQ;
 
 

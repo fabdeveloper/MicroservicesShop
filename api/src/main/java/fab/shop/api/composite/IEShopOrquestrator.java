@@ -11,7 +11,7 @@ public interface IEShopOrquestrator {
 		value = "/eshop/orquestrator/productconfirm",
 		consumes = "application/json",
 		produces = "application/json")
-    public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ);
+    public EShopProductConfirmRS eShopProductConfirm(@RequestBody EShopProductConfirmRQ eShopProductConfirmRQ);
 
     
 		@PostMapping(

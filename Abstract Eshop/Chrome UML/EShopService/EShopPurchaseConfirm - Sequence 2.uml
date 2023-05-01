@@ -18,13 +18,13 @@ deactivate EShopService
 user -> EShopService : EShopPurchaseConfirmRQ
 activate EShopService
 
+EShopService -> ProductService : ProductPurchaseConfirmRQ
+ProductService --> EShopService : ProductPurchaseConfirmRS
+
 EShopService -> CheckOutService : PaymentRQ
 CheckOutService --> EShopService : PaymentRS
 EShopService -> PurchaseService : PurchaseConfirmRQ
 PurchaseService --> EShopService : PurchaseConfirmRS
-
-EShopService -> ProductService : ProductPurchaseConfirmRQ
-ProductService --> EShopService : ProductPurchaseConfirmRS
 
 EShopService -> CartService : DeleteCartRQ
 CartService --> EShopService : DeleteCartRS
