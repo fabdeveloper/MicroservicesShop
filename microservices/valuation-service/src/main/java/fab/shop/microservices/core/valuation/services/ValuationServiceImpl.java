@@ -87,10 +87,14 @@ public class ValuationServiceImpl implements ValuationService{
         Float price = valuableItem.getUnitPrice();
 
         Float tempPrice = price;
-        tempPrice = applyExtraList(price, discountList);
+        tempPrice = applyExtraList(tempPrice, discountList);
         tempPrice = applyExtraList(tempPrice, taxList);
 
-        valuation = new ValuatedItem(valuableItem.getOfferId(), valuableItem.getShopId(), valuableItem.getUnitPrice(), valuableItem.getDiscountList(), valuableItem.getTaxList(), tempPrice);
+        Float unitValuatedPrice = tempPrice;
+        Float totalValuatedPrice = tempPrice * valuableItem.getUnits();
+
+
+        valuation = new ValuatedItem(valuableItem.getOfferId(), valuableItem.getShopId(), unitValuatedPrice, valuableItem.getUnits(), valuableItem.getDiscountList(), valuableItem.getTaxList(), totalValuatedPrice);
 
         return valuation;
     }

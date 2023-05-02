@@ -4,6 +4,16 @@ public class DeleteCartRQ {
     private Integer cartId;
 
 
+
+    public DeleteCartRQ() {
+    }
+
+
+    public DeleteCartRQ(Integer cartId) {
+        this.cartId = cartId;
+    }
+
+
     public Integer getCartId() {
         return this.cartId;
     }

@@ -13,6 +13,7 @@ node "EShopServer" {
 
     package "EShopService.orquestrator" {
         () IEShopOrquestrator as IO
+        [EShopOrquestratorImpl] #Yellow
         IO - [EShopOrquestratorImpl]
             [EShopImpl] --> IO
     }
@@ -69,13 +70,15 @@ note right of GeneralEXternalServicesFacadeImpl : External Service Locator
 
 node "ProductServer" {
 	() IProductService as IPS
-    IPS - [ProductServiceImpl]    
+    [ProductServiceImpl] #Yellow
+    IPS - [ProductServiceImpl]   
     [ProxyProductImpl] --> IPS
 
 }
 
 node "PurchaseServer" {
 	() IPurchaseService as IPur
+    [PurchaseServiceImpl] #Yellow
     IPur - [PurchaseServiceImpl]
     [ProxyPurchaseImpl] --> IPur
 
@@ -83,6 +86,7 @@ node "PurchaseServer" {
 
 node "CartServer" {
 	() ICartService as ICart
+    [CartServiceImpl] #Yellow
     ICart - [CartServiceImpl]
         [ProxyCartImpl] --> ICart
 
@@ -90,12 +94,14 @@ node "CartServer" {
 
 node "ValuationServer" {
 	() IValuationService as IVal
+    [ValuationServiceImpl] #Yellow
     IVal - [ValuationServiceImpl]
         [ProxyValuationImpl] --> IVal
 }
 
 node "CheckOutServer" {
 	() ICheckOutService as ICheckOut
+    [CheckOutServiceImpl] #Yellow
     ICheckOut - [CheckOutServiceImpl]
         [ProxyCheckOutImpl] --> ICheckOut
 

@@ -101,7 +101,8 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
 
 
         // delete cart at CartService
-        DeleteCartRQ deleteCartRQ;
+        DeleteCartRQ deleteCartRQ = new DeleteCartRQ(null) ;
+        DeleteCartRS deleteCartRS = getShopIntegration().deleteCart(deleteCartRQ);
 
 
 
