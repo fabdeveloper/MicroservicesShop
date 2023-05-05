@@ -10,6 +10,29 @@ class GetAvailRS {
     private List<OfferAvail> offerList;
 }
 
+class ProductConfirmRQ {    
+    private Integer shopId;
+    private Integer userId;
+    private List<OfferPurchase> offerPurchaseList;
+}
+
+class ProductConfirmRS {
+    private Integer shopId;
+    private Boolean bConfirmed;
+    private Integer productBookingNumber;
+    private List<OfferPurchase> productPurchaseList;
+    private List<String> errorList;
+    private Date productBookingTime;
+    
+}
+
+class ProductPurchaseConfirmRQ {
+	
+	private Integer shopId;
+	private Integer userId;
+	private Integer productBookingNumber;
+}
+
 class ProductPurchaseConfirmRS {
 	private Integer shopId;
     private Boolean bConfirmed;

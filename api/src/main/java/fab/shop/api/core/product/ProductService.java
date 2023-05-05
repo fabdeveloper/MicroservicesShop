@@ -15,6 +15,9 @@ import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
 import fab.shop.api.core.product.msg.ProductConfirmRQ;
 import fab.shop.api.core.product.msg.ProductConfirmRS;
 
+import fab.shop.api.core.product.msg.*;
+
+
 public interface ProductService {
 	
 	  /**
@@ -50,11 +53,11 @@ public interface ProductService {
 			produces = "application/json")
 			ProductConfirmRS productConfirm(@RequestBody ProductConfirmRQ productConfirmRQ);
 
-		// @PostMapping(
-		// 	value = "/product/confirm",
-		// 	consumes = "application/json",
-		// 	produces = "application/json")
-		// 	ProductPurchaseConfirmRS productPurchaseConfirm(@RequestBody ProductPurchaseConfirmRQ productPurchaseConfirmRQ);
+		@PostMapping(
+			value = "/product/confirm",
+			consumes = "application/json",
+			produces = "application/json")
+			ProductPurchaseConfirmRS productPurchaseConfirm(@RequestBody ProductPurchaseConfirmRQ productPurchaseConfirmRQ);
 
 			
 	  

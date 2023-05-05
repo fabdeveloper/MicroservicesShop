@@ -90,7 +90,8 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
         EShopPurchaseConfirmRS eShopPurchaseConfirmRS = null;
 
         // confirm product at ProductService
-
+        ProductPurchaseConfirmRQ productPurchaseConfirmRQ = new ProductPurchaseConfirmRQ(null, null, null, null);
+        ProductPurchaseConfirmRS productPurchaseConfirmRS = getShopIntegration().productPurchaseConfirm(productPurchaseConfirmRQ);
         // pay at CheckOutService
 
 

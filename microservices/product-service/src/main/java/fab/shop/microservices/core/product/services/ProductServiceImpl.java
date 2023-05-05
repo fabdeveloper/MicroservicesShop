@@ -73,6 +73,21 @@ public class ProductServiceImpl implements ProductService{
   }
 
   @Override
+  public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+    ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS(productPurchaseConfirmRQ.getShopId(), productPurchaseConfirmRQ.getUserId(), false, productPurchaseConfirmRQ.getProductBookingNumber(), null, null);
+
+    // comprobar que la reserva existe
+
+    // set flag bConfirmed = true
+
+
+
+    rs.setError("Unimplemented method 'productPurchaseConfirm'");
+
+    return rs;
+  }
+
+  @Override
   public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
     ProductPurchaseCancelRS rs;
     rs = getProductServiceFacade().productPurchaseCancel(productPurchaseCancelRQ);
@@ -93,6 +108,8 @@ public class ProductServiceImpl implements ProductService{
     // TODO Auto-generated method stub
     return null;
   }
+
+
 
 
 

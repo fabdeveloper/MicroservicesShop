@@ -1,5 +1,6 @@
 package fab.shop.api.core.product.msg;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,7 +70,14 @@ public class ProductPurchaseConfirmRS {
 	}
 
 	public List<String> getErrorList() {
+		if(this.errorList == null){
+			this.errorList = new ArrayList<>();
+		}
 		return errorList;
+	}
+
+	public void setError(String sError){
+		getErrorList().add(sError);
 	}
 
 	public void setErrorList(List<String> errorList) {

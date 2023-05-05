@@ -79,6 +79,11 @@ public class EShopIntegrationImpl implements IEShopIntegration {
     }
 
     @Override
+    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+        return getExternalServiceLocator().getProductServiceProxy().productPurchaseConfirm(productPurchaseConfirmRQ);
+    }
+
+    @Override
     public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
         return getExternalServiceLocator().getProductServiceProxy().productPurchaseCancel(productPurchaseCancelRQ);
     }
@@ -128,6 +133,8 @@ public class EShopIntegrationImpl implements IEShopIntegration {
     public IGereneralExternalServicesFacade getExternalServiceLocator() {
         return this.externalServiceLocator;
     }
+
+
 
     
 
