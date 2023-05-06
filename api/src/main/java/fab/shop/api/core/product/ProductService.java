@@ -54,7 +54,7 @@ public interface ProductService {
 			ProductConfirmRS productConfirm(@RequestBody ProductConfirmRQ productConfirmRQ);
 
 		@PostMapping(
-			value = "/product/confirm",
+			value = "/product/productPurchaseConfirm",
 			consumes = "application/json",
 			produces = "application/json")
 			ProductPurchaseConfirmRS productPurchaseConfirm(@RequestBody ProductPurchaseConfirmRQ productPurchaseConfirmRQ);

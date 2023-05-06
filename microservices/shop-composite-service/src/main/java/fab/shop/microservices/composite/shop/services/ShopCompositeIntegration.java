@@ -231,6 +231,13 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
         return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductConfirmRS.class);
     }
 
+    
+    @Override
+    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'productPurchaseConfirm'");
+    }
+
 
     @Override
     public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
@@ -249,6 +256,8 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
     public ProductCreateNewRS testConfig(GenericProductConfigRQ testConfigRQ) {
         return restTemplate.postForObject(getProductServiceUrl() + "/testconfig", testConfigRQ, ProductCreateNewRS.class);
     }
+
+
 
     
 

@@ -15,6 +15,8 @@ import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
+import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
+import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.product.msg.ProductConfirmRQ;
 import fab.shop.api.core.product.msg.ProductConfirmRS;
@@ -84,6 +86,12 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
     }
 
     @Override
+    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'productPurchaseConfirm'");
+    }
+
+    @Override
     public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
         // TODO Auto-generated method stub
         return null;
@@ -100,5 +108,7 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
         // TODO Auto-generated method stub
         return null;
     }
+
+
     
 }

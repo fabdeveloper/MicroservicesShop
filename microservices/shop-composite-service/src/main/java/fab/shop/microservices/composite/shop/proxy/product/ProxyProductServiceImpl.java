@@ -40,6 +40,11 @@ public class ProxyProductServiceImpl implements IProxyProductService {
     }
 
     @Override
+    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+        return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductPurchaseConfirmRS.class);
+    }
+
+    @Override
     public ProductPurchaseCancelRS productPurchaseCancel(ProductPurchaseCancelRQ productPurchaseCancelRQ) {
         return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseCancel", productPurchaseCancelRQ, ProductPurchaseCancelRS.class);
     }
@@ -63,6 +68,8 @@ public class ProxyProductServiceImpl implements IProxyProductService {
     public String getProductServiceUrl() {
         return this.productServiceUrl;
     }
+
+
 
 
 }
