@@ -34,18 +34,21 @@ public class ProductBookingEntity {
     private Date creationDate;
 	private Date modificationDate;
 
+    private Boolean bConfirmed;
+
 
 
     public ProductBookingEntity() {
     }
 
-    public ProductBookingEntity(Integer id, Integer version, Integer shopId, List<OfferPurchaseEntity> purchaseList, Date creationDate, Date modificationDate) {
+    public ProductBookingEntity(Integer id, Integer version, Integer shopId, List<OfferPurchaseEntity> purchaseList, Date creationDate, Date modificationDate, Boolean bConfirmed) {
         this.id = id;
         this.version = version;
         this.shopId = shopId;
         this.purchaseList = purchaseList;
         this.creationDate = creationDate;
         this.modificationDate = modificationDate;
+        this.bConfirmed = bConfirmed;
     }
 
     public Integer getId() {
@@ -96,6 +99,18 @@ public class ProductBookingEntity {
         this.modificationDate = modificationDate;
     }
 
+    public Boolean isBConfirmed() {
+        return this.bConfirmed;
+    }
+
+    public Boolean getBConfirmed() {
+        return this.bConfirmed;
+    }
+
+    public void setBConfirmed(Boolean bConfirmed) {
+        this.bConfirmed = bConfirmed;
+    }
+
     public ProductBookingEntity id(Integer id) {
         setId(id);
         return this;
@@ -126,6 +141,11 @@ public class ProductBookingEntity {
         return this;
     }
 
+    public ProductBookingEntity bConfirmed(Boolean bConfirmed) {
+        setBConfirmed(bConfirmed);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -134,12 +154,12 @@ public class ProductBookingEntity {
             return false;
         }
         ProductBookingEntity productBookingEntity = (ProductBookingEntity) o;
-        return Objects.equals(id, productBookingEntity.id) && Objects.equals(version, productBookingEntity.version) && Objects.equals(shopId, productBookingEntity.shopId) && Objects.equals(purchaseList, productBookingEntity.purchaseList) && Objects.equals(creationDate, productBookingEntity.creationDate) && Objects.equals(modificationDate, productBookingEntity.modificationDate);
+        return Objects.equals(id, productBookingEntity.id) && Objects.equals(version, productBookingEntity.version) && Objects.equals(shopId, productBookingEntity.shopId) && Objects.equals(purchaseList, productBookingEntity.purchaseList) && Objects.equals(creationDate, productBookingEntity.creationDate) && Objects.equals(modificationDate, productBookingEntity.modificationDate) && Objects.equals(bConfirmed, productBookingEntity.bConfirmed);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, shopId, purchaseList, creationDate, modificationDate);
+        return Objects.hash(id, version, shopId, purchaseList, creationDate, modificationDate, bConfirmed);
     }
 
     @Override
@@ -151,9 +171,12 @@ public class ProductBookingEntity {
             ", purchaseList='" + getPurchaseList() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
+            ", bConfirmed='" + isBConfirmed() + "'" +
             "}";
     }
 
+
+    
 
     
 }

@@ -3,7 +3,7 @@
 
 actor client
 
-client ->ProductServiceImpl: ProductPurchaseConfirmRQ
+client ->ProductService: ProductPurchaseConfirmRQ
 
 ProductService -> ProductServiceFacade: ProductPurchaseConfirmRQ
 ProductServiceFacade -> ProductPurchaseHelper: ProductPurchaseConfirmRQ
@@ -14,7 +14,19 @@ PersistenceHelper -> ProductPurchaseHelper: productBookingRepository
 ProductPurchaseHelper -> ProductBookingRepository: findById(productBookingId)
 ProductBookingRepository -> ProductPurchaseHelper: productBookingEntity
 
+activate ProductPurchaseHelper
 
+rnote over ProductPurchaseHelper
+"set bConfirmed=true"
+endrnote
+
+ProductPurchaseHelper -> ProductBookingRepository: save(productBookingEntity)
+deactivate ProductPurchaseHelper
+
+ProductBookingRepository -> ProductPurchaseHelper: ok
+ProductPurchaseHelper -> ProductServiceFacade: ProductPurchaseConfirmRS
+ProductServiceFacade -> ProductService: ProductPurchaseConfirmRS
+ProductService -> client: ProductPurchaseConfirmRS
 
 
 

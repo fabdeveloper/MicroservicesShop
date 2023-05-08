@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ProductPurchaseConfirmRS {
+public class ProductPurchaseConfirmRS extends AbstractProductConfigRS {
 
     private Integer shopId;
     private Integer userId;
     private Boolean bConfirmed;
     private Integer productBookingNumber;
     private Date productBookingTime;
-    private List<String> errorList;
     
 	public ProductPurchaseConfirmRS() {
 		super();
@@ -20,13 +19,12 @@ public class ProductPurchaseConfirmRS {
 
 	public ProductPurchaseConfirmRS(Integer shopId, Integer userId, Boolean bConfirmed, Integer productBookingNumber,
 			Date productBookingTime, List<String> errorList) {
-		super();
+		super(errorList);
 		this.shopId = shopId;
 		this.userId = userId;
 		this.bConfirmed = bConfirmed;
 		this.productBookingNumber = productBookingNumber;
 		this.productBookingTime = productBookingTime;
-		this.errorList = errorList;
 	}
 
 	public Integer getShopId() {
@@ -69,26 +67,27 @@ public class ProductPurchaseConfirmRS {
 		this.productBookingTime = productBookingTime;
 	}
 
-	public List<String> getErrorList() {
-		if(this.errorList == null){
-			this.errorList = new ArrayList<>();
-		}
-		return errorList;
-	}
+	// public List<String> getErrorList() {
+	// 	if(this.errorList == null){
+	// 		this.errorList = new ArrayList<>();
+	// 	}
+	// 	return errorList;
+	// }
 
-	public void setError(String sError){
-		getErrorList().add(sError);
-	}
+	// public void setError(String sError){
+	// 	getErrorList().add(sError);
+	// }
 
-	public void setErrorList(List<String> errorList) {
-		this.errorList = errorList;
-	}
+	// public void setErrorList(List<String> errorList) {
+	// 	this.errorList = errorList;
+	// }
 
 	@Override
 	public String toString() {
+		String sErrorList = super.toString();
 		return "ProductPurchaseConfirmRS [shopId=" + shopId + ", userId=" + userId + ", bConfirmed=" + bConfirmed
 				+ ", productBookingNumber=" + productBookingNumber + ", productBookingTime=" + productBookingTime
-				+ ", errorList=" + errorList + "]";
+				+ sErrorList + "]";
 	}   
 	
 	

@@ -63,27 +63,24 @@ public class ProductServiceImpl implements ProductService{
   }
 
   @Override
-  public ProductConfirmRS productConfirm(ProductConfirmRQ productPurchaseConfirmRQ) {
+  public ProductConfirmRS productConfirm(ProductConfirmRQ productConfirmRQ) {
     ProductConfirmRS rs = new ProductConfirmRS();
-    rs = getProductServiceFacade().productConfirm(productPurchaseConfirmRQ);
+    rs = getProductServiceFacade().productConfirm(productConfirmRQ);
 
-    String msg = "recibido rq = " + productPurchaseConfirmRQ.toString();
+    String msg = "recibido rq = " + productConfirmRQ.toString();
     rs.addError(msg);
     return rs;
   }
 
   @Override
   public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
-    ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS(productPurchaseConfirmRQ.getShopId(), productPurchaseConfirmRQ.getUserId(), false, productPurchaseConfirmRQ.getProductBookingNumber(), null, null);
+    ProductPurchaseConfirmRS rs;
+    // rs = new ProductPurchaseConfirmRS(productPurchaseConfirmRQ.getShopId(), productPurchaseConfirmRQ.getUserId(), false, productPurchaseConfirmRQ.getProductBookingNumber(), null, null);
 
-    // comprobar que la reserva existe
+    rs = getProductServiceFacade().productPurchaseConfirm(productPurchaseConfirmRQ);
 
-    // set flag bConfirmed = true
-
-
-
-    rs.setError("Unimplemented method 'productPurchaseConfirm'");
-
+    String msg = "recibido rq = " + productPurchaseConfirmRQ.toString();
+    rs.addError(msg);
     return rs;
   }
 

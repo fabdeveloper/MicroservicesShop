@@ -20,10 +20,10 @@ import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.product.msg.ProductConfirmRQ;
 import fab.shop.api.core.product.msg.ProductConfirmRS;
-import fab.shop.api.exceptions.ProductPurchaseConfirmAvailabilityException;
-import fab.shop.api.exceptions.ProductPurchaseConfirmBookingException;
+import fab.shop.api.exceptions.ProductAvailabilityException;
+import fab.shop.api.exceptions.ProductBookingException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmException;
-import fab.shop.api.exceptions.ProductPurchaseConfirmReduceStockException;
+import fab.shop.api.exceptions.ProductReduceStockException;
 import fab.shop.microservices.core.product.helper.IProductAvailabilityHelper;
 import fab.shop.microservices.core.product.helper.IProductPurchaseHelper;
 
@@ -87,6 +87,22 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
 
     @Override
     public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+
+        ProductPurchaseConfirmRS rs;
+
+        try {
+            rs = getProductPurchaseHelper().bookPurchaseList(productPurchaseConfirmRQ);
+        } catch (ProductPurchaseConfirmException e) {
+            rs = e.getProductPurchaseConfirmRS();
+        } catch(Throwable t){
+            String sError = "ERROR - purchase not confirmed - msg: " + t.getMessage();
+            rs.addError(sError);
+            rs.setBConfirmed(false);
+        }
+        return rs;
+
+
+
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'productPurchaseConfirm'");
     }

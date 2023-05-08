@@ -9,10 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fab.shop.api.core.product.msg.ProductConfirmRQ;
 import fab.shop.api.core.product.msg.ProductConfirmRS;
+import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.transfer.OfferPurchase;
-import fab.shop.api.exceptions.ProductPurchaseConfirmAvailabilityException;
-import fab.shop.api.exceptions.ProductPurchaseConfirmBookingException;
-import fab.shop.api.exceptions.ProductPurchaseConfirmReduceStockException;
+import fab.shop.api.exceptions.ProductAvailabilityException;
+import fab.shop.api.exceptions.ProductBookingException;
+import fab.shop.api.exceptions.ProductReduceStockException;
 import fab.shop.microservices.core.product.facade.IPersistenceFacade;
 import fab.shop.microservices.core.product.persistence.OfferEntity;
 import fab.shop.microservices.core.product.persistence.OfferPurchaseEntity;
@@ -84,14 +85,14 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
 
     @Transactional
     @Override
-    public ProductConfirmRS bookPurchaseList(ProductConfirmRQ productPurchaseConfirmRQ) throws ProductPurchaseConfirmBookingException {
+    public ProductConfirmRS bookPurchaseList(ProductConfirmRQ productConfirmRQ) throws ProductBookingException {
         ProductConfirmRS rs = new ProductConfirmRS();
-        rs.setShopId(productPurchaseConfirmRQ.getShopId());
+        rs.setShopId(productConfirmRQ.getShopId());
 
         Integer offerId;
         Integer count;
 
-        List<OfferPurchase> purchaseList = productPurchaseConfirmRQ.getOfferPurchaseList();
+        List<OfferPurchase> purchaseList = productConfirmRQ.getOfferPurchaseList();
         String sError;
 
         // availability
@@ -105,8 +106,8 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         }
         if(!bAvail){
             rs.setBConfirmed(false);
-            ProductPurchaseConfirmAvailabilityException availabilityException = new ProductPurchaseConfirmAvailabilityException();
-            availabilityException.setProductPurchaseConfirmRS(rs);
+            AvailabilityException availabilityException = new AvailabilityException();
+            availabilityException.setProductConfirmRS(rs);
             throw availabilityException;
         }
 
@@ -126,14 +127,14 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
             rs.addError(sError);
             rs.setBConfirmed(false);
 
-            ProductPurchaseConfirmBookingException exception = new ProductPurchaseConfirmBookingException();
-            exception.setProductPurchaseConfirmRS(rs);
+            ProductBookingException exception = new ProductBookingException();
+            exception.setProductConfirmRS(rs);
 
             throw exception;
         }
 
         // decrement stock
-        Boolean bDec = true;
+        boolean bDec = true;
         for(OfferPurchase offerPurchase : purchaseList){
             if(!decrementStock(offerPurchase)){
                 bDec = false;
@@ -143,8 +144,8 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         }
         if(!bDec){
             rs.setBConfirmed(false);
-            ProductPurchaseConfirmReduceStockException exception = new ProductPurchaseConfirmReduceStockException();
-            exception.setProductPurchaseConfirmRS(rs);
+            ProductReduceStockException exception = new ProductReduceStockException();
+            exception.setProductConfirmRS(rs);
             throw exception;
         }   
         
@@ -156,6 +157,18 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         return rs;
     }
 
+    @Override
+    public ProductPurchaseConfirmRQ purchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+
+        // productBookingNumber exists ?
+
+        // productBookingEntity set flag bConfirmed=true
+
+
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'purchaseConfirm'");
+    }
+
 
     public IPersistenceFacade getPersistenceFacade() {
         return this.persistenceFacade;
@@ -164,6 +177,9 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
     public void setPersistenceFacade(IPersistenceFacade persistenceFacade) {
         this.persistenceFacade = persistenceFacade;
     }
+
+
+
 
     
 }
