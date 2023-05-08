@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fab.shop.api.core.product.msg.ProductConfirmRQ;
 import fab.shop.api.core.product.msg.ProductConfirmRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
+import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.exceptions.ProductAvailabilityException;
 import fab.shop.api.exceptions.ProductBookingException;
@@ -160,13 +161,26 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
     @Override
     public ProductPurchaseConfirmRQ purchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
 
+        ProductPurchaseConfirmRS rs;
+        Integer bookingNumber = productPurchaseConfirmRQ.getProductBookingNumber();
+
         // productBookingNumber exists ?
+        ProductBookingEntity entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().findById(bookingNumber).get();
+pppppppppppppppppppp
 
         // productBookingEntity set flag bConfirmed=true
+        entity.setBConfirmed(true);
+
+        // save
+        entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().save(entity);
 
 
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'purchaseConfirm'");
+
+        rs = new ProductPurchaseConfirmRS(entity.getId(), entity.getUserId(), entity.getBConfirmed(), entity.getShopId(), entity.getCreationDate(), null);
+
+        return rs;
+
+
     }
 
 
