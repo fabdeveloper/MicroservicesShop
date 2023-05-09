@@ -124,8 +124,12 @@ public class ProductPurchaseHelperTest extends MySqlTestBase {
 
     // @Test
     public void bookPurchaseList() {
+        Boolean bCondition = true;
+        assertTrue(bCondition, "bookPurchaseList() NO VA BIEN ---------");
+    }
 
-
+        // @Test
+    public void productPurchaseConfirmTest(){
         Boolean bCondition = true;
         assertTrue(bCondition, "bookPurchaseList() NO VA BIEN ---------");
     }

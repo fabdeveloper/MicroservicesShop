@@ -158,29 +158,35 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         return rs;
     }
 
+    @Transactional
     @Override
-    public ProductPurchaseConfirmRQ purchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+    public ProductPurchaseConfirmRS purchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
 
-        ProductPurchaseConfirmRS rs;
+        ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS(productPurchaseConfirmRQ.getProductBookingNumber(), productPurchaseConfirmRQ.getUserId(), false, productPurchaseConfirmRQ.getShopId(), productPurchaseConfirmRQ.getProductBookingTime(), null);
+
         Integer bookingNumber = productPurchaseConfirmRQ.getProductBookingNumber();
 
         // productBookingNumber exists ?
-        ProductBookingEntity entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().findById(bookingNumber).get();
-pppppppppppppppppppp
+        ProductBookingEntity entity = null;
+        try {
+            entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().findById(bookingNumber).get();            
+        } catch (Exception e) {
+            rs.addError("Exception booking not found - msg= " + e.getMessage());
+            return rs;
+        }
 
-        // productBookingEntity set flag bConfirmed=true
-        entity.setBConfirmed(true);
-
-        // save
-        entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().save(entity);
-
-
-
-        rs = new ProductPurchaseConfirmRS(entity.getId(), entity.getUserId(), entity.getBConfirmed(), entity.getShopId(), entity.getCreationDate(), null);
-
+        if(entity != null){
+                    // productBookingEntity set flag bConfirmed=true
+            entity.setBConfirmed(true);
+                    // save
+            try {                
+                entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().save(entity);
+                rs.setbConfirmed(entity.getBConfirmed());
+            } catch (Exception e) {
+                rs.addError("Exception - msg= " + e.getMessage());
+            }
+        }
         return rs;
-
-
     }
 
 
