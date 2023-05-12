@@ -63,11 +63,11 @@ public class ProductServiceImpl implements ProductService{
   }
 
   @Override
-  public ProductConfirmRS productConfirm(ProductConfirmRQ productConfirmRQ) {
-    ProductConfirmRS rs = new ProductConfirmRS();
-    rs = getProductServiceFacade().productConfirm(productConfirmRQ);
+  public ProductBookingRS productBooking(ProductBookingRQ productBookingRQ) {
+    ProductBookingRS rs = new ProductBookingRS();
+    rs = getProductServiceFacade().productBooking(productBookingRQ);
 
-    String msg = "recibido rq = " + productConfirmRQ.toString();
+    String msg = "recibido rq = " + productBookingRQ.toString();
     rs.addError(msg);
     return rs;
   }

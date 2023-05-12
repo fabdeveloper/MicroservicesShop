@@ -1,0 +1,18 @@
+@startuml
+
+
+interface IProductService {
+	public GetAvailRS getAvail(GetAvailRQ getAvailRQ);
+    GetOfferListDetailRS getOfferListDetail(@RequestBody GetOfferListDetailRQ getOfferListDetailRQ);
+    ProductBookingRS productBooking(@RequestBody ProductBookingRQ productBookingRQ);
+	ProductPurchaseConfirmRS productPurchaseConfirm(@RequestBody ProductPurchaseConfirmRQ productPurchaseConfirmRQ);
+    ProductPurchaseCancelRS productPurchaseCancel(@RequestBody ProductPurchaseCancelRQ productPurchaseCancelRQ);
+	public ProductCreateNewRS productCreateNew(@RequestBody ProductConfigBasicRQ productCreateNewRQ);
+	public ProductCreateNewRS testConfig(@RequestBody GenericProductConfigRQ testConfigRQ);
+}
+
+
+
+
+
+@enduml

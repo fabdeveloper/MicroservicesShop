@@ -18,8 +18,8 @@ import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
-import fab.shop.api.core.product.msg.ProductConfirmRQ;
-import fab.shop.api.core.product.msg.ProductConfirmRS;
+import fab.shop.api.core.product.msg.ProductBookingRQ;
+import fab.shop.api.core.product.msg.ProductBookingRS;
 import fab.shop.api.exceptions.ProductAvailabilityException;
 import fab.shop.api.exceptions.ProductBookingException;
 import fab.shop.api.exceptions.ProductPurchaseConfirmException;
@@ -71,12 +71,12 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
     }
 
     @Override
-    public ProductConfirmRS productConfirm(ProductConfirmRQ productPurchaseConfirmRQ){  
-        ProductConfirmRS rs = new ProductConfirmRS();
+    public ProductBookingRS productBooking(ProductBookingRQ productBookingRQ){  
+        ProductBookingRS rs = new ProductBookingRS();
         try {
-            rs = getProductPurchaseHelper().bookPurchaseList(productPurchaseConfirmRQ);
-        } catch (ProductPurchaseConfirmException e) {
-            rs = e.getProductPurchaseConfirmRS();
+            rs = getProductPurchaseHelper().bookPurchaseList(productBookingRQ);
+        } catch (ProductBookingException e) {
+            rs = e.getProductBookingRS();
         } catch(Throwable t){
             String sError = "ERROR - purchase not confirmed - msg: " + t.getMessage();
             rs.addError(sError);
@@ -91,7 +91,7 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
         ProductPurchaseConfirmRS rs;
 
         try {
-            rs = getProductPurchaseHelper().bookPurchaseList(productPurchaseConfirmRQ);
+            rs = getProductPurchaseHelper().purchaseConfirm(productPurchaseConfirmRQ);
         } catch (ProductPurchaseConfirmException e) {
             rs = e.getProductPurchaseConfirmRS();
         } catch(Throwable t){

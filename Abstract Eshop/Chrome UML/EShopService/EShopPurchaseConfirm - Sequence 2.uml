@@ -6,8 +6,8 @@ participant EShopService #yellow
 user -> EShopService : EShopProductConfirmRQ
 activate EShopService
 
-EShopService -> ProductService : ProductConfirmRQ
-ProductService --> EShopService : ProductConfirmRS
+EShopService -> ProductService : ProductBookingRQ
+ProductService --> EShopService : ProductBookingRS
 
 EShopService -> ValuationService : ValuateRQ
 ValuationService --> EShopService : ValuateRS

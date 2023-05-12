@@ -1,7 +1,9 @@
 @startuml
 
 
-() ips
+
+
+() IProductService as ips
 
 
 package "service" {
@@ -20,8 +22,9 @@ package "facade" {
 package "helper" {
 	ipph - [ProductPurchaseHelperImpl]
     ipah - [ProductAvailabilityHelperImpl]
-    [ProductServiceFacadeImpl] ..> ipph
     [ProductServiceFacadeImpl] ..> ipah
+    [ProductServiceFacadeImpl] ..> ipph
+
     [ProductPurchaseHelperImpl] ..> Iperfac
     [ProductAvailabilityHelperImpl] ..> Iperfac
 

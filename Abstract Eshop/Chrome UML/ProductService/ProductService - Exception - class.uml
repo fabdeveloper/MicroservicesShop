@@ -1,0 +1,24 @@
+@startuml
+
+
+
+
+class Exception
+
+abstract class ProductServiceException<T> extends Exception {
+	public T rs;    
+    public T getRs();
+    public T setRs();
+}
+
+class ProductAvailabilityException<GetAvailRS> extends ProductServiceException
+
+class ProductBookingException<ProductBookingRS> extends ProductServiceException
+
+class ProductPurchaseConfirmException<ProductPurchaseConfirmRS> extends ProductServiceException
+
+class ProductReduceStockException extends Exception
+
+
+
+@enduml

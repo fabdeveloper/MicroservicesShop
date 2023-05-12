@@ -117,7 +117,7 @@ public interface ShopService /* extends IEShopOrquestrator */  {
 			value = "/shoop/productPurchaseConfirm",
 			consumes = "application/json",
 			produces = "application/json")
-			ProductConfirmRS productPurchaseConfirm(@RequestBody ProductConfirmRQ productPurchaseConfirmRQ);
+			ProductBookingRS productPurchaseConfirm(@RequestBody ProductBookingRQ productPurchaseConfirmRQ);
 
 			
 	  

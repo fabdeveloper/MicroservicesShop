@@ -23,8 +23,8 @@ import fab.shop.api.core.product.transfer.Offer;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.product.transfer.Product;
 import fab.shop.api.core.product.transfer.Shop;
-import fab.shop.api.core.product.msg.ProductConfirmRQ;
-import fab.shop.api.core.product.msg.ProductConfirmRS;
+import fab.shop.api.core.product.msg.ProductBookingRQ;
+import fab.shop.api.core.product.msg.ProductBookingRS;
 import fab.shop.microservices.composite.shop.services.ShopCompositeIntegration;
 import fab.shop.util.http.ServiceUtil;
 import fab.shop.api.composite.integrationtester.ShopIntegrationProductServiceTestHelper;
@@ -108,8 +108,8 @@ public class ShopIntegrationProductServiceTestHelperImpl implements ShopIntegrat
 
 
     @Override
-    public ProductConfirmRS productPurchaseConfirmTestHelper() {
-    	ProductConfirmRS rs = null;
+    public ProductBookingRS productPurchaseConfirmTestHelper() {
+    	ProductBookingRS rs = null;
 //        List<OfferPurchase> offerPurechaseList = new ArrayList<>();
 //        OfferPurchase offerPurchase = new OfferPurchase(12, 2);
 //        offerPurechaseList.add(offerPurchase);

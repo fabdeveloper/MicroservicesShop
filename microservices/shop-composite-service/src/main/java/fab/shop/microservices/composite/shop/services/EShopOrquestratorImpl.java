@@ -44,8 +44,8 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
     public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ){
         EShopProductConfirmRS rs = new EShopProductConfirmRS(eShopProductConfirmRQ.getShopId(), false, null, null, null, null, null);
         // ProductService tasks
-        ProductConfirmRQ productConfirmRQ = new ProductConfirmRQ(eShopProductConfirmRQ.getShopId(), eShopProductConfirmRQ.getOfferPurchaseList());
-        ProductConfirmRS productConfirmRS;
+        ProductBookingRQ productConfirmRQ = new ProductBookingRQ(eShopProductConfirmRQ.getShopId(), eShopProductConfirmRQ.getOfferPurchaseList());
+        ProductBookingRS productConfirmRS;
         try {
             productConfirmRS = getShopIntegration().productConfirm(productConfirmRQ);
             if(!productConfirmRS.getBConfirmed()){

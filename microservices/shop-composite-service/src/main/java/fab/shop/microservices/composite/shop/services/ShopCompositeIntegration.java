@@ -227,8 +227,8 @@ public class ShopCompositeIntegration implements CartService, ProductService, Pu
 
 
     @Override
-    public ProductConfirmRS productConfirm(ProductConfirmRQ productPurchaseConfirmRQ) {
-        return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductConfirmRS.class);
+    public ProductBookingRS productConfirm(ProductBookingRQ productPurchaseConfirmRQ) {
+        return restTemplate.postForObject(getProductServiceUrl() + "/productPurchaseConfirm", productPurchaseConfirmRQ, ProductBookingRS.class);
     }
 
     

@@ -1,0 +1,40 @@
+@startuml
+
+
+actor user
+
+user->ProductServiceImpl: ProductBookingRQ
+
+ProductServiceImpl -> ProductServiceFacadeImpl: ProductBookingRQ
+ProductServiceFacadeImpl -> ProductPurchaseHelperImpl: checkAvailability(List<OfferPurchase> purchaseList)
+
+ProductPurchaseHelperImpl -> ProductServiceFacadeImpl: booleanResponse
+
+alt #lightpink Failure
+ProductServiceFacadeImpl -> ProductServiceImpl: ProductBookingException
+ProductServiceImpl -> user: ProductBookingRS
+else #lightgreen Successful case
+ProductServiceFacadeImpl -> ProductPurchaseHelperImpl: decrementStock(List<OfferPurchase> purchaseList)
+end
+
+ProductPurchaseHelperImpl -> ProductServiceFacadeImpl: booleanResponse
+
+alt #lightpink Failure
+ProductServiceFacadeImpl -> ProductServiceImpl: ProductBookingException
+ProductServiceImpl -> user: ProductBookingRS
+else #lightgreen Successful case
+ProductServiceFacadeImpl -> ProductPurchaseHelperImpl: bookPurchaseList(List<OfferPurchase> purchaseList)
+end
+
+ProductPurchaseHelperImpl -> ProductServiceFacadeImpl: booleanResponse
+
+alt #lightpink Failure
+ProductServiceFacadeImpl -> ProductServiceImpl: ProductBookingException
+ProductServiceImpl -> user: ProductPurchaseConfirmRS
+else #lightgreen Successful case
+ProductServiceFacadeImpl -> ProductServiceImpl: ProductBookingRS
+ProductServiceImpl -> user: ProductBookingRS				
+end
+
+
+@enduml

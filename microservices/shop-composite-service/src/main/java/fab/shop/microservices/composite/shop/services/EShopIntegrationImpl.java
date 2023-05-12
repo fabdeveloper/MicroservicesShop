@@ -74,7 +74,7 @@ public class EShopIntegrationImpl implements IEShopIntegration {
     }
 
     @Override
-    public ProductConfirmRS productConfirm(ProductConfirmRQ productConfirmRQ) {
+    public ProductBookingRS productConfirm(ProductBookingRQ productConfirmRQ) {
         return getExternalServiceLocator().getProductServiceProxy().productConfirm(productConfirmRQ);
     }
 

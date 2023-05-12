@@ -12,8 +12,8 @@ import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
 import fab.shop.api.core.product.msg.ProductCreateNewRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
-import fab.shop.api.core.product.msg.ProductConfirmRQ;
-import fab.shop.api.core.product.msg.ProductConfirmRS;
+import fab.shop.api.core.product.msg.ProductBookingRQ;
+import fab.shop.api.core.product.msg.ProductBookingRS;
 
 import fab.shop.api.core.product.msg.*;
 
@@ -48,10 +48,10 @@ public interface ProductService {
 			
 	  
 		@PostMapping(
-			value = "/product/confirm",
+			value = "/product/productBooking",
 			consumes = "application/json",
 			produces = "application/json")
-			ProductConfirmRS productConfirm(@RequestBody ProductConfirmRQ productConfirmRQ);
+			ProductBookingRS productBooking(@RequestBody ProductBookingRQ productBookingRQ);
 
 		@PostMapping(
 			value = "/product/productPurchaseConfirm",

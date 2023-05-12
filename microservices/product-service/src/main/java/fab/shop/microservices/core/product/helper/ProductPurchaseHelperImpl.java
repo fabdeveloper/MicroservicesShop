@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import fab.shop.api.core.product.msg.ProductConfirmRQ;
-import fab.shop.api.core.product.msg.ProductConfirmRS;
+import fab.shop.api.core.product.msg.ProductBookingRQ;
+import fab.shop.api.core.product.msg.ProductBookingRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
@@ -86,8 +86,8 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
 
     @Transactional
     @Override
-    public ProductConfirmRS bookPurchaseList(ProductConfirmRQ productConfirmRQ) throws ProductBookingException {
-        ProductConfirmRS rs = new ProductConfirmRS();
+    public ProductBookingRS bookPurchaseList(ProductBookingRQ productConfirmRQ) throws ProductBookingException {
+        ProductBookingRS rs = new ProductBookingRS();
         rs.setShopId(productConfirmRQ.getShopId());
 
         Integer offerId;
@@ -146,7 +146,7 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         if(!bDec){
             rs.setBConfirmed(false);
             ProductReduceStockException exception = new ProductReduceStockException();
-            exception.setProductConfirmRS(rs);
+            exception.setProductPurchaseConfirmRS(rs);
             throw exception;
         }   
         
