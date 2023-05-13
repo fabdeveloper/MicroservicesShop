@@ -3,15 +3,27 @@
 
 interface IProductService {
 	public GetAvailRS getAvail(GetAvailRQ getAvailRQ);
-    GetOfferListDetailRS getOfferListDetail(@RequestBody GetOfferListDetailRQ getOfferListDetailRQ);
-    ProductBookingRS productBooking(@RequestBody ProductBookingRQ productBookingRQ);
-	ProductPurchaseConfirmRS productPurchaseConfirm(@RequestBody ProductPurchaseConfirmRQ productPurchaseConfirmRQ);
-    ProductPurchaseCancelRS productPurchaseCancel(@RequestBody ProductPurchaseCancelRQ productPurchaseCancelRQ);
+    public GetOfferListDetailRS getOfferListDetail(@RequestBody GetOfferListDetailRQ getOfferListDetailRQ);
+    public ProductBookingRS productBooking(@RequestBody ProductBookingRQ productBookingRQ);
+	public ProductPurchaseConfirmRS productPurchaseConfirm(@RequestBody ProductPurchaseConfirmRQ productPurchaseConfirmRQ);
+    public ProductPurchaseCancelRS productPurchaseCancel(@RequestBody ProductPurchaseCancelRQ productPurchaseCancelRQ);
 	public ProductCreateNewRS productCreateNew(@RequestBody ProductConfigBasicRQ productCreateNewRQ);
 	public ProductCreateNewRS testConfig(@RequestBody GenericProductConfigRQ testConfigRQ);
 }
 
+interface IProductServiceFacade extends IProductService
 
+interface IProductAvailabilityHelper {
+    public	GetAvailRS getAvail(GetAvailRQ getAvailRQ);
+    public	GetOfferListDetailRS getOfferListDetail(GetOfferListDetailRQ getOfferListDetailRQ);    
+}
+
+interface IProductPurchaseHelper {    
+    public Boolean checkAvailability(OfferPurchase offerPurchase);    
+    public Boolean decrementStock(OfferPurchase offerPurchase);    
+    public ProductBookingRS bookPurchaseList(ProductBookingRQ productBookingRQ);
+    public ProductPurchaseConfirmRS purchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ);    
+}
 
 
 

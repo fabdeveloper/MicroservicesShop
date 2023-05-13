@@ -5,19 +5,21 @@
 
 class Exception
 
-abstract class ProductServiceException<T> extends Exception {
+class ProductServiceException extends Exception
+
+abstract class ProductServiceRSException<T> extends ProductServiceException {
 	public T rs;    
     public T getRs();
     public T setRs();
 }
 
-class ProductAvailabilityException<GetAvailRS> extends ProductServiceException
+class ProductAvailabilityException<GetAvailRS> extends ProductServiceRSException
 
-class ProductBookingException<ProductBookingRS> extends ProductServiceException
+class ProductBookingException<ProductBookingRS> extends ProductServiceRSException
 
-class ProductPurchaseConfirmException<ProductPurchaseConfirmRS> extends ProductServiceException
+class ProductPurchaseConfirmException<ProductPurchaseConfirmRS> extends ProductServiceRSException
 
-class ProductReduceStockException extends Exception
+class ProductReduceStockException extends ProductServiceException
 
 
 
