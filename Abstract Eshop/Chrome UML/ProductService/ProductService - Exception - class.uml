@@ -1,23 +1,33 @@
 @startuml
 
+class ProductServiceErrorListRS {
+	private List<String> errorList();
+    
+    public List<String> getErrorList();
+    public addError(String);
+}
+
 
 
 
 class Exception
 
-class ProductServiceException extends Exception
+class ProductServiceException extends Exception {
+	private ProductServiceErrorListRS rs;
+    
+    public ProductServiceErrorListRS getRS();
 
-abstract class ProductServiceRSException<T> extends ProductServiceException {
-	public T rs;    
-    public T getRs();
-    public T setRs();
 }
 
-class ProductAvailabilityException<GetAvailRS> extends ProductServiceRSException
+ProductServiceException *-left- ProductServiceErrorListRS
 
-class ProductBookingException<ProductBookingRS> extends ProductServiceRSException
 
-class ProductPurchaseConfirmException<ProductPurchaseConfirmRS> extends ProductServiceRSException
+
+class ProductAvailabilityException extends ProductServiceException
+
+class ProductBookingException extends ProductServiceException
+
+class ProductPurchaseConfirmException extends ProductServiceException
 
 class ProductReduceStockException extends ProductServiceException
 
