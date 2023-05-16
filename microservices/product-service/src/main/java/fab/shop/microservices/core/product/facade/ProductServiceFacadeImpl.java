@@ -20,10 +20,10 @@ import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.product.msg.ProductBookingRQ;
 import fab.shop.api.core.product.msg.ProductBookingRS;
-import fab.shop.api.exceptions.ProductAvailabilityException;
-import fab.shop.api.exceptions.ProductBookingException;
-import fab.shop.api.exceptions.ProductPurchaseConfirmException;
-import fab.shop.api.exceptions.ProductReduceStockException;
+import fab.shop.api.core.product.exception.ProductAvailabilityException;
+import fab.shop.api.core.product.exception.ProductBookingException;
+import fab.shop.api.core.product.exception.ProductPurchaseConfirmException;
+import fab.shop.api.core.product.exception.ProductReduceStockException;
 import fab.shop.microservices.core.product.helper.IProductAvailabilityHelper;
 import fab.shop.microservices.core.product.helper.IProductPurchaseHelper;
 

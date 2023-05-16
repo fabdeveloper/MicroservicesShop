@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import fab.shop.api.core.product.ProductService;
 import fab.shop.api.core.product.msg.*;
-import fab.shop.api.exceptions.ProductPurchaseConfirmException;
+import fab.shop.api.core.product.exception.ProductPurchaseConfirmException;
 import fab.shop.microservices.core.product.facade.IProductServiceFacade;
 import fab.shop.microservices.core.product.facade.ProductServiceFacadeImpl;
 
