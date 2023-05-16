@@ -7,14 +7,13 @@ import java.util.Objects;
 
 import fab.shop.api.core.product.transfer.OfferPurchase;
 
-public class ProductBookingRS {
+public class ProductBookingRS extends ProductServiceErrorListRS{
 
 
     private Integer shopId;
     private Boolean bConfirmed;
     private Integer productBookingNumber;
     private List<OfferPurchase> productPurchaseList;
-    private List<String> errorList;
     private Date productBookingTime;
 
 
@@ -68,20 +67,6 @@ public class ProductBookingRS {
         this.productPurchaseList = productPurchaseList;
     }
 
-    public List<String> getErrorList() {
-    	if(this.errorList == null) {
-    		this.errorList = new ArrayList<>();
-    	}
-        return this.errorList;
-    }
-    
-    public void addError(String sError) {
-    	getErrorList().add(sError);    	
-    }
-
-    public void setErrorList(List<String> errorList) {
-        this.errorList = errorList;
-    }
 
     public Date getProductBookingTime() {
         return this.productBookingTime;
@@ -121,21 +106,7 @@ public class ProductBookingRS {
         return this;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof ProductBookingRS)) {
-            return false;
-        }
-        ProductBookingRS productConfirmRS = (ProductBookingRS) o;
-        return Objects.equals(shopId, productConfirmRS.shopId) && Objects.equals(bConfirmed, productConfirmRS.bConfirmed) && Objects.equals(productBookingNumber, productConfirmRS.productBookingNumber) && Objects.equals(productPurchaseList, productConfirmRS.productPurchaseList) && Objects.equals(errorList, productConfirmRS.errorList) && Objects.equals(productBookingTime, productConfirmRS.productBookingTime);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(shopId, bConfirmed, productBookingNumber, productPurchaseList, errorList, productBookingTime);
-    }
 
     @Override
     public String toString() {

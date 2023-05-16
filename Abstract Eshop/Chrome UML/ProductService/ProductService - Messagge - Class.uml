@@ -4,24 +4,30 @@ OfferDetail <|-- OfferPurchase
 OfferDetail <|-- OfferAvail
 
 
-class GetAvailRS {
+class ProductServiceErrorListRS {
+	    private List<String> errorList;
+
+    	public List<String> getErrorList();
+        public void addError(String error);
+}
+
+class GetAvailRS extends ProductServiceErrorListRS {
 	private List<Product> productList;
     private List<Article> articleList;
     private List<OfferAvail> offerList;
 }
 
-class ProductConfirmRQ {    
+class ProductBookingRQ {    
     private Integer shopId;
     private Integer userId;
     private List<OfferPurchase> offerPurchaseList;
 }
 
-class ProductConfirmRS {
+class ProductBookingRS extends ProductServiceErrorListRS {
     private Integer shopId;
     private Boolean bConfirmed;
     private Integer productBookingNumber;
     private List<OfferPurchase> productPurchaseList;
-    private List<String> errorList;
     private Date productBookingTime;
     
 }
@@ -33,12 +39,11 @@ class ProductPurchaseConfirmRQ {
 	private Integer productBookingNumber;
 }
 
-class ProductPurchaseConfirmRS {
+class ProductPurchaseConfirmRS extends ProductServiceErrorListRS {
 	private Integer shopId;
     private Boolean bConfirmed;
 	private Integer productBookingNumber;
     private List<OfferPurchase> productPurchaseList;
-    private List<String> errorList;
 }
 
 

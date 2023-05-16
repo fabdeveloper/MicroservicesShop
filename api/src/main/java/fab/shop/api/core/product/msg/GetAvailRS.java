@@ -7,7 +7,7 @@ import fab.shop.api.core.product.transfer.Article;
 import fab.shop.api.core.product.transfer.Offer;
 import fab.shop.api.core.product.transfer.Product;
 
-public class GetAvailRS {
+public class GetAvailRS extends ProductServiceErrorListRS {
 
     private Integer shopId;
     private List<Product> productList;
@@ -17,12 +17,13 @@ public class GetAvailRS {
     private String status;
 
 
-    public GetAvailRS(Integer shopId, List<Product> productList, List<Article> articleList, List<Offer> offerList, String status) {
+    public GetAvailRS(Integer shopId, List<Product> productList, List<Article> articleList, List<Offer> offerList, String status, List<String> errorList) {
         this.shopId = shopId;
         this.productList = productList;
         this.articleList = articleList;
         this.offerList = offerList;
         this.status = status;
+        this.errorList = errorList;
     }
 
 

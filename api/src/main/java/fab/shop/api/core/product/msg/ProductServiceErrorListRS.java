@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ProductServiceErrorListRS {
     
-    private List<String> errorList;
+    protected List<String> errorList;
 
 
     public ProductServiceErrorListRS() {

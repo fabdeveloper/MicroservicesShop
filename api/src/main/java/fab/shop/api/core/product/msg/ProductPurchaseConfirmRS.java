@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ProductPurchaseConfirmRS extends AbstractProductConfigRS {
+public class ProductPurchaseConfirmRS extends ProductServiceErrorListRS {
 
     private Integer shopId;
     private Integer userId;
@@ -67,20 +67,7 @@ public class ProductPurchaseConfirmRS extends AbstractProductConfigRS {
 		this.productBookingTime = productBookingTime;
 	}
 
-	// public List<String> getErrorList() {
-	// 	if(this.errorList == null){
-	// 		this.errorList = new ArrayList<>();
-	// 	}
-	// 	return errorList;
-	// }
-
-	// public void setError(String sError){
-	// 	getErrorList().add(sError);
-	// }
-
-	// public void setErrorList(List<String> errorList) {
-	// 	this.errorList = errorList;
-	// }
+	
 
 	@Override
 	public String toString() {
@@ -90,9 +77,5 @@ public class ProductPurchaseConfirmRS extends AbstractProductConfigRS {
 				+ sErrorList + "]";
 	}   
 	
-	
-    
-    
-
 
 }

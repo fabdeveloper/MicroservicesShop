@@ -146,7 +146,7 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         if(!bDec){
             rs.setBConfirmed(false);
             ProductReduceStockException exception = new ProductReduceStockException();
-            exception.setProductPurchaseConfirmRS(rs);
+            exception.setRs(rs);
             throw exception;
         }   
         
