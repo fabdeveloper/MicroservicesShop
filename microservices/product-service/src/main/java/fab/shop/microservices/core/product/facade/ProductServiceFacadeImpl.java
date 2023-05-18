@@ -76,7 +76,7 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
         try {
             rs = getProductPurchaseHelper().bookPurchaseList(productBookingRQ);
         } catch (ProductBookingException e) {
-            rs = e.getProductBookingRS();
+            rs = e.getRs();
         } catch(Throwable t){
             String sError = "ERROR - purchase not confirmed - msg: " + t.getMessage();
             rs.addError(sError);
@@ -93,7 +93,7 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
         try {
             rs = getProductPurchaseHelper().purchaseConfirm(productPurchaseConfirmRQ);
         } catch (ProductPurchaseConfirmException e) {
-            rs = e.getProductPurchaseConfirmRS();
+            rs = e.getRs();
         } catch(Throwable t){
             String sError = "ERROR - purchase not confirmed - msg: " + t.getMessage();
             rs.addError(sError);

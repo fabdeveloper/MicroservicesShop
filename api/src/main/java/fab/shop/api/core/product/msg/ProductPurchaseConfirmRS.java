@@ -43,13 +43,21 @@ public class ProductPurchaseConfirmRS extends ProductServiceErrorListRS {
 		this.userId = userId;
 	}
 
-	public Boolean getbConfirmed() {
-		return bConfirmed;
-	}
+    /**
+     * @return Boolean return the bConfirmed
+     */
+    public Boolean isBConfirmed() {
+        return bConfirmed;
+    }
 
-	public void setbConfirmed(Boolean bConfirmed) {
-		this.bConfirmed = bConfirmed;
-	}
+    /**
+     * @param bConfirmed the bConfirmed to set
+     */
+    public void setBConfirmed(Boolean bConfirmed) {
+        this.bConfirmed = bConfirmed;
+    }
+
+	
 
 	public Integer getProductBookingNumber() {
 		return productBookingNumber;
@@ -77,5 +85,7 @@ public class ProductPurchaseConfirmRS extends ProductServiceErrorListRS {
 				+ sErrorList + "]";
 	}   
 	
+
+
 
 }

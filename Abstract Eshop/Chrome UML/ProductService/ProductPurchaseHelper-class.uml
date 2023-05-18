@@ -5,10 +5,11 @@ interface PersistenceFacade {
     public ProductServiceGeneralMapper getGeneralMapper();
 }
 
-interface ProductPurchaseHelper{    
-    public Boolean checkAvailability(List<OfferPurchase> purchaseList);    
-    public Boolean decrementStock(List<OfferPurchase> purchaseList);    
-    public Boolean bookPurchaseList(List<OfferPurchase> purchaseList);
+interface IProductPurchaseHelper{    
+    public Boolean checkAvailability(OfferPurchase offerPurchase) throws ProductAvailabilityException;
+    public Boolean decrementStock(OfferPurchase offerPurchase) throws ProductReduceStockException;
+    public ProductBookingRS bookPurchaseList(ProductBookingRQ productBookingRQ) throws ProductBookingException;
+    public ProductPurchaseConfirmRS purchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) throws ProductPurchaseConfirmException;
 }
 
 interface ProductConfigPersistenceHelper {    
@@ -33,7 +34,7 @@ ProductPurchaseHelperImpl *-- PersistenceFacadeImpl
 PersistenceFacadeImpl *-- ProductConfigPersistenceHelperImpl
 PersistenceFacadeImpl *-- ProductServiceGeneralMapperImpl
 
-ProductPurchaseHelper <|.. ProductPurchaseHelperImpl
+IProductPurchaseHelper <|.. ProductPurchaseHelperImpl
 PersistenceFacade <|.left. PersistenceFacadeImpl
 ProductConfigPersistenceHelper <|.right. ProductConfigPersistenceHelperImpl
 IProductServiceGeneralMapper <|.left. ProductServiceGeneralMapperImpl

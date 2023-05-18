@@ -2,6 +2,7 @@ package fab.shop.microservices.core.product.helper;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import fab.shop.api.core.product.msg.ProductBookingRQ;
 import fab.shop.api.core.product.msg.ProductBookingRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.msg.ProductServiceErrorListRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.product.exception.ProductAvailabilityException;
 import fab.shop.api.core.product.exception.ProductBookingException;
@@ -33,52 +35,73 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
 
 
     @Override
-    public Boolean checkAvailability(OfferPurchase offerPurchase) {
-        Boolean bResponse = true;
+    public Boolean checkAvailability(OfferPurchase offerPurchase)  throws ProductAvailabilityException{
+        ProductAvailabilityException availException = new ProductAvailabilityException();
+        ProductServiceErrorListRS rs = new ProductServiceErrorListRS(null); 
+        Boolean bResponse = false;
         Integer offerId;
         Integer count;
-        OfferEntity entity;
+        OfferEntity entity = null;
 
         offerId = offerPurchase.getOfferId();
         count = offerPurchase.getCount();
 
         try {
-            entity = getPersistenceFacade().getPersistenceHelper().getOfferRepository().findById(offerId).get();
-        } catch (Throwable e) {
-            return false;
+            Optional<OfferEntity> opt =  getPersistenceFacade().getPersistenceHelper().getOfferRepository().findById(offerId);            
+            if(opt.isPresent()){
+                entity = opt.get();
+                bResponse = true;
+            }
+        } catch (Exception e) {
+            rs.addError("Availability Exception " + e.getMessage());  
+            availException.setRs(rs);    
+            throw availException;
         }
 
         if(entity == null || entity.getAvailCount() < count){
-            bResponse = false;         
+            rs.addError("Availability Exception ");  
+            availException.setRs(rs);    
+            throw availException;   
         }
         return bResponse;
     }
 
     @Transactional
     @Override
-    public Boolean decrementStock(OfferPurchase offerPurchase) {
-        Boolean bResponse = true;
-        Integer offerId;
-        Integer count;
+    public Boolean decrementStock(OfferPurchase offerPurchase) throws ProductReduceStockException {
+        ProductReduceStockException exception = new ProductReduceStockException();
+        ProductServiceErrorListRS rs = new ProductServiceErrorListRS(null);
+
+        Boolean bResponse = false;
+        Integer offerId = offerPurchase.getOfferId();
+        Integer count = offerPurchase.getCount();
         Integer unitsAvail;
         OfferEntity entity;
 
-        offerId = offerPurchase.getOfferId();
-        count = offerPurchase.getCount();
+        // find offer
         try {
-            entity = getPersistenceFacade().getPersistenceHelper().getOfferRepository().findById(offerId).get();
-        } catch (Throwable e) {
-            return false;
+            Optional<OfferEntity> opt = getPersistenceFacade().getPersistenceHelper().getOfferRepository().findById(offerId);
+            if(opt.isPresent()){
+                entity = opt.get();
+            }
+        } catch (Exception e) {
+            rs.addError("OfferId= " +  offerId + " NOT FOUND - msg= " + e.getMessage());
+            exception.setRs(rs);
+            throw exception;
         }
         if(entity == null || entity.getAvailCount() < count){
-            return false;          
+            rs.addError("OfferId= " +  offerId + ", NOT ENOUGH units AVAILABLE");
+            exception.setRs(rs);
+            throw exception;
+
         }else{
             unitsAvail = entity.getAvailCount();
             entity.setAvailCount(unitsAvail-count);
             try {
-                entity = getPersistenceFacade().getPersistenceHelper().getOfferRepository().save(entity);
-            } catch (Throwable e) {
-                return false;
+                getPersistenceFacade().getPersistenceHelper().getOfferRepository().save(entity);
+                bResponse = true;
+            } catch (Exception e) {
+                rs.addError("Error decrementing stock - msg= " + e.getMessage());
             }
         }
         return bResponse;
@@ -107,8 +130,8 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         }
         if(!bAvail){
             rs.setBConfirmed(false);
-            AvailabilityException availabilityException = new AvailabilityException();
-            availabilityException.setProductConfirmRS(rs);
+            ProductAvailabilityException availabilityException = new ProductAvailabilityException();
+            availabilityException.setRs(rs);
             throw availabilityException;
         }
 
@@ -129,7 +152,7 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
             rs.setBConfirmed(false);
 
             ProductBookingException exception = new ProductBookingException();
-            exception.setProductConfirmRS(rs);
+            exception.setRs(rs);
 
             throw exception;
         }
@@ -181,7 +204,7 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
                     // save
             try {                
                 entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().save(entity);
-                rs.setbConfirmed(entity.getBConfirmed());
+                rs.setBConfirmed(entity.getBConfirmed());
             } catch (Exception e) {
                 rs.addError("Exception - msg= " + e.getMessage());
             }
