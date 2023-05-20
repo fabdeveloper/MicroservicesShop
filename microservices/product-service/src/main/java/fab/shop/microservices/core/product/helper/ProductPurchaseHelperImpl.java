@@ -16,6 +16,7 @@ import fab.shop.api.core.product.msg.ProductServiceErrorListRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.product.exception.ProductAvailabilityException;
 import fab.shop.api.core.product.exception.ProductBookingException;
+import fab.shop.api.core.product.exception.ProductPurchaseConfirmException;
 import fab.shop.api.core.product.exception.ProductReduceStockException;
 import fab.shop.microservices.core.product.facade.IPersistenceFacade;
 import fab.shop.microservices.core.product.persistence.OfferEntity;
@@ -76,7 +77,7 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         Integer offerId = offerPurchase.getOfferId();
         Integer count = offerPurchase.getCount();
         Integer unitsAvail;
-        OfferEntity entity;
+        OfferEntity entity = null;
 
         // find offer
         try {
@@ -109,14 +110,14 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
 
     @Transactional
     @Override
-    public ProductBookingRS bookPurchaseList(ProductBookingRQ productConfirmRQ) throws ProductBookingException {
+    public ProductBookingRS bookPurchaseList(ProductBookingRQ productBookingRQ) throws ProductBookingException {
         ProductBookingRS rs = new ProductBookingRS();
-        rs.setShopId(productConfirmRQ.getShopId());
+        rs.setShopId(productBookingRQ.getShopId());
 
         Integer offerId;
         Integer count;
 
-        List<OfferPurchase> purchaseList = productConfirmRQ.getOfferPurchaseList();
+        List<OfferPurchase> purchaseList = productBookingRQ.getOfferPurchaseList();
         String sError;
 
         // availability
@@ -183,8 +184,9 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
 
     @Transactional
     @Override
-    public ProductPurchaseConfirmRS purchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+    public ProductPurchaseConfirmRS purchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) throws ProductPurchaseConfirmException {
 
+        ProductPurchaseConfirmException productPurchaseConfirmException = new ProductPurchaseConfirmException();
         ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS(productPurchaseConfirmRQ.getProductBookingNumber(), productPurchaseConfirmRQ.getUserId(), false, productPurchaseConfirmRQ.getShopId(), productPurchaseConfirmRQ.getProductBookingTime(), null);
 
         Integer bookingNumber = productPurchaseConfirmRQ.getProductBookingNumber();
@@ -192,10 +194,15 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         // productBookingNumber exists ?
         ProductBookingEntity entity = null;
         try {
-            entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().findById(bookingNumber).get();            
+            Optional<ProductBookingEntity> opt = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().findById(bookingNumber);
+            if(opt.isPresent()){ 
+                entity = opt.get();
+                rs.addError("Entity found - entity= " + entity.toString());       
+            }
         } catch (Exception e) {
             rs.addError("Exception booking not found - msg= " + e.getMessage());
-            return rs;
+            productPurchaseConfirmException.setRs(rs);
+            throw productPurchaseConfirmException;
         }
 
         if(entity != null){
@@ -206,7 +213,9 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
                 entity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().save(entity);
                 rs.setBConfirmed(entity.getBConfirmed());
             } catch (Exception e) {
-                rs.addError("Exception - msg= " + e.getMessage());
+                rs.addError("Error - UNABLE TO CONFIRM BOOKING - Exception-msg= " + e.getMessage());
+                productPurchaseConfirmException.setRs(rs);
+                throw productPurchaseConfirmException;
             }
         }
         return rs;

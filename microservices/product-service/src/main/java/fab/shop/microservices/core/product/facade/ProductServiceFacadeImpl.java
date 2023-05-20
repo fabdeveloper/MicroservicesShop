@@ -17,6 +17,7 @@ import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
+import fab.shop.api.core.product.msg.ProductServiceErrorListRS;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 import fab.shop.api.core.product.msg.ProductBookingRQ;
 import fab.shop.api.core.product.msg.ProductBookingRS;
@@ -72,12 +73,14 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
 
     @Override
     public ProductBookingRS productBooking(ProductBookingRQ productBookingRQ){  
-        ProductBookingRS rs = new ProductBookingRS();
+        ProductBookingRS rs = new ProductBookingRS(productBookingRQ.getShopId(), false, null, productBookingRQ.getOfferPurchaseList(), null, null);
         try {
             rs = getProductPurchaseHelper().bookPurchaseList(productBookingRQ);
         } catch (ProductBookingException e) {
-            rs = e.getRs();
-        } catch(Throwable t){
+            for(String sError : e.getRs().getErrorList()){
+                rs.addError(sError);
+            }
+        } catch(Exception t){
             String sError = "ERROR - purchase not confirmed - msg: " + t.getMessage();
             rs.addError(sError);
             rs.setBConfirmed(false);
@@ -88,23 +91,20 @@ public class ProductServiceFacadeImpl implements IProductServiceFacade{
     @Override
     public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
 
-        ProductPurchaseConfirmRS rs;
+        ProductPurchaseConfirmRS rs = new ProductPurchaseConfirmRS(productPurchaseConfirmRQ.getShopId(), productPurchaseConfirmRQ.getUserId(), false, productPurchaseConfirmRQ.getProductBookingNumber(), productPurchaseConfirmRQ.getProductBookingTime(), null);
 
         try {
             rs = getProductPurchaseHelper().purchaseConfirm(productPurchaseConfirmRQ);
         } catch (ProductPurchaseConfirmException e) {
-            rs = e.getRs();
-        } catch(Throwable t){
+            for(String sError : e.getRs().getErrorList()){
+                rs.addError(sError);
+            }
+        } catch(Exception t){
             String sError = "ERROR - purchase not confirmed - msg: " + t.getMessage();
             rs.addError(sError);
             rs.setBConfirmed(false);
         }
         return rs;
-
-
-
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'productPurchaseConfirm'");
     }
 
     @Override
