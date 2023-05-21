@@ -114,30 +114,34 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         ProductBookingRS rs = new ProductBookingRS();
         rs.setShopId(productBookingRQ.getShopId());
 
-        Integer offerId;
-        Integer count;
+        ProductBookingException productBookingException = new ProductBookingException();
 
         List<OfferPurchase> purchaseList = productBookingRQ.getOfferPurchaseList();
-        String sError;
 
         // availability
-        Boolean bAvail = true;
-        for(OfferPurchase offerPurchase : purchaseList){            
-            if(!checkAvailability(offerPurchase)){
-                bAvail = false;
-                sError = "AVAILABILITY ERROR -  offerId: " + offerPurchase.getOfferId();
-                rs.addError(sError);
+        boolean bAvail = true;
+        for(OfferPurchase offerPurchase : purchaseList){
+            try {
+                checkAvailability(offerPurchase);                
+            } catch (ProductAvailabilityException e) {
+                for(String sError : e.getRs().getErrorList()){
+                    rs.addError(sError);
+                }
+                productBookingException.setRs(rs);
+                throw productBookingException;
+            } catch (Exception e) {
+                rs.addError("Exception checking availability - msg= " + e.getMessage());
+                productBookingException.setRs(rs);
+                throw productBookingException;
             }
         }
-        if(!bAvail){
-            rs.setBConfirmed(false);
-            ProductAvailabilityException availabilityException = new ProductAvailabilityException();
-            availabilityException.setRs(rs);
-            throw availabilityException;
-        }
+
 
         // book
         ProductBookingEntity bookEntity = new ProductBookingEntity();
+        bookEntity.setShopId(productBookingRQ.getShopId());
+        bookEntity.setCreationDate(new java.util.Date());
+
         try {
             bookEntity = getPersistenceFacade().getPersistenceHelper().getProductBookingRepository().save(bookEntity);
             List<OfferPurchaseEntity> entityList = getPersistenceFacade().getGeneralMapper().getOfferPurchaseMapper().apiListToEntityList(purchaseList);
@@ -147,34 +151,32 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
                 getPersistenceFacade().getPersistenceHelper().getOfferPurchaseRepository().save(offerPurchaseEntity);
             }
 
-        } catch (Throwable e) {
+        } catch (Exception e) {
             sError = "ERROR - not saved - msg: " + e.getMessage();
             rs.addError(sError);
             rs.setBConfirmed(false);
 
             ProductBookingException exception = new ProductBookingException();
             exception.setRs(rs);
-
             throw exception;
         }
 
         // decrement stock
-        boolean bDec = true;
         for(OfferPurchase offerPurchase : purchaseList){
-            if(!decrementStock(offerPurchase)){
-                bDec = false;
-                sError = "ERROR - stock modification - offerId: " + offerPurchase.getOfferId();
-                rs.addError(sError);
+            try {
+                decrementStock(offerPurchase);
+            } catch (ProductAvailabilityException e) {
+                for(String sError : e.getRs().getErrorList()){
+                    rs.addError(sError);
+                }
+                productBookingException.setRs(rs);
+                throw productBookingException;
+            } catch (Exception e) {
+                rs.addError("Exception checking availability - msg= " + e.getMessage());
+                productBookingException.setRs(rs);
+                throw productBookingException;
             }
         }
-        if(!bDec){
-            rs.setBConfirmed(false);
-            ProductReduceStockException exception = new ProductReduceStockException();
-            exception.setRs(rs);
-            throw exception;
-        }   
-        
-
 
         rs.setProductBookingNumber(bookEntity.getId());
 
