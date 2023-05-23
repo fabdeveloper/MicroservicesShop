@@ -35,7 +35,7 @@ public class ProxyProductServiceImpl implements IProxyProductService {
     }
 
     @Override
-    public ProductBookingRS productConfirm(ProductBookingRQ productConfirmRQ) {
+    public ProductBookingRS productBooking(ProductBookingRQ productConfirmRQ) {
         return restTemplate.postForObject(getProductServiceUrl() + "/productConfirm", productConfirmRQ, ProductBookingRS.class);
     }
 

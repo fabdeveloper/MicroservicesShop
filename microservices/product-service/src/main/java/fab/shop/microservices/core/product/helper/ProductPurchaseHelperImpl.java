@@ -152,7 +152,7 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
             }
 
         } catch (Exception e) {
-            sError = "ERROR - not saved - msg: " + e.getMessage();
+            String sError = "ERROR - not saved - msg: " + e.getMessage();
             rs.addError(sError);
             rs.setBConfirmed(false);
 
@@ -165,7 +165,7 @@ public class ProductPurchaseHelperImpl implements IProductPurchaseHelper {
         for(OfferPurchase offerPurchase : purchaseList){
             try {
                 decrementStock(offerPurchase);
-            } catch (ProductAvailabilityException e) {
+            } catch (ProductReduceStockException e) {
                 for(String sError : e.getRs().getErrorList()){
                     rs.addError(sError);
                 }

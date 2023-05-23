@@ -41,14 +41,14 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
 
 
     @Override
-    public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ){
-        EShopProductConfirmRS rs = new EShopProductConfirmRS(eShopProductConfirmRQ.getShopId(), false, null, null, null, null, null);
+    public EShopProductBookingRS eShopProductBooking(EShopProductBookingRQ eShopProductBookingRQ){
+        EShopProductBookingRS rs = new EShopProductBookingRS(eShopProductBookingRQ.getShopId(), false, null, null, null, null, null);
         // ProductService tasks
-        ProductBookingRQ productConfirmRQ = new ProductBookingRQ(eShopProductConfirmRQ.getShopId(), eShopProductConfirmRQ.getOfferPurchaseList());
-        ProductBookingRS productConfirmRS;
+        ProductBookingRQ productBookingRQ = new ProductBookingRQ(eShopProductBookingRQ.getShopId(), eShopProductBookingRQ.getOfferPurchaseList());
+        ProductBookingRS productBookingRS;
         try {
-            productConfirmRS = getShopIntegration().productConfirm(productConfirmRQ);
-            if(!productConfirmRS.getBConfirmed()){
+            productBookingRS = getShopIntegration().productBooking(productBookingRQ);
+            if(!productBookingRS.getBConfirmed()){
                 throw new Exception("not confirmed");
             }
 
@@ -60,8 +60,8 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
         
         List<ValuableItem> valuableItemsList = new ArrayList<>();
         ValuableItem valitem;
-        for(OfferPurchase ofpur : productConfirmRS.getProductPurchaseList()){
-            valitem = new ValuableItem(ofpur.getOfferId(), productConfirmRS.getShopId(), ofpur.getOfferUnitPrice(), ofpur.getCount(), ofpur.getDiscountList(), ofpur.getTaxList());
+        for(OfferPurchase ofpur : productBookingRS.getProductPurchaseList()){
+            valitem = new ValuableItem(ofpur.getOfferId(), productBookingRS.getShopId(), ofpur.getOfferUnitPrice(), ofpur.getCount(), ofpur.getDiscountList(), ofpur.getTaxList());
             valuableItemsList.add(valitem);
         }
             
@@ -75,12 +75,12 @@ public class EShopOrquestratorImpl implements IEShopOrquestrator {
             rs.addError(sError);
         }
 
-        rs.setBConfirmed(productConfirmRS.getBConfirmed());
-        rs.setProductBookingNumber(productConfirmRS.getProductBookingNumber());
-        rs.setProductBookingTime(productConfirmRS.getProductBookingTime());
-        rs.setProductPurchaseList(productConfirmRS.getProductPurchaseList());
+        rs.setBConfirmed(productBookingRS.getBConfirmed());
+        rs.setProductBookingNumber(productBookingRS.getProductBookingNumber());
+        rs.setProductBookingTime(productBookingRS.getProductBookingTime());
+        rs.setProductPurchaseList(productBookingRS.getProductPurchaseList());
         if(valuationRS != null) rs.setValuation(valuationRS.getTotalValuation());
-        rs.setShopId(productConfirmRS.getShopId());
+        rs.setShopId(productBookingRS.getShopId());
 
         return rs;
     }

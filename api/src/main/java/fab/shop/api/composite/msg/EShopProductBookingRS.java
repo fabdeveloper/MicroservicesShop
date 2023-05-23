@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import fab.shop.api.core.product.transfer.OfferPurchase;
 
-public class EShopProductConfirmRS {
+public class EShopProductBookingRS {
     private Integer shopId;
     private Boolean bConfirmed;
     private Integer productBookingNumber;
@@ -18,10 +18,10 @@ public class EShopProductConfirmRS {
 
 
 
-    public EShopProductConfirmRS() {
+    public EShopProductBookingRS() {
     }
 
-    public EShopProductConfirmRS(Integer shopId, Boolean bConfirmed, Integer productBookingNumber, List<OfferPurchase> productPurchaseList, List<String> errorList, Date productBookingTime, Float valuation) {
+    public EShopProductBookingRS(Integer shopId, Boolean bConfirmed, Integer productBookingNumber, List<OfferPurchase> productPurchaseList, List<String> errorList, Date productBookingTime, Float valuation) {
         this.shopId = shopId;
         this.bConfirmed = bConfirmed;
         this.productBookingNumber = productBookingNumber;
@@ -98,37 +98,37 @@ public class EShopProductConfirmRS {
         this.valuation = valuation;
     }
 
-    public EShopProductConfirmRS shopId(Integer shopId) {
+    public EShopProductBookingRS shopId(Integer shopId) {
         setShopId(shopId);
         return this;
     }
 
-    public EShopProductConfirmRS bConfirmed(Boolean bConfirmed) {
+    public EShopProductBookingRS bConfirmed(Boolean bConfirmed) {
         setBConfirmed(bConfirmed);
         return this;
     }
 
-    public EShopProductConfirmRS productBookingNumber(Integer productBookingNumber) {
+    public EShopProductBookingRS productBookingNumber(Integer productBookingNumber) {
         setProductBookingNumber(productBookingNumber);
         return this;
     }
 
-    public EShopProductConfirmRS productPurchaseList(List<OfferPurchase> productPurchaseList) {
+    public EShopProductBookingRS productPurchaseList(List<OfferPurchase> productPurchaseList) {
         setProductPurchaseList(productPurchaseList);
         return this;
     }
 
-    public EShopProductConfirmRS errorList(List<String> errorList) {
+    public EShopProductBookingRS errorList(List<String> errorList) {
         setErrorList(errorList);
         return this;
     }
 
-    public EShopProductConfirmRS productBookingTime(Date productBookingTime) {
+    public EShopProductBookingRS productBookingTime(Date productBookingTime) {
         setProductBookingTime(productBookingTime);
         return this;
     }
 
-    public EShopProductConfirmRS valuation(Float valuation) {
+    public EShopProductBookingRS valuation(Float valuation) {
         setValuation(valuation);
         return this;
     }
@@ -137,10 +137,10 @@ public class EShopProductConfirmRS {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof EShopProductConfirmRS)) {
+        if (!(o instanceof EShopProductBookingRS)) {
             return false;
         }
-        EShopProductConfirmRS eShopProductConfirmRS = (EShopProductConfirmRS) o;
+        EShopProductBookingRS eShopProductConfirmRS = (EShopProductBookingRS) o;
         return Objects.equals(shopId, eShopProductConfirmRS.shopId) && Objects.equals(bConfirmed, eShopProductConfirmRS.bConfirmed) && Objects.equals(productBookingNumber, eShopProductConfirmRS.productBookingNumber) && Objects.equals(productPurchaseList, eShopProductConfirmRS.productPurchaseList) && Objects.equals(errorList, eShopProductConfirmRS.errorList) && Objects.equals(productBookingTime, eShopProductConfirmRS.productBookingTime) && Objects.equals(valuation, eShopProductConfirmRS.valuation);
     }
 

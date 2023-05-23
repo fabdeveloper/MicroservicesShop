@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface IEShopOrquestrator {
 
 	@PostMapping(
-		value = "/eshop/orquestrator/productconfirm",
+		value = "/eshop/orquestrator/productBooking",
 		consumes = "application/json",
 		produces = "application/json")
-    public EShopProductConfirmRS eShopProductConfirm(@RequestBody EShopProductConfirmRQ eShopProductConfirmRQ);
+    public EShopProductBookingRS eShopProductBooking(@RequestBody EShopProductBookingRQ eShopProductBookingRQ);
 
     
 		@PostMapping(
-			value = "/eshop/orquestrator/purchaseconfirm",
+			value = "/eshop/orquestrator/purchaseConfirm",
 			consumes = "application/json",
 			produces = "application/json")
 			EShopPurchaseConfirmRS eShopPurchaseConfirm(@RequestBody EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ);

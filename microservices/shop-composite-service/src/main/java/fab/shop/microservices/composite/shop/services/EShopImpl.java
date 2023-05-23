@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fab.shop.api.composite.IEShop;
 import fab.shop.api.composite.IEShopOrquestrator;
-import fab.shop.api.composite.msg.EShopProductConfirmRQ;
-import fab.shop.api.composite.msg.EShopProductConfirmRS;
+import fab.shop.api.composite.msg.EShopProductBookingRQ;
+import fab.shop.api.composite.msg.EShopProductBookingRS;
 import fab.shop.api.composite.msg.EShopPurchaseConfirmRQ;
 import fab.shop.api.composite.msg.EShopPurchaseConfirmRS;
 
@@ -15,8 +15,8 @@ public class EShopImpl implements IEShop{
     private IEShopOrquestrator orquestrator;
 
     @Override
-    public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ) {
-        return getOrquestrator().eShopProductConfirm(eShopProductConfirmRQ);
+    public EShopProductBookingRS eShopProductBooking(EShopProductBookingRQ eShopProductBookingRQ) {
+        return getOrquestrator().eShopProductBooking(eShopProductBookingRQ);
     }
 
     @Override

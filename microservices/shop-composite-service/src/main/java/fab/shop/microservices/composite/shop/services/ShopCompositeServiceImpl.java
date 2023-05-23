@@ -15,6 +15,8 @@ import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
 import fab.shop.api.core.product.msg.GetOfferListDetailRS;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
 import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
+import fab.shop.api.core.product.msg.ProductPurchaseConfirmRQ;
+import fab.shop.api.core.product.msg.ProductPurchaseConfirmRS;
 import fab.shop.api.core.product.msg.ProductBookingRQ;
 import fab.shop.api.core.product.msg.ProductBookingRS;
 import fab.shop.api.core.valuation.msg.*;
@@ -89,8 +91,8 @@ public class ShopCompositeServiceImpl implements ShopService {
 
 
     @Override
-    public ProductBookingRS productPurchaseConfirm(ProductBookingRQ productPurchaseConfirmRQ) {
-        return getShopIntegration().productConfirm(productPurchaseConfirmRQ);
+    public ProductPurchaseConfirmRS productPurchaseConfirm(ProductPurchaseConfirmRQ productPurchaseConfirmRQ) {
+        return getShopIntegration().productPurchaseConfirm(productPurchaseConfirmRQ);
     }
 
 

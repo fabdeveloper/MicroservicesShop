@@ -6,17 +6,17 @@ import java.util.Objects;
 import fab.shop.api.composite.transfer.PurchaseItem;
 import fab.shop.api.core.product.transfer.OfferPurchase;
 
-public class EShopProductConfirmRQ {
+public class EShopProductBookingRQ {
     private Integer shopId;
     private Integer userId;
     private List<OfferPurchase> offerPurchaseList;
 
 
-    public EShopProductConfirmRQ() {
+    public EShopProductBookingRQ() {
     }
 
 
-    public EShopProductConfirmRQ(Integer shopId, Integer userId, List<OfferPurchase> offerPurchaseList) {
+    public EShopProductBookingRQ(Integer shopId, Integer userId, List<OfferPurchase> offerPurchaseList) {
 		super();
 		this.shopId = shopId;
 		this.userId = userId;

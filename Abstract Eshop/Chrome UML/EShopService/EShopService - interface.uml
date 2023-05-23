@@ -1,8 +1,29 @@
 @startuml
 
 interface IEShop {
-	public EShopProductConfirmRS eShopProductConfirm(EShopProductConfirmRQ eShopProductConfirmRQ);
+	public EShopProductBookingRS eShopProductBooking(EShopProductBookingRQ eShopProductBookingRQ);
     public EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ);
+}
+
+interface IEShopOrchestrator {
+    public EShopProductBookingRS eShopProductBooking(EShopProductBookingRQ eShopProductBookingRQ);
+	EShopPurchaseConfirmRS eShopPurchaseConfirm(EShopPurchaseConfirmRQ eShopPurchaseConfirmRQ);
+}
+
+interface CartService {
+			GetCartRS getCart(GetCartRQ getCartRQ);	  
+			CartModificationRS cartModification(CartModificationRQ cartModificationRQ);	  
+			AddToCartRS addToCart(AddToCartRQ addToCartRq);
+			RemoveFromCartRS removeFromCart(RemoveFromCartRQ removeFromCartRq);
+            EmptyCartRS emptyCart(EmptyCartRQ emptyCartRQ);
+			DeleteCartRS deleteCart(DeleteCartRQ deleteCartRQ);
+
+		  String getCartApiObject();
+		  String getCartEntityObject();
+}
+
+interface IEShopIntegration extends CartService, ProductService, PurchaseService, ValuationService {
+    
 }
 
 
