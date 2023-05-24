@@ -66,6 +66,9 @@ node "EShopServer" {
 
 note right of EShopOrquestratorImpl : Compose
 
+note right of EShopIntegrationImpl : Easy access to service's interfaces
+
+
 note right of GeneralEXternalServicesFacadeImpl : External Service Locator
 
 node "ProductServer" {
