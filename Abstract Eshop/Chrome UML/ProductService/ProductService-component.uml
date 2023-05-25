@@ -20,13 +20,15 @@ package "facade" {
 }
 
 package "helper" {
-	ipph - [ProductPurchaseHelperImpl]
-    ipah - [ProductAvailabilityHelperImpl]
+	[ProductAvailabilityHelperImpl] as pahi #Yellow 
+    [ProductPurchaseHelperImpl] as pphi #Yellow
+	ipph - pphi
+    ipah - pahi
     [ProductServiceFacadeImpl] ..> ipah
     [ProductServiceFacadeImpl] ..> ipph
 
-    [ProductPurchaseHelperImpl] ..> Iperfac
-    [ProductAvailabilityHelperImpl] ..> Iperfac
+    pphi ..> Iperfac
+    pahi ..> Iperfac
 
 
 
