@@ -61,7 +61,8 @@ public class CartDetailMapperTest {
         List<CartItemEntity> itemList = new ArrayList<>();
 
 
-        CartDetailEntity entity = new CartDetailEntity(1, 0, null, 9.00f, 5);
+        CartDetailEntity entity = new CartDetailEntity(1, 0, null, 9.00f, 5, 1);
+
         CartItemEntity item = new CartItemEntity(1, 0, entity, 2, 1, "offer name", "offer description", 9.9f);
         itemList.add(item);
         entity.setItemsList(itemList);

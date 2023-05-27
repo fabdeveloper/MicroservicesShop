@@ -1,0 +1,35 @@
+@startuml
+
+package ProductService {
+
+usecase "get availability" as avail
+usecase "get product details" as detail
+usecase "book product" as book
+usecase "confirm purchase" as purchase
+
+usecase "setup product" as setup
+
+
+
+}
+
+actor "client" as client
+
+client --> avail
+client --> detail
+client --> book
+client --> purchase
+
+
+
+actor "administrator" as admin
+
+admin -left-> setup
+
+
+
+
+
+
+
+@enduml
