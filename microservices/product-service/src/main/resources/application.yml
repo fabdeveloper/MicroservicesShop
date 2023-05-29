@@ -21,6 +21,24 @@ api:
     email: contact@mail.com
 
 
+ responseCodes:
+  ok.description: OK
+  badRequest.description: Bad Request, invalid format of the request.
+    See response message for more information
+  notFound.description: Not found, the specified id does not exist
+  unprocessableEntity.description: Unprocessable entity, input
+    parameters caused the processing to fail. See response message for more
+    information
+
+ product-service:
+    post-productbooking:
+      description: Book a set of product and block it  for a time previously to confirm a purchase and returns a productBookingNumber in a ProductBookingRS response
+      notes: pending
+
+    post-productpurchaseconfirm:
+      description: It Confirms a purchase so the product will not be available
+      notes: pending
+
 
 
 server.port: 7001

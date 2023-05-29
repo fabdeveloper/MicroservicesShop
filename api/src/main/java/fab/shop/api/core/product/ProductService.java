@@ -27,14 +27,7 @@ public interface ProductService {
 
 
 	  
-	@Operation(summary = "${api.shop-service.post-addtocart.description}", description = "${api.shop-service.post-addtocart.notes}")
-	@ApiResponses(value = {
-		@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}"),
-		@ApiResponse(responseCode ="400", description = "${api.responseCodes.badRequest.description}"),
-		@ApiResponse(responseCode ="404", description = "${api.responseCodes.notFound.description}"),
-		@ApiResponse(responseCode ="422", description = "${api.responseCodes.unprocessableEntity.description}")
 
-	})
 	  @PostMapping(
 		value = "/product/getAvail",
 		consumes = "application/json",
@@ -48,13 +41,29 @@ public interface ProductService {
 			GetOfferListDetailRS getOfferListDetail(@RequestBody GetOfferListDetailRQ getOfferListDetailRQ);
 
 			
-	  
+			@Operation(summary = "${api.product-service.post-productbooking.description}", description = "${api.product-service.post-productbooking.notes}")
+			@ApiResponses(value = {
+				@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}"),
+				@ApiResponse(responseCode ="400", description = "${api.responseCodes.badRequest.description}"),
+				@ApiResponse(responseCode ="404", description = "${api.responseCodes.notFound.description}"),
+				@ApiResponse(responseCode ="422", description = "${api.responseCodes.unprocessableEntity.description}")
+		
+			})
 		@PostMapping(
 			value = "/product/productBooking",
 			consumes = "application/json",
 			produces = "application/json")
 			ProductBookingRS productBooking(@RequestBody ProductBookingRQ productBookingRQ);
 
+
+			@Operation(summary = "${api.product-service.post-productpurchaseconfirm.description}", description = "${api.product-service.post-productpurchaseconfirm.notes}")
+			@ApiResponses(value = {
+				@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}"),
+				@ApiResponse(responseCode ="400", description = "${api.responseCodes.badRequest.description}"),
+				@ApiResponse(responseCode ="404", description = "${api.responseCodes.notFound.description}"),
+				@ApiResponse(responseCode ="422", description = "${api.responseCodes.unprocessableEntity.description}")
+		
+			})
 		@PostMapping(
 			value = "/product/productPurchaseConfirm",
 			consumes = "application/json",
