@@ -3,21 +3,15 @@ package fab.shop.api.core.product;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import fab.shop.api.core.product.msg.GenericProductConfigRQ;
-import fab.shop.api.core.product.msg.GetAvailRQ;
-import fab.shop.api.core.product.msg.GetAvailRS;
-import fab.shop.api.core.product.msg.GetOfferListDetailRQ;
-import fab.shop.api.core.product.msg.GetOfferListDetailRS;
-import fab.shop.api.core.product.msg.ProductConfigBasicRQ;
-import fab.shop.api.core.product.msg.ProductCreateNewRS;
-import fab.shop.api.core.product.msg.ProductPurchaseCancelRQ;
-import fab.shop.api.core.product.msg.ProductPurchaseCancelRS;
-import fab.shop.api.core.product.msg.ProductBookingRQ;
-import fab.shop.api.core.product.msg.ProductBookingRS;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import fab.shop.api.core.product.msg.*;
 
 
+@Tag(name="Product Service", description="REST API for Product Services")
 public interface ProductService {
 	
 	  /**
@@ -33,6 +27,14 @@ public interface ProductService {
 
 
 	  
+	@Operation(summary = "${api.shop-service.post-addtocart.description}", description = "${api.shop-service.post-addtocart.notes}")
+	@ApiResponses(value = {
+		@ApiResponse(responseCode ="200", description = "${api.responseCodes.ok.description}"),
+		@ApiResponse(responseCode ="400", description = "${api.responseCodes.badRequest.description}"),
+		@ApiResponse(responseCode ="404", description = "${api.responseCodes.notFound.description}"),
+		@ApiResponse(responseCode ="422", description = "${api.responseCodes.unprocessableEntity.description}")
+
+	})
 	  @PostMapping(
 		value = "/product/getAvail",
 		consumes = "application/json",
