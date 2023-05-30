@@ -99,7 +99,7 @@ server.port: 8080
 app:
   product-service: 
     host: product
-    port: 8080
+    port: 7001
   cart-service:
     host: cart
     port: 8080

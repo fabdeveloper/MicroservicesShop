@@ -4,6 +4,8 @@ services:
   product: 
     build: microservices/product-service
     mem_limit: 512m
+    ports: 
+      - "7001:7001"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
